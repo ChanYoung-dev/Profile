@@ -2,7 +2,7 @@
 
 :root {
   /* Color */
-  --color-white: #ffffff;
+  --color-white: #ddd;
   --color-light-white: #eeeeee;
   --color-dark-white: #bdbdbd;
   --color-pink: #fe918d;
@@ -11,10 +11,13 @@
   --color-grey: #616161;
   --color-light-grey: #7c7979;
   --color-blue: #73aace;
-  --color-yellow: #fff7d1;
+  --color-yellow: #ffcc00;
   --color-orange: #feb546;
-  --color-black: #000000;
-
+  --color-black2: #222222;
+  --color-black3: #333333;
+  --color-black3: #444444;
+  --color-dark-black: #2b2b2b;
+  --color-dark-black2: #212121;
   /* Font size */
   --font-large: 48px;
   --font-medium: 28px;
@@ -26,9 +29,21 @@
   --weight-bold: 700;
   --weight-semi-bold: 600;
   --weight-regular: 400;
-}
 
+  /* Size */
+  --size-border-radius: 5px;
+}
 /* Typography */
+
+body {
+  font-family: "Roboto Mono", monospace;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  cursor: default;
+  margin: 0;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 50%);
+  box-shadow: inset 0 3px 30px rgb(0 0 0 / 30%);
+}
 
 h1 {
   font-size: var(--font-large);
@@ -56,4 +71,64 @@ p {
   font-weight: var(--weight-regular);
   color: var(--color-black);
   margin: 4px 0;
+}
+
+a {
+  text-decoration: none;
+  /* 밑줄 없애기*/
+  color: var(--color-white);
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Navbar */
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-black3);
+  align-items: center;
+  color: var(--color-dark-black);
+  padding: 16px;
+}
+
+.navbar_menu {
+  display: flex;
+  color: var(--color-yellow);
+}
+
+.navbar_logo {
+  font-size: var(--font-medium);
+  font-weight: var(--weight-semi-bold);
+}
+
+.navbar_menu_item {
+  border-radius: var(--size-border-radius);
+  margin: 0 2px;
+  padding: 8px 12px;
+  text-transform: uppercase;
+  /* 손모양 커서 */
+  cursor: pointer;
+}
+
+.navbar_menu_item.active {
+  color: var(--color-black2);
+  background-color: var(--color-yellow);
+  border: 1px solid var(--color-yellow);
+}
+.navbar_menu_item.active:hover {
+  color: var(--color-black2);
+  background-color: var(--color-yellow);
+  border: 1px solid var(--color-yellow);
+  box-shadow: none;
+  text-shadow: inset 0 3px 30px rgb(0 0 0 / 30%);
+}
+
+.navbar_menu_item:hover {
+  color: var(--color-orange);
+  background-color: #252525;
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 50%), 0 1px 0 rgb(255 255 255 / 10%);
+  text-shadow: 0 1px 3px rgb(0 0 0 / 50%);
 }
