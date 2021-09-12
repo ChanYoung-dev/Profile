@@ -408,3 +408,35 @@ a.logo_text {
   display: block;
   background-color: white;
 }
+
+/*Testimonial*/
+
+.testimonials {
+  margin:40px;
+}
+
+
+.testimonial{
+  margin: 32px 0;
+  display: flex;
+}
+
+.testimonial_avatar{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.testimonial_avatar:nth-child(odd) {
+  margin-right: 40px;
+}
+
+.testimonial_avatar:nth-child(even) {
+  margin-left: 40px;
+}
+
+.testimonial_speech-bubble{
+  padding: 18px;
+  background-color: var(--color-black2);
+  border-radius: var(--size-border-radius);
+}
