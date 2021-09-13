@@ -375,7 +375,7 @@ a.logo_text {
   transition: all var(--animation-duration);
 }
 
-.work_project {
+.work_projects {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -390,6 +390,10 @@ a.logo_text {
   height: 250px;
   background-color: var(--color-light-grey);
   margin: 2px;
+}
+
+.project.invisible {
+  display: none;
 }
 
 .project:hover .project_description {

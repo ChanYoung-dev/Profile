@@ -56,7 +56,47 @@ document.addEventListener('scroll',()=> {
 arrowUp.addEventListener('click', () => {
     window.scrollTo({top:0, left:0, behavior:'smooth'})
 
-})
+});
+
+// Handle projects  when tapping on th work_categoris
+const workBtnContainer = document.querySelector('.work_categories');
+const projectContainter = document.querySelector('.work_projects');
+const projects = document.querySelectorAll('.project'); 
+workBtnContainer.addEventListener('click', (event) => {
+    const filter = event.target.dataset.filter || event.target.parentNode.dataset.filter;
+    if(filter == null){
+        return;
+    }
+
+    projects.forEach((project) =>{
+        console.log(project.dataset.type);
+        
+        if ( filter === '*' || filter === project.dataset.type)
+        {
+            /*project.style.display = 'block';*/
+            project.classList.remove('invisible');
+        }
+        else{
+            /*project.style.display = 'none';*/
+            project.classList.add('invisible');
+        }
+    });
+
+    /*
+    위와 같다.
+    for(let project of projects) {
+
+    }
+
+    let project;
+    for(let i = 0; i < projects.length ; i++) {
+        project = projects[i];
+    }
+
+    console.log(filter);
+    */ 
+    
+});
 
 function scrollIntoView(selector){
     const scrollTo = document.querySelector(selector);
