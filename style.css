@@ -131,9 +131,12 @@ button {
   color: var(--color-dark-black3);
   padding: 16px;
   transition: all var(--animation-duration) ease-in-out;
+  z-index: 1;
+  /* 제일 위에 위치*/
 }
 #navbar.navbar-dark {
   background-color: var(--color-dark-black);
+  opacity: 0.5;
 }
 
 .navbar_menu {
@@ -467,30 +470,60 @@ a.logo_text {
 }
 
 .contact_title {
-  margin: 32px 0;
+  margin: 16px 0;
 }
 .contact_links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
   font-size: var(--font-large);
   color: var(--color-black2);
-  margin: 24px 0;
+  margin: 12px 0;
   transition: all var(--animation-duration) ease;
 }
 
-.contact_links i {
+.link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 10px;
+}
+
+.links_image {
   color: var(--color-orange);
   border: 2px solid var(--color-dark-black2);
-  border-radius: var(--size-border-radius);
+  border-radius: 50%;
   padding: 8px 12px;
   cursor: pointer;
-  background-color: var(--color-black3);
+  background-color: var(--color-dark-black2);
   box-shadow: inset 0 1px 3px rgb(0 0 0 / 50%), 0 1px 0 rgb(255 255 255 / 10%);
   text-shadow: 0 1px 3px rgb(0 0 0 / 50%);
 }
-.contact_links i:hover {
-  transform: scale(1.1);
-  color: var(--color-yellow);
+
+.blog:hover .links_image {
+  background-color: var(--color-orange);
+  opacity: 0.7;
+}
+.contact_description {
+  font-size: var(--font-micro);
+  color: black;
+  position: absolute;
+  top: -8px;
+  left: 5px;
+  opacity: 0;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+.blog:hover .contact_description {
+  opacity: 0.8;
+}
 /* For below 768px scrren width */
 
 @media screen and (max-width: 768px) {
