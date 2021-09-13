@@ -524,6 +524,26 @@ a.logo_text {
 .blog:hover .contact_description {
   opacity: 0.8;
 }
+
+/* Arrow up*/
+.arrow-up {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+  font-size: 50px;
+  background-color: var(--color-pink);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease-in;
+}
+
+.arrow-up.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
 /* For below 768px scrren width */
 
 @media screen and (max-width: 768px) {
