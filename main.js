@@ -23,7 +23,7 @@ navbarMenu.addEventListener('click', (event) => {
         return;
     }
     scrollIntoView(link);
-})
+});
 
 
 //Handle scrolling when tapping on the contact button on home
@@ -31,10 +31,21 @@ const homeContactBtn= document.querySelector('.home_contact');
 
 homeContactBtn.addEventListener('click', ()=>{
     scrollIntoView('#contact');
-})
+});
+
+// Make home slowly fade to transparent as the window scrolls down
+
+
+const home = document.querySelector('.home_contents');
+const homeHeight = home.getBoundingClientRect().height;
+document.addEventListener('scroll', ()=>{
+    home.style.opacity = 1 - window.scrollY / homeHeight;
+});
+
+
 
 function scrollIntoView(selector){
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({ behavior: 'smooth'});
-}
+};
 
