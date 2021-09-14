@@ -44,10 +44,10 @@
 /* Typography */
 
 .section {
-  padding: 50px;
   text-align: center;
   margin: auto;
   padding: 20px;
+  padding-top: 60px;
   background-color: var(--color-black4);
   color: var(--color-dark-grey);
 }
@@ -164,7 +164,7 @@ a.logo_text {
   /* 손모양 커서 */
   cursor: pointer;
 }
-/*
+
 .navbar_menu_item.active {
   color: var(--color-black2);
   background-color: var(--color-yellow);
@@ -178,7 +178,6 @@ a.logo_text {
   box-shadow: none;
   text-shadow: inset 0 3px 30px rgb(0 0 0 / 30%);
 }
-*/
 
 .navbar_menu_item:hover {
   color: var(--color-orange);

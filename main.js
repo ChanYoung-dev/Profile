@@ -23,6 +23,7 @@ navbarMenu.addEventListener('click', (event) => {
         return;
     }
     scrollIntoView(link);
+    selectNavItem(target);
 });
 
 //Navbar toggle button for small screen
@@ -64,7 +65,8 @@ document.addEventListener('scroll',()=> {
 
 //Handle click on the "arrow up" button
 arrowUp.addEventListener('click', () => {
-    window.scrollTo({top:0, left:0, behavior:'smooth'})
+    window.scrollTo({top:0, left:0, behavior:'smooth'});
+    selectNavItem(navItems[sectionIds.indexOf('#home')]);
 
 });
 
@@ -118,6 +120,62 @@ workBtnContainer.addEventListener('click', (event) => {
     */ 
     
 });
+
+//Activate the menu when scrolling.
+const sectionIds = [
+    '#home',
+    '#about',
+    '#skills',
+    '#work',
+    '#testimonials',
+    '#contact',
+];
+const sections = sectionIds.map(id => document.querySelector(id));
+const navItems = sectionIds.map(id => document.querySelector(`[data-link="${id}"]`));
+
+let selectedNavIndex = 0;
+let selectedNavItem = navItems[0];
+function selectNavItem(selected){
+    selectedNavItem.classList.remove('active');
+    selectedNavItem = selected;
+    selectedNavItem.classList.add('active');
+}
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.3,
+}
+
+const observerCallback = (entries,observer) => {
+    entries.forEach(entry => {
+        if(!entry.isIntersecting && entry.intersectionRatio > 0){
+            const index = sectionIds.indexOf(`#${entry.target.id}`);
+            //스크롤이 아래로
+            if(entry.boundingClientRect.y <0){
+                selectedNavIndex = index +1;
+            } else{
+                selectedNavIndex = index -1; 
+            }
+        }
+    });
+};
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+sections.forEach(section => observer.observe(section));
+
+window.addEventListener('wheel', () => {
+
+    if (window.scrollY === 0) {
+        selectedNavIndex = 0;
+    } else if (Math.round(window.scrollY + window.innerHeight) >= document.body.clientHeight) {
+        selectedNavIndex = navItems.length -1
+    }
+    selectNavItem(navItems[selectedNavIndex]);
+});
+
+
+
+
 
 function scrollIntoView(selector){
     const scrollTo = document.querySelector(selector);
