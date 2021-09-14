@@ -23,7 +23,6 @@ navbarMenu.addEventListener('click', (event) => {
         return;
     }
     scrollIntoView(link);
-    selectNavItem(target);
 });
 
 //Navbar toggle button for small screen
@@ -65,9 +64,7 @@ document.addEventListener('scroll',()=> {
 
 //Handle click on the "arrow up" button
 arrowUp.addEventListener('click', () => {
-    window.scrollTo({top:0, left:0, behavior:'smooth'});
-    selectNavItem(navItems[sectionIds.indexOf('#home')]);
-
+    scrollIntoView('#home');
 });
 
 // Handle projects  when tapping on th work_categoris
@@ -180,5 +177,6 @@ window.addEventListener('wheel', () => {
 function scrollIntoView(selector){
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({ behavior: 'smooth'});
+    selectNavItem(navItems[sectionIds.indexOf(selector)]);
 };
 
