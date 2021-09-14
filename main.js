@@ -67,10 +67,10 @@ workBtnContainer.addEventListener('click', (event) => {
     if(filter == null){
         return;
     }
-
+    projectContainter.classList.add('anim-out');
+    setTimeout(() => {
     projects.forEach((project) =>{
         console.log(project.dataset.type);
-        
         if ( filter === '*' || filter === project.dataset.type)
         {
             /*project.style.display = 'block';*/
@@ -81,6 +81,8 @@ workBtnContainer.addEventListener('click', (event) => {
             project.classList.add('invisible');
         }
     });
+    projectContainter.classList.remove('anim-out');
+    }, 300);
 
     /*
     위와 같다.
