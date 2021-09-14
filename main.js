@@ -67,10 +67,19 @@ workBtnContainer.addEventListener('click', (event) => {
     if(filter == null){
         return;
     }
+    //Remove selection from the previous item and select the new one
+    const active = document.querySelector('.category_btn.selected');
+    active.classList.remove('selected');
+    //const target = e.target.nodeName === 'BUTTON' ? e.target: e.target.parentNode;
+    if(event.target.dataset.filter == null){
+        event.target.parentNode.classList.add('selected');
+    }
+    else{
+        event.target.classList.add('selected');
+    }
     projectContainter.classList.add('anim-out');
     setTimeout(() => {
     projects.forEach((project) =>{
-        console.log(project.dataset.type);
         if ( filter === '*' || filter === project.dataset.type)
         {
             /*project.style.display = 'block';*/
