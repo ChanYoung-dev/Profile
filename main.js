@@ -25,6 +25,14 @@ navbarMenu.addEventListener('click', (event) => {
     scrollIntoView(link);
 });
 
+//Navbar toggle button for small screen
+const navbarToggleBtn = document.querySelector('.navbar_toggle-btn');
+navbarToggleBtn.addEventListener
+('click', () => {
+    console.log("hello");
+    navbarMenu.classList.toggle('open');
+});
+
 
 //Handle scrolling when tapping on the contact button on home
 const homeContactBtn= document.querySelector('.home_contact');
@@ -39,6 +47,8 @@ homeContactBtn.addEventListener('click', ()=>{
 const home = document.querySelector('.home_contents');
 const homeHeight = home.getBoundingClientRect().height;
 document.addEventListener('scroll', ()=>{
+    /* remove navbarMenu when if scrolling*/
+    navbarMenu.classList.remove('open');
     home.style.opacity = 1 - window.scrollY / homeHeight;
 });
 
