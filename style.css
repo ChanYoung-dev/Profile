@@ -228,14 +228,32 @@ a.logo_text {
 /*Home*/
 #home {
   padding-top: 120px;
-  background: url(img/dark_background.jpg) center/cover no-repeat;
+  background: url(img/moon.jpeg) center/cover no-repeat;
 }
 .home_avatar {
   width: 250px;
   height: 250px;
-  border-radius: 50%;
-  border: 10px solid var(--color-dark-black2);
+  border-radius: 15%;
+  border: 5px solid var(--color-light-white);
+  box-shadow: 0 5px 15px 0px rgb(0 0 0 / 60%);
+  transform: translatey(0px);
+  animation: float 4s ease-in-out infinite alternate;
 }
+@keyframes float {
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgb(0, 0, 0, 0.2);
+    transform: translatey(-20px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+}
+
 .home_title,
 .home_description {
   color: var(--color-dark-grey);
