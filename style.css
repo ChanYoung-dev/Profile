@@ -611,7 +611,9 @@ a.logo_text {
 
 /* Contact */
 #contact {
+  padding-top: 10px;
   background-color: var(--color-black3);
+  text-shadow: none;
 }
 
 .contact_title,
@@ -621,6 +623,7 @@ a.logo_text {
 }
 
 .contact_title {
+  color: white;
   margin: 16px 0;
 }
 .contact_links {
