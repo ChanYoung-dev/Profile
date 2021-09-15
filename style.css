@@ -153,7 +153,37 @@ button {
 a.logo_text {
   text-decoration: none;
   /* 밑줄 없애기*/
-  color: var(--color-dark-grey);
+  color: #3d352f;
+}
+
+a.logo_text {
+  line-height: 50px;
+  -webkit-font-smoothing: antialiased;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(
+    to right,
+    var(--color-dark-grey) 0,
+    black 10%,
+    var(--color-dark-grey) 20%
+  );
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 10s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
 }
 
 .navbar_menu_item {
