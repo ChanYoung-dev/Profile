@@ -120,6 +120,11 @@ button {
   text-shadow: 0 1px 3px rgb(0 0 0 / 50%);
 }
 
+.container {
+  border-radius: 5px;
+  background-image: linear-gradient(to bottom, #3a3a3a 0%, #1e1e1e 100%);
+}
+
 /* Navbar */
 #navbar {
   position: fixed;
@@ -269,10 +274,14 @@ a.logo_text {
 }
 
 /* About */
+
+#about {
+  padding: 0px;
+}
 .about_container {
-  background-color: #252525;
-  margin-top: 50px;
-  padding: 10px 0px 50px 0px;
+  padding: 40px;
+  margin: 0px;
+  border-radius: 15px;
 }
 
 .about_majors {
@@ -296,6 +305,9 @@ a.logo_text {
 
   border: 3px solid var(--color-yellow);
   border-radius: 50%;
+  box-shadow: 0 5px 15px 0px rgb(0 0 0 / 60%);
+  transform: translatey(0px);
+  animation: float 5s ease-in-out infinite alternate;
 }
 .major_icon i {
   color: var(--color-yellow);
@@ -371,6 +383,11 @@ a.logo_text {
   text-shadow: none;
   font-weight: var(--weight-semi-bold);
 }
+
+.skill_container {
+  padding: 5px;
+  border-radius: 0;
+}
 .skillset_title {
   color: var(--color-yellow);
   text-shadow: 0 1px 3px rgb(0 0 0 / 50%);
@@ -405,10 +422,7 @@ a.logo_text {
 
 .skillset_right {
   flex-basis: 40%;
-}
-
-.environments {
-  background-color: #252525;
+  background-color: var(--color-black4);
 }
 
 .certificate {
@@ -417,14 +431,13 @@ a.logo_text {
 }
 
 .test_span {
-  background-color: #252525;
-  border-radius: var(--size-border-radius);
+  background-color: #171b21;
   padding: 10px;
   width: 100%;
 }
 
 .test_li {
-  background-color: #252525;
+  background-color: #171b21;
   display: flex;
   align-items: center;
 }
@@ -442,14 +455,19 @@ a.logo_text {
   list-style: inside;
   text-align: left;
   margin-left: 20px;
+  padding: 20px;
+  background-color: #171b21;
+  margin: 0;
 }
 .right_list li {
-  margin: 10px;
+  margin: 20px;
 }
 
 .environments,
 .certificate {
-  padding: 20px;
+  padding: 0px;
+  background-color: var(--color-black4);
+  border-radius: 50%;
 }
 
 /* Work */
@@ -645,6 +663,15 @@ a.logo_text {
   margin: 12px 0;
   transition: all var(--animation-duration) ease;
 }
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 2px solid var(--color-dark-black2);
+  border-radius: 10px;
+  background-color: #252525;
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 50%), 0 1px 0 rgb(255 255 255 / 10%);
+}
 
 .link {
   display: flex;
@@ -653,6 +680,8 @@ a.logo_text {
   align-items: center;
   position: relative;
   margin: 0px;
+
+  transform: translateY(5px);
 }
 
 .links_image {
@@ -673,7 +702,8 @@ a.logo_text {
 }
 .contact_description {
   font-size: var(--font-micro);
-  color: black;
+  font-weight: var(--weight-semi-bold);
+  color: white;
   position: absolute;
   top: -8px;
   left: 5px;
@@ -702,13 +732,14 @@ a.logo_text {
 
 /* Arrow up*/
 .arrow-up {
+  border: 1px solid white;
   position: fixed;
   bottom: 20px;
   right: 20px;
   width: 70px;
   height: 70px;
   font-size: 50px;
-  background-color: var(--color-pink);
+  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
