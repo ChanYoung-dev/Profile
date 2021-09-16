@@ -612,6 +612,12 @@ a.logo_text {
 .calendar {
   font-family: "Roboto Mono", monospace;
 }
+
+#feed {
+  height: 500px;
+  width: 80%;
+  margin: 20px auto;
+}
 /* Contact */
 #contact {
   padding-top: 10px;

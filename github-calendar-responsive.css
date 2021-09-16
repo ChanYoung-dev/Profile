@@ -7,7 +7,7 @@
 }
 
 rect.ContributionCalendar-day[data-level="0"] {
-  fill: var(--color-calendar-graph-day-bg);
+  fill: darkslategray;
 }
 
 rect.ContributionCalendar-day[data-level="1"] {
@@ -36,12 +36,12 @@ rect.ContributionCalendar-day[data-level="4"] {
 
 .calendar {
   font-family: "Roboto Mono", monospace;
-  border: 5px solid limegreen;
   border-radius: 3px;
   min-height: 243px;
   text-align: center;
   margin: 0 20px;
   padding: 20px;
+  background-image: linear-gradient(to bottom, #3a3a3a 0%, #1e1e1e 100%);
 }
 
 .calendar-graph text.wday,
@@ -85,8 +85,8 @@ rect.ContributionCalendar-day[data-level="4"] {
 .contrib-column {
   padding: 15px 0;
   text-align: center;
-  border-left: 5px solid limegreen;
-  border-top: 5px solid limegreen;
+  border-left: 5px solid orange;
+  border-top: 5px solid orange;
   font-size: 11px;
 }
 
@@ -196,4 +196,32 @@ h2.f4.text-normal.mb-3 {
 text.ContributionCalendar-label {
   fill: #ccc;
   font-size: 11px;
+}
+
+@media screen and (max-width: 768px) {
+  .calendar {
+    padding: 10px;
+    margin: 0px;
+  }
+  .contrib-column {
+    padding: 5px;
+    text-align: center;
+    border-left: 1px solid orange;
+    border-top: 1px solid orange;
+    font-size: 11px;
+  }
+  .contrib-column-first {
+    border-left: 0;
+    padding-left: 0px;
+  }
+  .contrib-number {
+    font-size: 15px;
+    line-height: 1.1em;
+  }
+  .text-muted.date {
+    display: none;
+  }
+  .width-full {
+    display: none;
+  }
 }
