@@ -127,7 +127,7 @@ button {
 }
 
 .container {
-  border-radius: 5px;
+  border-radius: 10px;
   background-image: linear-gradient(to bottom, #3a3a3a 0%, #1e1e1e 100%);
 }
 
@@ -159,6 +159,10 @@ button {
   font-size: var(--font-medium);
   font-weight: var(--weight-semi-bold);
   color: var(--color-black4);
+}
+
+.navbar_logo img {
+  transform: translateY(10px);
 }
 
 a.logo_text {
@@ -288,6 +292,7 @@ a.logo_text {
   padding: 40px;
   margin: 0px;
   border-radius: 15px;
+  padding-top: 60px;
 }
 
 .about_majors {
@@ -745,14 +750,25 @@ a.logo_text {
 
 /* Arrow up*/
 .arrow-up {
-  border: 1px solid white;
+  border: 1px solid #252525;
   position: fixed;
   bottom: 20px;
   right: 20px;
   width: 70px;
   height: 70px;
   font-size: 50px;
-  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+  background: #485563; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #29323c,
+    #485563
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #29323c,
+    #485563
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: var(--color-dark-black);
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
@@ -791,14 +807,53 @@ a.logo_text {
   .navbar_toggle-btn {
     display: block;
     right: 16px;
-    font-size: 16px;
+    font-size: 12px;
     top: 10px;
+    display: none;
+  }
+
+  .navbar_logo img {
+    margin-top: 30px;
+    width: 70px;
+
+    transform: translatey(0px);
+    animation: float 4s ease-in-out infinite alternate;
+    background-color: transparent;
   }
 
   #navbar {
     flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    background-color: transparent;
+  }
+  .logo_text {
+    display: none;
+  }
+
+  #navbar.navbar-dark {
+    flex-direction: column;
     align-items: flex-start;
+    padding: 5px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    background-color: transparent;
     background-color: var(--color-dark-black);
+    opacity: 0.9;
+  }
+  #navbar.navbar-dark .logo_text {
+    display: inline;
+  }
+
+  #navbar.navbar-dark .navbar_toggle-btn {
+    display: inline;
+  }
+  #navbar.navbar-dark .navbar_logo img {
+    margin: 0px;
+    width: 20px;
+    animation: none;
   }
 
   .navbar_menu {
