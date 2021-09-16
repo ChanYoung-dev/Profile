@@ -608,7 +608,10 @@ a.logo_text {
   background-color: var(--color-black2);
   border-radius: var(--size-border-radius);
 }
-
+/*git*/
+.calendar {
+  font-family: "Roboto Mono", monospace;
+}
 /* Contact */
 #contact {
   padding-top: 10px;
