@@ -136,7 +136,7 @@ button {
   position: fixed;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   background-color: transparent;
   align-items: center;
   color: var(--color-dark-black3);
@@ -145,12 +145,23 @@ button {
   z-index: 1;
   /* 제일 위에 위치*/
 }
+
 #navbar.navbar-dark {
   background-color: var(--color-dark-black);
+  justify-content: space-between;
   opacity: 0.9;
+}
+.logo_text {
+  display: none;
+}
+#navbar.navbar-dark .logo_text {
+  display: inline;
 }
 
 .navbar_menu {
+  display: none;
+}
+#navbar.navbar-dark .navbar_menu {
   display: flex;
   color: var(--color-yellow);
 }
@@ -161,8 +172,17 @@ button {
   color: var(--color-black4);
 }
 
-.navbar_logo img {
+#navbar.navbar-dark .navbar_logo img {
+  margin: 0px;
+  width: 50px;
+  animation: none;
   transform: translateY(10px);
+}
+
+.navbar_logo img {
+  width: 70px;
+  transform: translatey(0px);
+  animation: float 4s ease-in-out infinite alternate;
 }
 
 a.logo_text {
@@ -243,7 +263,13 @@ a.logo_text {
 /*Home*/
 #home {
   padding-top: 120px;
+  width: 100vw;
+  height: 100vh;
   background: url(img/moon.jpeg) center/cover no-repeat;
+}
+#home.section.home-size {
+  width: 100%;
+  height: 100%;
 }
 .home_avatar {
   width: 250px;
@@ -854,6 +880,13 @@ a.logo_text {
     margin: 0px;
     width: 20px;
     animation: none;
+  }
+
+  #navbar.navbar-dark .navbar_menu {
+    display: none;
+  }
+  #navbar.navbar-dark .navbar_menu.open {
+    display: block;
   }
 
   .navbar_menu {
