@@ -961,6 +961,17 @@ h1 span:nth-child(14) {
   color: #252525;
 }
 /* For below 768px scrren width */
+@media (min-width: 370px) and (max-width: 756px) {
+  #home .container {
+    padding-top: 100px;
+  }
+  .home_title {
+    padding-top: 100px;
+  }
+  .home_contents {
+    padding-top: 40px;
+  }
+}
 
 @media screen and (max-width: 768px) {
   :root {
@@ -1001,6 +1012,10 @@ h1 span:nth-child(14) {
     display: none;
   }
 
+  img.home_avatar {
+    width: 120px;
+    height: 120px;
+  }
   #navbar.navbar-dark {
     flex-direction: column;
     align-items: flex-start;
@@ -1063,7 +1078,7 @@ h1 span:nth-child(14) {
     margin-top: 30px;
   }
   .home_contents {
-    margin-top: 40px;
+    margin-top: 10px;
   }
   .home_description {
     margin: 0px;
@@ -1078,7 +1093,7 @@ h1 span:nth-child(14) {
     animation: stroke-offset 5.5s infinite linear;
   }
   #home .container {
-    margin: 0px;
+    margin: 10px;
     flex-direction: column;
   }
 
