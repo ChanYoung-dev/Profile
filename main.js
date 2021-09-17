@@ -5,7 +5,7 @@ const navbar = document.querySelector('#navbar');
 const homesize = document.querySelector('#home');
 const navbarHeight = navbar.getBoundingClientRect().height;
 document.addEventListener('scroll', ()=>{
-    if(window.scrollY > (navbarHeight/2)){
+    if(window.scrollY > (navbarHeight/4)){
         homesize.classList.add('home-size');
     } else {
         homesize.classList.remove('home-size');
