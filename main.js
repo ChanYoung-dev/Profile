@@ -1,8 +1,19 @@
 'use strict';
+const about = document.querySelector('#about');
+const aboutHeight = about.getBoundingClientRect().height;
+document.addEventListener('scroll', ()=>{
+    if(window.scrollY > aboutHeight/10){
+        about.classList.add('about-show');
+    } else {
+        about.classList.remove('about-show');
+    }
+
+});
+
+
 
 // Make navbar transparent when it is on the top
 const navbar = document.querySelector('#navbar');
-const homesize = document.querySelector('#home');
 const navbarHeight = navbar.getBoundingClientRect().height;
 document.addEventListener('scroll', ()=>{
     if(window.scrollY > navbarHeight){

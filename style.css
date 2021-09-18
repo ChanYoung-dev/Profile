@@ -486,7 +486,22 @@ h1 span:nth-child(14) {
 /* About */
 
 #about {
+  display: none;
   padding: 0px;
+}
+#about.about-show {
+  display: block;
+  animation: fadeIn2 5s ease-in-out;
+}
+@keyframes fadeIn2 {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 3;
+    transform: none;
+  }
 }
 .about_container {
   padding: 40px;
@@ -587,6 +602,7 @@ h1 span:nth-child(14) {
 
 /*Skills*/
 #skills {
+  display: none;
 }
 .skillset {
   display: flex;
@@ -690,6 +706,9 @@ h1 span:nth-child(14) {
 }
 
 /* Work */
+#work {
+  display: none;
+}
 
 .work_categories {
   margin: 40px;
@@ -817,6 +836,9 @@ h1 span:nth-child(14) {
 
 /*Testimonial*/
 
+#testimonials {
+  display: none;
+}
 .testimonials {
   margin: 40px;
 }
@@ -846,6 +868,9 @@ h1 span:nth-child(14) {
   border-radius: var(--size-border-radius);
 }
 /*git*/
+#git {
+  display: none;
+}
 .calendar {
   font-family: "Roboto Mono", monospace;
 }
