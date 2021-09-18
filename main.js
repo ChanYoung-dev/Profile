@@ -178,7 +178,10 @@ window.addEventListener('wheel', () => {
 });
 
 
-
+const description = document.querySelector('.home_description');
+setTimeout(() => {
+    description.classList.add('show');
+    }, 1000);
 
 
 function scrollIntoView(selector){
