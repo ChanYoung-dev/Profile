@@ -266,7 +266,7 @@ a.logo_text {
   padding-top: 120px;
   width: 100vw;
   height: 100vh;
-  background: url(img/moon.jpeg) center/cover no-repeat;
+  background: url(img/moon.jpeg) center/cover no-repeat fixed;
 }
 #home.section.home-size {
   width: 100vw;
@@ -453,7 +453,6 @@ h1 span:nth-child(14) {
 }
 
 .arrow_down {
-  color: yellow;
   animation: floatt 2s ease-in-out infinite alternate;
 }
 @keyframes floatt {
