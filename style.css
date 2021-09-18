@@ -962,9 +962,6 @@ h1 span:nth-child(14) {
 }
 /* For below 768px scrren width */
 @media (min-width: 370px) and (max-width: 756px) {
-  #home .container {
-    padding-top: 100px;
-  }
   .home_title {
     padding-top: 100px;
   }
