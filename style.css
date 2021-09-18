@@ -269,14 +269,14 @@ a.logo_text {
   background: url(img/moon.jpeg) center/cover no-repeat;
 }
 #home.section.home-size {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 .home_avatar {
   width: 250px;
   height: 250px;
   border-radius: 15%;
-  border: 5px solid var(--color-light-white);
+  border: 5px solid var(--color-black2);
   box-shadow: 0 5px 15px 0px rgb(0 0 0 / 60%);
   transform: translatey(0px);
   animation: float 4s ease-in-out infinite alternate;
@@ -365,9 +365,10 @@ svg {
 
 #home .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 250px 50px;
+  margin: 150px 50px;
   height: 40%;
   background: transparent;
 }
@@ -451,6 +452,21 @@ h1 span:nth-child(14) {
   animation-delay: 0.65s;
 }
 
+.arrow_down {
+  color: yellow;
+  animation: floatt 2s ease-in-out infinite alternate;
+}
+@keyframes floatt {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-10px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
 /* About */
 
 #about {
