@@ -825,8 +825,8 @@ h1 span:nth-child(14) {
 }
 
 .project_img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 70%;
+  max-height: 70%;
 }
 
 .project_description {
@@ -1083,6 +1083,12 @@ h1 span:nth-child(14) {
     --font-regular: 16px;
     --font-small: 14px;
     --font-micro: 12px;
+  }
+  #home {
+    padding-top: 120px;
+    width: 100vw;
+    height: 100vh;
+    background: url(img/moon.jpeg) center/cover no-repeat;
   }
 
   .navbar_toggle-btn {
