@@ -48,7 +48,7 @@
   text-align: center;
   margin: auto;
   padding: 20px;
-  padding-top: 60px;
+  padding-top: 80px;
   background: rgb(65, 67, 69);
   background: radial-gradient(
     circle,
@@ -486,17 +486,21 @@ h1 span:nth-child(14) {
 /* About */
 
 #about {
-  display: none;
+  opacity: 0;
   padding: 0px;
 }
-#about.about-show {
+#about.show-ani {
+  opacity: 1;
+  animation: fadeIn2 5s ease-in;
+}
+#about.show {
   display: block;
-  animation: fadeIn2 5s ease-in-out;
+  opacity: 1;
 }
 @keyframes fadeIn2 {
   from {
     opacity: 0;
-    transform: translateX(200px);
+    transform: translateX(100px);
   }
   to {
     opacity: 3;
@@ -507,7 +511,8 @@ h1 span:nth-child(14) {
   padding: 40px;
   margin: 0px;
   border-radius: 15px;
-  padding-top: 60px;
+  padding-top: 80px;
+  width: 100%;
 }
 
 .about_majors {
@@ -602,8 +607,17 @@ h1 span:nth-child(14) {
 
 /*Skills*/
 #skills {
-  display: none;
+  opacity: 0;
 }
+#skills.show-ani {
+  opacity: 1;
+  animation: fadeIn2 5s ease-in;
+}
+#skills.show {
+  display: block;
+  opacity: 1;
+}
+
 .skillset {
   display: flex;
   color: var(--color-white);
@@ -707,9 +721,16 @@ h1 span:nth-child(14) {
 
 /* Work */
 #work {
-  display: none;
+  opacity: 0;
 }
 
+#work.show-ani {
+  opacity: 1;
+  animation: fadeIn2 5s ease-in;
+}
+#work.show {
+  opacity: 1;
+}
 .work_categories {
   margin: 40px;
   display: flex;
@@ -837,7 +858,14 @@ h1 span:nth-child(14) {
 /*Testimonial*/
 
 #testimonials {
-  display: none;
+  opacity: 0;
+}
+#testimonials.show-ani {
+  opacity: 1;
+  animation: fadeIn2 5s ease-in;
+}
+#testimonials.show {
+  opacity: 1;
 }
 .testimonials {
   margin: 40px;
@@ -869,7 +897,14 @@ h1 span:nth-child(14) {
 }
 /*git*/
 #git {
-  display: none;
+  opacity: 0;
+}
+#git.show-ani {
+  opacity: 1;
+  animation: fadeIn2 5s ease-in;
+}
+#git.show {
+  opacity: 1;
 }
 .calendar {
   font-family: "Roboto Mono", monospace;
@@ -1032,6 +1067,16 @@ h1 span:nth-child(14) {
 }
 
 @media screen and (max-width: 768px) {
+  @keyframes fadeIn2 {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 3;
+      transform: none;
+    }
+  }
   :root {
     /* Font size */
     --font-large: 30px;

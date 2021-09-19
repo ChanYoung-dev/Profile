@@ -1,14 +1,64 @@
 'use strict';
+let a =0;
+const home_ = document.querySelector('#home');
 const about = document.querySelector('#about');
-const aboutHeight = about.getBoundingClientRect().height;
-document.addEventListener('scroll', ()=>{
-    if(window.scrollY > aboutHeight/10){
-        about.classList.add('about-show');
-    } else {
-        about.classList.remove('about-show');
-    }
+const skills = document.querySelector('#skills');
+const work = document.querySelector('#work');
+const testimonials = document.querySelector('#testimonials');
+const git = document.querySelector('#git');
 
-});
+const home_Height = home_.getBoundingClientRect().height;
+const aboutHeight = about.getBoundingClientRect().height;
+const skillsHeight = skills.getBoundingClientRect().height;
+const workHeight = work.getBoundingClientRect().height;
+const testimonialsHeight = testimonials.getBoundingClientRect().height;
+const gitHeight = git.getBoundingClientRect().height;
+console.log("Hegiht");
+console.log(home_Height);
+console.log(skillsHeight);
+    document.addEventListener('scroll', ()=>{
+        if(a==0){
+            if(window.scrollY > (home_Height/6)){
+                
+                about.classList.add('show-ani');
+                
+            } else {
+                about.classList.remove('show-ani');
+            }
+            
+            if(window.scrollY > homeHeight+(aboutHeight*(1/4))){
+                //console.log("skills")
+                skills.classList.add('show-ani');
+            } else {
+                skills.classList.remove('show-ani');
+            }
+
+            if(window.scrollY > homeHeight+aboutHeight+(skillsHeight*(1/4))){
+                //console.log("skills")
+                work.classList.add('show-ani');
+            } else {
+                work.classList.remove('show-ani');
+            }
+
+            if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(3/4))){
+                //console.log("skills")
+                testimonials.classList.add('show-ani');
+            } else {
+                testimonials.classList.remove('show-ani');
+            }
+
+            if(window.scrollY > homeHeight+aboutHeight+workHeight+(testimonialsHeight*(3/4))){
+                //console.log("skills")
+                git.classList.add('show-ani');
+            } else {
+                git.classList.remove('show-ani');
+            }
+        }
+        
+        }
+
+    );
+
 
 
 
@@ -16,7 +66,7 @@ document.addEventListener('scroll', ()=>{
 const navbar = document.querySelector('#navbar');
 const navbarHeight = navbar.getBoundingClientRect().height;
 document.addEventListener('scroll', ()=>{
-    if(window.scrollY > navbarHeight){
+    if(window.scrollY > navbarHeight/6){
         navbar.classList.add('navbar-dark');
     } else {
         navbar.classList.remove('navbar-dark');
@@ -27,13 +77,17 @@ document.addEventListener('scroll', ()=>{
 // Handle scrolling when tapping on th navbar menu
 
 const navbarMenu = document.querySelector('.navbar_menu');
-
+const section_containers = document.querySelectorAll('.section_container');
 navbarMenu.addEventListener('click', (event) => {
     const target = event.target;
     const link = target.dataset.link;
     if(link == null){
         return;
     }
+    a=1;
+    section_containers.forEach((section) =>{
+        section.classList.add('show');
+    });
     scrollIntoView(link);
 });
 
