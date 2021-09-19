@@ -1088,7 +1088,7 @@ h1 span:nth-child(14) {
     padding-top: 120px;
     width: 100vw;
     height: 100vh;
-    background: url(img/moon.jpeg) center/cover no-repeat fixed;
+    background: url(img/moon.jpeg) center/cover no-repeat;
   }
 
   .navbar_toggle-btn {
