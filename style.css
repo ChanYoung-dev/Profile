@@ -1145,6 +1145,7 @@ h1 span:nth-child(14) {
     margin: 0px;
     width: 20px;
     animation: none;
+    transform: translateY(5px);
   }
 
   #navbar.navbar-dark .navbar_menu {
