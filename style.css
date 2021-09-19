@@ -811,7 +811,7 @@ h1 span:nth-child(14) {
   position: relative;
   width: 280px;
   height: 250px;
-  background-color: var(--color-light-grey);
+  background-color: transparent;
   margin: 2px;
 }
 
