@@ -1070,7 +1070,6 @@ h1 span:nth-child(14) {
   @keyframes fadeIn2 {
     from {
       opacity: 0;
-      /*transform: translateY(-10px);*/
     }
     to {
       opacity: 1;
