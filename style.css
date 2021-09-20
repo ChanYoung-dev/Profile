@@ -507,6 +507,15 @@ h1 span:nth-child(14) {
     transform: none;
   }
 }
+@keyframes fadeIn3 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 3;
+    transform: none;
+  }
+}
 .about_container {
   padding: 40px;
   margin: 0px;
@@ -902,7 +911,7 @@ h1 span:nth-child(14) {
 }
 #git.show-ani {
   opacity: 1;
-  animation: fadeIn2 5s ease-in;
+  animation: fadeIn3 5s ease-in;
 }
 #git.show {
   opacity: 1;
@@ -1077,6 +1086,23 @@ h1 span:nth-child(14) {
       transform: none;
     }
   }
+  #about.show-ani {
+    opacity: 1;
+    animation: fadeIn2 2s ease-in;
+  }
+  #skills.show-ani {
+    opacity: 1;
+    animation: fadeIn2 2s ease-in;
+  }
+  #work.show-ani {
+    opacity: 1;
+    animation: fadeIn2 2s ease-in;
+  }
+  #git.show-ani {
+    opacity: 1;
+    animation: fadeIn3 2s ease-in;
+  }
+
   :root {
     /* Font size */
     --font-large: 30px;

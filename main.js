@@ -1,4 +1,8 @@
 'use strict';
+//is mobile?
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 let a =0;
 const home_ = document.querySelector('#home');
 const about = document.querySelector('#about');
@@ -16,8 +20,73 @@ const gitHeight = git.getBoundingClientRect().height;
 console.log("Hegiht");
 console.log(home_Height);
 console.log(skillsHeight);
+let work_height=1;
     document.addEventListener('scroll', ()=>{
-        if(a==0){
+        if(a==0 && isMobile()){
+            console.log('mobile');
+            if(window.scrollY > (home_Height/6)){
+                
+                about.classList.add('show-ani');
+                
+            } else {
+                about.classList.remove('show-ani');
+            }
+            
+            if(window.scrollY > homeHeight+(aboutHeight*(0.70))){
+                //console.log("skills")
+                skills.classList.add('show-ani');
+            } else {
+                skills.classList.remove('show-ani');
+            }
+
+            if(window.scrollY > homeHeight+aboutHeight+(skillsHeight*(5/6))){
+                //console.log("skills")
+                work.classList.add('show-ani');
+            } else {
+                work.classList.remove('show-ani');
+            }
+
+            if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(0.88))){
+                //console.log("skills")
+                testimonials.classList.add('show-ani');
+            } else {
+                testimonials.classList.remove('show-ani');
+            }
+            if(work_height == 1){
+                if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(9/10))){
+                    //console.log("skills")
+                    git.classList.add('show-ani');
+                } else {
+                    git.classList.remove('show-ani');
+                }
+            }
+            else if(work_height == 2){
+                if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(0.47))){
+                    //console.log("skills")
+                    git.classList.add('show-ani');
+                } else {
+                    git.classList.remove('show-ani');
+                }
+            }
+            else if(work_height == 3){
+                if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(0.35))){
+                    //console.log("skills")
+                    git.classList.add('show-ani');
+                } else {
+                    git.classList.remove('show-ani');
+                }
+            }
+            else if(work_height == 4){
+                if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(1/6))){
+                    //console.log("skills")
+                    git.classList.add('show-ani');
+                } else {
+                    git.classList.remove('show-ani');
+                }
+            }
+        }
+        else if(a==0 && !(isMobile())){
+            console.log('mobileX');
             if(window.scrollY > (home_Height/6)){
                 
                 about.classList.add('show-ani');
@@ -47,11 +116,37 @@ console.log(skillsHeight);
                 testimonials.classList.remove('show-ani');
             }
 
-            if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(1/4))){
-                //console.log("skills")
-                git.classList.add('show-ani');
-            } else {
-                git.classList.remove('show-ani');
+            if(work_height == 1){
+                if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(1/5))){
+                    //console.log("skills")
+                    git.classList.add('show-ani');
+                } else {
+                    git.classList.remove('show-ani');
+                }
+            }
+            else if(work_height == 2){
+                if(window.scrollY > homeHeight+aboutHeight+skillsHeight*(0.8)){
+                    //console.log("skills")
+                    git.classList.add('show-ani');
+                } else {
+                    git.classList.remove('show-ani');
+                }
+            }
+            else if(work_height == 3){
+                if(window.scrollY > homeHeight+aboutHeight+skillsHeight*(0.7)){
+                    //console.log("skills")
+                    git.classList.add('show-ani');
+                } else {
+                    git.classList.remove('show-ani');
+                }
+            }
+            else if(work_height == 4){
+                if(window.scrollY > homeHeight+aboutHeight+skillsHeight*(0.75)){
+                    //console.log("skills")
+                    git.classList.add('show-ani');
+                } else {
+                    git.classList.remove('show-ani');
+                }
             }
         }
         
@@ -155,8 +250,21 @@ workBtnContainer.addEventListener('click', (event) => {
     projectContainter.classList.add('anim-out');
     setTimeout(() => {
     projects.forEach((project) =>{
+        
         if ( filter === '*' || filter === project.dataset.type)
         {
+            if ( filter === '*'){
+                work_height =1;
+            } else if(filter === "etc"){
+                work_height=4;
+                
+            } else if(filter === "electronics"){
+                work_height=3;
+                
+            } else if(filter === "Software"){
+                work_height=2;
+                
+            }
             /*project.style.display = 'block';*/
             project.classList.remove('invisible');
         }
@@ -190,7 +298,6 @@ const sectionIds = [
     '#about',
     '#skills',
     '#work',
-    '#testimonials',
     '#git',
     '#contact',
 ];
