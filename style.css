@@ -858,6 +858,7 @@ h1 span:nth-child(14) {
 /*Testimonial*/
 
 #testimonials {
+  display: none;
   opacity: 0;
 }
 #testimonials.show-ani {

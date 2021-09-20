@@ -47,7 +47,7 @@ console.log(skillsHeight);
                 testimonials.classList.remove('show-ani');
             }
 
-            if(window.scrollY > homeHeight+aboutHeight+skillsHeight+workHeight+(testimonialsHeight*(3/4))){
+            if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(1/4))){
                 //console.log("skills")
                 git.classList.add('show-ani');
             } else {
