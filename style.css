@@ -263,6 +263,7 @@ a.logo_text {
 
 /*Home*/
 #home {
+  position: relative;
   padding-top: 120px;
   width: 100vw;
   height: 100vh;
@@ -273,7 +274,7 @@ a.logo_text {
   width: 250px;
   height: 250px;
   border-radius: 15%;
-  border: 5px solid #cd4a4a;
+  border: 5px solid #252525;
   box-shadow: 0 5px 15px 0px rgb(0 0 0 / 60%);
   transform: translatey(0px);
   animation: float 4s ease-in-out infinite alternate;
@@ -294,7 +295,6 @@ a.logo_text {
 }
 
 .home_title {
-  padding: 100px;
   padding-bottom: 0px;
   height: 150px;
   font-weight: 700;
@@ -312,7 +312,7 @@ a.logo_text {
   }
 }
 .home_description {
-  margin-top: 100px;
+  margin-top: 20px;
   color: var(--color-yellow);
   opacity: 0;
 }
@@ -381,16 +381,17 @@ svg {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 150px 50px;
+
   height: 40%;
   background: transparent;
 }
 #home button {
   width: 600px;
   height: 100px;
-  margin: 0 50px;
-  background-color: #bec3c7;
-  border: 10px solid #cd4a4a;
+  margin: 0 30px;
+  background-color: transparent;
+  border: 5px solid var(--color-yellow);
+  border-radius: 30px;
 }
 
 .home_blog h1 {
@@ -465,9 +466,27 @@ h1 span:nth-child(14) {
   animation-delay: 0.65s;
 }
 
+#home .home_blog.home_profile {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: default;
+  padding: 0px;
+  margin: 0px;
+  height: 40px;
+}
 .porfile_word {
   color: var(--color-yellow);
 }
+
+.home_scroll {
+  max-width: 100%;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .arrow_down {
   animation: floatt 2s ease-in-out infinite alternate;
   color: var(--color-yellow);
@@ -1234,7 +1253,7 @@ h1 span:nth-child(14) {
     animation: stroke-offset 5.5s infinite linear;
   }
   #home .container {
-    margin: 10px;
+    margin: 0px;
     flex-direction: column;
   }
 
@@ -1242,6 +1261,9 @@ h1 span:nth-child(14) {
     max-width: 80%;
     max-height: 80px;
     margin-bottom: 20px;
+  }
+  .arrow_down {
+    margin-top: 0px;
   }
 
   .about_majors {
