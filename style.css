@@ -394,33 +394,39 @@ svg {
   border-radius: 30px;
 }
 
-.home_blog h1 {
+.home_blog h1,
+.home_blog {
   font: bold --font-large "Signika", sans-serif;
   margin: 0;
   user-select: none;
 }
 
-.home_blog h1 span {
+.home_blog h1 span,
+.home_blog span {
   display: inline-block;
   animation: float2 0.2s ease-in-out infinite;
 }
 
-.home_blog h1 span:nth-child(4n) {
+.home_blog h1 span,
+.home_blog span:nth-child(4n) {
   color: hsl(50, 75%, 55%);
   text-shadow: 1px 1px hsl(50, 75%, 45%), 2px 2px hsl(50, 45%, 45%),
     3px 3px hsl(50, 45%, 45%), 4px 4px hsl(50, 75%, 45%);
 }
-.home_blog h1 span:nth-child(4n-1) {
+.home_blog h1 span,
+.home_blog span:nth-child(4n-1) {
   color: hsl(135, 35%, 55%);
   text-shadow: 1px 1px hsl(135, 35%, 45%), 2px 2px hsl(135, 35%, 45%),
     3px 3px hsl(135, 35%, 45%), 4px 4px hsl(135, 35%, 45%);
 }
-.home_blog h1 span:nth-child(4n-2) {
+.home_blog h1 span,
+.home_blog span:nth-child(4n-2) {
   color: hsl(155, 35%, 60%);
   text-shadow: 1px 1px hsl(155, 25%, 50%), 2px 2px hsl(155, 25%, 50%),
     3px 3px hsl(155, 25%, 50%), 4px 4px hsl(140, 25%, 50%);
 }
-.home_blog h1 span:nth-child(4n-3) {
+.home_blog h1 span,
+.home_blog span:nth-child(4n-3) {
   color: hsl(30, 65%, 60%);
   text-shadow: 1px 1px hsl(30, 45%, 50%), 2px 2px hsl(30, 45%, 50%),
     3px 3px hsl(30, 45%, 50%), 4px 4px hsl(30, 45%, 50%);
@@ -474,21 +480,30 @@ h1 span:nth-child(14) {
   padding: 0px;
   margin: 0px;
   height: 40px;
+  max-width: 100%;
 }
 .porfile_word {
   color: var(--color-yellow);
 }
 
 .home_scroll {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+
   max-width: 100%;
   position: absolute;
   bottom: 5px;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 90%;
+  left: 10px;
+  right: 10px;
+  margin: 0 auto;
+  animation: floatt 2s ease-in-out infinite alternate;
 }
 
 .arrow_down {
-  animation: floatt 2s ease-in-out infinite alternate;
   color: var(--color-yellow);
 }
 @keyframes floatt {
@@ -1243,6 +1258,9 @@ h1 span:nth-child(14) {
   .home_description {
     margin: 0px;
     margin-bottom: 20px;
+  }
+  .home_scroll {
+    width: 91.5%;
   }
   .text-copy {
     fill: none;
