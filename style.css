@@ -386,15 +386,19 @@ svg {
   background: transparent;
 }
 #home button {
-  width: 600px;
-  height: 100px;
+  width: 250px;
+  height: 70px;
   margin: 0 30px;
   background-color: transparent;
   border: 5px solid var(--color-yellow);
   border-radius: 30px;
 }
 
-.home_blog h1,
+.home_blog h1 {
+  font: bold var(--font-medium) "Signika", sans-serif;
+  margin: 0;
+  user-select: none;
+}
 .home_blog {
   font: bold --font-large "Signika", sans-serif;
   margin: 0;
@@ -430,6 +434,12 @@ svg {
   color: hsl(30, 65%, 60%);
   text-shadow: 1px 1px hsl(30, 45%, 50%), 2px 2px hsl(30, 45%, 50%),
     3px 3px hsl(30, 45%, 50%), 4px 4px hsl(30, 45%, 50%);
+}
+.home_blog h1 span,
+.home_blog span:nth-child(4n + 3) {
+  color: hsl(50, 75%, 55%);
+  text-shadow: 1px 1px hsl(50, 75%, 45%), 2px 2px hsl(50, 45%, 45%),
+    3px 3px hsl(50, 45%, 45%), 4px 4px hsl(50, 75%, 45%);
 }
 
 h1 span:nth-child(2) {
@@ -1276,9 +1286,10 @@ h1 span:nth-child(14) {
   }
 
   #home .home_blog {
-    max-width: 80%;
-    max-height: 80px;
+    max-width: 50%;
+    max-height: 50px;
     margin-bottom: 20px;
+    border: 2px solid var(--color-yellow);
   }
   .arrow_down {
     margin-top: 0px;
