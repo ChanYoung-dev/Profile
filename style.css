@@ -273,8 +273,6 @@ a.logo_text {
 .home_avatar {
   width: 250px;
   height: 250px;
-  border-radius: 15%;
-  border: 5px solid #252525;
   box-shadow: 0 5px 15px 0px rgb(0 0 0 / 60%);
   transform: translatey(0px);
   animation: float 4s ease-in-out infinite alternate;
