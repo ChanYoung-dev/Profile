@@ -1379,3 +1379,13 @@ h1 span:nth-child(14) {
 .backbtn.visible{
   opacity: 1;
 }
+
+.about_container.embed {
+  padding: 40px;
+  margin: 0px;
+  border-radius: 15px;
+  padding-top: 80px;
+  width: 100%;
+  background-color: whitesmoke;
+  background-image:white;
+}
