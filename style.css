@@ -1371,3 +1371,11 @@ h1 span:nth-child(14) {
     font-size: 25px;
   }
 }
+
+.backbtn{
+  opacity: 0;
+}
+
+.backbtn.visible{
+  opacity: 1;
+}

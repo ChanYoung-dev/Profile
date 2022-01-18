@@ -223,6 +223,20 @@ document.addEventListener('scroll',()=> {
     }
 });
 
+// Remove GoBackPage Button
+const btnid = document.querySelector('.backbtn');
+// Receive message from Child
+function receiveMsgFromChild( e ) {
+    console.log( '자식으로부터 받은 메시지 ', e.data );
+    if(e.data == "visible"){
+        btnid.classList.add('visible');
+    }
+    else {
+        btnid.classList.remove('visible');
+    }
+}
+window.addEventListener( 'message', receiveMsgFromChild );
+
 //Handle click on the "arrow up" button
 arrowUp.addEventListener('click', () => {
     scrollIntoView('#home');
