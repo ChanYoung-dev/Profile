@@ -1,6 +1,7 @@
 import os
 
-script = '<script src="../embed-sub.js" defer></script>'
+script = '<script src="../embed-sub.js" defer></script><link rel="stylesheet" href="notion-mainstyle.css" />'
+
 
 
 def replace_line(file_name, line_num, text):
