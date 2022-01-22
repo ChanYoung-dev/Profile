@@ -525,6 +525,25 @@ h1 span:nth-child(14) {
     transform: translatey(0px);
   }
 }
+
+/* summary */
+#summary {
+  opacity: 0;
+  padding-bottom: 120px;
+}
+#summary.show-ani {
+  opacity: 1;
+  animation: fadeIn2 2s ease-in;
+}
+#summary.show {
+  display: block;
+  opacity: 1;
+}
+
+#summary .embed{
+  margin-top: 50px;
+}
+
 /* About */
 
 #about {
@@ -1128,6 +1147,7 @@ h1 span:nth-child(14) {
       transform: none;
     }
   }
+  
   #about.show-ani {
     opacity: 1;
     animation: fadeIn2 2s ease-in;

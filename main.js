@@ -5,6 +5,7 @@ function isMobile() {
 }
 let a =0;
 const home_ = document.querySelector('#home');
+const summary = document.querySelector('#summary');
 const about = document.querySelector('#about');
 const skills = document.querySelector('#skills');
 const work = document.querySelector('#work');
@@ -12,6 +13,7 @@ const testimonials = document.querySelector('#testimonials');
 const git = document.querySelector('#git');
 
 const home_Height = home_.getBoundingClientRect().height;
+const summaryHeight = summary.getBoundingClientRect().height;
 const aboutHeight = about.getBoundingClientRect().height;
 const skillsHeight = skills.getBoundingClientRect().height;
 const workHeight = work.getBoundingClientRect().height;
@@ -24,6 +26,7 @@ let work_height=1;
     document.addEventListener('scroll', ()=>{
         if(a==0 && isMobile()){
             console.log('mobile');
+            summary.remove();
             if(window.scrollY > (home_Height/6)){
                 
                 about.classList.add('show-ani');
@@ -89,27 +92,36 @@ let work_height=1;
             console.log('mobileX');
             if(window.scrollY > (home_Height/6)){
                 
+                summary.classList.add('show-ani');
+                
+            } else {
+                summary.classList.remove('show-ani');
+            }
+
+
+            if(window.scrollY > homeHeight + (summaryHeight*(1/4))){
+                
                 about.classList.add('show-ani');
                 
             } else {
                 about.classList.remove('show-ani');
             }
             
-            if(window.scrollY > homeHeight+(aboutHeight*(1/4))){
+            if(window.scrollY > summaryHeight +  homeHeight+(aboutHeight*(1/4))){
                 //console.log("skills")
                 skills.classList.add('show-ani');
             } else {
                 skills.classList.remove('show-ani');
             }
 
-            if(window.scrollY > homeHeight+aboutHeight+(skillsHeight*(1/4))){
+            if(window.scrollY > summaryHeight + homeHeight+aboutHeight+(skillsHeight*(1/4))){
                 //console.log("skills")
                 work.classList.add('show-ani');
             } else {
                 work.classList.remove('show-ani');
             }
 
-            if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(3/4))){
+            if(window.scrollY > summaryHeight + homeHeight+aboutHeight+skillsHeight+(workHeight*(3/4))){
                 //console.log("skills")
                 testimonials.classList.add('show-ani');
             } else {
@@ -117,7 +129,7 @@ let work_height=1;
             }
 
             if(work_height == 1){
-                if(window.scrollY > homeHeight+aboutHeight+skillsHeight+(workHeight*(1/5))){
+                if(window.scrollY > summaryHeight + homeHeight+aboutHeight+skillsHeight+(workHeight*(1/5))){
                     //console.log("skills")
                     git.classList.add('show-ani');
                 } else {
@@ -125,7 +137,7 @@ let work_height=1;
                 }
             }
             else if(work_height == 2){
-                if(window.scrollY > homeHeight+aboutHeight+skillsHeight*(0.8)){
+                if(window.scrollY > summaryHeight + homeHeight+aboutHeight+skillsHeight*(0.8)){
                     //console.log("skills")
                     git.classList.add('show-ani');
                 } else {
@@ -133,7 +145,7 @@ let work_height=1;
                 }
             }
             else if(work_height == 3){
-                if(window.scrollY > homeHeight+aboutHeight+skillsHeight*(0.7)){
+                if(window.scrollY > summaryHeight + homeHeight+aboutHeight+skillsHeight*(0.7)){
                     //console.log("skills")
                     git.classList.add('show-ani');
                 } else {
@@ -141,7 +153,7 @@ let work_height=1;
                 }
             }
             else if(work_height == 4){
-                if(window.scrollY > homeHeight+aboutHeight+skillsHeight*(0.75)){
+                if(window.scrollY > summaryHeight + homeHeight+aboutHeight+skillsHeight*(0.75)){
                     //console.log("skills")
                     git.classList.add('show-ani');
                 } else {
@@ -309,6 +321,7 @@ workBtnContainer.addEventListener('click', (event) => {
 //Activate the menu when scrolling.
 const sectionIds = [
     '#home',
+    '#summary',
     '#about',
     '#skills',
     '#work',

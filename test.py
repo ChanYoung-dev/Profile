@@ -19,7 +19,7 @@ a.visited {
 }
 """
 
-script = '<script src="../embed-sub.js" defer></script><link rel="stylesheet" href="notion-mainstyle.css" />'
+script = '<script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" />'
 scripts = 'hi'
 
 
