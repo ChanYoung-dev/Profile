@@ -1,0 +1,665 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux WebSever Security</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fb4e8a0f-c68d-421b-a4e0-1d1106cb8161" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/></div><h1 class="page-title">Linux WebSever Security</h1></header><div class="page-body"><h3 id="5be8aa98-e2dc-4e12-b6ea-75247f91894b" class="">아파치 서버 기본 설정 파일</h3><p id="72adc505-8860-4476-8865-d7b895d0a167" class="">httpd.conf</p><hr id="5ce7eaff-fd49-4c08-950d-5902704dc09e"/><h1 id="6e44b056-1a1c-42ab-bb81-e9b5b9c2e9fc" class="">워드프레스 설치 실습</h1><p id="9256adee-4590-43bf-a32d-24557f10b271" class="">php7설치를 위한 repository 추가</p><p id="0da4844d-2a4d-42bf-bd7f-c4c2142e4569" class=""><code>yum -y install epel-release</code></p><p id="76de389c-5dbf-41a0-96ae-a41354615153" class=""><code>wget </code><code><a href="https://rpms.remirepo.net/enterprise/remi-release-7.rpm">https://rpms.remirepo.net/enterprise/remi-release-7.rpm</a></code></p><p id="b5b78beb-8cf5-472f-b4c0-5401efd859c8" class=""><code>rpm -Uvh remi-release-7.rpm</code></p><p id="568f613e-92e2-4025-81fa-995762b37850" class=""><code>yum install httpd -y</code></p><p id="e707db5d-196e-4070-a14c-2c35bc938e1d" class="">
+</p><h3 id="45d22859-784a-4ac8-a832-b9ba95cffb72" class="">php7 설치</h3><p id="7aaa3896-792c-4001-978c-310c9cb4015e" class=""><code>yum install -y yum-utils</code></p><p id="0afbc85a-b7b5-4d71-aeda-22f95e8839f2" class=""><code>yum-config-manager --enable remi-php73</code></p><p id="dc3be060-cabb-474c-8490-f51d1bc7871c" class=""><code>yum install -y php</code></p><p id="9be7752c-7d50-434b-883b-eb49ec254443" class="">php -v php 7.3 설치 확인</p><p id="9e884ff8-82f1-47f8-8b07-562ef54cc3df" class=""><code>echo &quot;&lt;?php phpinfo(); ?&gt;&quot; &gt; /var/www/html/phpinfo.php</code></p><p id="3983a305-4c41-4d81-a8fd-f1bb179ff16a" class=""><code>[root@localhost ~]# systemctl restart httpd</code></p><p id="d15ea1a8-a1ec-4c9b-a059-b286c743f4ac" class=""><code>[root@localhost ~]# firewall-cmd --permanent --add-service=http</code></p><p id="b0ff748c-a558-474d-81e3-65bedea052e5" class=""><code>[root@localhost ~]# firewall-cmd --permanent --add-service=https</code></p><p id="9744e916-48aa-4a78-a57f-a78aa86e6b9d" class=""><code>[root@localhost ~]# firewall-cmd --reload</code></p><p id="cb20129b-0ce6-4499-8a31-c1936e1fc39a" class="">
+</p><h3 id="c72cefe5-28cb-45c1-937f-974a2a8a8e07" class="">DB 설치</h3><p id="035c2334-4a50-44e7-9202-0562aa75f6b9" class=""><code>yum install mariadb-server mariadb -y</code></p><p id="496eed35-c92c-4d6e-8b0f-c9bab67a8d18" class=""><code>systemctl restart mariadb</code></p><p id="a0fec66a-cc88-4f61-9337-40b9744b923d" class=""><code>systemctl enable mariadb</code></p><p id="f72805ba-61f9-43d2-a98f-b604d53ff314" class=""><code>mysql_secure_installation</code></p><p id="483a18f7-c63d-4c95-828f-a320e43731b2" class="">
+</p><p id="dd12eb9d-18d7-41d6-9971-448f60e52d78" class=""><code>yum install php-mysql -y</code></p><p id="f4efe1e7-6fbe-4c20-9021-90c656734374" class=""><code>systemctl restart httpd</code></p><p id="3b08ee36-8fb7-4d0a-87f4-3dd2db9efe6c" class="">
+</p><h3 id="4ef0fcc3-e50c-4ac6-893d-f4a510a920f9" class="">DB 설정</h3><p id="2363809c-85dc-4ad8-b794-c6560cad6fbe" class=""><code>mysql -u root -p</code></p><p id="dc69d814-b438-4c0d-a483-9059c3a6941b" class=""><code>CREATE DATABASE wordpress;</code></p><p id="a436bd17-ab21-4a98-a8ea-1070109e7fd3" class=""><code>CREATE user wordpress@localhost IDENTIFIED BY &quot;qwer1234&quot;;</code></p><p id="e7eee294-7781-498b-97c5-33bbf647b275" class=""><code>GRANT ALL ON wordpress.* TO wordpress@localhost;</code></p><p id="9ea0a90f-a37f-42cf-b360-081cf3aaba7c" class=""><code>FLUSH PRIVILEGES;</code></p><p id="37cf7585-c3ec-4869-8404-3b583b6c3480" class=""><code>exit</code></p><p id="3fa64a80-b604-432f-8855-fc4e119fca0d" class="">
+</p><h3 id="5e23593b-98f3-4394-b6b3-aef61b9d8c92" class="">&lt;워드프레스 설치&gt;</h3><p id="9fd1cbb5-c3ac-4429-9e4f-bda5388d76c8" class=""><code>cd /tmp</code></p><p id="48cf6239-ee57-4093-adcf-672d35fc7944" class=""><code>wget </code><code><a href="http://wordpress.org/latest.tar.gz">http://wordpress.org/latest.tar.gz</a></code></p><p id="4e2758ff-b20d-4fac-9a24-57dccab0d120" class=""><code>tar -xvzf latest.tar.gz -C /var/www/html</code></p><p id="a131278f-1356-4fdb-8a17-0aa87c5416f6" class=""><code>chown -R apache /var/www/html/wordpress</code></p><p id="1960ea13-6f1a-4abc-82fd-8e1900727002" class="">
+</p><h3 id="8ed02f9a-578e-4a7a-a0d6-addb9dc8b5c6" class="">웹브라우저에서 접속</h3><p id="2696c9d3-de83-44c3-a879-97dc9bce2ce7" class=""><a href="http://10.0.2.7/wordpress/wp-admin/">http://10.0.2.7/wordpress/wp-admin/</a></p><p id="c39cec72-19b8-49c6-8403-a4dc6d5246c7" class=""><a href="http://10.0.2.7/wordpress/">http://10.0.2.7/wordpress/</a></p><hr id="4d05439b-0709-4114-9ba5-5ce481ae74fd"/><p id="10902e6b-1ca0-48a0-acd8-0e78b97bde5f" class="">
+</p><p id="3f1031f5-e6ee-46d7-80fc-8769517d1aeb" class="">
+</p><h1 id="47f25253-243c-4a17-aeb5-e6393b2e4e51" class="">HTTP 프로토콜 학습</h1><p id="7d71419b-1c8b-4df7-ac6b-a4dcb2eb08bf" class="">HYPER TEXT TRANSFER PROTOCOL</p><p id="f826b6cc-c7e3-4011-a3aa-625958e36bcf" class="">WEB 서비스 핵심 프로토콜</p><p id="c67f453d-67bb-40fd-8401-4b809ee85424" class="">요청과 응답 형식으로 동작</p><p id="f19cf68f-c751-4086-8d4f-4086a60bd99d" class="">1.1버전을 가장 많이 쓰고 있다.</p><p id="e79d6bc7-bcd5-415a-8478-37133e1150f2" class="">비연결지향성 프로토콜</p><p id="b70aaf9c-24ab-4e52-a9d0-ae76787f0f88" class="">124.53.136.207</p><hr id="4c160880-18a6-4cdb-8296-89d98bc486b3"/><h3 id="396c3387-e62a-49d5-935a-fabbe6292265" class="">HTTP REQUEST</h3><p id="45a7d7b6-5017-49db-b332-970a6c818255" class="">Request LINE</p><p id="556298a8-fb11-441a-b63e-c3c1db936194" class="">HEADERS</p><p id="29b8895c-1897-4912-a51e-3275e344fd52" class="">BODY</p><hr id="0e26453a-8a79-4316-ae76-5eb79f9a6004"/><h3 id="d73371e7-d9f1-4073-9e38-f6d36787e5f4" class="">HTTP 메소드</h3><p id="da48f1b9-e7ca-4087-923e-c906f17de4c7" class="">GET : 지정된 URL 요청</p><p id="8b4d83b4-1638-4090-998f-c31d47279f51" class="">POST : 지정된 URL 요청</p><p id="d2c9096c-01b5-4c5d-9a2d-ca037a6ab1bb" class="">HEAD : HTTP HEADER 만 응답해달라</p><p id="14bcae12-6f54-432d-9db8-35b07faae534" class="">DELETE : 요청하는 URL 자원 삭제</p><p id="2c756ff6-7716-4f41-958e-97ad3de377d0" class="">OPTIONS : 서버에서 지원하는 HTTP 메소드 정보를 요청</p><p id="edef7770-d692-49a1-92bd-868bffab8b63" class="">PUT : 요청하는 URL 자원을 생성</p><hr id="58f547d6-ebf3-46a0-910b-86168ff1d47c"/><h3 id="04e352d4-da37-42c7-a98d-09455486b347" class="">HTTP RESPONSE</h3><p id="eda6e824-9281-491f-99cb-45aa3b2ce6d6" class="">상태코드</p><p id="85728159-6752-4aa3-bdb3-d5ba02802a29" class="">100번대 : 단순정보</p><p id="687ab5ad-79de-49e1-b5de-8217d0cb04dc" class="">200번대 : client의 요청이 정상적으로 수행됨</p><p id="800d5c9b-c2f4-479b-9743-b60f8d4205c7" class="">300번대 : client의 요청이 정상적으로 수행되지 않아 다른 url로 이동</p><p id="83e211a0-fd18-43ed-9384-3c58d1cbb768" class="">400번대: 클라이언트의 요청이 불완전</p><p id="032dd647-8f64-482a-80ca-d79070345a58" class="">500번대 : server의 오류로 client의 요청수행불가능</p><p id="d0b69006-bf93-4211-ae89-081f255300f9" class="">200 ok : 클라이언트의 요청이 성공함</p><p id="16ae3821-cc8d-4dcd-9f4e-f0270e0c3ca4" class="">301 : redirection : 다른 url로 리다이렉션</p><p id="d70409ae-466d-4369-96ca-32f207e57cbc" class="">400 bad request : 클라이언트가 잘못된 요청을 함</p><p id="74dba103-b8e7-4b4b-905a-b8b29eeb4c81" class="">403 : forbidden : 클라이언트의 접근 금지</p><p id="e5cc2425-a0f4-4bc7-8767-add6fec9b8b7" class="">404: not found : 지정한 자원이 없음</p><p id="f459c13a-0e85-4267-a59d-ebd3204bed8b" class="">500 : internal server error : 서버에서 오류가 발생함</p><p id="a9635a6a-c665-4124-b214-a2bb1ff765af" class="">503 : service unavailable : 최대 세션초과</p><hr id="281f6c1b-f366-47b7-9622-2a511d3c5182"/><p id="e06f4cab-ab44-4a06-b42d-22d57e67f742" class="">쿠키 :클라이언트에 저장되어 서버에서 활용하는 상태 정보</p><p id="f1345fac-84e5-4182-886a-f6e611f7920a" class="">쿠키 : persistent cookie</p><p id="7d6ac944-84a1-4a02-8f58-8a0a94a42325" class="">session cookie</p><p id="d22b82a8-6803-45ad-8bdd-2eac8121a6d3" class="">세션 : 서버에 저장하여 활용하는 값</p><hr id="e85dab71-2aee-44d7-ac05-d95d4a28d41e"/><p id="71859edf-597b-4220-93b9-e96bdbc6a1a9" class="">FTP : 파일전송 프로토콜</p><p id="e83005ca-99e8-41ad-b158-5f14c3f5a1b6" class="">두가지 종류의 계정을 지원</p><p id="d7715fcb-6a57-4d1f-9ff6-594f64bf7a60" class="">서버에 등록되어 있는 계정</p><p id="0c92e105-a390-466a-b52e-975b580a70cd" class="">익명계정 : anonymous</p><p id="25853388-d051-4fcc-b99a-196d2760de6d" class="">암호화 : sftp(ssh의 부록 모듈) ftps (ftp + ssl)</p><hr id="bf6797c5-a8d7-482f-9e61-eb5ceff3724f"/><p id="3f5767b4-0b58-409f-a9a0-d3610d922dbf" class="">ftp 동작 모드</p><p id="3afb20fc-4296-43ac-8124-5ee7ded22cfd" class="">active mode</p><p id="3ca8b588-6b80-4b35-bd9a-625825983feb" class="">passive mode</p><hr id="6aa612f8-022f-464c-a560-eb4343cc5c41"/><p id="edae129b-d585-4f3d-aa90-a664ff8bd76a" class="">vsftpd</p><p id="59b268e7-2857-4624-9430-4df2e84ab727" class="">yum install -y vsftpd</p><p id="c598c143-9254-4d41-b22c-5aa7e6573350" class="">systemctl restart vsftpd</p><p id="0e9df15b-be64-4c9b-ae31-06ed3f745989" class="">systemctl enable vsftpd</p><p id="a51ffa97-de88-49ed-a41d-22ad2abc68bb" class="">firewall-cmd --permanent --add-service=ftp</p><p id="7348dffb-d62c-4420-ac7f-99a897e4826f" class="">firewall-cmd --reload</p><hr id="0ce51edf-6ce7-4a7a-af70-42380deac740"/><p id="ef9c4ee8-8f69-4019-affd-fad801e206f1" class="">sftp</p><p id="039f6894-5a0e-4da9-8249-b4ba6f041dcd" class="">rpm -qf /usr/libexec/openssh/sftp-server</p><hr id="88312787-7125-4ea0-a809-2950299744d5"/></div></article></body></html>

@@ -1,0 +1,759 @@
+<html><head><script src="../../embed-sub.js" defer></script><link rel="stylesheet" href="../../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>SELinux</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7d59398b-d133-4315-8aa2-6826808724e5" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="../Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/></div><h1 class="page-title">SELinux</h1><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>생성일</th><td><time>@2022년 1월 21일 오후 6:51</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>태그</th><td><span class="selected-value select-value-color-default">Linux</span></td></tr></tbody></table></header><div class="page-body"><h1 id="12bf95c9-aba4-4045-90fa-8d2e983428c6" class="">SELinux</h1><ul id="8cfde249-0185-4f48-a8a4-06e80cef4341" class="bulleted-list"><li style="list-style-type:disc">기본 SELinux 보안 개념</li></ul><ul id="01c69eec-a7e0-4e9f-b991-893917d682d3" class="bulleted-list"><li style="list-style-type:disc">모든 파일, 프로세스, 디렉토리, 포트에는 특수 보안 레이블 존재</li></ul><ul id="3d7145e0-7554-409f-9dfa-72478beea4bd" class="bulleted-list"><li style="list-style-type:disc">특수 보안 레이블에는 여러 컨텍스트가 존재<ul id="71fedee4-906d-41e6-9726-1df456d99d12" class="bulleted-list"><li style="list-style-type:circle">컨텍스트 종류 : 사용자, 역할, 유형, 민감도</li></ul><ul id="924d31ab-a8c5-49ac-8e5e-01258aeb561c" class="bulleted-list"><li style="list-style-type:circle">SELinux의 활성화되는 기본 정책인 타겟 정책은 세번째 컨텍스트인 유형 컨텍스트를 기준으로 규칙을 지정</li></ul><p id="8bab1b28-3a6a-4ed1-8bb2-d21e6523f518" class="">
+</p></li></ul><h2 id="e54f3c94-8d93-48d8-b56a-380524144b74" class="">유형 컨텍스트</h2><p id="d01b3c1d-2639-4600-8364-9ec561e4e210" class="">유형 컨텍스트의 이름은 주로 <code>_t</code>로 끝남</p><ul id="42daccca-b5a8-4235-8874-0600904537f8" class="bulleted-list"><li style="list-style-type:disc">웹 서버의 유형 컨텍스트는 <code>httpd_t</code><ul id="ddd06bf2-46e5-4eb7-9699-8bbe076f8723" class="bulleted-list"><li style="list-style-type:circle"><code>/var/www/html</code>에서 일반적으로 발견되는 파일 및 디렉토리의 유형 컨텍스트<code>httpd_sys_content_t</code></li></ul></li></ul><ul id="1e185db7-0748-4239-8a23-a0e9f160d53a" class="bulleted-list"><li style="list-style-type:disc">MariaDB 서버의 유형 컨텍스트는 <code>mysqld_t</code><ul id="a54c124f-c74b-4ea1-abdd-0141ef35f5fb" class="bulleted-list"><li style="list-style-type:circle"><code>/data/mysql</code>에서 일반적으로 발견되는 파일 및 디렉토리의 유형 : 컨텍스트는 <code>mysqld_db_t</code></li></ul><ul id="1e917045-563b-4d84-b17b-c6ffb1e6cb2a" class="bulleted-list"><li style="list-style-type:circle"><code>/data/mysql</code> 하위 파일에 MariaDB 접근을 허용하지만 Apache 웹서비스와 같은 다른 서비스의 접근은 비활성화</li></ul></li></ul><p id="7516d863-f134-44cf-a771-166d7e16404c" class="">
+</p><p id="14798fbc-f109-4524-91f4-24105cf17c00" class="">프로세스 유형 컨텍스트 확인 : <code>ps axZ</code></p><p id="828755de-02ae-45ad-b384-f47466c81150" class="">
+</p><h3 id="ecffc2d7-fded-4dd2-8cb8-61c7c4c7592f" class=""><code>httpd</code> 프로세스 유형 컨텍스트 확인</h3><p id="f42a9959-deaf-4f40-b4ce-8e3c8bff2d2d" class=""><code>systemctl start httpd</code></p><p id="0f165a83-d0c0-4837-8e94-99a4e98af197" class=""><code>ps -ZC httpd</code></p><pre id="4f63b262-cec3-4841-ab91-e6af76af6f51" class="code code-wrap"><code>[root@servera ~]# ps -ZC httpd
+LABEL                             PID TTY          TIME CMD
+system_u:system_r:httpd_t:s0     5072 ?        00:00:03 httpd
+system_u:system_r:httpd_t:s0     5073 ?        00:00:00 httpd
+system_u:system_r:httpd_t:s0     5074 ?        00:00:00 httpd
+system_u:system_r:httpd_t:s0     5075 ?        00:00:00 httpd
+system_u:system_r:httpd_t:s0     5076 ?        00:00:00 httpd
+system_u:system_r:httpd_t:s0     5077 ?        00:00:00 httpd
+system_u:system_r:httpd_t:s0     5146 ?        00:00:00 httpd
+system_u:system_r:httpd_t:s0     5150 ?        00:00:00 httpd
+system_u:system_r:httpd_t:s0     5152 ?        00:00:00 httpd
+system_u:system_r:httpd_t:s0     5153 ?        00:00:00 httpd</code></pre><p id="fef29666-6160-4186-b263-8189b42f0939" class="">
+</p><h3 id="4b416fa5-888b-46ef-bfb4-0bcb7462464f" class=""><code>httpd</code> 관련 디렉토리 유형 컨텍스트 확인</h3><p id="dcdbb1f0-d656-4f6c-8aa8-46c4b1cf40f4" class=""><code>ls -Z /var/www</code></p><pre id="63a1bbac-137b-4b3b-b626-ed786c132f8e" class="code code-wrap"><code>[root@servera ~]# ls -Z /var/www
+drwxr-xr-x. root root system_u:object_r:httpd_sys_script_exec_t:s0 cgi-bin
+drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 html</code></pre><p id="b772b475-95b9-4b24-b61c-e1d06292a390" class="">
+</p><p id="d2b29880-ad06-4994-a29c-ff1724c9da4a" class=""><code>ls -dZ /var/www/html</code></p><pre id="afb3f7e7-b366-4fbc-b5e6-9df477e39e25" class="code code-wrap"><code>[root@servera ~]# ls -dZ /var/www/html
+drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 /var/www/html</code></pre><p id="f8a57f73-6d93-489d-980f-0403d73cd923" class="">
+</p><h3 id="279f9c96-0c8e-483a-bcc0-ddffea10f708" class="">SELinux 동작 확인</h3><p id="7a4cf5d9-24b3-4492-ad98-44f563317811" class=""><code>getenforce</code></p><pre id="152e6e1d-e031-4cb6-b223-bc32c2a5eee4" class="code code-wrap"><code>[root@servera ~]# getenforce
+Enforcing</code></pre><p id="8572ad41-9b28-469d-8248-813a8ea1a0f3" class="">
+</p><ul id="3844b6e2-0191-4c56-a13a-388cde8dac51" class="bulleted-list"><li style="list-style-type:disc">동작 모드 설정</li></ul><p id="89988c3a-85cd-4c44-af07-58faed7e1e11" class=""><code>setenforce 0</code> or <code>setenforce Permissive</code></p><p id="2634bd84-5605-4ede-8680-836888ad0c96" class=""><code>setenforce 1</code> or <code>setenforce Enforcing</code></p><p id="8ae89033-967e-423a-bc9c-7b6b221e67df" class="">
+</p><ul id="c820e848-0823-4fb7-a156-124875b0c37f" class="bulleted-list"><li style="list-style-type:disc">SELinux 설정 파일</li></ul><p id="b36cf29d-1a95-486b-ab13-0301f6cd1a8e" class=""><code>vim /etc/selinux/config</code></p><pre id="15d298dd-6724-437c-8424-55db5a23e309" class="code code-wrap"><code>...
+SELINUX=enforcing
+...</code></pre><p id="b98d6045-612d-4f02-a1a7-3a490111e0e3" class="">
+</p><ul id="a9049d0d-812b-407f-be75-5b1b91ba93ce" class="bulleted-list"><li style="list-style-type:disc">동작 모드 3가지<p id="475b1b78-8526-4ba6-a127-e024b3d8b1fc" class=""><code>Enforcing</code> : 활성화</p><ul id="b1d0da8d-4e2f-4d96-a35b-b86814192f69" class="bulleted-list"><li style="list-style-type:circle">프로세스가 파일에 접근할 때 권한과 컨텍스트, 부울 등을 확인하여 차단</li></ul><p id="f5782b26-48d8-4a38-8ed4-8dc1a824f89b" class=""><code>Permissive</code> : 활성화가 되어 있지만 SELinux 정책을 강제하지 않음</p><ul id="196fcee2-23a0-4bbb-85b0-214d99900bcf" class="bulleted-list"><li style="list-style-type:circle">프로세스가 파일에 접근할 때 권한과 컨텍스트, 부울 등을
+확인하지만 정책을 위반하더라도 차단을 강제하지 않고 메세지만
+로그에 기록</li></ul></li></ul><p id="b17c2907-3a7f-42c0-a151-a0f09900347f" class="">
+</p><h3 id="8016731f-579f-452f-a176-7b027eb015c3" class="">Disabled</h3><p id="cdb68051-ca1d-4df1-aea6-f9da60180361" class="">Disabled 설정은 <code>/etc/selinux/config</code> 파일에서 변경 가능</p><p id="cc4033f1-40ed-450b-a92a-5f9d4b135037" class="">Enforcing, Permissive 상태에서 Disabled로 모드 변경 시 또는 반대로 적용 시 재부팅 후 적용됨</p><p id="94c9b1af-f585-4ca3-800d-f60e9ceb9fa1" class="">
+</p><p id="51d07421-3370-40b9-a971-d3502bed47a5" class="">
+</p><h3 id="d4ab7a42-b781-461f-a947-c37c7d64f66f" class="">파일 유형 컨텍스트 확인</h3><p id="563cd9f2-9085-459b-a71b-7bdec11409bc" class=""><code>cp</code> 명령어로 복사 후 파일 유형 컨텍스트 확인</p><ol type="1" id="1bd9bd81-9bd4-4665-bff3-75bba23d550d" class="numbered-list" start="1"><li><code>touch httpd_fileA</code></li></ol><pre id="01b1e142-449f-45be-bcae-9d1aba27179c" class="code code-wrap"><code>[root@chan ~]# touch httpd_fileA
+[root@chan ~]# ls -Z httpd_fileA
+-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 httpd_fileA</code></pre><p id="efac73ce-9de5-4ee5-a58a-e781906d58ad" class=""> 유형 컨텍스트 : <code>admin_home_t</code> 를 확인할 수 있다.</p><ol type="1" id="72b95d3a-4d30-4e54-b57c-2c0ec42f69b3" class="numbered-list" start="2"><li><code>cp httpd_fileA /var/www/html/httpd_fileA_1</code></li></ol><pre id="aa9b4c6d-e4ae-4813-84f8-53d234e0b38f" class="code code-wrap"><code>[root@servera ~]# cp httpd_fileA /var/www/html/httpd_fileA_1
+[root@servera ~]# ls -Z /var/www/html/httpd_fileA_1
+-rw-r--r--. root root unconfined_u:object_r:httpd_sys_content_t:s0 /var/www/html/httpd_fileA_1</code></pre><p id="38ab5578-5930-4e1c-9bab-e2427d86252b" class=""><code>/root</code> 디렉토리와 <code>/var/www/html</code> 의 유형 컨텍스트(<mark class="highlight-brown_background">httpd_sys_content_t</mark>)가 다르기 때문에 복사 후 <mark class="highlight-brown_background">다른 유형 컨텍스트</mark>가 적용된 것을 확인</p><ol type="1" id="28007cc3-bf6e-42c7-9447-e85b07184071" class="numbered-list" start="3"><li><code>cp -a</code> 명령어로 복사 후 파일 유형 컨텍스트 확인</li></ol><pre id="c900248d-0626-4483-8a68-b2f8df208375" class="code code-wrap"><code>[root@servera ~]# cp -a httpd_fileA /var/www/html/httpd_fileA_2
+[root@servera ~]# ls -Z /var/www/html/httpd_fileA_2
+-rw-r--r--. root root unconfined_u:object_r:admin_home_t:s0 /var/www/html/httpd_fileA_2</code></pre><p id="070de78a-9264-4bfe-9fb8-02c169be483c" class="">변한 것이 없다! 그대로 <code>admin_home_t</code> 이다. </p><p id="cad506e9-0ff9-4185-b051-f0f29d562f46" class="">즉, <code>a</code> 옵션을 사용하여 복사 할 시 파일의 유형 컨텍스트가 바뀌지 않은 상태로 복사한다</p><p id="48aaaf71-12fd-45a8-8269-cf324f3be7c9" class="">httpd 프로세스가 접근을 할 수 없다</p><p id="44342f09-a7bf-40c3-8843-3f8d14118e56" class="">
+</p><h2 id="d51a75e7-429c-4938-9009-6906add0cacb" class="">유형 컨텍스트 변경</h2><p id="4113ca95-017b-402f-a30e-a7a669868d05" class=""><code>semanage fcontext</code> : SELinux 관리 도구</p><p id="ff536832-efd1-401e-b4c5-e1bf3f35ec16" class="">
+</p><p id="01bbf993-41b5-4968-acb6-143daeca9b25" class="">! semanage fcontext 사용을 위한 선행 작업</p><blockquote id="f8a232cd-279d-44b5-860d-399805f8d789" class="">yum -y install policycoreutils-python</blockquote><p id="ee7fe7a4-bd42-4caf-b7d8-a5cc3084c959" class="">
+</p><p id="9073be55-75b7-4933-8d92-9a06d7f64304" class="">디렉토리에 적용되어 있는 유형 컨텍스트 확인</p><p id="3c571e7c-d9ba-474a-b372-be9ffff0566c" class=""><code>semanage fcontext -l | grep /var/www</code></p><pre id="14915d41-00dc-4dcb-9db8-3f79cd0d88f9" class="code code-wrap"><code>[root@servera ~]# semanage fcontext -l | grep /var/www
+/var/www(/.*)?                                     all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/www(/.*)?/logs(/.*)?                          all files          system_u:object_r:httpd_log_t:s0
+...
+...
+/var/www/nut-cgi-bin/upsstats\.cgi                 regular file       system_u:object_r:nutups_cgi_script_exec_t:s0 
+/var/www/gitweb-caching/gitweb\.cgi                regular file       system_u:object_r:git_script_exec_t:s0</code></pre><p id="ddc926a9-406b-4bc1-9c70-0468e7b257c0" class="">
+</p><p id="0cd0c967-6b4f-465e-bc9a-b10d26d04b46" class="">
+</p><p id="a95aca3e-2973-497e-b3c1-c87b236bef59" class=""><code>mkdir /context</code></p><p id="df29af0e-10eb-4282-b435-9273ca102e31" class=""><code>ls -Zd /context</code></p><pre id="fb9892be-845a-4707-8631-23a43435f80d" class="code code-wrap"><code>[root@servera ~]# ls -Zd /context
+drwxr-xr-x. root root unconfined_u:object_r:default_t:s0 /context</code></pre><p id="ca013f89-89d8-443d-8ba0-838edc46c422" class="">/context 유형 컨텍스트를 확인할 수 있다</p><p id="67da6d57-125a-418e-80c3-0c771351e34e" class="">
+</p><p id="899a1c5c-05c9-4a40-8d7a-d97a895b1cce" class="">유형 컨텍스트를 등록</p><p id="46aa1ff0-ea7e-40b7-8d5b-e95847fd1d52" class=""><code>semanage fcontext -a -t httpd_sys_content_t &#x27;/context(/.*)?&#x27;</code></p><pre id="9cb17ddc-f098-433a-8455-9ca9086afb61" class="code code-wrap"><code>[root@servera ~]# semanage fcontext -a -t httpd_sys_content_t &#x27;/context(/.*)?&#x27;
+[root@servera ~]# ls -Zd /context
+drwxr-xr-x. root root unconfined_u:object_r:default_t:s0 /context</code></pre><p id="df846575-cc0b-4476-ba42-5cfc68b9c9e8" class="">유형 컨텍스트 등록 후 해당 디렉토리에 적용X</p><p id="9de8198c-a6c3-4d6e-beca-42eaf3baa8fc" class="">
+</p><p id="f4d73522-7fd0-46bb-aefe-6e3d6e976553" class="">유형 컨텍스트 적용</p><p id="bbc820d9-b67b-4695-9315-c057e67c2e78" class=""><code>restorecon -RFv /context</code></p><p id="ec4c8c65-24e5-4856-b1f4-f4ff3f81d8e3" class="">restorecon reset /context context unconfined_u:object_r:default_t:s0-&gt;system_u:object_r:httpd_sys_content_t:s0</p><pre id="e9cd1c63-29f6-4f25-92c7-1e9182870682" class="code code-wrap"><code>[root@servera ~]# ls -Zd /context
+drwxr-xr-x. root root system_u:object_r:httpd_sys_content_t:s0 /context</code></pre><p id="f5231a4e-12fe-4eea-9276-ce7a875b76f0" class="">
+</p><p id="af728030-412b-4ef9-a81a-541e1eda9d8e" class="">restorecon 명령어로 SELinux 정책에서 컨텍스트 파일 디렉토리에 적용<div class="indented"><ul id="1643601a-d6c2-4345-9667-3a53896aaa68" class="bulleted-list"><li style="list-style-type:disc"><code>R</code> 옵션 : 하위 디렉토리에 적용</li></ul><ul id="9069b138-5f35-46e1-99d5-72bdbbbcf6f5" class="bulleted-list"><li style="list-style-type:disc"><code>F</code> 옵션 : 콘텍스트 재설정</li></ul><ul id="ef349e7c-b263-49a6-aeee-2391c3e27597" class="bulleted-list"><li style="list-style-type:disc"><code>v</code> 옵션 : 정보 출력</li></ul></div></p><p id="33068a1e-5cdc-446c-9b39-fbf6926a1851" class="">
+</p><p id="9d524cf3-f0fb-4d87-ae88-bb78eea084bf" class="">임시적으로 유형 컨텍스트를 변경</p><p id="db7a8eb6-88ba-4d1b-b6b2-36421b395bb4" class=""><code>chcon -t default_t /context</code></p><pre id="c641b0ea-3d3d-4ac4-9754-8e62fb1cb19d" class="code code-wrap"><code>[root@servera ~]# chcon -t default_t /context
+[root@servera ~]# ls -Zd /context
+drwxr-xr-x. root root system_u:object_r:default_t:s0   /context</code></pre><p id="448c6893-bd57-40a9-b3de-7933ef1981e6" class=""><code>chcon</code>은 런타임 설정 : 재부팅하면 설정이 바뀌거나 사용 도중에 바뀔 수도 있음(권장 X)</p><ul id="b929ec95-0f11-4943-ae6e-fd64835ec278" class="bulleted-list"><li style="list-style-type:disc">테스트용으로 사용</li></ul><p id="f912e064-8dd4-496f-b0a9-a4243c2bee9e" class="">
+</p><h3 id="27caed31-09cf-47b1-86a0-9f345a370b4e" class="">SELinux 부울</h3><p id="12aea4ed-823b-4e17-97e2-c21cd60663d2" class="">추가적인 기능 설정(스위치처럼 <code>On</code> 또는 <code>Off</code> 설정 가능)</p><p id="5ffcd173-bd46-456d-8983-4b975224a045" class="">정책 허용 스위치(접근 시에 기능을 하나하나 체크)</p><p id="04951a9b-8e60-439f-ad24-11e9ad87867b" class="">부울 설정을 하면 유형 컨텍스트가 맞지 않더라도 주체가 객체에 접근할 수있도록 정책의 동작 범위를 수정 가능, 필요한 것만 세팅하는 것이 좋음</p><p id="fb270b4e-159a-495d-a9d0-b639f618e4c6" class="">
+</p><p id="aaeb04f0-d07f-4987-8988-2d8ab9952376" class="">부울 설정 확인</p><p id="4ad80d16-fd64-4b49-9e08-4558214047e3" class=""><code>getsebool -a</code></p><p id="b9220009-7502-4511-a72b-83a4c99fdeb7" class="">
+</p><p id="94ca77fa-84bf-45cf-bfff-2e873c61c955" class="">부울 설정 확인</p><p id="885d010c-1fcb-43e3-868a-82f3b92ee6e2" class=""><code>semanage boolean -l</code></p><pre id="ec32167a-38dc-43d9-ae10-114f3dc36371" class="code code-wrap"><code>SELinux boolean                State  Default Description
+
+privoxy_connect_any            (on   ,   on)  Allow privoxy to connect any
+...
+...
+nfs_export_all_ro              (on   ,   on)  Allow nfs to export all ro
+cron_can_relabel               (off  ,  off)  Allow cron to can relabel</code></pre><p id="ab897558-d8df-47cd-aa01-ba4711f83fe2" class="">부울의 이름 / 현재 상태 / 영구 설정 상태 / 부울에 대한 설명 순으로 표기</p><p id="ff96f5bf-5578-4696-8b98-86feae9d1fdf" class="">
+</p><h3 id="60367bfb-e434-4fe7-87e0-7dc9d2ec4645" class="">부울 설정 변경(현재 상태)</h3><p id="2cbe6496-ef99-4147-8556-e2037db4b33e" class=""><code>httpd_enable_homedirs</code> 초기상태 확인</p><pre id="7e99f193-4fd6-423d-b216-f0722ff515f2" class="code code-wrap"><code>[root@servera ~]# semanage boolean -l | grep httpd_enable_homedirs
+httpd_enable_homedirs          (off  ,  off)  Allow httpd to enable homedirs</code></pre><p id="74f305b0-48d0-4ba9-919a-8879b8b9074b" class="">
+</p><p id="505a7d0a-b2fe-418a-bf60-af90d28e54a9" class=""><code>setsebool httpd_enable_homedirs on</code> : 설정 변경</p><p id="5cd5b837-b190-496a-b4aa-08b45452ffe9" class="">확인1 : <code>getsebool httpd_enable_homedirs</code></p><pre id="3afb34fd-616a-4a88-a218-8ad1df8af745" class="code code-wrap"><code>httpd_enable_homedirs --&gt; off</code></pre><p id="71ebd5dc-90b0-4e38-a138-1972eec3804a" class="">
+</p><p id="43c07911-1709-496b-a6aa-d6593f8d766c" class="">확인2 : <code>semanage boolean -l | grep httpd_enable_homedirs</code></p><pre id="6ef6b342-065c-41b1-8d18-c09da7ee6a3e" class="code code-wrap"><code>[root@servera ~]# semanage boolean -l | grep httpd_enable_homedirs
+httpd_enable_homedirs          (on   ,  off)  Allow httpd to enable homedirs</code></pre><p id="3dbb4b05-90c1-4ed0-b8fd-d44a7180df1f" class="">현재상태만 변경되고 영구적으로는 변경되지않는다. 그래서 (on, off)</p><p id="f630181c-1d4c-4306-84b1-299402d5dec0" class="">
+</p><p id="19610cd8-e41a-4ba4-a14e-040fb59b4086" class="">부울 설정 변경(기본 설정)</p><p id="1084db59-36ac-4562-be66-769de5129e06" class=""><code>setsebool -P httpd_enable_homedirs on</code></p><pre id="198f9cfb-62e0-4a59-9ffa-8d0b036e123f" class="code code-wrap"><code>[root@servera ~]# semanage boolean -l | grep httpd_enable_homedirs
+httpd_enable_homedirs          (on   ,   on)  Allow httpd to enable homedirs</code></pre><p id="81252fc3-9b5f-4b76-a68f-75eee1dadf57" class="">
+</p><p id="94a20c73-ae74-47a1-b7c2-5d98cb6a7cd8" class="">부울 설정 변경(현재 상태, 기본 설정)</p><p id="d71d81b8-da91-4149-81e4-da43a7f98955" class=""><code>semanage boolean -m -0 httpd_enable_homedirs</code></p><pre id="ea41a6f9-60f0-4194-9ece-ec656f619380" class="code code-wrap"><code>[root@servera ~]# semanage boolean -l | grep httpd_enable_homedirs
+httpd_enable_homedirs          (off  ,  off)  Allow httpd to enable homedirs</code></pre><p id="6140ad87-b4fc-48a7-b29c-b3688cb5a05d" class="">
+</p><p id="2fafc2a8-c15d-4835-a650-0a5709cf1f59" class=""><code>semanage boolean -m -1 httpd_enable_homedirs</code></p><pre id="b37c788b-888b-4844-80c0-177f02ea5fe4" class="code code-wrap"><code>[root@servera ~]# semanage boolean -l | grep httpd_enable_homedirs
+httpd_enable_homedirs          (on   ,   on)  Allow httpd to enable homedirs</code></pre><p id="bb2b6162-9762-4800-927f-fce77fba6fa9" class="">
+</p><p id="ad4bfc16-4b4b-4d69-a645-6bb029811b08" class="">
+</p><h1 id="cbfa4b0d-357a-4d84-a76c-a36e0f2e9b28" class="">selinux 포트 실습</h1><p id="446affa9-05db-4b32-bc0e-924146990188" class=""><code>vim /etc/httpd/conf/httpd.conf</code></p><p id="ef59286a-faa0-4cb7-9532-28d3576e6b4f" class="">
+</p><pre id="5f6b5df4-27ff-41f7-9860-60ea0864b6da" class="code code-wrap"><code>...
+#Listen 80	# 주석처리
+Listen 82		# 추가
+...</code></pre><p id="f9dfb5d9-f59c-4330-b611-4917b8f8cc61" class="">
+</p><p id="b4aed25a-ed67-404a-b342-37fb393d7bc5" class=""><code>systemctl restart httpd</code></p><pre id="1060bb36-6ce8-4f24-b0dc-e4cdf7d7dad8" class="code code-wrap"><code>[root@servera ~]# systemctl restart httpd
+Job for httpd.service failed because the control process exited with error code. See &quot;systemctl status httpd.service&quot; and &quot;journalctl -xe&quot; for details
+# 에러 발생</code></pre><p id="7dffd065-1760-45d0-87d1-c0678448b490" class="">
+</p><p id="6dab4854-f494-4d2e-a3de-b9e2d7e38793" class="">포트번호 확인</p><p id="761bd8ae-a86a-4a81-8eec-4aecbcd1a5c8" class=""><code>semanage port -l | grep http</code></p><pre id="8383a365-3390-437a-bd3c-0f280ba13b9d" class="code code-wrap"><code>[root@servera ~]# semanage port -l | grep http
+http_cache_port_t              tcp      8080, 8118, 8123, 10001-10010
+http_cache_port_t              udp      3130
+http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000
+pegasus_http_port_t            tcp      5988
+pegasus_https_port_t           tcp      5989</code></pre><p id="272b0be4-06b9-452a-9f9d-f824db55a29b" class="">82번 포트가 등록되어 있지 않음</p><p id="07556160-1a31-429f-9c43-d7a25668a00a" class="">
+</p><p id="a387988e-4cd0-41e6-bb41-376e277170c0" class="">82번 포트 등록</p><p id="2559bf09-d581-49c1-b6ff-dbfe54847126" class=""><code>semanage port -a -t http_port_t -p tcp 82</code></p><p id="96b94442-b705-4ec7-ac56-e253ba8a9bf4" class=""><code>semanage port -l | grep http</code> 를 통하여 확인</p><pre id="e6b570f0-351e-4faa-8938-1aaef67a33f1" class="code code-wrap"><code>[root@servera ~]# semanage port -l | grep http
+http_cache_port_t              tcp      8080, 8118, 8123, 10001-10010
+http_cache_port_t              udp      3130
+http_port_t                    tcp      82, 80, 81, 443, 488, 8008, 8009, 8443, 9000 # 82가 추가
+pegasus_http_port_t            tcp      5988
+pegasus_https_port_t           tcp      5989</code></pre><p id="7e35bfda-7a32-46d3-8301-d75756fa08b9" class="">
+</p><p id="716bcd0f-cb18-4d56-8d45-8857a799a08b" class="">방화벽 설정</p><p id="3479bcab-8440-405f-9f03-d0a7b569f5e4" class=""><code>firewall-cmd --add-port=82/tcp</code></p><p id="ce4a2b20-4945-4b30-930f-31f270bda1c9" class=""><code>firewall-cmd --add-port=82/tcp --permanent</code></p><p id="ba480c8e-0307-4dc0-afa4-b93511995e11" class="">
+</p><p id="ef7bb6b7-c2d3-42e0-a37f-b98a58425efb" class="">서비스 재시작</p><p id="d351cbfc-b17e-40ae-88ca-7debf96daac2" class=""><code>systemctl restart httpd</code></p><p id="c8e0916a-0b48-4590-ae9a-c4f6ea585964" class="">
+</p><p id="3bb24d96-bdec-48b8-b70d-0132a6ed2e44" class="">브라우저 주소창에 입력 : 192.168.56.10:82</p><figure id="e9a42980-6ac7-4fbe-a6e9-8d6ab3ec3b55" class="image"><a href="../SELinux%200e277a5608694feabbd19cbbf27f47c4/Untitled.png"><img style="width:612px" src="../SELinux%200e277a5608694feabbd19cbbf27f47c4/Untitled.png"/></a></figure><p id="544ecf45-cb58-408f-be08-da93beabdebb" class="">포트 레이블 제거</p><p id="cd0b8f47-ea25-4dc2-84d5-ea60256d6055" class=""><code>semanage port -d -t http_port_t -p tcp 82</code></p><p id="45e03251-e029-4d1e-9f38-baa73a3603bb" class="">포트 바인딩 변경</p><p id="faf1f978-e12d-40e8-8960-26ff1560ad88" class=""><code>semanage port -m -t ftp_port_t -p tcp 82</code></p></div></article></body></html>

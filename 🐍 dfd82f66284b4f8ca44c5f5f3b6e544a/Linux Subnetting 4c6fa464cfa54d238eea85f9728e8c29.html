@@ -1,0 +1,751 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux Subnetting</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="4c6fa464-cfa5-4d23-8eea-85f9728e8c29" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Linux%20Subnetting%209adeae2571564d01ab5b51cf437d3dc2/kuber.png"/></div><h1 class="page-title">Linux Subnetting</h1></header><div class="page-body"><h1 id="c939df9c-cf24-48bc-96e1-7b34cacd7115" class="">IP 네트워크 정보</h1><ul id="ed406cdd-620d-4b17-aee8-3c664dfcf772" class="bulleted-list"><li style="list-style-type:disc">1.0.0.0 네트워크</li></ul><p id="a5e8048a-4edb-44bf-bff0-0f74b662512b" class="">네트워크의 범위 - 1.0.0.0 ~ 1.255.255.255
+네트워크 주소 : 1.0.0.0
+브로드캐스트 주소 : 1.255.255.255
+호스트 갯수 : 2^(32-8)-2 = 2^24 -2</p><ul id="db7cc53b-99de-4602-879c-1c5230cc4de5" class="bulleted-list"><li style="list-style-type:disc">129.0.0.0 네트워크</li></ul><p id="4b33e910-d63e-451f-9851-4244475434ea" class="">네트워크의 범위 - 129.0.0.0 ~ 129.0.255.255
+네트워크 주소 : 129.0.0.0
+브로드캐스트 주소 : 129.0.255.255
+호스트 갯수 : 2^(32-16)-2 = 2^16 -2</p><ul id="0e226581-90bc-4592-907a-f1d61312a186" class="bulleted-list"><li style="list-style-type:disc">192.168.10.0 네트워크</li></ul><p id="9fa8520b-d546-4468-88fe-01c449d9a2e3" class="">네트워크의 범위 - 192.168.10.0 ~ 192.168.10.255
+네트워크 주소 : 192.168.10.0
+브로트캐스트 주소 : 192.168.10.255
+호스크 갯수 : 2^(32-24)-2 = 2^8 -2 = 256-2 = 254</p><h2 id="f30e55f3-4187-4e83-b142-f61491085bbf" class="">classless address</h2><p id="8a94a3f7-1cd2-49e6-8e06-e1da8ef6727a" class="">클래스의 개념이 없어짐</p><ul id="739d18d4-454f-4d00-aec6-4e35f2b9f4ac" class="bulleted-list"><li style="list-style-type:disc">서브넷팅 : 네트워크를 쪼갬<p id="bb72fe3d-7cb2-40fa-ab95-3d9a8dbcd736" class="">supnetting</p></li></ul><ul id="919dbf3c-d814-4d23-b36a-e0160cdc9e7f" class="bulleted-list"><li style="list-style-type:disc">슈퍼넷팅 : 네트워크를 합침<p id="911ce7cc-0453-4e7b-9fe9-9a01bb3177d4" class="">supernetting</p></li></ul><p id="61a1c388-1ff9-49db-8e7d-1c29791926f8" class="">서브넷팅은 prefix를 이용해서 함.</p><ul id="935a27ff-9fd4-47d1-8bc9-b1fe2acf3442" class="bulleted-list"><li style="list-style-type:disc">host 갯수<p id="3eaf1aeb-ad5d-46ce-9eaa-f37e98cd807f" class="">2^(32-prefix)-2</p></li></ul><ul id="631152ef-4e03-49d6-88a6-ae24bdbd27cf" class="bulleted-list"><li style="list-style-type:disc">network 갯수<p id="2524f5bb-811f-4d86-87a3-e1e39475f77e" class="">2^(prefix-default prefix)</p></li></ul><ul id="aa501508-6bfe-440b-953d-23e93a3b2c01" class="bulleted-list"><li style="list-style-type:disc">network 구간<p id="a57942a9-d5c4-4de0-8743-67f9bd49111f" class="">256/2^(prefix-default prefix)</p></li></ul><h2 id="891668b7-bb6e-443e-a3f9-713dd320b083" class="">서브네팅</h2><h3 id="5da11a22-acb3-49e4-945c-2c9d1acb1de7" class="">100.0.0.0 / 9</h3><ol type="1" id="cf5ece8f-5f17-4b9a-992a-7a205aee7358" class="numbered-list" start="1"><li>맨 앞 숫자로 무슨 클래스인지 확인<ul id="429b6065-5db2-4cd1-b966-e7d9c273cb95" class="bulleted-list"><li style="list-style-type:disc">100은 A클래스이다</li></ul><ul id="e5c95506-b7dc-4cef-aaaa-62fc3ea3f871" class="bulleted-list"><li style="list-style-type:disc">0~126 : A클래스</li></ul><ul id="f53b04c6-faad-4050-8d4e-3d87031b10c5" class="bulleted-list"><li style="list-style-type:disc">127~191 : B클래스</li></ul><ul id="59aa8fa3-c68a-4ee5-9704-fff32bed3d38" class="bulleted-list"><li style="list-style-type:disc">192~223 : C클래스</li></ul></li></ol><ol type="1" id="cddea582-def4-42de-b943-2ad4a6d83c80" class="numbered-list" start="2"><li>A클래스의 prefix는 8이 기준이다<ul id="31493921-8e88-44df-b2b2-9c646f83e0ac" class="bulleted-list"><li style="list-style-type:disc">8보다 기준이 큰 /9 이기때문에 서브네팅이다.</li></ul><ul id="5ad14714-f996-43da-8621-2df2702fd8c5" class="bulleted-list"><li style="list-style-type:disc">원래 A클래스의 서브넷 마스크는 1111111.000000.0000000.0000000 이다</li></ul><ul id="fcae8a4b-9fbf-42db-8639-45d358b8709a" class="bulleted-list"><li style="list-style-type:disc">서브네팅을 했기때문에 서브넷 마스크는 9를 보면 1이 9개라는 것이고 1111111.10000000.00000000.00000000 이다.</li></ul></li></ol><ol type="1" id="f74418fc-7b41-4880-a66a-fc683d445bee" class="numbered-list" start="3"><li>네트워크 갯수 확인<ul id="f180a2a9-49de-4ff1-afca-0382dc0a2038" class="bulleted-list"><li style="list-style-type:disc">A클래스이므로 default prefix = 8</li></ul><ul id="6fd9b470-fc73-44aa-be40-77ef32f6111a" class="bulleted-list"><li style="list-style-type:disc">2<p id="30a7f53c-c583-4d5d-b122-b34acec29132" class="">9-8 = 21</p></li></ul><ul id="3330f909-7467-46a0-9cb2-4998f1f4f4c8" class="bulleted-list"><li style="list-style-type:disc">즉, 2개이다</li></ul></li></ol><ol type="1" id="d47a64ad-4766-4964-a9e1-4d288717bdd4" class="numbered-list" start="4"><li>네트워크 구간 확인<ul id="036f30ac-9bc8-4d46-b3af-173ffea7f6ea" class="bulleted-list"><li style="list-style-type:disc">prefix(9)보다 작은 (8,16,24) 중에서 제일 큰 수 : default prefix</li></ul><ul id="9ccef5ee-a4fa-4472-92df-bb150dbfc32f" class="bulleted-list"><li style="list-style-type:disc">즉 default prefix = 8 이다</li></ul><ul id="0c68440d-6ac9-4660-b04e-52ee8b8638bb" class="bulleted-list"><li style="list-style-type:disc">256/2<p id="1245e206-cf40-4df4-8d89-0ca12a7b591c" class="">9-8 = 128이다</p></li></ul><ul id="ca9b4bd1-9227-49c5-a2e2-ed8b2b687828" class="bulleted-list"><li style="list-style-type:disc">default prefix가 8 이면 X.X.X.X 에서 2번째 X를 증가시켜준다</li></ul><ul id="f6334e55-11fe-4e18-9dc9-1d29b0b701e2" class="bulleted-list"><li style="list-style-type:disc">default prefix가 16 이면 X.X.X.X 에서 3번째 X를 증가시켜준다</li></ul><ul id="5d454883-8c46-47bd-b79e-30417aba333c" class="bulleted-list"><li style="list-style-type:disc">default prefix가 24 이면 X.X.X.X 에서 4번째 X를 증가시켜준다</li></ul><ul id="9a61f35c-c61e-4ffc-8eb5-62668486e642" class="bulleted-list"><li style="list-style-type:disc">즉, 기존 A클래스에서 서브네팅을 하여 한단계만(8~15) 하면 2번째/ 2단계면(16~23) 3번째 / 3단계면(24~) 4번째</li></ul><ul id="4bc2a954-8c48-4cb5-9d1a-dd384a06dc9b" class="bulleted-list"><li style="list-style-type:disc">구간1 : 100.0.0.0 ~ 100.127.255.255</li></ul><ul id="216aa5ad-ad77-4451-bdb2-af3efde69998" class="bulleted-list"><li style="list-style-type:disc">구간2 : 100.128.0.0 ~ 100.255.255.255</li></ul></li></ol><ol type="1" id="1030fdeb-fc5d-444f-925e-42e30d6dff28" class="numbered-list" start="5"><li>호스트 갯수<ul id="764bfe29-28ed-4a20-b43a-d8a4a6a7ed50" class="bulleted-list"><li style="list-style-type:disc">구간안에서의 숫자이다</li></ul><ul id="bb2c5212-e217-49b2-87f8-3329e697ead5" class="bulleted-list"><li style="list-style-type:disc">예를 들면 구간 1에서보면 호스트 갯수는 100.127.255.255 - 100.0.0.0 의 갯수들이다</li></ul><ul id="35f0527a-0a6d-4c26-a6e2-c0c21b2251fe" class="bulleted-list"><li style="list-style-type:disc">2 = 2개 - 2(네트워크주소, 브로드캐스트주소)<p id="09baa219-5350-414d-86d0-5299405ed6aa" class="">32-9</p><p id="e4c9e55d-d956-4f4c-94f8-bd92930c3bc3" class="">23</p></li></ul></li></ol><h3 id="59c07a26-a20c-4419-815e-bf316e2e5df6" class="">100.0.0.0 / 25인 경우</h3><ol type="1" id="44aec60e-e654-4934-9934-648c913d2b65" class="numbered-list" start="1"><li>네트워크 갯수 - 225-8개</li></ol><ol type="1" id="19cd8e03-0f27-4c0b-a47f-b94b9b94ee4d" class="numbered-list" start="2"><li>네트워크 구간
+- (8,16,24) 중 25보다 작지만 제일 큰수 = 24
+- 256/2 = 128
+- default prefix가 24이기때문에 X.X.X.X 에서 4번째 X를 증가<p id="642f7265-5f2f-41a6-b456-96a89545c94a" class="">25-24</p><ul id="7c5f0cd8-a34c-449b-8278-41e65d01245f" class="bulleted-list"><li style="list-style-type:disc">100.0.0.0 ~ 100.0.0.127</li></ul><ul id="384bbcb3-d056-429c-bb29-4747594e53e3" class="bulleted-list"><li style="list-style-type:disc">100.0.0.128 ~ 100.0.0.255</li></ul><ul id="79797855-aa60-495f-86ce-75867bf4e3bc" class="bulleted-list"><li style="list-style-type:disc">100.0.1.0 ~ 100.0.1.255</li></ul><ul id="4b8865a0-7770-45a5-90d9-d626e642d767" class="bulleted-list"><li style="list-style-type:disc">100.0.1.128 ~ 100.0.1.255</li></ul><ul id="7f76828c-4032-4253-b0be-813fa0036c19" class="bulleted-list"><li style="list-style-type:disc">100.0.2.0 ~ 100.0.2.127</li></ul><ul id="dcbe0b37-bb97-407a-997d-c9a7494d836a" class="bulleted-list"><li style="list-style-type:disc">…</li></ul><ul id="0deb70f0-7461-41f4-918a-e55df6bc107b" class="bulleted-list"><li style="list-style-type:disc">…</li></ul><ul id="6e050be6-a49c-4d7f-be95-c7d7c7729b7d" class="bulleted-list"><li style="list-style-type:disc">100.255.255.128 ~ 100.255.255.255</li></ul></li></ol><ol type="1" id="af6dbec3-e91a-427a-b96d-0090b4763a7b" class="numbered-list" start="3"><li>호스트 갯수 - 232-25= 27</li></ol><h2 id="3ec96725-9edd-435f-9344-74b44f0af9e8" class="">슈퍼네팅</h2><h3 id="b6c0a738-1298-4636-ac6e-bbcbbe6255e5" class="">128.10.0.30 / 15 가 속한 구간</h3><ol type="1" id="b70899a2-2e97-4055-89a6-12bf9d5f5d24" class="numbered-list" start="1"><li>맨 앞 숫자로 무슨 클래스인지 확인 - 128은 B클래스</li></ol><ol type="1" id="eaf57645-b775-45d7-af8e-f3bcbfc86b51" class="numbered-list" start="2"><li>서브넷마스크<ul id="7c82a022-0625-4491-9573-f2c36a8e206d" class="bulleted-list"><li style="list-style-type:disc">1의 갯수 15개이므로 11111111.11111110.00000000.000000000</li></ul></li></ol><ol type="1" id="b98d0d8b-0ffa-4d8a-a606-8e9ded5b56db" class="numbered-list" start="3"><li>네트워크 갯수 확인<ul id="653fd01d-c0a6-4ee5-bf44-0e1323370359" class="bulleted-list"><li style="list-style-type:disc">2<p id="e41f953f-4c77-4132-9cc8-68c67a220948" class="">15-8</p></li></ul></li></ol><ol type="1" id="81a13abc-de73-4c0c-9c68-0e29618ab092" class="numbered-list" start="4"><li>네트워크 구간 확인<ul id="22e6b437-2461-40d7-9504-05ee439996eb" class="bulleted-list"><li style="list-style-type:disc">2<p id="c1196153-da48-4b38-ac98-190a4f4b45ae" class="">15-8</p></li></ul><ul id="3d52d470-1071-4715-8f8a-364959d74e1f" class="bulleted-list"><li style="list-style-type:disc">256/2 = 2<p id="0aacdf9f-a7bb-45f9-a671-8a11d884848e" class="">7</p></li></ul><ul id="da967fba-22f4-464a-944f-bad3a29a87e1" class="bulleted-list"><li style="list-style-type:disc">128.0.0.0 ~ 128.1.255.255</li></ul><ul id="022e12a9-d8d5-4c91-ab3a-bd4959c968b0" class="bulleted-list"><li style="list-style-type:disc">128.2.0.0 ~ 128.2.255.255</li></ul><ul id="89ee76b9-4ae2-444a-a10e-6bff9eafce4d" class="bulleted-list"><li style="list-style-type:disc">…</li></ul><ul id="a06c07ae-4f0a-4797-96e1-23362f0ee887" class="bulleted-list"><li style="list-style-type:disc">128.10.0.0 ~ 128.11.255.255 &lt;- 속해있다</li></ul><ul id="fc301433-fbaa-4947-b9a1-925b6eb15f9e" class="bulleted-list"><li style="list-style-type:disc">…</li></ul><ul id="6645e8be-c375-4db4-9bce-d0d9d5a818fb" class="bulleted-list"><li style="list-style-type:disc">…</li></ul><ul id="28188978-edf4-4b8c-b0ad-bec7d5e71ea6" class="bulleted-list"><li style="list-style-type:disc">128.254.0.0 ~ 128.255.255.255</li></ul></li></ol><h2 id="6d802086-961a-432d-a307-5b3b488faafe" class="">실전</h2><p id="4bafb5ef-f14f-4987-9745-8cb93195bc28" class="">1 . <a href="about:blank#1--995255255--10-%EC%9D%80-%ED%98%B8%EC%8A%A4%ED%8A%B8-%EC%A3%BC%EC%86%8C-%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5">9.95.255.255 / 10 은 호스트 주소 사용 가능?</a>
+2 . <a href="about:blank#2--17210000--16%EC%9D%84-130%EB%AA%85%EC%94%A9-%EA%B7%B8%EB%A3%B9%EC%9D%84-%EB%82%98%EB%88%8C-%EC%88%98-%EC%9E%88%EB%8F%84%EB%A1%9D-%EC%84%9C%EB%B8%8C%EB%84%B7%ED%8C%85%ED%95%98%EA%B3%A0-172100405-%EC%A3%BC%EC%86%8C%EA%B0%80-%EC%86%8D%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B5%AC%EA%B0%84%EC%9D%84-%EC%9E%91%EC%84%B1%ED%95%98%EC%8B%9C%EC%98%A4">172.100.0.0 / 16을 130명씩 그룹을 나눌 수 있도록 서브넷팅하고 172.100.40.5 주소가 속한 네트워크 구간을 작성하시오.</a>
+3 . <a href="about:blank#3--12810030--15-%EA%B0%80-%EC%86%8D%ED%95%9C-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B5%AC%EA%B0%84%EC%9D%84-%EC%9E%91%EC%84%B1%ED%95%98%EC%8B%9C%EC%98%A4---%EC%8A%88%ED%8D%BC%EB%84%B7%ED%8C%85">128.10.0.30 / 15 가 속한 네트워크 구간을 작성하시오.</a>
+4 . <a href="about:blank#4--8000--11-%EC%9D%98-%EB%AA%A8%EB%93%A0-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B5%AC%EA%B0%84%EC%9D%84-%EC%A0%81%EC%9C%BC%EC%8B%9C%EC%98%A4">8.0.0.0 / 11 의 모든 네트워크 구간을 적으시오.</a>
+5 . <a href="about:blank#5--1921681000--24--4090%EB%AA%85-%EC%9D%98-%EC%82%AC%EB%9E%8C%EC%9D%B4-%EC%82%AC%EC%9A%A9%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8F%84%EB%A1%9D-%EC%8A%88%ED%8D%BC%EB%84%B7%ED%8C%85%ED%95%98%EC%8B%9C%EC%98%A4">192.168.100.0 / 24 =&gt; 4090명 의 사람이 사용할 수 있도록 슈퍼넷팅하시오.</a>
+6 . <a href="about:blank#6--100000--24-%EC%9D%B8-%EA%B2%BD%EC%9A%B0-1001003020%EC%9D%98-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B5%AC%EA%B0%84%EC%9D%80">100.0.0.0 / 24 인 경우 100.100.30.20의 네트워크 구간은?</a>
+7 . <a href="about:blank#7--17210000-16-%EB%A5%BC-8100-%EB%AA%85%EC%9D%B4-%EC%93%B8%EC%88%98-%EC%9E%88%EB%8A%94-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%95%98%EB%82%98-4000-%EB%AA%85%EC%9D%B4-%EC%93%B8-%EC%88%98-%EC%9E%88%EB%8A%94-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-2%EA%B0%9C-120%EB%AA%85%EC%9D%B4-%EC%93%B8-%EC%88%98-%EC%9E%88%EB%8A%94-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-4%EA%B0%9C%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4-%EB%B3%B4%EC%8B%9C%EC%98%A4">172.100.0.0 /16 를 8100 명이 쓸수 있는 네트워크 하나 2000 명이 쓸 수 있는 네트워크 2개 120명이 쓸 수 있는 네트워크 4개를 만들어 보시오.</a></p><h2 id="5c3d5e7b-66ab-408e-aa14-d31a5d7e4bf5" class="">해설</h2><h3 id="bf68bd3c-dffb-411e-b580-8feb030cca31" class="">1 . 9.95.255.255 / 10 은 호스트 주소 사용 가능?</h3><ul id="897fe324-b76b-47c7-95ad-5f335fd2a659" class="bulleted-list"><li style="list-style-type:disc">네트워크 갯수
+2^(10-8) = 2^2 =4</li></ul><ul id="65e58f43-edf8-46ce-b1e3-0ce49f53e428" class="bulleted-list"><li style="list-style-type:disc">기존
+9.0.0.0/8</li></ul><pre id="c7c0ec00-c02a-4777-af88-f6e228d78dc5" class="code code-wrap"><code>9.0.0.0 ~ 9.255.255.255</code></pre><ul id="37d36ed4-6b6a-4845-ac31-0123f2eff54e" class="bulleted-list"><li style="list-style-type:disc">네트워크 구간
+256/4 = 64<ul id="c9e92857-14c1-4073-a511-cb1f19695ef5" class="bulleted-list"><li style="list-style-type:circle">/10 구간</li></ul><pre id="1d2dfc0e-bffa-4814-99cb-21389d872668" class="code code-wrap"><code>/10
+9.0.0.0 ~ 9.63.255.255
+9.64.0.0 ~ 9.127.255.255
+9.128.0.0 ~ 9.191.255.255
+9.192.0.0 ~ 9.255.255.255</code></pre><ul id="b6ff1a30-3e98-458d-9fde-0db4df7a2c56" class="bulleted-list"><li style="list-style-type:circle">만약 /11 이었다면?<ul id="1947cc79-4e65-48d2-b1cc-568e61781401" class="bulleted-list"><li style="list-style-type:square">네트워크 갯수
+2^(11-8) = 2^3 = 8
+256/8 = 32</li></ul><ul id="c47f633d-3419-407f-b44c-80a2014a5d40" class="bulleted-list"><li style="list-style-type:square">네트워크 구간<pre id="54447e7f-8018-4875-a9c9-04d2e5eb73f5" class="code code-wrap"><code>9.0.0.0 ~ 9.31.255.255
+  32
+9.64.0.0 ~ 9.95.255.255 &lt;- 브로드캐스트 주소이기때문에 사용 불가능
+  96
+  128
+  160
+  192
+  224</code></pre></li></ul></li></ul></li></ul><h3 id="de57a082-a0e1-4b4e-a01f-2a6a7e1e48e1" class="">2 . 172.100.0.0 / 16을 130명씩 그룹을 나눌 수 있도록 서브넷팅하고 172.100.40.5 주소가 속한 네트워크 구간을 작성하시오.</h3><ul id="0007fa64-80b2-4d12-b6c7-a998ea5b9384" class="bulleted-list"><li style="list-style-type:disc">호스트 갯수
+/24 =&gt; 256-2
+/25 =&gt; 128-2
+즉, /24로 해야한다</li></ul><ul id="d299a506-0690-4449-b50c-ea688cd41f12" class="bulleted-list"><li style="list-style-type:disc">네트워크 구간
+172.100.0.0 /24</li></ul><pre id="a7217271-6c8d-4341-9f7d-a81c1173258d" class="code code-wrap"><code>172.100.0.0 ~ 172.100.0.255
+172.100.1.0 ~ 172.100.1.255
+172.100.2.0 ~ 172.100.2.255
+.
+.
+.
+172.100.40.0 ~ 172.100.40.255</code></pre><h3 id="f50c3aa2-b357-4a2a-b1ea-f2a8ef9370b9" class="">3 . 128.10.0.30 / 15 가 속한 네트워크 구간을 작성하시오. =&gt; 슈퍼넷팅</h3><blockquote id="987dc5b4-3f74-4077-b865-2a51cacd290c" class="">128로 시작하면 B 클래스인데 /15는 B 클래스를 넘어감으로 슈퍼넷팅으로 해줘야 함
+가상의 A클래스로 전환</blockquote><ul id="8b9ea780-e81a-45af-9728-61a95e602e37" class="bulleted-list"><li style="list-style-type:disc">기존 128.0.0.0 /8
+128.0.0.0 ~ 128.255.255.255</li></ul><ul id="3cd6803c-5d14-4ff2-80f3-3a5cfb3231f9" class="bulleted-list"><li style="list-style-type:disc">슈퍼넷팅<ul id="806a0252-b796-4a40-b9bb-df057706d35f" class="bulleted-list"><li style="list-style-type:circle">네트워크 갯수
+^(15-8) = 2^7 = 128</li></ul><ul id="0bd74de7-9735-4754-af19-fd3463f507b7" class="bulleted-list"><li style="list-style-type:circle">네트워크 구간
+256/128 = 2<pre id="e46180db-39bf-4a05-a0e5-47a629e97b36" class="code code-wrap"><code>128.0.0.0 ~ 128.1.255.255
+128.2.0.0 ~ 128.2.255.255
+.
+.
+128.10.0.0 ~ 128.11.255.255</code></pre></li></ul></li></ul><h3 id="86673ae9-d42a-4332-bdd9-bafc76964546" class="">4 . 8.0.0.0 / 11 의 모든 네트워크 구간을 적으시오.</h3><ul id="064dca26-723e-49a1-b2cd-04493f31daeb" class="bulleted-list"><li style="list-style-type:disc">기존
+8.0.0.0 /8
+8.0.0.0 ~ 8.255.255.255</li></ul><ul id="0cd2d455-c84b-4006-9c56-5c30894659d6" class="bulleted-list"><li style="list-style-type:disc">서브네팅<ul id="b7cfab5b-4523-4ed2-b08c-e2c618e6fa38" class="bulleted-list"><li style="list-style-type:circle">네트워크 갯수
+2^(11-8) = 2^3 = 8</li></ul><ul id="3101ba11-646a-4785-b768-bd5236e301d4" class="bulleted-list"><li style="list-style-type:circle">네트워크 구간
+256/8 = 32<pre id="ea15013b-acb5-4625-80f4-0f66009e17cc" class="code code-wrap"><code>8.0.0.0 ~ 8.31.255.255
+  32        63
+  64        95
+  96        127
+  128       159
+  160       191
+  192       223
+  224       255</code></pre></li></ul></li></ul><h3 id="33369672-073d-4206-9233-fca9370669e0" class="">5 . 192.168.100.0 / 24 =&gt; 4090명 의 사람이 사용할 수 있도록 슈퍼넷팅하시오.</h3><ul id="31199c0b-3ab7-4e01-920f-52c4fa876523" class="bulleted-list"><li style="list-style-type:disc">호스트 갯수 구하기
+/24 =&gt; 256-2
+/23 =&gt; 512-2
+/22 =&gt; 1024-2
+/21 =&gt; 2048-2
+/20 =&gt; 4096-2
+&gt; /20이다
+&gt;가상의 B 클래스를 기준으로 만듬</li></ul><ul id="a7e9420b-ef20-4d83-80b5-7f52d4621ba7" class="bulleted-list"><li style="list-style-type:disc">기존
+192.168.0.0 /16
+192.168.0.0 ~ 192.168.255.255</li></ul><ul id="0f9c10dd-4e89-4e4a-ba16-128915578016" class="bulleted-list"><li style="list-style-type:disc">서브네팅<ul id="9e6acdce-f49f-425b-97e1-96e349de723c" class="bulleted-list"><li style="list-style-type:circle">네트워크 갯수
+2^(20-16) = 2^4 = 16</li></ul><ul id="15b1a126-b091-4696-9bdd-70159f52a37f" class="bulleted-list"><li style="list-style-type:circle">네트워크 구간
+256/16 = 16<pre id="3f10af7f-108b-48e9-a1de-ec099cfdcecb" class="code code-wrap"><code>192.168.0.0 ~ 192.168.15.255
+        16            31
+        32            47
+        48            63
+        64            79
+        80            95
+192.168.96.0 ~192.168.111.255 =&gt; 192.168.96.0 /20
+        112</code></pre></li></ul></li></ul><h3 id="a491ac61-7ecf-4830-81db-aa0d187f608e" class="">6 . 100.0.0.0 / 24 인 경우 100.100.30.20의 네트워크 구간은?</h3><p id="bacb5b55-377d-41c1-b049-10d33446d315" class="">100이므로 A클래스이다 - 네트워크 갯수
+224-8
+- 네트워크 구간
+- 256/224-24 = 256
+- 100.0.0.0 ~ 100.0.0.255 - 100.0.1.0 ~ 100.0.1.255 - … - 100.100.30.0 ~ 100.100.30.255 &lt;- 이구간 - … - .. - 100.255.0.0 ~ 100.255.255.255</p><h3 id="8966ad92-0bb6-4d71-a94a-4fc5055a7b28" class="">7 . 172.100.0.0 /16 를 8100 명이 쓸수 있는 네트워크 하나 4000 명이 쓸 수 있는 네트워크 2개 120명이 쓸 수 있는 네트워크 4개를 만들어 보시오.</h3><ul id="08540ba1-ad5e-4ebc-909a-6a37bd999590" class="bulleted-list"><li style="list-style-type:disc">prefix구하기</li></ul><pre id="27eb781e-e404-406a-be66-753c4dc5300c" class="code code-wrap"><code>/24 =&gt; 256-2
+/23 =&gt; 512-2
+/22 =&gt; 1024-2
+/21 =&gt; 2048-2
+/20 =&gt; 4096-2
+/19 =&gt; 8192-2</code></pre><ul id="48b2f718-092d-4f92-b8e5-3ff76a9e129b" class="bulleted-list"><li style="list-style-type:disc">1 . /19</li></ul><pre id="26c88617-8c31-4567-915a-3f444fd38fbe" class="code code-wrap"><code>172.100.0.0 ~ 172.100.31.255 =&gt; 8100명</code></pre><ul id="419267b5-42f3-4d25-a857-98d41643e15f" class="bulleted-list"><li style="list-style-type:disc">2 . /21</li></ul><pre id="87801f17-e9da-419d-8d96-6dc9b4397305" class="code code-wrap"><code>172.100.32.0 ~ 172.100.39.255 =&gt; 4000명
+172.100.40.0 ~ 172.100.47.255 =&gt; 4000명</code></pre><ul id="64d3e789-2a1f-445c-8172-1afd5ce8ce68" class="bulleted-list"><li style="list-style-type:disc">3 . /25</li></ul><pre id="6b6bbe33-1cda-42a4-9f28-e1941dfe0e9b" class="code code-wrap"><code>172.100.48.0 ~ 172.100.48.127 =&gt; 120명
+172.100.48.128 ~ 172.100.48.255 =&gt; 120명
+172.100.49.0 ~ 172.100.49.127 =&gt; 120명
+172.100.49.128 ~ 172.100.49.255 =&gt; 120명</code></pre></div></article></body></html>

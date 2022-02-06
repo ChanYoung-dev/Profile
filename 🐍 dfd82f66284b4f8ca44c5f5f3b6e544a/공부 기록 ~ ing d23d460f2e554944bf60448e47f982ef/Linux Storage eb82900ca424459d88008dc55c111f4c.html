@@ -1,0 +1,873 @@
+<html><head><script src="../../embed-sub.js" defer></script><link rel="stylesheet" href="../../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux Storage</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="eb82900c-a424-459d-8800-8dc55c111f4c" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="../Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/></div><h1 class="page-title">Linux Storage</h1><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>생성일</th><td><time>@2022년 1월 19일 오후 6:14</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>태그</th><td><span class="selected-value select-value-color-default">Linux</span></td></tr></tbody></table></header><div class="page-body"><h1 id="53bc06f8-debf-4d24-aaef-f2a948f829f3" class="">목차</h1><ul id="d353be7b-8a1b-4d0e-992f-aeaaa5aa5500" class="bulleted-list"><li style="list-style-type:disc">파티셔닝(gdisk, parted)</li></ul><ul id="e0bbfabd-7b48-4539-9840-a17616c06936" class="bulleted-list"><li style="list-style-type:disc">파일시스템</li></ul><ul id="c6fd0688-6e55-4eab-912a-758cfd6e1890" class="bulleted-list"><li style="list-style-type:disc">마운트(수동, 영구)</li></ul><ul id="a215ed2f-203e-4b4e-87dc-935d3f68181d" class="bulleted-list"><li style="list-style-type:disc">스왑</li></ul><ul id="20d454df-e5b6-49a4-8dd3-c52ff42e9594" class="bulleted-list"><li style="list-style-type:disc">논리 볼륨</li></ul><p id="0e5770f5-acec-4754-a23a-8e8757ab256e" class="">
+</p><p id="66970b6b-39f2-4501-acdc-b3628f02246f" class="">
+</p><h1 id="6933c635-db6a-4ccb-98a6-67a8358cfeb8" class="">Sector</h1><ul id="3553b10a-c825-4686-b4a0-5ee9eeed0541" class="bulleted-list"><li style="list-style-type:disc">구간을 의미(용량과는 다름)</li></ul><p id="50f6a94a-d4ef-4878-8529-2110aa964ad6" class="">
+</p><p id="f79fdd27-28d6-41f3-86eb-d7e062e9ac5c" class="">
+</p><h1 id="167e32be-e558-4d29-ab10-262a5c3c57f6" class="">gdisk</h1><p id="db28527e-e5e0-4abc-b983-9a8725984fca" class=""><code>gdisk /dev/sdb</code></p><ul id="07155932-9ae4-423d-83a3-e4501d88f0cf" class="bulleted-list"><li style="list-style-type:disc">주요 옵션<ul id="817f87d0-9246-4c18-9549-449f76081adf" class="bulleted-list"><li style="list-style-type:circle">n : 파티션 생성</li></ul><ul id="49448028-8707-4fe0-a643-0030775a82da" class="bulleted-list"><li style="list-style-type:circle">p : 파티션 정보 확인</li></ul><ul id="685d16b1-25e6-4a7f-9b2c-7907a5311122" class="bulleted-list"><li style="list-style-type:circle">d : 파티션 제거</li></ul><ul id="2502df7c-2d5e-4268-9382-711adf5ec316" class="bulleted-list"><li style="list-style-type:circle">w : 저장</li></ul><ul id="a74f6873-18be-4836-a89e-5932a8e43e89" class="bulleted-list"><li style="list-style-type:circle">q : 종료</li></ul></li></ul><pre id="ea2ab4b0-ab3c-4a9a-9bbb-7f20baf33d25" class="code code-wrap"><code>Command (? for help): n
+Partition number (1-128, default 1): 1
+First sector (34-6291422, default = 2048) or {+-}size{KMGTP}: 2048
+Last sector (2048-6291422, default = 6291422) or {+-}size{KMGTP}: 1G
+Current type is &#x27;Linux filesystem&#x27;
+Hex code or GUID (L to show codes, Enter = 8300): 8300</code></pre><p id="bd1c4022-ed4b-4383-8972-307bf05b01a3" class="">
+</p><ul id="ba6dd4dd-9e56-4f8a-a34b-a12f69582fae" class="bulleted-list"><li style="list-style-type:disc">처음 섹터에서 지정한 용량만큼 추가로 파티셔닝 진행</li></ul><ul id="66794939-8ecb-44cf-9794-c4dc9571aba4" class="bulleted-list"><li style="list-style-type:disc">Hex code는 파티션의 의도된 목적을 식별하기 위해 사용</li></ul><ul id="c48b63f2-8ce4-45d8-b16c-ef44dcf59c63" class="bulleted-list"><li style="list-style-type:disc">파티셔닝을 완료한 후 저장(<code>w</code>) 후 종료(<code>q</code>)</li></ul><ul id="87312758-3c25-4603-8310-563d17521c56" class="bulleted-list"><li style="list-style-type:disc">명령 입력줄에서 파티션 적용 : <code>udevadm settle</code></li></ul><p id="7276d7d7-028d-441f-a6b2-37de6bf371c5" class="">
+</p><p id="17ebde54-5207-45f9-9081-aa8f764cabbd" class="">
+</p><h1 id="6988d4c4-ad07-4b48-b34b-f0e0692f95c9" class="">parted</h1><ul id="4b3a4f89-b04a-4554-9aff-2b0c1bc930da" class="bulleted-list"><li style="list-style-type:disc">MBR, GPT 방식 파티셔닝</li></ul><ul id="5a1219a0-18d8-41bc-994b-ff89aa4c9cdc" class="bulleted-list"><li style="list-style-type:disc">주로 사용하는 옵션(<code>parted</code> 명령어와 함께 사용)<ul id="3bee89fc-6141-488c-a58a-8626b6f1e784" class="bulleted-list"><li style="list-style-type:circle">l : 디스크 장치의 정보와 파티션 정보 출력</li></ul></li></ul><p id="9e3db07f-2e6e-4dc0-a33f-9058102a1017" class="">
+</p><h3 id="3f63e009-1bb3-4f96-b94e-b6ff2e6644c3" class="">parted 파티셔닝 방법</h3><p id="7ef53060-9a2e-4433-8584-d4ecc50f462e" class=""><code>parted /dev/sdb</code></p><pre id="f129b642-e3e3-46e1-9ff0-ac1f61db91fe" class="code code-wrap"><code>(parted) print  # 파티셔닝 정보 확인
+
+(parted) help mklabel
+&#x27;&#x27;&#x27;
+- 파티셔닝 방식 종류 확인
+    - msdos : mbr
+    - gpt
+&#x27;&#x27;&#x27;
+
+(parted) mklabel
+New disk label type? msdos
+Warning: The existing disk label on /dev/sdb will be destroyed and all data
+on this disk will be lost. Do you want to continue?
+Yes/No? yes
+
+(parted) mkpart
+Partition type?  primary/extended? p
+File system type?  [ext2]?
+Start? 0%
+End? 10%
+
+# 퍼센트 단위로도 처음 주소와 끝 주소를 지정할 수 있음
+# 처음 일정 부분은 필수 영역이므로 시작 주소 값이 0부터 시작하지 않음
+
+
+(parted) mkpart
+Partition type?  primary/extended? p
+File system type?  [ext2]?
+Start? 10%
+End? 1G # 끝지점을 정확하게 입력하는 것도 가능(End)
+
+(parted) mkpart
+Partition type?  primary/extended? p
+File system type?  [ext2]?
+Start? 1000MB
+End? 2G
+
+
+# print로 끝지점을 확인한 후 다음 파티셔닝 작업에서 시작지점을 정확하게 입력할 수 있음
+
+(parted) q
+
+# 파티셔닝 완료 후 종료(저장 필요 X)</code></pre><p id="be1cbf88-2975-42eb-bdcf-4adba847e560" class=""><code>udevadm settle</code> : 적용</p><p id="b3fc3b18-9dc6-4362-bdca-c07cdf092d2b" class="">
+</p><h3 id="8c1ef465-5ca5-4e33-9866-33370274574f" class="">파티션 제거</h3><p id="2d54c86b-9889-429d-bc9d-40b7b61555d5" class=""><code>(parted) rm [num]</code></p><ul id="c4b062ca-d736-4297-8684-d90df8c3ba79" class="bulleted-list"><li style="list-style-type:disc">먼저 print로 파티션 정보를 확인한 후 제거</li></ul><ul id="9b565533-f286-4bc6-a397-1b188ae485af" class="bulleted-list"><li style="list-style-type:disc">제거 후에 적용 필수</li></ul><pre id="5afd0eb9-b06e-4585-bf13-89bbaca49e28" class="code code-wrap"><code>(parted) p                                                                
+Model: ATA VBOX HARDDISK (scsi)
+Disk /dev/sdb: 3221MB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags: 
+
+Number  Start   End     Size   Type     File system     Flags
+ 1      1049kB  322MB   321MB  primary  xfs
+ 2      322MB   1000MB  678MB  primary  ext2
+ 3      1000MB  2000MB  999MB  primary  linux-swap(v1)
+ 4      2000MB  2500MB  500MB  primary
+
+(parted) rm 4                                                             
+(parted) p                                                                
+Model: ATA VBOX HARDDISK (scsi)
+Disk /dev/sdb: 3221MB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags: 
+
+Number  Start   End     Size   Type     File system     Flags
+ 1      1049kB  322MB   321MB  primary  xfs
+ 2      322MB   1000MB  678MB  primary  ext2
+ 3      1000MB  2000MB  999MB  primary  linux-swap(v1)</code></pre><p id="71a2fd5f-1a68-4e13-8008-80b99f10571a" class="">
+</p><p id="1bd7af4e-b9ac-4af4-b23d-fe8d4ca3f7c9" class="">
+</p><h1 id="0483730a-445b-48b7-99ac-6f7eb8889fb8" class="">파일 시스템</h1><ul id="bce49126-f3f7-4e6a-879e-ca643b352b89" class="bulleted-list"><li style="list-style-type:disc">해당 저장공간에서 작업할 때 적용되는 옵션들을 설정해두는 것
+(ex. 공유, 압축, 작업 설정 등)</li></ul><ul id="dd2a1789-44a3-4c93-946d-643f3a0bc30f" class="bulleted-list"><li style="list-style-type:disc">종류<ul id="61440f71-5581-473e-9721-4c610a37b57b" class="bulleted-list"><li style="list-style-type:circle">xfs : 리눅스에서 보통 사용하는 방식</li></ul><ul id="5d64c821-2e38-43b6-86f0-0be97dfa7072" class="bulleted-list"><li style="list-style-type:circle">ext : 리눅스 초기에 사용하기 위해 만들어진 확장 파일 시스템</li></ul><ul id="d664078d-7ebf-42b6-bdb6-d00d1b55d5fc" class="bulleted-list"><li style="list-style-type:circle">fat : 초기 윈도우 용으로 개발된 파일시스템<ul id="ab688052-a055-438f-82a4-8e4caf8b5abe" class="bulleted-list"><li style="list-style-type:square">현재 USB 등 이동식 저장장치에 많이 사용</li></ul></li></ul><ul id="7b094b62-778f-4125-81d3-459e6997263f" class="bulleted-list"><li style="list-style-type:circle">ntfs : 현재 윈도우에서 사용하는 파일시스템</li></ul></li></ul><p id="01bcd97e-ba98-4570-aea5-6258a4bc0f8c" class="">
+</p><p id="855a8d08-643b-4f96-b871-9c9caed9747a" class="">파일시스템 종류 확인</p><p id="1ed8080d-3eb0-4f81-b0c2-c357985f5cba" class=""><code>ls -l /usr/sbin/mkfs*</code></p><pre id="a1c8d0d9-17d4-4e91-9c62-d614092acd33" class="code code-wrap"><code>[root@servera ~]# ls /usr/sbin/mkfs*
+/usr/sbin/mkfs        /usr/sbin/mkfs.cramfs  /usr/sbin/mkfs.ext3  /usr/sbin/mkfs.minix
+/usr/sbin/mkfs.btrfs  /usr/sbin/mkfs.ext2    /usr/sbin/mkfs.ext4  /usr/sbin/mkfs.xfs</code></pre><p id="1a99e2ee-78e3-4be6-a8c2-45f829cb2ab5" class="">
+</p><p id="aece9184-c1bd-41a3-8b04-4370bc3d1e7a" class="">sdb4에 xfs파일시스템 적용 : <code>mkfs.xfs /dev/sdb1</code></p><p id="ad5cb3e7-55ed-4b2d-9f31-957c23756d3b" class="">파일시스템 적용 확인 : <code>lsblk --fs</code></p><pre id="b4f9bb8b-9b8d-4e27-b85f-d36c849c7502" class="code code-wrap"><code>sdb                                                                      
+├─sdb1          xfs               8a6bf440-900a-4d99-bdbb-f7dec3c3ee43   /mnt/data
+├─sdb2          ext2              84939f48-6084-4fec-8f93-79a86df62e09   
+├─sdb3          swap              0994c9b2-a2a5-42ea-9ee6-357c34274b32   [SWAP]
+└─sdb4          xfs               badc49be-1830-47f8-906b-a01b09fb057a</code></pre><p id="f8873e68-a1cb-4b8f-85a1-2354ef7a426d" class="">
+</p><h1 id="77f7e914-6bfc-491e-b147-50edab66db12" class="">마운트</h1><ul id="b54684bd-be1c-411f-a4f1-e29540671ac3" class="bulleted-list"><li style="list-style-type:disc">스토리지에 직접 접근 불가</li></ul><ul id="3d693062-290d-4258-b481-9753ab9e8dd4" class="bulleted-list"><li style="list-style-type:disc">파일 시스템을 스토리지나 디렉토리에 적용</li></ul><ul id="26e1a9ef-16f0-4813-ab19-beae212b12c0" class="bulleted-list"><li style="list-style-type:disc">스토리지를 디렉토리에 얹는 개념
+<code>mount [마운트 대상] [마운트 포인트]</code></li></ul><p id="7b1d6bcd-75fb-4936-a55b-e4cdfa3f41a1" class="">
+</p><p id="e813d4c9-6f18-45d5-a18a-567436954a22" class="">
+</p><p id="70145eb8-42de-4fde-823d-b646d48813a7" class="">마운트 실습 전 선행 작업(디렉토리가 없을 시)</p><ul id="37bf69ec-2251-4dc4-b8bc-283c35b4fdc3" class="bulleted-list"><li style="list-style-type:disc"><code>mkdir /mnt/data</code> : <code>/mnt/data </code>  → 마운트할 디렉토리</li></ul><p id="ed45fb9e-c094-4dac-9473-792d6cc2c821" class="">
+</p><h2 id="b2f22531-6953-435c-b4e5-c93444ceb4ff" class="">수동으로 <code>sdb4</code>을 <code>/mnt/data4</code>마운트</h2><ul id="d23da8c7-dfa9-4b2c-86ea-6cae7206dcca" class="bulleted-list"><li style="list-style-type:disc"><code>mount /dev/sdb4 /mnt/data4</code></li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e44c0fd4-6bf4-4e0f-b853-949c2c1c5c5b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">재부팅 시 자동으로 마운트 해제된다</div></figure><p id="8a10066a-566b-485d-a9a0-14e25bb77b6a" class="">
+</p><p id="48b47eae-90d6-422b-8639-1a81848807a7" class="">마운트 확인 방법(2가지)</p><p id="4962f2ec-6738-4714-a037-e3cebadbb011" class=""><code>lsblk</code></p><pre id="d47345bf-8411-4024-abaf-ddf3cc19dc71" class="code code-wrap"><code>sdb               8:16   0    3G  0 disk 
+├─sdb1            8:17   0  306M  0 part /mnt/data
+├─sdb2            8:18   0  647M  0 part 
+├─sdb3            8:19   0  953M  0 part [SWAP]
+└─sdb4            8:20   0  954M  0 part /mnt/data4</code></pre><p id="9a520842-5593-476c-94b5-0dd5a710c736" class=""><code>mount</code></p><ul id="cc9b7296-e6a0-438b-8eeb-af2831a0ba09" class="bulleted-list"><li style="list-style-type:disc"><code>mount | grep sdb1</code><pre id="a3b45b55-a838-4616-9c29-3e5c8d1529ad" class="code code-wrap"><code>/dev/sdb4 on /mnt/data4 type xfs (rw,relatime,seclabel,attr2,inode64,noquota)</code></pre></li></ul><p id="38540df0-62cd-4c2e-8fe8-cfa42f6369a3" class="">
+</p><h2 id="7cf33ea7-bb45-4516-9ef9-4515b83fd363" class="">영속적으로 파일 시스템을 마운트</h2><p id="1954ac42-a6d5-463c-b0cc-2b786360e609" class=""><code>/etc/fstab</code> : 마운트 영구 설정 파일</p><p id="b2af32fa-7053-447c-be80-439d1d300758" class=""><code>vim /etc/fstab</code> : 마운트 파일 확인</p><p id="66a21361-5a71-41e5-b8a8-1073f9b7c1ec" class=""><code>/dev/sdb4 /mnt/data4 xfs defaults 0 0</code> ← 마지막줄에 추가로 입력</p><h3 id="7b37fff2-85a3-431f-b837-4a24381dfeda" class="">순서</h3><ol type="1" id="f36b4826-cad9-4285-a284-047475bda340" class="numbered-list" start="1"><li>장치 이름<p id="dd0da054-4fb3-4abb-ad8b-2493ac69344e" class="">잘못 설정 시 부팅 안 됨</p></li></ol><ol type="1" id="89b29b1c-4105-4a02-bb07-3607ca4e5846" class="numbered-list" start="2"><li>마운트 포인트<p id="00d81948-61fb-4c61-804a-2a5539a83fa2" class="">잘못 설정 시 부팅 안 됨</p></li></ol><ol type="1" id="0f2ce217-670c-4328-9c48-5551734d28f9" class="numbered-list" start="3"><li>파일 시스템 종류 설정<p id="98c2b28e-e021-45ab-a608-16ec0ccbfb0b" class="">잘못 설정 시 부팅 안 됨</p></li></ol><ol type="1" id="49a7135a-4a39-4cd6-9c48-673b9ec7d978" class="numbered-list" start="4"><li>옵션<p id="dcc13bb1-a382-47fb-86b7-8a7c840e79c7" class="">잘못 설정 시 부팅 안 됨</p><p id="e9fd8bc9-7dfb-4854-b3cc-9a2c71a5578c" class="">mount 매뉴얼 페이지에서 옵션 확인</p></li></ol><ol type="1" id="89173ef2-b2fa-4fa8-838d-1e07d3d04479" class="numbered-list" start="5"><li>덤프 생성<p id="f361ce8c-55da-4ba5-bcd1-c22d18d50cfc" class="">문제 발생 시 어떠한 문제로 마운트가 해제되었는지를 기록</p></li></ol><ol type="1" id="71b4bf82-1c2a-49f5-bcb1-28e9ce447b5d" class="numbered-list" start="6"><li>fsck<p id="c278b588-3fcd-4fcc-bf41-fcae5d852a35" class="">마운트하기 전 파일시스템 체크</p><p id="06d71956-d1eb-4556-b1de-102c2d60ad47" class="">숫자는 실행 순서를 의미</p><p id="62546fa5-259e-4bab-afc5-9a7783d7ee3b" class="">XFS 파일 시스템의 경우 해당 필드를 0으로 설정</p><p id="c05fc94e-1f41-41dc-9763-17b80261934d" class="">ext4 파일 시스템의 경우 루트 파일 시스템은 1로 설정</p><p id="f5c120f6-d6dd-4a9a-9d34-ce9f53d6b31b" class="">다른 ext4 파일 시스템은 2로 설정</p><p id="c30abf14-78ee-4057-8189-af159fddf433" class="">
+</p></li></ol><p id="90e0e1b1-5d7a-4fd1-a77c-ddce9e5a57cb" class="">sdb 스토리지를 sdb1, 2, 3, 4, 5, 6 으로 나눴을 경우</p><ul id="b9fbd7d9-c944-4138-8172-e191983e5856" class="bulleted-list"><li style="list-style-type:disc">물리적인 분리<p id="e1f1fb8f-f49c-4926-9cfc-23fbc0f2ab32" class="">sdb1, sdb2 합쳐서 논리적으로 묶을 수 있음</p></li></ul><p id="1c1be46d-2050-45e6-88f7-33c2068df342" class=""><code>/dev/mapper</code> :논리적으로 연결되어 있는 볼륨들이 위치하는 디렉토리</p><p id="bbf8be8c-a1ee-4d7b-b857-fd5fc60cdae6" class="">
+</p><h2 id="7b0b8233-def0-4a6e-b753-d0cb13ecaf62" class="">스왑 영역 관리 : <code>SWAP</code></h2><figure id="65be6ca2-205d-477b-8c62-12a53fa057cf" class="image"><a href="../Linux%20Storage%202576b71585384b80b645796dd147727c/%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA%E1%86%B8.png"><img style="width:1680px" src="../Linux%20Storage%202576b71585384b80b645796dd147727c/%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA%E1%86%B8.png"/></a></figure><p id="47be0cb8-1d04-4c66-8444-112d596eb84d" class="">디스크를 임시로 메모리처럼 사용하는 것</p><p id="e9dd216b-1fe5-4a15-95d9-23027e274590" class="">성능 때문에 스왑 공간을 구성</p><p id="7cb383ff-75a4-407c-8760-580a2631ac77" class="">스왑 공간</p><p id="92b089e1-625d-47d5-9f19-23b7af51a629" class="">다른 새로운 프로세스들을 빠르게 실행할 수 있도록 이전 프로세스의 상태를 저장해두는 공간</p><p id="79a5f48b-9f81-4f40-b067-18e084640ae3" class="">메모리를 효율적으로 사용 가능</p><p id="51a3290c-c309-4cca-a335-77f48482b714" class="">파티션 중 하나를 스왑 공간으로 사용하는 경우가 많음</p><p id="70dd1ec6-f561-4576-a96e-c674aeca026a" class="">MBR의 경우 logical 공간에 설정할 수 있음(primary 공간에도 설정 가능)</p><p id="7967167e-69e8-488d-afce-8b538cb908a5" class="">
+</p><p id="dcbaf20c-eadb-4066-bf43-1e35e20ee12e" class="">초기상태</p><pre id="230ba069-c3c4-405b-a18e-bc4f165aa625" class="code code-wrap"><code>Number  Start   End     Size    Type     File system     Flags
+ 1      1049kB  322MB   321MB   primary  xfs
+ 2      322MB   1000MB  678MB   primary  ext2
+ 3      1000MB  2000MB  999MB   primary  linux-swap(v1)
+ 4      2000MB  3000MB  1000MB  primary  xfs</code></pre><p id="47e70e41-5979-448e-b3fe-d795a78119a6" class="">
+</p><p id="5b7ade62-69b7-4e23-b37b-5e0d23ecdf5d" class="">장치에 스왑 공간 적용 : <code>mkswap /dev/sdb2</code></p><pre id="15661eb9-d527-406e-a454-49b8ed618976" class="code code-wrap"><code>[root@servera ~]# mkswap /dev/sdb2
+mkswap: /dev/sdb2: warning: wiping old ext2 signature.
+Setting up swapspace version 1, size = 662524 KiB
+no label, UUID=835b34ff-322c-47b3-94b7-6fa7b6ddc06e</code></pre><p id="bf1b9279-6d94-458a-978c-3c8784462bb5" class="">
+</p><p id="1b614275-038a-4e17-879e-cb1d4eaa3b17" class="">스왑 공간 활성화 전 메모리 공간 확인 : <code>free -h</code></p><pre id="9427e0d8-e94c-4874-a47a-2800a695fedb" class="code code-wrap"><code>[root@servera ~]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:           990M        183M        323M        6.9M        483M        648M
+Swap:          1.7G          0B        1.7G</code></pre><p id="23bfbc47-bd00-46a7-911d-dd64750c4e00" class="">
+</p><p id="bf4665e3-5a8f-49fa-b547-84988d7156c5" class="">스왑 공간 활성화 : <code>swapon /dev/sdb2</code></p><p id="695b43ea-40a6-4012-bc88-79808f4bcc58" class="">스왑 공간 활성화 후 메모리 공간 확인 : <code>free -h</code></p><pre id="a50b55b4-1fbb-4789-aeb0-6fb4dcf8d678" class="code code-wrap"><code>[root@servera ~]# swapon /dev/sdb2
+[root@servera ~]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:           990M        184M        323M        6.9M        483M        647M
+Swap:          2.4G          0B        2.4G # 0.7G 늘어났다</code></pre><p id="c768e16b-066b-4b16-beac-e52aef49db1a" class="">
+</p><p id="3efbb608-deff-4f1a-a965-6e0dd48f31dd" class="">스왑 공간 UUID 확인 : <code>blkid | grep sdb3</code></p><pre id="cc2da051-f4f7-41a7-a072-d9ff147ef9a0" class="code code-wrap"><code>[root@servera ~]# blkid |grep sdb2
+/dev/sdb2: UUID=&quot;835b34ff-322c-47b3-94b7-6fa7b6ddc06e&quot; TYPE=&quot;swap&quot;</code></pre><p id="6da86818-2ab9-4348-9e26-9287ac65a2a8" class="">
+</p><p id="b2945d36-c5fa-4e29-95b7-e7f4eb229761" class="">
+</p><h3 id="c53a73fd-fd85-4289-ab71-ca6d62f9ceb4" class="">스왑 공간 영구 설정(UUID)</h3><p id="da765050-32a1-4fbf-b09e-7b1d71ba2eca" class=""><code>vim /etc/fstab</code></p><p id="cce5eb4e-3fc6-4e7a-a7c8-80b1e4ce6781" class="">
+</p><p id="31760669-ecc5-4685-b95c-cc9feee22955" class="">UUID를 이용하여 설정</p><pre id="07122354-d8cb-4716-8989-f9b3f0b84869" class="code code-wrap"><code>...
+UUID=835b34ff-322c-47b3-94b7-6fa7b6ddc06e swap swap defaults 0 0</code></pre><p id="282e9850-32cf-433b-899b-d04532dcf959" class="">
+</p><h3 id="29c4b7f1-e8a2-4a9c-9c64-c3b52f924bbf" class="">fstab 잘못 설정한 경우</h3><p id="ad7566e5-a316-4e4f-b891-bb367b128360" class="">1 . 첫 커널 선택 <code>e</code> 버튼 누르기</p><p id="86fee9ce-21b3-405b-a573-e4d77e9b39bc" class="">2 . 문장 처음에 linux 써있는 부분 마지막에 커서 옮겨놓기</p><p id="a0be53d3-372f-4dff-a1dc-be3a2c2825dc" class="">3 . <code>systemd.unit=emergency.target</code> 작성</p><p id="8c03f43f-e0ac-4e6b-be69-3486da73d48f" class=""><code>ctrl</code> + <code>x</code></p><p id="80c295af-dfdd-49f7-8181-258e449ba188" class="">4 . 루트 비밀번호 입력</p><p id="4e643be1-6b0a-4e1c-a91b-4d707dd82fab" class="">5 . <code>vim /etc/fstab</code> : 수정</p><p id="e33e42c2-56f1-4428-9e51-76b0241489d1" class="">6 . <code>reboot</code></p><p id="f057bae7-6f3d-4f83-9ef6-6da0afa5d613" class=""><code>/etc/fstab</code> 과정에서 <code>/boot</code> 마운트 잘못되서 안 켜지는 경우</p><p id="dae07543-014f-4118-9d6e-bca8009b8f38" class="">
+</p><p id="2f274709-9dd8-4f32-8f1f-e9b7675e2698" class="">
+</p><p id="9e4589dd-38bf-4901-8875-91b78a0c2ce5" class="">
+</p><h1 id="688672c0-51f8-4032-8097-decd9c1d097a" class="">논리 볼륨</h1><p id="f059a955-a7d4-49eb-a6fa-77b93220c218" class="">하나의 공간 안에서 파티션보다 스토리지를 효율적으로 사용하기 위함</p><figure id="470ba580-57e7-4e8a-9217-cc4248252ba6" class="image"><a href="../Linux%20Storage%202576b71585384b80b645796dd147727c/%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AF%E1%84%85%E1%85%B2%E1%86%B7.png"><img style="width:1765px" src="../Linux%20Storage%202576b71585384b80b645796dd147727c/%E1%84%82%E1%85%A9%E1%86%AB%E1%84%85%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AF%E1%84%85%E1%85%B2%E1%86%B7.png"/></a></figure><p id="dac730c4-e382-4c01-83a0-c9fffc8ee2dd" class="">
+물리장치(디스크)		물리장치(디스크)		물리장치(디스크)
+  PV(물리 볼륨)		          PV(물리 볼륨)	                	PV(물리 볼륨)</p><p id="e529e5b3-72c4-4d6f-9d4f-3c17848cb7ea" class="">		              |
+
+		     VG(볼륨 그룹)
+
+		              |
+
+	   논리 볼륨	   논리 볼륨
+               LV                      LV</p><p id="5d1b1bda-dd3e-4837-804c-35e01a699af2" class="">
+</p><p id="3f68addb-819a-4608-88ec-daeb0ccbdcad" class="">
+</p><p id="70028b90-d55c-433f-869a-2e865508c6f1" class="">물리 장치(디스크) : 데이터를 저장하는데 사용하는 스토리지 장치
+PV(물리 볼륨) : LVM을 사용하기 위한 기본 &quot;물리&quot; 스토리지</p><ul id="f531f8c1-3105-49dd-9295-e4404c909512" class="bulleted-list"><li style="list-style-type:disc">PE(Pysical Extent) : PV의 최소 단위(약 4MB)</li></ul><ul id="79b15f0a-5843-4baa-a456-6f030eaa27f5" class="bulleted-list"><li style="list-style-type:disc">LE(Logical Extent) 와 1대1 매핑 =&gt; PE와 LE 사이즈가 동일</li></ul><ul id="3d3f9731-c6f2-41cb-b0aa-fe1d105a2be4" class="bulleted-list"><li style="list-style-type:disc">VG(볼륨 그룹) : 하나 이상의 물리 볼륨으로 구성된 스토리지(PV의 묶음)</li></ul><ul id="b446adbd-7b05-44ec-9de7-0cfe26458210" class="bulleted-list"><li style="list-style-type:disc">LV(논리 볼륨) : VG를 나눈 공간</li></ul><ul id="fcaef257-0851-44eb-aba7-69e1b8c5ae23" class="bulleted-list"><li style="list-style-type:disc">LE 는 LV 최소 단위(약 4MB)<ul id="3bc43f0e-d298-474b-b38b-6c9c37d7fcc1" class="bulleted-list"><li style="list-style-type:circle">PE 와 1대1 매핑</li></ul></li></ul><p id="e412b280-1459-4fc5-9d6a-dc748965703b" class="">
+</p><p id="f60436d3-36c0-407d-854f-d10da032eddf" class="">논리볼륨 만들기
+sdc 파티션 두 개 생성(500MB, 500MB)
+sdd 파티션 두 개 생성(500MB, 500MB)</p><p id="28bdd55a-5ed4-4141-8555-b69b6ff55958" class="">
+</p><p id="b0d7ee9f-4533-4206-bdac-aa59f34b0cda" class="">사용할 물리 장치 결정(<code>lsblk</code>)</p><p id="01966a9f-709b-4a6b-9c75-fa7dc073ea35" class="">
+</p><p id="18a7dbe5-19b4-41ea-b7ae-1d2465c4592b" class="">PV 만들기 : <code>pvcreate /dev/sdc1 /dev/sdd1</code></p><p id="82ffc18f-6b7a-4574-ad26-51240ef68440" class="">
+</p><p id="12a20339-67d0-4d69-be14-c22bee6d0be4" class="">PV 생성 확인 : <code>pvdisplay</code></p><pre id="0a40a008-61df-4937-b704-1f6a923534a5" class="code code-wrap"><code>--- Physical volume ---
+  PV Name               /dev/sdc1
+  VG Name               vg01
+  PV Size               476.00 MiB / not usable 4.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              118
+  Free PE               0
+  Allocated PE          118
+  PV UUID               NLbI0m-0m6f-HFPR-sBWV-w2H0-8i6M-NpSlyl
+   
+  --- Physical volume ---
+  PV Name               /dev/sdd1
+  VG Name               vg01
+  PV Size               476.00 MiB / not usable 4.00 MiB
+  Allocatable           yes 
+  PE Size               4.00 MiB
+  Total PE              118
+  Free PE               86
+  Allocated PE          32
+  PV UUID               5tSDei-20Im-c6YK-jVaA-c7e0-Y96D-UjkUdP</code></pre><p id="b84e253c-4a2d-402c-91d5-d8e41c5dc2d0" class="">VG 만들기 : <code>vgcreate vg01 /dev/sdc1 /dev/sdd1</code></p><p id="2b1e366e-0e05-48c2-968d-d6c7acb4650b" class="">
+</p><p id="9f1526ba-1303-4f7d-9280-7f778d6595b1" class="">VG 생성 확인 :<code>vgdisplay</code></p><p id="4f7b0dea-796e-4d0c-95d3-720674a1a838" class="">
+</p><p id="53bf2895-5215-4624-a1e7-5b9987c5a2e3" class="">LV 만들기</p><p id="3b05f48b-0bd4-4890-a5f0-ad480cb3b263" class=""><code>lvcreate -n lv01 -L 100M vg01</code></p><p id="53e4f7fe-f31a-44ab-b3cd-8bfe175327f9" class=""><code>lvcreate -n lv02 -l 50 vg01</code><div class="indented"><ul id="e5b7f46a-1cf5-4111-8950-cea2a95e498f" class="bulleted-list"><li style="list-style-type:disc"><code>L</code> 옵션 : 논리 볼륨의 크기를 용량 단위로 지정</li></ul><ul id="120937d4-2ef7-4a77-9ba8-33ba1b033fe7" class="bulleted-list"><li style="list-style-type:disc"><code>l</code> 옵션 : PE 사이즈로 용량을 지정<ul id="40fec9f2-3958-4ed7-892f-df45fb6ca5b8" class="bulleted-list"><li style="list-style-type:circle">4MiB x 50 = 200MiB</li></ul></li></ul></div></p><p id="6f64ffd5-b65c-4eb4-b744-6a70a77029a2" class="">
+</p><p id="769b3416-bce8-4830-a0d0-6940bf815363" class="">LV 생성 확인</p><p id="c072ada5-1448-483e-9818-a825d7e826fd" class=""><code>lvdisplay</code></p><pre id="4c582fa1-59df-4707-8af8-4939bf0e79e1" class="code code-wrap"><code>--- Logical volume ---
+  LV Path                /dev/vg01/lv01
+  LV Name                lv01
+  VG Name                vg01
+  LV UUID                FSY33b-SUR9-cH9E-8VtL-g0aR-KQxw-HRkfYq
+  LV Write Access        read/write
+  LV Creation host, time servera, 2022-01-19 16:39:27 +0900
+  LV Status              available
+  # open                 0
+  LV Size                100.00 MiB
+  Current LE             100
+  Segments               3
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:2
+   
+  --- Logical volume ---
+  LV Path                /dev/vg01/lv02
+  LV Name                lv02
+  VG Name                vg01
+  LV UUID                bud2vF-2z79-vkyZ-Wot6-NqIi-mElt-vZq62O
+  LV Write Access        read/write
+  LV Creation host, time servera, 2022-01-19 16:39:37 +0900
+  LV Status              available
+  # open                 0
+  LV Size                200.00 MiB
+  Current LE             50
+  Segments               2
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:3</code></pre><p id="4a672824-b536-418c-9c47-83ccc942f73d" class="">
+</p><p id="4fc0c9f8-21a3-4fbc-ba97-c8904e25d783" class="">논리 볼륨 파일 시스템 적용</p><p id="eecfc07e-c795-4194-b45c-84a67bb71139" class=""><code>mkfs -t xfs /dev/vg01/lv01</code></p><p id="af6a6de3-e13b-447e-8d26-8fb037108f58" class="">
+</p><h3 id="1d64f837-e82c-40df-a9a0-d298c49005eb" class="">논리 볼륨 영구 마운트 설정</h3><p id="77f2fb8c-bd6f-40f7-b3b9-2dc0226535d5" class=""><code>mkdir /mnt/data3</code> :  마운트 디렉토리</p><p id="219b0660-9786-4bcc-bbb5-31b536b3287d" class=""><code>vim /etc/fstab</code></p><pre id="28e192b6-41d1-4347-bfc5-69f39991263e" class="code code-wrap"><code>...
+/dev/vg01/lv01 /mnt/data3 xfs defaults 0 0 # 추가</code></pre><p id="416da43a-743e-4301-b114-845e9c51f7e2" class="">
+</p><h3 id="b7d74c09-2dc9-4e82-9ab3-94efb0864027" class="">수동 마운트 설정</h3><p id="319f533e-69ef-411c-83a3-fa67507f560c" class=""><code>mount /dev/vg01/lv01 /mnt/data3</code></p><p id="90817ba9-9a11-4a02-8273-e96aa2114948" class="">영구 마운트 설정 후 수동 마운트 설정</p><p id="bb990e9f-97bd-42c5-8dba-1128c19d62cc" class="">수동 마운트 설정 후 영구 마운트 설정, 위 두 개가 순서가 바뀌어도 상관없음</p><p id="b071bf8b-b069-4d7c-ac6e-5be91b671c12" class="">
+</p><p id="9f0baa53-9b7e-4ca4-b17b-1cb2eacc65f7" class="">마운트 확인</p><p id="de5e7b6b-dafc-4b87-8a85-1952d6dac183" class=""><code>mount | grep lv01</code></p><p id="f35bda16-7147-4165-924e-52218995049e" class="">
+</p><h3 id="26671335-a51d-44b2-b8b5-30e4342da398" class="">논리 볼륨 제거</h3><p id="dfa53f09-00b8-41ff-a487-69260f548bf3" class="">논리 볼륨 만들기의 역순</p><p id="cee126f7-f228-4c8b-86ce-6a7de0dd08bd" class="">
+</p><ol type="1" id="425b2324-8112-4f34-9118-6723f5a6afb8" class="numbered-list" start="1"><li>논리 볼륨 마운트 해제 : <code>umount /mnt/data3</code></li></ol><ol type="1" id="cb00e3f0-945d-436e-bde5-82afe85f8368" class="numbered-list" start="2"><li>논리 볼륨 설정 제거(lv 해당 줄 제거) : <code>vim /etc/fstab</code></li></ol><ol type="1" id="cee94e5b-f8a3-4dbd-b684-5df95756ce56" class="numbered-list" start="3"><li>논리 볼륨 제거 : <code>lvremove /dev/vg01/lv01</code></li></ol><ol type="1" id="aa59f627-5ddb-4859-84e4-2c000a345cbc" class="numbered-list" start="4"><li>볼륨 그룹 제거 : <code>vgremove vg01</code></li></ol><ol type="1" id="2f1ebc1a-596c-4582-8b13-127399807857" class="numbered-list" start="5"><li>물리 볼륨 해제 : <code>pvremove /dev/sdc1 /dev/sdd1</code></li></ol><p id="ded9fbf3-7616-446f-9682-0f50dfd5dec6" class=""> </p><h3 id="032b83c2-27e0-4c34-a70e-d262978ddc0e" class="">논리볼륨 확장</h3><p id="851392ff-99d5-4060-b5e3-899a11102e6a" class="">논리볼륨 만들기 진행 후 실습</p><p id="62599e21-1e70-41b2-be39-9443cd6e3240" class=""><code>lvextend -L +300M /dev/vg01/lv01</code></p><p id="7c66e568-df73-4d8a-95e4-e3283b2594c8" class="">파일시스템 적용 전이라면?<div class="indented"><ol type="1" id="2f97c1db-4d80-47a5-bc3e-c7ead60bbd56" class="numbered-list" start="1"><li>확장 후 파일시스템 적용</li></ol><ol type="1" id="5fb9805d-dcf9-4214-8bf8-e597f4d3dcd9" class="numbered-list" start="2"><li>마운트 진행해주면 됨</li></ol></div></p><p id="db066e96-6303-4ef5-958b-759d372435c2" class="">
+</p><p id="300e5cd5-5cf6-4137-9d25-9547a2c42166" class="">파일시스템 적용 후라면?</p><p id="3fbade5b-2384-476d-aec4-558b8b47c937" class="">상황<div class="indented"><ul id="24da916d-00b2-476c-9e01-9b499de4dea0" class="bulleted-list"><li style="list-style-type:disc"><code>lvcreate -n lv02 -l 50 vg01</code></li></ul><ul id="2d72d2ab-7e33-4ec5-b648-c1c83c0247f2" class="bulleted-list"><li style="list-style-type:disc"><code>mkfs -t xfs /dev/vg01/lv02</code></li></ul><ul id="79989fd4-3120-49e5-a145-31bd2f24b6a8" class="bulleted-list"><li style="list-style-type:disc"><code>mount /dev/vg01/lv02 /mnt/data3</code></li></ul><ul id="3ce512c6-b4a3-4bc4-b831-376975d1f7ac" class="bulleted-list"><li style="list-style-type:disc"><code>lvextend -L +100M /dev/vg01/lv02</code></li></ul></div></p><p id="12f4c226-e679-4db9-839c-0b3a322e8df6" class="">확장시 l 옵션 사용 가능</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d115f8c6-49c0-4ccc-84b7-a8c64c978e09"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>xfs_growfs /mnt/data3</code></div></figure><ul id="5522fa53-b0cc-4db3-9c1b-7a9fe497e74e" class="bulleted-list"><li style="list-style-type:disc">논리 볼륨 확장 후 파일시스템을 반드시 재설정해줘야 함</li></ul><ul id="9c8b60a4-f81c-462a-811b-78a73fc41554" class="bulleted-list"><li style="list-style-type:disc">논리 볼륨 생성 -&gt; 파일 시스템 적용 -&gt; 마운트 -&gt; 논리 볼륨 확장 -&gt; 파일시스템 재설정
+</li></ul><p id="bd24a044-fa20-4f7d-8186-92bd6684e4c8" class="">
+</p><p id="2b563ff5-d453-45d6-aa81-5ed034088ff1" class="">
+</p></div></article></body></html>

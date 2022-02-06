@@ -1,0 +1,698 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Spring - Bean Scope</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1b342aca-2f6c-4973-bca3-e0cb12343475" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/spring.png"/></div><h1 class="page-title">Spring - Bean Scope</h1></header><div class="page-body"><ul id="826e6771-763d-44e2-ac53-f68d994f49c7" class="bulleted-list"><li style="list-style-type:disc"><strong>What is Bean Scope?</strong><p id="258b49cf-be46-4682-ab32-15e707668398" class="">지금까지 스프링 빈이 스프링 컨테이너의 시작과 함께 생성되어서 스프링 컨테이너가 종료될 때까지 유지된다는 것을 알았다. 이것은 스프링 빈이 기본적으로 싱글톤 스코프로 생성되기 때문이다. 스코프는 번역 그대로 빈이 존재할 수 있는 범위를 뜻한다.</p><p id="2711e70d-cf8c-4885-8404-072c1e6d0062" class=""><strong>스프링의 다양한 스코프</strong></p><ul id="e7b161de-aa9c-423c-b88a-115c714421ca" class="bulleted-list"><li style="list-style-type:circle"><strong>싱글톤</strong>: 기본 스코프, 스프링 컨테이너의 시작과 종료까지 유지되는 가장 넓은 범위의 스코프이다.</li></ul><ul id="f655f5cb-e6c2-4ee1-b8bf-892a76c776e5" class="bulleted-list"><li style="list-style-type:circle"><strong>프로토타입</strong>: 스프링 컨테이너는 프로토타입 빈의 생성과 의존관계 주입까지만 관여하고 더는 관리하지 않는
+매우 짧은 범위의 스코프이다.</li></ul><ul id="6e19fde5-faa0-4913-a356-18ae4a0febbb" class="bulleted-list"><li style="list-style-type:circle"><strong>웹 관련 스코프</strong><ul id="49837233-dec3-49f5-8b6d-b00c1ba2016b" class="bulleted-list"><li style="list-style-type:square"><strong>request</strong>: 웹 요청이 들어오고 나갈때 까지 유지되는 스코프이다.</li></ul><ul id="ab08df4f-45a0-4dad-8109-964bd6fdf774" class="bulleted-list"><li style="list-style-type:square"><strong>session</strong>: 웹 세션이 생성되고 종료될 때 까지 유지되는 스코프이다.</li></ul><ul id="17449799-ed3b-43c0-8a94-727a2f89eeb2" class="bulleted-list"><li style="list-style-type:square"><strong>application</strong>: 웹의 서블릿 컨텍스트와 같은 범위로 유지되는 스코프이다.</li></ul></li></ul></li></ul><ul id="d73071b5-ccc3-4a46-bf53-c0159c14fd68" class="bulleted-list"><li style="list-style-type:disc">Scope - Singleton<figure id="026e2f7c-a759-40f7-abc2-5a9c61b811f8"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/e390fafb1edae063a50525c494ad26ffbef3ee3c" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Scope - Singleton · ChanYoung-dev/SpringStartEx@e390faf</div><div class="bookmark-description">You can&#x27;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/e390fafb1edae063a50525c494ad26ffbef3ee3c</div></div><img src="https://opengraph.githubassets.com/931bcab210a3bac17be5ab65c87c2b554b7a6f10180376065a83b109e2bcbffd/ChanYoung-dev/SpringStartEx/commit/e390fafb1edae063a50525c494ad26ffbef3ee3c" class="bookmark-image"/></a></figure></li></ul><p id="1d5e47c9-3174-45db-85f3-f4a2e2bf81e7" class="">
+</p><ul id="1c53d76c-abb2-4fd4-b23f-06f8ed62c60e" class="bulleted-list"><li style="list-style-type:disc"><strong>Scope - Prototype</strong><figure id="705548bc-7c69-4326-9ce6-d4eb40c4fd7b"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/63706948112faa1246b90778ed01715215639233" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Scope - Prototype · ChanYoung-dev/SpringStartEx@6370694</div><div class="bookmark-description">Contribute to ChanYoung-dev/SpringStartEx development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/63706948112faa1246b90778ed01715215639233</div></div><img src="https://opengraph.githubassets.com/38727718406ce398ff371391138ac00935c5df886654c56d3f872e29833cebfe/ChanYoung-dev/SpringStartEx/commit/63706948112faa1246b90778ed01715215639233" class="bookmark-image"/></a></figure><ul id="05ee3cb6-ae70-45ec-bf14-b96cfbf146f5" class="bulleted-list"><li style="list-style-type:circle">Log</li></ul><pre id="6452216b-10dc-473e-b868-59f1fe7c27f3" class="code code-wrap"><code>find prototypeBean1
+PrototypenBean.init
+find prototypeBean2
+PrototypenBean.init
+PrototypeBean1 = hello.core.scope.PrototypeTest$PrototypeBean@60df60da
+PrototypeBean2 = hello.core.scope.PrototypeTest$PrototypeBean@5a2d131d
+PrototypeBean.destroy
+PrototypeBean.destroy</code></pre><p id="6fe119c7-ff76-43fb-be35-c5dd486b8037" class="">
+</p><p id="096e9059-6377-46b3-a53b-b6443389f4db" class="">
+</p></li></ul><ul id="32e37339-97d3-403c-9a4d-721d0835574d" class="bulleted-list"><li style="list-style-type:disc"><strong>Problems when using Prototype Bean with Singletone Bean</strong><figure id="15e22f62-7241-472b-94cf-98f3bf75fae1"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/d472ad1bbb581884005c3483b2be8c0bfb3c970e" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Problems when using Prototype Bean with Singletone Bean · ChanYoung-dev/SpringStartEx@d472ad1</div><div class="bookmark-description">You can&#x27;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/d472ad1bbb581884005c3483b2be8c0bfb3c970e</div></div><img src="https://opengraph.githubassets.com/ce9b7f96e64928085c73df5e90d1c158b0df993b3827cf33299cc6cb133c9f6b/ChanYoung-dev/SpringStartEx/commit/d472ad1bbb581884005c3483b2be8c0bfb3c970e" class="bookmark-image"/></a></figure><figure id="8c32ea43-59f7-4f8b-bf80-8710d8e11942" class="image"><a href="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/Untitled.png"><img style="width:1038px" src="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/Untitled.png"/></a></figure><ul id="7f97e088-88de-4bf9-9a9d-c1d6d6268b7a" class="bulleted-list"><li style="list-style-type:circle">싱글톤 빈( <code>clientBean</code> ) &lt;- 프로토타입 빈( <code>prototpyeBean</code>) 주입관계</li></ul><ul id="2b6a6358-f250-4be4-8cd1-45d6b4cfc377" class="bulleted-list"><li style="list-style-type:circle">clientBean이 2개 생성하여 2개의 클라이언트일때 참조하는 prototypeBean은 같은 인스턴스이다. </li></ul><ul id="264025ec-6161-44b7-a502-0b6cc4364317" class="bulleted-list"><li style="list-style-type:circle">그러므로 <code>count</code>는 다른 client이어도 <code>count</code>는 같다. 즉, prototype의 역할을 하지않고 singleton역할이랑 같다.</li></ul><p id="1ce89248-4833-438a-b67b-11891ae81f0c" class="">
+</p></li></ul><ul id="191d43d0-b0b4-4fe8-a222-2c22c1878328" class="bulleted-list"><li style="list-style-type:disc"><strong>Solution - ObjectFactory, ObjectProvider</strong><figure id="50bc187f-8a42-4b66-af40-55f3b6fdb18e"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/da15088f8fae45aba0320b6f1907e1efcce785c6" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Solution - ObjectFactory, ObjectProvider · ChanYoung-dev/SpringStartEx@da15088</div><div class="bookmark-description">You can&#x27;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/da15088f8fae45aba0320b6f1907e1efcce785c6</div></div><img src="https://opengraph.githubassets.com/85161b3688008ee84ed0d27ed619b6fc84fb260ba0e69732ff12629d459d2aa1/ChanYoung-dev/SpringStartEx/commit/da15088f8fae45aba0320b6f1907e1efcce785c6" class="bookmark-image"/></a></figure></li></ul><p id="793da1d2-01d1-44ea-bcd4-fb06e9869c39" class="">
+</p><p id="507171b0-0696-4692-88e5-6c35e2f655b5" class="">
+</p><p id="9909438c-303d-47f2-bdf8-b112a1f3b564" class="">
+</p><ul id="867b5d98-c81c-4bf4-9160-1a4aad4dba10" class="bulleted-list"><li style="list-style-type:disc"><strong>Solution - Provider</strong><figure id="5b0b3389-220b-4bf6-af45-1828f9ac3f81"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/fc78844ff618166f0c16da44193b25d9ae08c837" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Solution - Provider · ChanYoung-dev/SpringStartEx@fc78844</div><div class="bookmark-description">Contribute to ChanYoung-dev/SpringStartEx development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/fc78844ff618166f0c16da44193b25d9ae08c837</div></div><img src="https://opengraph.githubassets.com/b088b5c18b018511dd813a98d4ee1787093d2c5481293b346efedd86ad971b57/ChanYoung-dev/SpringStartEx/commit/fc78844ff618166f0c16da44193b25d9ae08c837" class="bookmark-image"/></a></figure></li></ul><p id="0ea634e3-406c-4a1a-a6ec-f0c17a328777" class="">
+</p><p id="90e6f5a2-b167-465c-b104-146e845640e0" class="">
+</p><p id="6f976963-cffb-44b2-a422-fc11a59fc6b4" class="">
+</p><ul id="bf1e8346-80e9-430c-b812-8987997f9788" class="bulleted-list"><li style="list-style-type:disc">Scope - Web<ul id="ee3af9f1-554d-4413-85ab-4a65443f1e49" class="bulleted-list"><li style="list-style-type:circle">웹 스코프는 웹 환경에서만 동작한다.</li></ul><ul id="71d089c7-d2f4-43be-971b-309084b36f67" class="bulleted-list"><li style="list-style-type:circle">웹 스코프는 프로토타입과 다르게 스프링이 해당 스코프의 종료시점까지 관리한다. 따라서 종료 메서드가 호출된다.</li></ul><p id="93920eb4-bf98-4b6a-954f-eae575b43d43" class=""><strong>웹 스코프 종류</strong></p><ul id="948242e9-bf10-40dc-9b4d-d260bae6bb35" class="bulleted-list"><li style="list-style-type:circle"><strong>request: </strong>HTTP 요청 하나가 들어오고 나갈 때 까지 유지되는 스코프, 각각의 HTTP 요청마다 별도의 빈
+인스턴스가 생성되고, 관리된다.</li></ul><ul id="ca984b1d-6161-4932-b22d-972e99970aa9" class="bulleted-list"><li style="list-style-type:circle"><strong>session: </strong>HTTP Session과 동일한 생명주기를 가지는 스코프</li></ul><ul id="57d86329-e6a2-491d-bb96-52013bcdc1d8" class="bulleted-list"><li style="list-style-type:circle"><strong>application: </strong>ServletContext와 동일한 생명주기를 가지는 스코프</li></ul><ul id="6c86becd-2f98-42a8-a598-fafd389aa8bd" class="bulleted-list"><li style="list-style-type:circle"><strong>websocket: </strong>웹 소켓과 동일한 생명주기를 가지는 스코프</li></ul></li></ul><p id="3a8847fe-37ef-419b-abbf-91b39be303ed" class="">
+</p><p id="327c163c-8e14-4674-b1d6-c82088f4df9e" class="">
+</p><ul id="898d614e-86b7-4b77-a069-a9d795f71c5a" class="bulleted-list"><li style="list-style-type:disc">Problem) <strong>Web Scope - request</strong><figure id="f692c97b-adf0-4061-aab8-3db30a02dfa3"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/88d20d6743c2442438cba315c80b5d5d3b88e437" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Web Scope - request · ChanYoung-dev/SpringStartEx@88d20d6</div><div class="bookmark-description">Browse files Error가 난다. 그 이유는 Build시 생성과 의존관계주입 할 때, 동시에 컨테이너가 request(http:~)를 받는데 Build시에는 request(http://~)가 없기때문이다. 해결방안은 의존관계 시점 뒤에서 request를 받아야한다. 바로 Provider를 이용하여 해결하면 된다. There are no files selected for viewing You can&#x27;t perform that action at this time. You signed in with another tab or window.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/88d20d6743c2442438cba315c80b5d5d3b88e437</div></div><img src="https://opengraph.githubassets.com/19bc76f852401aeaebfd1371ba87832e30a5d9eba023fc0ae8b49044573df8cb/ChanYoung-dev/SpringStartEx/commit/88d20d6743c2442438cba315c80b5d5d3b88e437" class="bookmark-image"/></a></figure><pre id="496f0b6d-c2b7-4c3f-b1f2-a527be53e2d3" class="code code-wrap"><code>Caused by: java.lang.IllegalStateException: No thread-bound request found: ...</code></pre><p id="7d3f8b1c-2fa5-42d3-91f7-fd9448a3ee46" class="">Error가 난다. 그 이유는 Build시 생성과 의존관계주입 할 때, 동시에 컨테이너가 request(http:~)를 받는데 Build시에는 request(http://~)가 없기때문이다.</p><p id="1f9ceb6b-e9c7-4b40-969f-b0c0d3539561" class="">해결방안은 의존관계 시점 뒤에서 request를 받아야한다. 바로 <code>ObjectProvider</code>를 이용하여 해결하면 된다.</p><p id="5619b7da-66b4-4410-af41-860039720394" class="">
+</p><p id="eafe9a31-48ac-4eba-9819-5099e27cafe1" class="">
+</p><p id="f2ad448e-6fac-4d0f-9569-bf53e05a6e1c" class="">
+</p><p id="8b9c2c78-af15-48d7-8484-527b8962af18" class="">
+</p><p id="ac04d937-df92-4970-89c1-40928e8594a8" class="">
+</p></li></ul><ul id="a50266c0-3da3-42c8-bf3e-940da98e1e5c" class="bulleted-list"><li style="list-style-type:disc">Solution1) <strong>Request Scope using ObjectProvider</strong><figure id="1b7ca90d-4463-4e74-981b-82b28bc82b54"><div class="source">https://github.com/ChanYoung-dev/SpringStartEx/commit/9bdc64b01c865b6cf7875ef1b16e0b3bb2fede35</div></figure><p id="5957494e-453c-441a-ac7a-d15bec0c993f" class="">ObjectProvider를 이용하여 <code>LogDemon.class</code> 에서</p><pre id="ba75faf5-100f-485b-bc06-da1ce0017413" class="code code-wrap"><code>private final ObjectProvider&lt;MyLogger&gt; myLoggerProvider;
+
+@RequestMapping(&quot;log-demo&quot;)
+    @ResponseBody
+    public String logDemo(HttpServletRequest request){
+        String requestURL = request.getRequestURL().toString();
+        MyLogger myLogger = myLoggerProvider.getObject(); //request가 들어올때 Mylogger클래스가 생성된다
+        myLogger.setRequestURL(requestURL);
+
+        myLogger.log(&quot;controller test&quot;);
+        logDemoService.logic(&quot;testId&quot;);
+        return &quot;OK&quot;;
+    }</code></pre><p id="bf6a81c7-7826-4151-8044-f704c25d1ccf" class="">여기서 request요청이 들어올때만 <code>mylogger</code>를 통해 MyLogger 클래스가 생성된다.</p><p id="5e709d13-111c-4458-b576-983c1bcb0721" class="">
+</p></li></ul><ul id="11e84dd7-de43-4b56-852e-be3184485514" class="bulleted-list"><li style="list-style-type:disc">Solution2) <strong>Request Scope using Proxy</strong><figure id="e485740d-8006-4227-8cfd-499c2282621e"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/b9eb75b173e15066a52b81f51d808654baf57524" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Request Scope using Proxy · ChanYoung-dev/SpringStartEx@b9eb75b</div><div class="bookmark-description">Contribute to ChanYoung-dev/SpringStartEx development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/b9eb75b173e15066a52b81f51d808654baf57524</div></div><img src="https://opengraph.githubassets.com/818a7e65607ff0ce51e699a22c9b1ac7bf9bdd117e317661a47ac58edec9a5c8/ChanYoung-dev/SpringStartEx/commit/b9eb75b173e15066a52b81f51d808654baf57524" class="bookmark-image"/></a></figure><p id="b09c2946-69e6-4d78-ac9d-e3a1859615ce" class=""><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/b9eb75b173e15066a52b81f51d808654baf57524">https://github.com/ChanYoung-dev/SpringStartEx/commit/b9eb75b173e15066a52b81f51d808654baf57524</a></p><pre id="23e61b92-28ba-44f8-8a92-e057469e0fcb" class="code code-wrap"><code>System.out.println(&quot;myLogger = &quot; + myLogger.getClass()); //가짜 myLogger
+myLogger.setRequestURL(requestURL); // 진짜 myLogger호출</code></pre><p id="f0e2a804-b56f-4df2-a603-b28318041264" class=""><strong>가짜 프록시 객체는 요청이 오면 그때 내부에서 진짜 빈을 요청하는 위임 로직이 들어있다.</strong></p><ul id="e830afc0-b481-4589-a6c7-45a4672571a0" class="bulleted-list"><li style="list-style-type:circle">가짜 프록시 객체는 내부에 진짜 <code>myLogger</code>를 찾는 방법을 알고 있다.</li></ul><ul id="00cb8239-d269-4ae6-85f5-f3ba9ee965b5" class="bulleted-list"><li style="list-style-type:circle">클라이언트가 <code>myLogger.logic()</code> 을 호출하면 사실은 가짜 프록시 객체의 method를 호출한 것이다.</li></ul><ul id="85d112b1-8032-4442-861c-836446a4642f" class="bulleted-list"><li style="list-style-type:circle">가짜 프록시 객체는 request 스코프의 진짜<code>myLogger.logic()</code> 를 호출한다.</li></ul><ul id="5d566558-5ddf-443b-afe7-9a4abff9f9ce" class="bulleted-list"><li style="list-style-type:circle">가짜 프록시 객체는 원본 클래스를 상속 받아서 만들어졌기 때문에 이 객체를 사용하는 클라이언트입장에서는 사실 원본인지 아닌지도 모르게, 동일하게 사용할 수 있다(다형성)</li></ul><p id="4836e537-9c81-49dd-a621-f551a2685c3b" class=""><strong>동작 정리</strong></p><ul id="9c42bc1f-5cbc-4113-9546-90e65fe4c2f3" class="bulleted-list"><li style="list-style-type:circle"><code>CGLIB</code>라는 라이브러리로 내 클래스를 상속 받은 가짜 프록시 객체를 만들어서 주입한다.</li></ul><ul id="b7623990-5b95-4bb7-a9b0-e96112a7bc41" class="bulleted-list"><li style="list-style-type:circle">이 가짜 프록시 객체는 실제 요청이 오면 그때 내부에서 실제 빈을 요청하는 위임 로직이 들어있다.</li></ul><ul id="2b5eccfd-478a-4e41-a1ce-f8b0920c1bcb" class="bulleted-list"><li style="list-style-type:circle">가짜 프록시 객체는 실제 request scope와는 관계가 없다. 그냥 가짜이고, 내부에 단순한 위임 로직만 있고, 싱글톤 처럼 동작한다.</li></ul><p id="1cf66458-9ffe-4b29-8d65-6610383dbe4a" class=""><strong>Provider, 프록시는 진짜 객체 조회를 꼭 필요한 시점까지 지연처리 한다</strong> !!</p><p id="64f6929a-2f1f-4edd-b806-af905ec4316c" class="">
+</p></li></ul></div></article></body></html>

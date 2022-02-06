@@ -1,0 +1,690 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Spring Annotation/ Bean LifeCycle</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="07ed613f-0da3-48c8-84b2-2150451d6aba" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/spring.png"/></div><h1 class="page-title">Spring Annotation/ Bean LifeCycle</h1></header><div class="page-body"><ul id="78fb5e74-3166-429b-977d-9fa0f774aeef" class="bulleted-list"><li style="list-style-type:disc">Make an  Annotation myself<figure id="0136c4f2-f412-41c4-af13-412b62f18806"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/9b699dba6c3f974e6552599792186232ceeb5f68" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Make an Annotation myself · ChanYoung-dev/SpringStartEx@9b699db</div><div class="bookmark-description">Contribute to ChanYoung-dev/SpringStartEx development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/9b699dba6c3f974e6552599792186232ceeb5f68</div></div><img src="https://opengraph.githubassets.com/1f7b58a3274b17ab86d4e55eab3cf819c32914406a63e916e7c66e571198673a/ChanYoung-dev/SpringStartEx/commit/9b699dba6c3f974e6552599792186232ceeb5f68" class="bookmark-image"/></a></figure><ul id="57ff98ae-2644-4fdf-81f3-0ef8cf068782" class="bulleted-list"><li style="list-style-type:circle">Make <code>@MainDiscountPolicy</code> annotation</li></ul><pre id="0985ef02-b6e1-489b-8a7a-5554142dcd18" class="code code-wrap"><code>@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@Documented
+@Qualifier(&quot;mainDiscountPolicy&quot;)
+public @interface MainDiscountPolicy {
+}</code></pre><ul id="8019b644-dc5d-4d45-a309-3494a583ef0e" class="bulleted-list"><li style="list-style-type:circle"><code>@Quailfier(&quot;MainDiscountPolicy&quot;)</code> 와 같지만 오타를 방지할 수있다.</li></ul></li></ul><p id="f2c7f27e-e00f-4829-a595-25a3111725a5" class="">
+</p><p id="e682b9e8-08d5-46a8-8387-794b02adaf70" class="">
+</p><ul id="488f74f6-58a3-41e8-8b8d-f6c8c61262d4" class="bulleted-list"><li style="list-style-type:disc">Use <code>List</code> and <code>Map</code> when you need all the searched <code>Bean</code> <p id="ff76119f-cf1e-4425-a5dd-c28a94a5b9c3" class="">ex) <code>Disscountpoilcy Interface</code> 에는 2가지의 Implements(<code>FixDiscontPolicy</code>, <code>RateDiscountPolicy</code> 가 있는데 사용자가 선택하는 경우에 맞게 유연하게 처리해야할때 어떻게 처리해야할까에 대한 방법이다</p></li></ul><figure id="027370cb-8b73-46e3-b78f-c47bcd5ff3d0"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/f462614f00d48df4038698bf6f8d48498856b8eb" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Use List and Map · ChanYoung-dev/SpringStartEx@f462614</div><div class="bookmark-description">You can&#x27;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/f462614f00d48df4038698bf6f8d48498856b8eb</div></div><img src="https://opengraph.githubassets.com/27bd6dedffc397f9af8c0e56e316551fb618577d1e073fca727a7e3dbef99760/ChanYoung-dev/SpringStartEx/commit/f462614f00d48df4038698bf6f8d48498856b8eb" class="bookmark-image"/></a></figure><ul id="9a300596-4e1d-46fc-89af-1016346956eb" class="bulleted-list"><li style="list-style-type:disc">Correct operation standards for <code>@Component</code> (Automatic) and <code>@Bean</code> (manual) in the field<ul id="daab50ef-7a65-47b9-9b7a-b5970d07dba4" class="bulleted-list"><li style="list-style-type:circle">편리한 자동 기능을 기본으로 사용하자</li></ul><ul id="f67113b0-189f-4bad-9754-730362d17370" class="bulleted-list"><li style="list-style-type:circle">직접 등록하는 기술 지원 객체는 수동 등록</li></ul><ul id="9bef0353-5d75-4299-88c8-2d542b9a2621" class="bulleted-list"><li style="list-style-type:circle">다형성을 적극 활용하는 비즈니스 로직은 수동 등록</li></ul></li></ul><ul id="245d2781-67f9-4db9-8e31-4c956317b434" class="bulleted-list"><li style="list-style-type:disc">Bean Lifecycle/Callback<figure id="c8fbc344-b3ff-4a46-b52b-ce4823c37157"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/cfdc61502dcee99a09a76ee69d04ba1c2ed15cc4" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Bean Lifecycle/Callback · ChanYoung-dev/SpringStartEx@cfdc615</div><div class="bookmark-description">You can&#x27;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/cfdc61502dcee99a09a76ee69d04ba1c2ed15cc4</div></div><img src="https://opengraph.githubassets.com/aa4165ad5778488f15c9dfca81526c008586cf8422e45e42b8c326871301dfa4/ChanYoung-dev/SpringStartEx/commit/cfdc61502dcee99a09a76ee69d04ba1c2ed15cc4" class="bookmark-image"/></a></figure><ul id="6ccd3334-13d7-4a21-9e62-73136d25e43a" class="bulleted-list"><li style="list-style-type:circle">log</li></ul><pre id="86c33155-12db-489a-8950-4f6bed97fda5" class="code code-wrap"><code>생성자 호출, url = null
+connect = null
+call: nullmessage = 초기화 연결 메시지</code></pre><ul id="577a0996-4f3d-40e0-aa19-8889a433f743" class="bulleted-list"><li style="list-style-type:circle">BeanLifeCycleTest.java에서 networkClient.url은 <code>NULL</code>값으로 뜬다</li></ul><ul id="daacf6f0-0d4d-4b78-82e1-ceb12f08f08b" class="bulleted-list"><li style="list-style-type:circle">이유는 빈 생성(생성자 주입포함)과  의존관계의 단계를 분리하지않았기때문이다.</li></ul><ul id="2e66d6ce-ab7e-414a-b0d5-5a68756b405e" class="bulleted-list"><li style="list-style-type:circle">Bean LifeCycle<ul id="0dd039d0-7566-460e-a932-406ec9865f66" class="bulleted-list"><li style="list-style-type:square"><strong>스프링컨테이너생성 </strong></li></ul><ul id="2275475b-af70-4a89-995f-f1aa14474323" class="bulleted-list"><li style="list-style-type:square"><strong>스프링빈생성</strong></li></ul><ul id="0ed14dba-731d-4d55-b4b5-5621c4ee3cbf" class="bulleted-list"><li style="list-style-type:square"><strong>의존관계주입 </strong></li></ul><ul id="36dc94cd-c8a2-4cdb-a2cc-549606691cac" class="bulleted-list"><li style="list-style-type:square"><strong>초기화콜백 사용 (</strong><code><strong>init()</strong></code><strong>)</strong></li></ul><ul id="92eae17f-65fb-40dd-af47-a5177db82b01" class="bulleted-list"><li style="list-style-type:square"><strong>소멸전 콜백 (</strong><code><strong>close()</strong></code><strong>)</strong></li></ul><ul id="294e1ebd-072d-4611-b3eb-ff2e6cd5ea13" class="bulleted-list"><li style="list-style-type:square"><strong>스프링종료
+</strong></li></ul></li></ul></li></ul><ul id="33751401-4880-42bd-9bcb-53191eef051b" class="bulleted-list"><li style="list-style-type:disc">Initialization and extinction 1. Interface <code>InitializingBean</code>, <code>DisposableBean</code><figure id="309d2d60-3276-4efa-ab48-800cb08c18c9"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/627df097fbd33b11a1aefda88dee00dc3b7162b6" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Interface InitializingBean, DisposableBean · ChanYoung-dev/SpringStartEx@627df09</div><div class="bookmark-description">You can&#x27;t perform that action at this time. You signed in with another tab or window. You signed out in another tab or window. Reload to refresh your session. Reload to refresh your session.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/627df097fbd33b11a1aefda88dee00dc3b7162b6</div></div><img src="https://opengraph.githubassets.com/324756d910dc8fca419e94c8abedc00bb843235a48d14aed48b0383b474295b8/ChanYoung-dev/SpringStartEx/commit/627df097fbd33b11a1aefda88dee00dc3b7162b6" class="bookmark-image"/></a></figure><ul id="f6887103-0379-4551-8c32-f6e09a3ae111" class="bulleted-list"><li style="list-style-type:circle">log</li></ul><pre id="11863280-6ca3-4b44-aba5-a29d00238ac0" class="code code-wrap"><code>생성자 호출, url = null
+connect = null
+call: nullmessage = 초기화 연결 메시지
+connect = http://hello-spring.dev
+call: http://hello-spring.devmessage = 초기화 연결 메시지
+21:48:03.826 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@3ee37e5a, started on Sat Jan 15 21:48:03 KST 2022
+close = http://hello-spring.dev</code></pre><p id="bdf20568-a6c4-4b3f-9eae-136aa729550a" class="">
+</p></li></ul><p id="74f3c3f4-a234-45f8-833d-971e12244d0a" class="">
+</p><ul id="11faaa65-61de-472d-888b-d2ca9c04e2b8" class="bulleted-list"><li style="list-style-type:disc">Initialization and extinction 2.  method using bean<figure id="3613414b-3bfc-4da0-8775-b085266c9364"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/a55f0c63a20c060b16d91e4d45a3e47075a5da7e" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Initialization and extinction 2. method using bean · ChanYoung-dev/SpringStartEx@a55f0c6</div><div class="bookmark-description">Contribute to ChanYoung-dev/SpringStartEx development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/a55f0c63a20c060b16d91e4d45a3e47075a5da7e</div></div><img src="https://opengraph.githubassets.com/04810c108872cc20509918266315b242529a10b92f09dde97146b31b3bd9e543/ChanYoung-dev/SpringStartEx/commit/a55f0c63a20c060b16d91e4d45a3e47075a5da7e" class="bookmark-image"/></a></figure><ul id="5cb4b0a4-259b-4c52-87fc-f2f8a51b47cb" class="bulleted-list"><li style="list-style-type:circle">log</li></ul><pre id="7da45d15-cddc-4950-b49b-7361ededa212" class="code code-wrap"><code>생성자 호출, url = null
+	connect = null
+call: nullmessage = 초기화 연결 메시지
+NetworkClient.init
+connect = http://hello-spring.dev
+call: http://hello-spring.devmessage = 초기화 연결 메시지
+22:01:40.854 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@3ee37e5a, started on Sat Jan 15 22:01:40 KST 2022
+NetworkClient.close
+	close = http://hello-spring.dev</code></pre><ul id="482de471-cd5e-41b8-9ce1-f1f1bffe7d2b" class="bulleted-list"><li style="list-style-type:circle">코드가 아니라 설정 정보를 사용하기 때문에 코드를 고칠 수 없는 외부 라이브러리에도 초기화, 종료 메서드를 적용할 수 있다.</li></ul></li></ul><ul id="9d8e8113-10fb-491c-949a-7b94557bd593" class="bulleted-list"><li style="list-style-type:disc">Initialization and extinction 3 . Annotation <code>@PostConstruct</code>, <code>@PreDestroy</code><figure id="bc9b2978-b362-4ee0-985f-860f23e3bb87"><a href="https://github.com/ChanYoung-dev/SpringStartEx/commit/4641a94fc7d99e5fc8ec3939cbe736560ebdb37a" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Initialization and extinction 3 . Annotation @PostConstruct, @PreDestroy · ChanYoung-dev/SpringStartEx@4641a94</div><div class="bookmark-description">Contribute to ChanYoung-dev/SpringStartEx development by creating an account on GitHub.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ChanYoung-dev/SpringStartEx/commit/4641a94fc7d99e5fc8ec3939cbe736560ebdb37a</div></div><img src="https://opengraph.githubassets.com/f8e663e5dd92de765c16e48b8457a825ff8583a8e872db5fe00588f13a23067f/ChanYoung-dev/SpringStartEx/commit/4641a94fc7d99e5fc8ec3939cbe736560ebdb37a" class="bookmark-image"/></a></figure><ul id="c32e9d0b-9e2d-464d-9d36-e50c57c785cf" class="bulleted-list"><li style="list-style-type:circle">최신 스프링에서 가장 권장하는 방법이다.</li></ul><ul id="6fd63812-793e-4054-8459-f32c025e851b" class="bulleted-list"><li style="list-style-type:circle">코드를 고칠 수 없는 외부 라이브러리를 초기화, 종료해야 하면 <code>@Bean</code> 의 <code>initMethod</code> , <code>destroyMethod</code> 를 사용하자.</li></ul><p id="ff0ed9e9-88a2-4a6e-a468-5a5d0ea65f3e" class="">
+</p><p id="81041670-702a-41ca-8360-4e3793ff18dc" class="">
+</p><p id="bf60c22d-e0f0-46cb-be29-ff0a5feed2d0" class="">
+</p><p id="18e924ce-b762-4dd0-886e-2d9e7f867f18" class="">
+</p></li></ul><ul id="653543c5-7709-42eb-b6ce-299a129dae47" class="bulleted-list"><li style="list-style-type:disc">Problems when using Prototype Bean with Singletone Bean<figure id="3874c098-6dfb-4a7a-a0e7-efbd4b85aa03" class="image"><a href="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/Untitled.png"><img style="width:1038px" src="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/Untitled.png"/></a></figure><ul id="3ebfca66-cfbd-4a78-a86e-2db19108cc04" class="bulleted-list"><li style="list-style-type:circle">싱글톤 빈( clientBean ) &lt;- 프로토타입 빈( prototpyeBean) 주입관계</li></ul><ul id="b6f42658-4d8a-4148-9431-2ea68049b630" class="bulleted-list"><li style="list-style-type:circle">clientBean이 2개 생성하여 2개의 클라이언트일때 참조하는 prototypeBean은 같은 인스턴스이다. </li></ul><ul id="faf91f89-9dd1-47aa-ae24-cb14d7356ed1" class="bulleted-list"><li style="list-style-type:circle">그러므로 count는 다른 client이어도 count는 같다. 즉, prototype의 역할을 하지않고 singleton역할이랑 같다.</li></ul><p id="d33aeb00-f79a-4f0f-9e1d-5a6c00e2c898" class="">
+</p></li></ul><p id="c742e9c6-d3d2-4d6e-9c1d-675e085cc9fc" class="">
+</p></div></article></body></html>

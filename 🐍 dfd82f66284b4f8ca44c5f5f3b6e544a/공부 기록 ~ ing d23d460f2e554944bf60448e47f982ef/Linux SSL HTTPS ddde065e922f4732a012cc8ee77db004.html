@@ -1,0 +1,717 @@
+<html><head><script src="../../embed-sub.js" defer></script><link rel="stylesheet" href="../../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux SSL HTTPS</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="ddde065e-922f-4732-a012-cc8ee77db004" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="../Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/></div><h1 class="page-title">Linux SSL HTTPS</h1><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>생성일</th><td><time>@2022년 1월 27일 오전 10:07</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>태그</th><td><span class="selected-value select-value-color-default">Linux</span></td></tr></tbody></table></header><div class="page-body"><p id="15e877e5-3ede-477f-ab2b-fc10e3f46197" class=""><a href="Web%20encryption%205f5cd725927c4c56b801bf0a59800ab4.html"><img class="icon" src="../Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Web encryption</a> 에 설명한 암호화 방식들의 단점들을 해결하기 위해 SSL 방식이 나왔다</p><p id="e38aa040-9ca9-4b72-9d28-62a115b1776f" class="">
+</p><h2 id="91312ff9-b7f2-4b74-837d-c2418952dbfe" class="">SSL</h2><p id="769be824-9f47-4742-bc21-c5e39af18ccc" class="">대칭키 방식 : 암호화하고 푸는 것이 쉽지만 키 배송문제 발생</p><p id="48470183-ebc3-45c5-a1b4-cd7c4500a95c" class="">공개키 방식 : 키 배송 문제는 없지만 암호화하고 푸는 것이 어렵다는 단점</p><p id="d1575681-d02b-4bb5-8a27-82118db2d789" class="">
+</p><p id="19ac12fd-3c5f-4ba9-ab33-f1a8d4ec51d4" class="">→ 공개키 암호화는 대칭키를 보내는 용도에만 사용</p><p id="7781c979-97ae-4888-b6c6-9b951b76df49" class="">이러한 방법을</p><p id="6b8c63a0-d50a-452b-9251-79375f2a7940" class=""><mark class="highlight-brown_background">표준보안방식 SSL</mark> 이라고한다</p><h1 id="0b3d62b4-d39b-486f-b28e-83ef87cfd9e3" class="">SSL 의 방법</h1><p id="1e333bb6-a404-4b2f-8cfb-7e61aa57b352" class="">
+</p><figure id="24047831-f838-4b16-aaf7-f26fd0c8fc6f" class="image"><a href="../Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3/Untitled.png"><img style="width:432px" src="../Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3/Untitled.png"/></a></figure><p id="8eec9b03-23ba-441e-82ef-e1524cfb9926" class="">
+</p><p id="dee2f9f1-6138-44f4-ad4c-bd24e148c41f" class="">
+</p><p id="cf4ef12a-c265-4cfd-b1e7-34f347e46829" class="">
+</p><h3 id="527085aa-ea79-48b3-8515-37ef6f7295a9" class="">https(SSL) port :443</h3><p id="159b101b-a151-4627-bede-94949fd9f2c3" class="">SSL : Secure Socket Layer</p><ul id="e9bb2e57-290d-407b-9ac4-8baadebec54a" class="bulleted-list"><li style="list-style-type:disc">1973년 netscape사에 의해 개발된 통신 규약</li></ul><ul id="e9f2465f-30b6-4bb7-84e1-fd3fd1bb0360" class="bulleted-list"><li style="list-style-type:disc">세션계층에서 적용되며 telnet, ftp, http 등의 프로토콜의 안정성 보장</li></ul><ul id="62fe3332-741c-4844-ad27-ee85f6faf4e8" class="bulleted-list"><li style="list-style-type:disc">서버인증, 클라이언트 인증, 기밀성 보장</li></ul><p id="75158f07-d79a-4ed5-b684-f3845fdf5316" class="">
+</p><p id="07278fc6-804a-4ff4-b0af-3f201580c1d3" class="">하지만 내가 접속한 사이트가 진짜인지 알수가 없다</p><p id="f547a43f-d818-45b3-b8c0-eae639518f1c" class="">이를 해결하기위해 제 3의 인증 기관(CA)가 생겼다</p><p id="ed3a5468-1cf1-4589-a8cc-6fa79cd3ce05" class="">
+</p><figure id="fe37239c-3476-42c3-a8fd-31360696821a" class="image"><a href="../Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3/Untitled%201.png"><img style="width:954px" src="../Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3/Untitled%201.png"/></a></figure><p id="e58bcc30-1aa3-4e74-85a8-d947fe70c012" class="">인증서 예시</p><p id="830eed9c-ecb3-4175-b024-a07deb696096" class="">
+</p><h1 id="0b663ee2-35ab-4fdf-a562-5ee1bf4e6a87" class="">총 HTTPS의 과정</h1><figure id="6e3043df-8d84-403a-8a9f-2cf72c51f6fd" class="image"><a href="../Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3/Untitled%202.png"><img style="width:1102px" src="../Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3/Untitled%202.png"/></a></figure><p id="81370c73-9f8b-44f7-abe3-bce7731b11c4" class="">
+</p><p id="5a745a0c-388a-4c3e-adb4-c8b284c60f90" class="">
+</p><h1 id="2bf5125e-ee68-4753-a3e6-ba4045ef07a3" class="">클라이언트와 서버간의 SSL 프로토콜 통신 과정(위 5~9)</h1><p id="f7c483df-2cf9-4a5c-ba3f-ac807f6a2cb9" class="">클라이언트 ---------------------------------------&gt; 서버</p><p id="d37fc054-f9f0-4022-adff-63a228f3927f" class="">1 . Client Hello</p><p id="3862537e-2917-4c61-a39f-294cd6804361" class="">(지원가능한 암호방식, 키교환 방식, 서명방식, 압축방식 등을 서버에게 알림)<div class="indented"><p id="d5458058-2084-41fa-ac83-4ffba466f996" class="">a . 클라이언트의 브라우저에서 지원되는 암호화 방식 전송</p></div></p><p id="90c6671c-ed02-4035-bd17-c982f4be2b7d" class="">
+</p><p id="cf5868bf-7623-4742-9f2e-e8ac91c2e958" class="">2 . Server Hello</p><p id="0f6bd070-1588-4caf-92d3-6dbd10be4ece" class="">클라이언트 &lt;---------------------------------- 서버</p><p id="d195c7fb-448a-4adf-bbac-cbef11306484" class="">클라이언트 &lt;---------------------------------- 서버<div class="indented"><p id="9166dfb4-c5be-4e65-9ccb-9734a0ce1920" class="">a . 지원가능한 암호방식, 키교환방식, 서명방식, 압축방식 등을 클라이언트에 알림</p><p id="840b5116-2bc4-4ef9-aa76-4ca6bd253747" class="">b . 서버측 공개키가 수납된 인증서를 보냄</p><p id="94a94e1e-5bc4-485a-8192-0485f41c5a72" class="">선택) 클라이언트 인증서를 요구</p></div></p><p id="48001dec-e496-4682-84de-bb98bd37ee2a" class="">
+</p><p id="3a0937b1-ce25-4646-a033-ddf3fc3ecadd" class="">3 . </p><p id="73014f3d-9943-4a65-91fc-93c4987682da" class="">클라이언트 -----------------------------------&gt; 서버</p><p id="7cd8bb38-8ea9-4c7b-9428-092287e5ebca" class="">선택) 클라이언트 인증서를 전송</p><p id="3905682d-da57-4d71-92fb-fb25314d3d17" class="">비밀키를 서버의 공개키로 암호화해서 전송<div class="indented"><p id="b95f621d-9ede-4a6f-9fb8-a6c9e5763cc1" class="">a . 상호간의 완료메시지를 보냄</p><p id="cb81b342-bd65-44c8-927b-844990c95805" class="">b . 비밀키로 서로 암호화 통신</p></div></p><p id="077cc42f-96a6-43ab-b948-b32e931494a5" class="">
+</p><p id="ee4b685f-fb57-47b8-8b68-99c01f54481c" class="">
+</p><h1 id="bf69e51b-eaa8-44d4-9176-e1fbf9e6f9e3" class="">HTTPS 실습</h1><p id="5d0c2650-ec79-45c6-aaf1-1247e768aa15" class="">
+</p><p id="2fe0a482-c84e-467e-bfd0-f006f2824039" class="">1 . 개인키 만들기 : 키 길이 2048, rsa방식으로 암호 </p><p id="eba3a583-d526-4f10-9b25-668ed20d8f26" class=""><code>openssl genrsa -out private.key 2048</code></p><p id="90835c39-2c85-445d-8abc-38c80b8ebce5" class="">
+</p><ol type="1" id="b61a6765-9d08-4b4d-b3a6-cbb9fdd9d9eb" class="numbered-list" start="2"><li>CSR(Certificagte Signing Request) 생성 </li></ol><p id="a73a6c22-ace1-45d7-934c-a5b484725cad" class="">CSR을 CA에 제출하고 서명된 인증서를 받아야한다</p><p id="d3ba5212-de90-41f4-bc62-695d21441bae" class="">하지만 실습용이므로 자필 서명인증서(Self-Signed Certificate)를 생성하여 사용한다 </p><p id="134e663d-efb9-490f-b42e-d7a9790ad3bc" class="">
+</p><p id="88a1f6c7-d6f1-4c8e-92de-ebe953356ecc" class="">자필 서명인증서 생성</p><p id="98f66ae3-7c68-462d-ba8b-afefb5c625ea" class=""><code>openssl req -new -key private.key -out cert.csr</code></p><p id="14f8e978-ef14-47f0-839f-6bf17ec2651e" class="">cert.csr을 만든다</p><p id="f00d32a8-ebef-46f4-aace-4f8e7979d3e5" class="">
+</p><ol type="1" id="7acc35e5-f565-4ca3-b5cf-ca122fc8ad7d" class="numbered-list" start="3"><li>인증서만들기</li></ol><p id="7243452c-e301-4763-ae41-0e61316e3ba8" class=""><code>openssl x509 -req -signkey private.key -in cert.csr -out cert.crt</code></p><p id="517a5ea5-75e7-4c42-8aec-c6c9aae4551c" class="">인증서의 개인키(private.key)로 cert.csr요굿서 내용을 cert.crt의 인증서로 만든다</p><p id="079a9e1f-ebca-4c05-acb2-b7541df09959" class="">
+</p><ol type="1" id="fdad14a9-b34e-40e3-b3cc-ae1eb4764de5" class="numbered-list" start="4"><li>안전한곳으로 옮기기</li></ol><p id="30f5b97e-dfdc-4062-ad95-5c3609c829cc" class=""><code>mv /root/cert.crt /etc/pki/tls/certs</code></p><p id="9ddd1e50-2ae7-4e7e-a87d-d96e3ecdd838" class=""><code>mv /root/private.key /etc/pki/tls/private/</code></p><p id="703a0605-5893-41ed-a30c-8feefae56384" class="">
+</p><ol type="1" id="fa211441-53a7-42cb-a425-38ef4bc0a069" class="numbered-list" start="5"><li>개인키 자기자신만 사용</li></ol><p id="a535e613-6c49-4986-ad8e-1618e9fe1847" class=""><code>chmod 600 /etc/pki/tls/private/private.key</code></p><p id="be8be1a8-0a18-418b-95d5-7233de20f6fd" class="">
+</p><ol type="1" id="24d183ba-fe22-4922-b060-9fc60d96f83e" class="numbered-list" start="6"><li>apache에서 ssl을 사용하기위한 모듈 설치</li></ol><p id="4d979bb7-491a-4998-8245-5aecc6140f0b" class=""><code>yum -y install mod_ssl</code></p><p id="3bf80696-503e-4ce3-82a7-01f408048af9" class="">
+</p><ol type="1" id="21bf8ee3-c064-4aea-9ce5-291f09f851f3" class="numbered-list" start="7"><li>apache에서 ssl관련설정</li></ol><p id="be2fb29a-9406-49bf-9f85-067de2aca9f7" class=""><code>vi /etc/httpd/conf.d/ssl.conf</code></p><p id="6d18cd43-8f17-41fc-a089-18102bebf00b" class="">
+</p><pre id="cdcd89d1-63f5-4a3a-a4a6-75beb57545d7" class="code code-wrap"><code>56 &lt;VirtualHost _default_:443&gt;
+57 
+58 # General setup for the virtual host, inherited from global configuratio        n
+59 DocumentRoot &quot;/var/www/html&quot;
+60 ServerName www.linux.com:443</code></pre><ul id="bf9c8bb1-493c-49ed-8ab2-dd589ec8b1f1" class="bulleted-list"><li style="list-style-type:disc">VirtualHost - apache2서버에 홈ㅁ페이지 여러개를 만들수있게하는것</li></ul><ul id="77987694-07bf-44a0-9cc3-97aad4b974a1" class="bulleted-list"><li style="list-style-type:disc">443포트의 기본설정은 <code>/var/www/html</code> 경로</li></ul><ul id="37557ab6-f123-472c-aed1-c5cfbb360003" class="bulleted-list"><li style="list-style-type:disc">도메인은 www.linux.com:443</li></ul><p id="76e0e841-bc4a-40b0-8517-6ef9e201252c" class="">
+</p><pre id="c766329a-5861-43e8-ba58-9e338eff80fb" class="code code-wrap"><code>95 #   Server Certificate:
+96 # Point SSLCertificateFile at a PEM encoded certificate.  If
+97 # the certificate is encrypted, then you will be prompted for a
+98 # pass phrase.  Note that a kill -HUP will prompt again.  A new
+99 # certificate can be generated using the genkey(1) command.
+100 SSLCertificateFile /etc/pki/tls/certs/cert.crt
+101 
+102 #   Server Private Key:
+103 #   If the key is not combined with the certificate, use this
+104 #   directive to point at the key file.  Keep in mind that if
+105 #   you&#x27;ve both a RSA and a DSA private key you can configure
+106 #   both in parallel (to also allow the use of DSA ciphers, etc.)
+107 SSLCertificateKeyFile /etc/pki/tls/private/private.key</code></pre><p id="9d48af3f-a45b-418d-bc33-947aa1967ffe" class="">경로 변경하여 적용</p><p id="6d2630a6-5c2c-4863-804f-31b8c5adaf5d" class="">
+</p><p id="e206e905-d1dc-481c-9d8a-a9c1fe88fd5e" class="">
+</p><ol type="1" id="668ce9fd-4319-4be0-b260-6ef02dfbb091" class="numbered-list" start="8"><li>환경설정 적용</li></ol><pre id="eeddeb0a-1996-4abf-b714-69b03d242570" class="code code-wrap"><code>[root@localhost ~]# vi /etc/httpd/conf.d/ssl.conf
+[root@localhost ~]# systemctl restart httpd
+[root@localhost ~]# systemctl enable httpd
+Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
+[root@localhost ~]# firewall-cmd --permanent --add-service=http
+success
+[root@localhost ~]# firewall-cmd --permanent --add-service=https
+success
+[root@localhost ~]# firewall-cmd --reload</code></pre><p id="d13ce3e7-6937-4384-96e7-b76ba1115542" class="">
+</p><p id="61653ccf-7103-46f5-9cda-074baf9c3b21" class="">
+</p><p id="4bdded7d-b3c0-484f-a28b-dda5b21a4afd" class="">
+</p><ol type="1" id="4d6986a0-06b2-462a-9240-acf869a637c6" class="numbered-list" start="9"><li>다른 컴퓨터에서 해당 아이피로 접속</li></ol><figure id="d6730cce-a819-402e-a2db-9c8395f740d7" class="image"><a href="../Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3/Untitled%203.png"><img style="width:1444px" src="../Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3/Untitled%203.png"/></a></figure><p id="50a62809-2c58-4f69-bad8-1972bbbc0893" class="">
+</p><ul id="3a631a78-e200-454c-b98b-1cbfce2d8701" class="bulleted-list"><li style="list-style-type:disc">인증되지않는 기관 경고(우리가 만들었기때문)<ul id="2a0e46eb-b6be-49c1-9f75-0db7c0696cc9" class="bulleted-list"><li style="list-style-type:circle">Advanced 클릭 → Accept the Risck and Continue 클릭</li></ul></li></ul><p id="5ffded1d-56ed-4f24-a3d1-103ce53babf4" class="">
+</p><p id="bc0eebba-bcff-4d4b-9685-14fe43fbd324" class="">
+</p><ul id="51e7e494-a14c-472d-bfd5-41c0df4b7166" class="bulleted-list"><li style="list-style-type:disc">도메인으로 들어가기<ul id="b0a3de73-3436-4c3f-9816-8085a607bce6" class="bulleted-list"><li style="list-style-type:circle">도메인을 구입할수 없으므로 클라이언트계정에 임시로 host구성<p id="dcaa5da9-4c1d-4259-b012-ade884dd6e80" class="">클라이언트</p><p id="0f93facd-8e6c-48f8-aa98-e732cff0385c" class=""><code>vi /etc/hosts</code></p><pre id="62863e1f-e177-43c1-af60-ba8bfcc18d8e" class="code code-wrap"><code>10.0.2.4 www.linux.com # 추가</code></pre><figure id="be96c1ed-e591-4804-a94a-249428922254" class="image"><a href="../Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3/Untitled%204.png"><img style="width:562px" src="../Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3/Untitled%204.png"/></a></figure><p id="a73bafbd-7fc4-4e59-ae47-1f3183128a84" class="">
+</p><p id="1a9375e6-5b2c-4c4f-ba43-9ba8e2a3b1f2" class="">
+</p></li></ul></li></ul><p id="03ca4b30-7b13-4372-b02d-422793fc92ed" class="">
+</p></div></article></body></html>

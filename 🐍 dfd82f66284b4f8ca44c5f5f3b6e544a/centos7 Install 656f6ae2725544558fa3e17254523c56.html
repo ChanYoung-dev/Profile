@@ -1,0 +1,713 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>centos7 Install</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="656f6ae2-7255-4455-8fa3-e17254523c56" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="centos7%20Install%20656f6ae2725544558fa3e17254523c56/kuber.png"/></div><h1 class="page-title">centos7 Install</h1></header><div class="page-body"><h1 id="c8932782-04d6-4a98-8a98-3c62df35327f" class="">virtualbox 를 이용한 centOS 환경설정</h1><figure id="9cf34876-ca0c-4d1b-b717-b0cc21f3226a"><a href="https://drive.google.com/drive/folders/17wjrgTvV-_1JULzMXkb4tAnAZI4_c2OP?usp=sharing" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">02_리눅스 - Google Drive</div></div><div class="bookmark-href"><img src="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png" class="icon bookmark-icon"/>https://drive.google.com/drive/folders/17wjrgTvV-_1JULzMXkb4tAnAZI4_c2OP?usp=sharing</div></div><img src="https://ssl.gstatic.com/docs/doclist/images/empty_state_empty_folder.png" class="bookmark-image"/></a></figure><p id="5a7550c1-6067-49e6-8d75-c1a603d77794" class="">
+virtualbox 다운로드 링크</p><figure id="0a2d97b5-3d5f-471f-89c1-e8b7fd66c806"><a href="https://www.virtualbox.org/wiki/Downloads" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Downloads - Oracle VM VirtualBox</div><div class="bookmark-description">Here you will find links to VirtualBox binaries and its source code. By downloading, you agree to the terms and conditions of the respective license. If you&#x27;re looking for the latest VirtualBox 6.0 packages, see VirtualBox 6.0 builds. Please also use version 6.0 if you need to run VMs with software virtualization, as this has been discontinued in 6.1.</div></div><div class="bookmark-href"><img src="https://www.virtualbox.org/graphics/VirtualBox.ico" class="icon bookmark-icon"/>https://www.virtualbox.org/wiki/Downloads</div></div><img src="https://www.virtualbox.org/graphics/vboxlogodown.png" class="bookmark-image"/></a></figure><ul id="86321a32-7cb8-4bb3-9182-43c83abd9da0" class="bulleted-list"><li style="list-style-type:disc">virtualbox 설치 방법<ol type="1" id="47710352-00fa-4429-96b8-752a73c62c98" class="numbered-list" start="1"><li>설치 파일 열기</li></ol><ol type="1" id="8cbfe412-7763-4d58-869f-a6bb58025fe1" class="numbered-list" start="2"><li>[next]</li></ol><ol type="1" id="6da205ed-cf83-4768-928f-58a9fa819ec2" class="numbered-list" start="3"><li>[next]</li></ol><ol type="1" id="31f7729b-10f9-448f-b905-34dc238e8d27" class="numbered-list" start="4"><li>[next]</li></ol><ol type="1" id="a2a660ca-1d1c-4172-8d0e-e28210032ac9" class="numbered-list" start="5"><li>[yes]</li></ol><ol type="1" id="d62d6744-2428-4f3a-aede-31e85ce35b7a" class="numbered-list" start="6"><li>[install]</li></ol><ol type="1" id="a536b364-9bf8-466b-a769-83e974982d26" class="numbered-list" start="7"><li>[finish]</li></ol></li></ul><ul id="49fa10a5-99c6-4d59-aa7d-678c45689c2e" class="bulleted-list"><li style="list-style-type:disc">가상 머신 내에서 마우스 빠져나오게 하기 설정<ol type="1" id="b9f87f0e-f129-4280-8b9d-5d70b503c271" class="numbered-list" start="1"><li>좌측 상단 [파일] 버튼 클릭</li></ol><ol type="1" id="cb0ba175-dd10-4f1f-9cb4-b7a21f6b52b6" class="numbered-list" start="2"><li>[환경 설정] 클릭</li></ol><ol type="1" id="836f7934-3a5d-4650-9e48-4a52a3a8e690" class="numbered-list" start="3"><li>[입력] 항목 클릭</li></ol><ol type="1" id="d1977022-aca5-446f-9b0c-d83edc5f7866" class="numbered-list" start="4"><li>호스트 키 조합 -&gt; 좌측 <code>ctrl</code> + <code>alt</code></li></ol></li></ul><ul id="e90ae99a-60f8-466c-b09a-827f1f3576f6" class="bulleted-list"><li style="list-style-type:disc">[virtual box] 네트워크<ul id="5614941c-0233-4688-918f-669497329e64" class="bulleted-list"><li style="list-style-type:circle">Nat
+하나의 네트워크에서 하나의 가상머신 네트워크 사용</li></ul><ul id="2078eee6-74b8-4501-ad05-0a42e8275004" class="bulleted-list"><li style="list-style-type:circle">Nat-network
+하나의 네트워크에서 여러 가상머신 네트워크 사용</li></ul><ul id="76154ad3-79bc-49e2-9cdb-3150c3fa3fa5" class="bulleted-list"><li style="list-style-type:circle">Nat-network 설정<ol type="1" id="d4c44914-fa49-4235-8331-41c5a32ea0ab" class="numbered-list" start="1"><li>좌측 상단 [파일] 버튼 클릭</li></ol><ol type="1" id="b5bec2b9-a6c1-48fb-a088-44e94102127a" class="numbered-list" start="2"><li>[환경 설정] 클릭</li></ol><ol type="1" id="bb5baf9d-cf6f-42ca-a4ac-254ac8f78d58" class="numbered-list" start="3"><li>[네트워크] 항목 클릭</li></ol><ol type="1" id="c6be34f6-fb25-450f-a25b-d8f85e33255a" class="numbered-list" start="4"><li>우측 플러스 버튼 클릭</li></ol><ol type="1" id="5ebed025-4f1c-44ba-9839-0a3adfa7e518" class="numbered-list" start="5"><li>편집</li></ol><ol type="1" id="8c615ba2-14cf-460d-919c-6a5d06cedb65" class="numbered-list" start="6"><li>DHCP 항목 체크 해제<ol type="a" id="5905ea14-be99-496d-a294-ff1bd9794188" class="numbered-list" start="1"><li>[확인] 버튼 클릭</li></ol></li></ol></li></ul></li></ul><ul id="0ff10238-3ab0-402d-8cdb-dc57786e08d4" class="bulleted-list"><li style="list-style-type:disc">Nat-network
+사용자가 사용하는 가상머신과 외부를 연결해줌</li></ul><ul id="791c9de1-4230-49b4-a4b8-fd807b7d30f4" class="bulleted-list"><li style="list-style-type:disc">host-only Network 설정<ol type="1" id="1acf27bb-81a1-4a86-acdf-426e76bd460e" class="numbered-list" start="1"><li>좌측 상단 [파일] 버튼 클릭</li></ol><ol type="1" id="c40f05c6-56c2-4cfc-a4cb-19d2296408e2" class="numbered-list" start="2"><li>[호스트 네트워크 관리자] 클릭</li></ol><ol type="1" id="1d70b8e2-3572-42f8-bce6-8c5cf7075776" class="numbered-list" start="3"><li>DHCP 서버</li></ol><ul id="4acf612f-d1b6-445e-b154-3be7070ad0b5" class="bulleted-list"><li style="list-style-type:circle">사용함 체크 해제</li></ul></li></ul><ul id="33645eef-a9f5-4d07-8a24-ad1b2aed37a8" class="bulleted-list"><li style="list-style-type:disc">host-only Network 없을 시 생성
+IPv4 주소 : 192.168.56.1
+IPv4 서브넷 마스크 : 255.255.255.0</li></ul><ul id="386b1293-e368-4352-bc8c-72c2a4ddcfef" class="bulleted-list"><li style="list-style-type:disc">host-only Network
+내부 가상머신들끼리 통신할 때 사용</li></ul><ul id="970f70f8-d698-4917-809c-31fe561f6dd5" class="bulleted-list"><li style="list-style-type:disc">centos 설치<ol type="1" id="f414d3b4-50cc-4417-922a-b0d111cb25c5" class="numbered-list" start="1"><li>virtual box 메인화면에서 [새로 만들기] 클릭</li></ol><ol type="1" id="137d0b6f-8fe1-4eb3-8685-e926a3861db1" class="numbered-list" start="2"><li>이름 지정<ul id="540be9fc-5e60-4929-bb3c-cdb0d6b8dbce" class="bulleted-list"><li style="list-style-type:disc">centos7#1</li></ul><ul id="c785cca1-d710-43c8-8e3f-baeac60585d6" class="bulleted-list"><li style="list-style-type:disc">Red Hat (64-bit)</li></ul></li></ol><ol type="1" id="c81ea709-6bdb-48e6-ba1a-59ae3ef84799" class="numbered-list" start="3"><li>[다음] 클릭</li></ol><ol type="1" id="59428abf-74be-4f2a-8621-37d551a862ba" class="numbered-list" start="4"><li>메모리 크기 [다음] 클릭</li></ol><ol type="1" id="9751c031-9a21-40cb-895f-e1a6b27a4731" class="numbered-list" start="5"><li>[다음] 클릭</li></ol><ol type="1" id="3c753d91-d7b1-4f54-bfb0-079230bcaecf" class="numbered-list" start="6"><li>[다음] 클릭</li></ol><ol type="1" id="83c8aa54-ab04-4ff7-ba18-5ebb1b27900d" class="numbered-list" start="7"><li>[다음] 클릭</li></ol><ol type="1" id="e296098d-2a71-4b41-9295-ade285a59ffe" class="numbered-list" start="8"><li>[만들기] 클릭</li></ol></li></ul><ul id="d0940a4b-96b8-4e22-a1ba-1df8e0f33760" class="bulleted-list"><li style="list-style-type:disc">가상머신 설정<ol type="1" id="548bf616-d3ad-4cc6-ad08-ad967ff22135" class="numbered-list" start="1"><li>가상머신 선택 후 [설정] 버튼 클릭</li></ol><ol type="1" id="30b913ab-6ac4-407f-af2c-529f9a9788e4" class="numbered-list" start="2"><li>[네트워크] 항목 클릭</li></ol><ol type="1" id="3461304c-057a-4ece-9428-086d23828922" class="numbered-list" start="3"><li>어뎁터1</li></ol></li></ul><ul id="9cd637d9-853a-4853-8196-7c2cc2bcf979" class="bulleted-list"><li style="list-style-type:disc">네트워크 어댑터 사용하기 체크</li></ul><ul id="d00625f8-150e-41f0-bcc1-67d3089cbb58" class="bulleted-list"><li style="list-style-type:disc">NAT 네트워크 선택</li></ul><ol type="1" id="661d259d-6b73-416c-a3da-89fece342b4c" class="numbered-list" start="1"><li>어뎁터2</li></ol><ul id="d5c49695-fc81-453a-8d38-5c5da7d0f405" class="bulleted-list"><li style="list-style-type:disc">네트워크 어댑터 사용하기 체크</li></ul><ul id="9d3ec06f-ef83-4813-bab1-d3587f8a7af3" class="bulleted-list"><li style="list-style-type:disc">호스트 전용 어댑터 선택
+가상머신에 centos 설치<ol type="1" id="08e40f1a-f5e2-4f6e-8b3e-e8f31ddf1711" class="numbered-list" start="1"><li>가상머신 선택 후 [설정] 버튼 클릭</li></ol><ol type="1" id="2e56a1f1-edf1-49f8-9372-b398985c8e58" class="numbered-list" start="2"><li>[저장소] 항목 클릭</li></ol><ol type="1" id="510fcf2f-acba-4e46-b7e6-09e63375271e" class="numbered-list" start="3"><li>IDE 항목에서 [디스크(원형) 플러스] 버튼 클릭<ul id="2f998a2c-4bb0-4a06-b982-cc62fe242c2b" class="bulleted-list"><li style="list-style-type:disc">IDE 항목이 없을 경우 하단에 [디스크 플러스] 버튼 클릭</li></ul><ul id="6abaae91-13b0-4ba1-ab25-5ff5c9c9f7ed" class="bulleted-list"><li style="list-style-type:disc">왼쪽에서 3번째 항목</li></ul></li></ol><ol type="1" id="2f9a93c0-4c65-4507-82d6-f4ee1aaa287f" class="numbered-list" start="4"><li>[추가] 버튼 클릭</li></ol><ol type="1" id="b06f6e27-e229-4f49-b672-697980bdb18a" class="numbered-list" start="5"><li>다운로드 받은 centos 파일을 선택하여 열기</li></ol><ol type="1" id="a2a2a8de-8c75-41a1-b97c-98c44038d11d" class="numbered-list" start="6"><li>[선택] 버튼 클릭</li></ol><ol type="1" id="5b806d4b-1af1-4238-aad4-e8f0d158a058" class="numbered-list" start="7"><li>메인 화면에서 [시작] 버튼 클릭</li></ol><ol type="1" id="5dbfc379-034a-4ccd-8428-bafc4170f834" class="numbered-list" start="8"><li>[Install Centos 7] 선택</li></ol><ol type="1" id="2d01485e-784e-4d56-9110-15a1af0a817e" class="numbered-list" start="9"><li>언어 선택 후 [continue] 클릭</li></ol><ol type="1" id="1b2a57ed-ef47-4dc0-ad95-a5d06bf17b0a" class="numbered-list" start="10"><li>INSTALLATION DESTINATION 항목 클릭 후<ul id="761b1b6d-5a28-4012-8290-32af38ac3002" class="bulleted-list"><li style="list-style-type:disc">디스크 항목 선택 [Done] 클릭</li></ul></li></ol><ol type="1" id="6ac74108-6563-4e46-8e94-393c855919b3" class="numbered-list" start="11"><li>[begin installation] 클릭</li></ol><ol type="1" id="08f753e4-04a5-4081-9eb0-6caf0c79cda9" class="numbered-list" start="12"><li>Root 패스워드를 설정(사용자가 편한대로)</li></ol></li></ul><ul id="6eb471b8-e7b4-4ce8-bd91-ba9a1c8a2f8f" class="bulleted-list"><li style="list-style-type:disc">마우스 포인터 설정<ol type="1" id="d6533639-8311-4f7b-98a8-ae16010d58d2" class="numbered-list" start="1"><li>virtualbox 메인화면에서 [설정] 클릭</li></ol><ol type="1" id="e15deb33-b9ea-491b-820a-67aba8ef1f51" class="numbered-list" start="2"><li>[시스템] 항목 클릭</li></ol><ol type="1" id="f6bc4f15-e595-4a78-855e-ef987e0917ea" class="numbered-list" start="3"><li>포인팅 장치를 변경<ul id="1b431b48-8d4b-44e8-8728-63f5ef8b70d3" class="bulleted-list"><li style="list-style-type:disc">usb 포인터</li></ul></li></ol></li></ul><ul id="d9b47954-285f-46e0-84fc-4919496939ed" class="bulleted-list"><li style="list-style-type:disc">centos 로그인 방법</li></ul><pre id="ac18a7b4-0c06-4aae-8643-ddfeb0c0803b" class="code code-wrap"><code>localhost login : root &lt;- 입력
+Password : 패스워드 입력
+[root@localhost ~]
+</code></pre><p id="87b7fbc1-8ca0-4d95-9c79-cede2f15a1f4" class="">네트워크 설정</p><ol type="1" id="047be3f2-016d-4fea-9cbe-db66f297a35c" class="numbered-list" start="1"><li>네트워크 확인 명령어
+<code>nmcli con show</code>
+enp0s3 ...
+enp0s8 ...</li></ol><ol type="1" id="8d62a37c-62a2-4dbe-9039-fd29450da5e9" class="numbered-list" start="2"><li>네트워크 설정</li></ol><pre id="fd0d2baf-e4eb-4d69-9eb4-5cdcf241cde1" class="code code-wrap"><code>
+$ nmcli con add con-name ens1 type ethernet ifname enp0s3 \\
+ipv4.method manual ipv4.addresses 10.0.2.10/24 ipv4.gateway 10.0.2.1 \
+ipv4.dns 8.8.8.8
+$ nmcli con add con-name ens2 type ethernet ifname enp0s8 \\
+ipv4.method manual ipv4.addresses 192.168.56.10/24 ipv4.gateway 192.168.56.1 \
+ipv4.dns 8.8.8.8</code></pre><ul id="b8470bd1-fed9-4e18-9d31-1546bcf954b8" class="bulleted-list"><li style="list-style-type:disc"><code>\</code> 는 문장을 다음 줄로 이어 쓸 때 사용하는 특수 기호</li></ul><ol type="1" id="3e866129-006a-4acf-80ae-1fbcd05dcd6e" class="numbered-list" start="1"><li>네트워크 활성화
+<code>nmcli con up ens1</code><p id="30cc3007-303f-4a2d-9ad6-3b113d61f3d4" class=""><code>nmcli con up ens2</code></p><p id="c1b6fe6f-5b08-477a-a04d-866aa3c20a49" class=""><code>nmcli con show</code> 로 인터페이스가 보이지 않을 경우
+<code>nmcli dev show</code></p></li></ol><ul id="392a7459-1dca-4b3c-8e00-b464d2cd0f1e" class="bulleted-list"><li style="list-style-type:disc">인터페이스가 나올 경우엔 ip 설정을 그대로 진행
+ip 설정 완료후 설정 확인
+<code>nmcli con show</code>
+ens1, ens2 항목이 초록색으로 보여야 함
+잘못 설정했을 경우(해당 설정을 제거 후 위에 설정을 다시 하면 됨)
+<code>nmcli con del ens1</code><p id="fdb291fc-e3ff-4192-acfd-229876836f31" class=""><code>nmcli con del ens2</code></p></li></ul><ul id="008c48b4-1523-466d-a38b-ae7b7cad6b9d" class="bulleted-list"><li style="list-style-type:disc">putty 글자 크기 설정(실행 후)<ol type="1" id="c9e817a9-e2e1-4138-86b9-48eade9fe316" class="numbered-list" start="1"><li>[Window] - [Appearance] 클릭</li></ol><ol type="1" id="4c6cb42c-1eee-4966-a286-2160e81b7b68" class="numbered-list" start="2"><li>[Font settings] - [Change] 클릭<ul id="f4bd914c-0b6d-42e4-b24c-738a7b89aec0" class="bulleted-list"><li style="list-style-type:disc">글꼴, 크기 지정 가능</li></ul></li></ol></li></ul><ul id="82c6ab04-7558-4744-9e48-d5dd9e19ef01" class="bulleted-list"><li style="list-style-type:disc">putty 설정 저장 및 실행(session 부분으로 넘어 온 후 진행)<ol type="1" id="5862f263-d8d3-4ddd-a39c-114c5bbf2943" class="numbered-list" start="1"><li>[Host Name] - 192.168.56.10 입력</li></ol><ol type="1" id="6064c471-dfc2-4c67-8e76-8437bfddba51" class="numbered-list" start="2"><li>[Saved Sessions] - 192.168.56.10 입력</li></ol><ol type="1" id="f7bb8f5a-91b4-423b-9541-2e97bca2a82e" class="numbered-list" start="3"><li>[save] 클릭</li></ol><ol type="1" id="63ecd83e-b1fe-49bb-b9eb-f5ba63dca809" class="numbered-list" start="4"><li>[Open] 클릭</li></ol><ol type="1" id="a80eee14-6ae8-42ef-91cb-f0d035d4b830" class="numbered-list" start="5"><li>터미널 창에서 [accept] 클릭</li></ol><ol type="1" id="8dcd5d76-4e12-486f-b95b-0499a377c7f8" class="numbered-list" start="6"><li>root / 비밀번호 입력</li></ol></li></ul><ul id="10dfb04e-d169-40b5-ba9b-fe98bc1ae1e3" class="bulleted-list"><li style="list-style-type:disc">utty 연결이 안 될 경우 확인 방법
+윈도우 상에서<ol type="1" id="a778c004-fa0c-43a0-a8a8-a7e45b914e09" class="numbered-list" start="1"><li>cmd 실행</li></ol><ol type="1" id="1c52bf72-8625-4ed6-aa19-008655329d87" class="numbered-list" start="2"><li>ping 192.168.56.10</li></ol><ul id="e97af378-a314-4a58-a583-9c19224ae4ac" class="bulleted-list"><li style="list-style-type:circle">입력 후 반응이 있을 시엔 putty 실행 후 대기</li></ul><ul id="34c84610-bece-498b-a637-cd4b1e9d3977" class="bulleted-list"><li style="list-style-type:circle">반응이 없을 경우 ip를 다시 설정해줘야 함
+가상머신 상에서
+<code>ip addr show</code></li></ul><ul id="d53ed890-520c-42c6-b6a3-a69fd5cabd39" class="bulleted-list"><li style="list-style-type:circle">ip 설정 확인
+clear / ctrl + L 입력 시 화면 재정렬</li></ul><p id="b4e52ace-bb14-409f-a2ba-364f03e9f0ed" class="">
+</p><p id="fc955834-e96c-46c2-9aff-540eb3d52e82" class="">
+</p></li></ul><ul id="afb1037e-8cef-41d4-96ae-94c9c3a9d29a" class="bulleted-list"><li style="list-style-type:disc">실습 1.</li></ul><p id="2e18567f-d11b-48c0-b18c-8a8894c9651f" class="">
+가상머신 추가 세팅(ex. centos7#2)
+enp0s3 - ens3, ip 10.0.2.11, subnet mask 255.255.255.0, gateway 10.0.2.1, dns 8.8.8.8
+enp0s8 - ens4, ip 192.168.56.11, subnet mask 255.255.255.0, gateway 192.168.56.1
+dns 8.8.8.8
+255.255.255.0 =&gt; 11111111.11111111.11111111.00000000</p><p id="d18a3817-9da8-41f0-81d7-5c31d7a7252b" class="">
+</p><p id="8f7f7cbb-845e-4e53-8bce-3ef7bd1d6c15" class="">정답)</p><hr id="dbe7dcad-0195-4a7e-b029-1d809d55e1f7"/><p id="314bc91b-10dd-495c-aa67-8fd704e38c99" class="">
+enp0s3</p><p id="5135fe8d-37bb-4b70-9279-3dae6f054e89" class=""><code>nmcli con add con-name ens3 type ethernet ifname enp0s3 ipv4.mathod manual \\ ipv4.addresses 10.0.2.11/24 ipv4.gateway 10.0.2.1 dns 8.8.8.8</code></p><hr id="edfd4504-4837-4fff-8e26-4cdd8ebb2e96"/><p id="d7e19cbc-7db8-4289-9825-c08a7414600f" class="">
+enp0s8
+<code>nmcli con add con-name ens4 type ethernet ifname enp0s8 ipv4.mathod manual \\
+ipv4.addresses 192.168.56.11/24 ipv4.gateway 192.168.56.1 dns 8.8.8.8</code></p><p id="3969f793-9a34-4c6a-8063-65fb8c8916d7" class="">
+</p><p id="43ac3041-fdaa-4c69-9f80-4e57e6d06a9d" class="">
+</p><p id="3c3ccf57-060a-48b2-8faa-232832262fe4" class="">
+</p><ul id="b337a02e-dd07-4497-b672-375383684727" class="bulleted-list"><li style="list-style-type:disc">실습 2.
+명령어 쓰임새 알아보기<pre id="39d763dd-b379-41ef-93be-7e8189f5adfc" class="code code-wrap"><code>pwd
+ls
+whoami
+echo
+date</code></pre></li></ul><p id="6b69adce-1926-4823-a307-d68704d096c4" class="">
+<code>pwd</code> : 현재 작업하고 있는 디렉토리 확인</p><p id="c1ccb45e-3e2a-4bcf-a928-566f0729d594" class="">결과) /root
+<code>ls</code> : 현재 작업하고 있는 디렉토리 내의 목록 확인</p><p id="369409ce-a2b6-40fa-8971-0af2d0ac745b" class="">결과) anaconda-ks.cfg
+<code>whoami</code> : 현재 접속하고 있는 사용자명 표시</p><p id="b7eecb3e-1296-49e3-b221-eb02b0d3f3a9" class="">결과) root
+<code>date</code>: 현재 날짜와 시간을 표시</p><p id="f8b3a6d3-619f-421b-8336-e807c276ad70" class="">
+</p></div></article></body></html>

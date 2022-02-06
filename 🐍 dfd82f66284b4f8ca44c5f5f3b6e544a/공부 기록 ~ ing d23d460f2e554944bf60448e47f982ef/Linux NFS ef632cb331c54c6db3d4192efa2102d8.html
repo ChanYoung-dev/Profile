@@ -1,0 +1,735 @@
+<html><head><script src="../../embed-sub.js" defer></script><link rel="stylesheet" href="../../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux NFS</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="ef632cb3-31c5-4c6d-b3d4-192efa2102d8" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="../Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/></div><h1 class="page-title">Linux NFS</h1><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>생성일</th><td><time>@2022년 1월 27일 오전 11:39</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>태그</th><td><span class="selected-value select-value-color-default">Linux</span></td></tr></tbody></table></header><div class="page-body"><h1 id="bb8e1991-5258-40cd-9b55-5530c2ca4e9c" class="">nfs 서버구축</h1><p id="1be76b4d-88a1-409b-83c3-9f30dd36ab0d" class="">
+</p><h2 id="b0cd5ae1-c0ca-4a19-a49c-6a0b65b24350" class="">서버 구축</h2><p id="59c89c49-aac1-4266-8a09-03bc52a63db0" class="">NFS 체크</p><p id="b9acd7f1-343b-4255-91f8-53065092a989" class=""><code>rpm -qa nfs-utils</code></p><p id="f32eb380-0f65-4c34-a8d5-c1afffdf55fc" class="">
+</p><p id="e2584209-a023-458d-b008-6abcd34831f7" class=""><code>/etc/exports</code> 공유디렉터리 설정파일 </p><p id="cf3b71d5-5a14-46ed-a417-3a882de52208" class=""><code>vi /etc/exports</code></p><p id="82a80228-b53f-4930-b425-eda4cad2ce2f" class="">
+</p><p id="db18090c-85bd-4298-91d2-5ebb4893d4b5" class="">읽기, 쓰기, 실시간 동기화(같이 쓰는걸위해)</p><pre id="2a76d48b-665d-4d19-9d03-3b40ea795301" class="code code-wrap"><code>/share 10.0.2.*(rw,sync)</code></pre><p id="71437123-4a78-4760-9a80-81a934edde63" class="">
+</p><p id="72111be2-6310-4ebe-a19d-9baf41b20edc" class="">
+</p><p id="25bb44ee-6854-4a05-b1dd-5a94f275852a" class="">실제 공유 디렉토리 생성</p><pre id="f1960bff-babc-4b40-a1f3-011c2d3c639f" class="code code-wrap"><code>[root@localhost ~]# mkdir /share
+[root@localhost ~]# chmod 777 /share</code></pre><p id="30d5315d-aae4-4103-bc6e-9f62b14c855e" class="">
+</p><p id="fc55c52f-ac67-48f2-8f0c-f6697d3468cd" class="">공유할 파일 생성</p><p id="729b2dc2-a792-4d03-a22d-c9442ea20722" class=""><code>touch /share/test</code></p><p id="720aaf13-c66f-4315-a00b-a3903d49df1f" class="">
+</p><p id="dd5aacd1-83cd-44b0-af61-f2e07607ff38" class="">설정적용</p><pre id="5af34265-ae4f-4ca4-ae92-2f2ed3a59e38" class="code code-wrap"><code>[root@localhost ~]# systemctl restart nfs-server
+[root@localhost ~]# systemctl enable nfs-server</code></pre><p id="662c9390-abca-49bf-9a1c-db9d799b02c6" class="">
+</p><p id="10c92c5a-daad-462d-ad70-34b9cc11cf5e" class="">공유 확인</p><pre id="22204ed2-b4c5-42cc-8453-4fc98e6336b9" class="code code-wrap"><code>[root@localhost ~]# exportfs -v
+/share        	10.0.2.*(sync,wdelay,hide,no_subtree_check,sec=sys,rw,secure,root_squash,no_all_squash)</code></pre><p id="6a42888e-ff24-4a67-a8af-cac7f817cefd" class="">
+</p><p id="4dc2d5ac-0f90-4c3c-91d1-b7307c350761" class="">방화벽 설정</p><pre id="5fcdab12-1d80-47e1-acd9-1e2f010bb232" class="code code-wrap"><code>[root@localhost ~]# firewall-cmd --permanent --add-service mountd
+success
+[root@localhost ~]# firewall-cmd --permanent --add-service rpc-bind # 해당서비스 포트를 알려준다
+success
+[root@localhost ~]# firewall-cmd --permanent --add-service nfs
+success
+[root@localhost ~]# firewall-cmd --reload</code></pre><p id="ad08338e-a433-47e0-881d-a814ba0c47c2" class="">
+</p><h2 id="9655eba2-0c98-49ab-9a45-3b325af6acbc" class="">클라이언트</h2><p id="338e9baf-af8c-41f1-bc07-95a9d3eb67b3" class="">nfs 설치확인</p><p id="4a11cf18-2f75-4f3e-90d6-bda08d1d4edb" class=""><code>rpm -qa nfs-utils</code></p><p id="91330999-04a5-4fdf-a88d-19c0bed8365a" class="">
+</p><p id="350aa150-d35b-49b1-abac-52803222d807" class="">해당 IP 마운트 정보 보기</p><pre id="6f1425e1-10fe-4463-b55b-eed757f2967a" class="code code-wrap"><code>[root@localhost ~]# showmount -e 10.0.2.4
+Export list for 10.0.2.4:
+/share 10.0.2.*</code></pre><p id="017fbee4-8530-44fa-b614-a998d3e26f3b" class="">
+</p><p id="e50a1e9c-c1d9-4a9d-9dff-cc803605f88e" class="">마운트할 디렉토리 생성</p><p id="179b8621-9d23-4fb7-8dea-b0d3841a011c" class=""><code>mkdir /nfs_share</code></p><p id="347b90c1-3205-442c-9ea2-d32c88435e14" class="">
+</p><p id="a4b97193-2410-4c97-a410-07fa323cf097" class="">NFS와 디렉토리 연결</p><p id="c144a2ab-c13f-4350-b9bb-954d48c9c641" class=""><code>mount -t nfs 10.0.2.4:/share /nfs_share</code></p><p id="94bdbb33-6baf-464b-a40a-4eb078b16af3" class="">
+</p><p id="e5545e5b-7aa0-4860-9c41-bf50ee29c9f6" class="">공유파일 확인 - 클라이언트</p><pre id="a914e94d-b3ef-4cd0-8dc1-b7d30f6b81e0" class="code code-wrap"><code>[root@localhost ~]# cd /nfs_share/
+[root@localhost nfs_share]# ls
+test
+[root@localhost nfs_share]# touch client
+[root@localhost nfs_share]# ls
+client  test</code></pre><p id="72f47813-944d-4fbb-8f63-47ba1004e5c9" class="">
+</p><p id="0c3cb6c7-d2a7-4b95-8cf2-4c8f48b64558" class="">공유파일확인 - 서버</p><pre id="786c5749-6714-4f48-b1eb-0b3f5066d256" class="code code-wrap"><code>[root@localhost ~]# ls
+anaconda-ks.cfg  Documents  initial-setup-ks.cfg  Pictures  Templates
+Desktop          Downloads  Music                 Public    Videos
+[root@localhost ~]# ls /share
+client  test</code></pre><p id="77dde9c9-9e66-4024-9312-1fa95f249849" class="">
+</p><p id="2124c593-76ce-46c9-bf27-0a3d5c28573c" class="">
+</p><p id="deb07aa8-b42f-4878-9bef-286a83d5d7a3" class=""><code>mount</code> 명령어는 재부팅하면 동작하지않는 문제가 있다.</p><p id="ca605324-1aa5-4713-8510-40b33cdc7791" class="">이를 해결하기 위해 <code>/etc/fstab</code> 를 사용하면 되지만 오타가 있을 경우 부팅이 되지않는 문제가 있다.</p><p id="727325bd-b01a-4dea-b923-60f5feb601b8" class="">이를 전부 해결하기 위해</p><p id="9bca8d99-f4bd-49c7-b9c7-047b2d93eff8" class="">AutoFS</p><ul id="7ac6e57b-95bd-46d9-ab74-f6a6052ffde9" class="bulleted-list"><li style="list-style-type:disc">자동 마운트 데몬의 작동을 제어하는 프로그램</li></ul><ul id="519448f4-b2fd-4b45-950f-ef03843e00cc" class="bulleted-list"><li style="list-style-type:disc">자동 마운트 데몬은 자동으로 파일시스템을 마운트하여 파일 시스템이 사용되지 않고 일정 시간이 흐르면 자동으로 언마운트</li></ul><ul id="7e1d3448-9a1d-48f1-9b87-027b12ec095a" class="bulleted-list"><li style="list-style-type:disc">네트워크 파일 시스템(NFS), CDROM 등을 자동 마운트하는데 사용함</li></ul><p id="503e450c-bb18-48ac-9f7d-402282dfd7ee" class="">
+</p><p id="98f234a5-532d-4b81-b83d-5605febc9176" class="">AutoFS와 맵(MAP)</p><p id="a538c6c2-649a-4624-8b17-2f5ac2476151" class="">MAP : AutoFS 모듈이 동작하는데 필요한 정보가 저장된 설정 파일</p><p id="50af77a6-5089-484d-b410-b88759d5c062" class="">
+</p><h3 id="69f3dce2-c73f-4e80-8b1a-dbad0285aeef" class="">MAP의 종류</h3><ol type="1" id="e341cc11-db2d-493b-9e9b-7938ff69951d" class="numbered-list" start="1"><li>master map</li></ol><ul id="2b445a87-f17f-4c53-83f3-04670389b081" class="bulleted-list"><li style="list-style-type:disc">autofs 에서 가장 기준이 되는 맵</li></ul><ul id="75d5726a-48f3-4db4-9d67-fc08e2f0a416" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/auto.master.d/</code>에 이름.autofs 파일에 설정 저장</li></ul><ul id="1a58457f-6775-4d50-90aa-2ad61f746575" class="bulleted-list"><li style="list-style-type:disc">direct map이나 indiret map의 이름과 포인터를 정의하는 역할 담당</li></ul><ol type="1" id="8918ee92-7ba4-4e2a-9af7-ea71b6e17993" class="numbered-list" start="2"><li>direct map( 직접 맵 마운트)</li></ol><ul id="9c3f77a7-3b08-4d80-952e-8f518b7a588f" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/auto.</code>이름 으로 관습적으로 파일을 만들어서 설정저장</li></ul><ul id="a4c68ec8-3b24-4c8a-9894-0b69d895a9aa" class="bulleted-list"><li style="list-style-type:disc">맵 내부의 마운트 포인터로 절대 경로명을 사용함</li></ul><ol type="1" id="ab24fe30-d76b-4ba7-91f5-f4b681185cc5" class="numbered-list" start="3"><li>indirect map( 간접 맵 마운트)</li></ol><ul id="37d5c534-a4a7-41f5-9a44-4f89c82c8c2f" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/auto.</code>이름으로 관습적으로 파일을 만들어서 설정 저장</li></ul><ul id="0492ea5c-fd25-492b-80fc-ebcfde064923" class="bulleted-list"><li style="list-style-type:disc">맵 내부의 마운트 포인터로 상대 경로명을 사용함</li></ul><p id="0c8210ae-db43-4f83-8483-dea1fe7717af" class="">
+</p><p id="5758e323-0f51-41d3-a570-f2732b0b0d37" class="">직접 맵 마운트 실습</p><h2 id="e236ae0b-5605-4c60-b5b8-6080897524f1" class="">클라이언트</h2><p id="6c358191-4a29-43c6-b064-42d646ce33a5" class="">
+</p><p id="63e7b978-5080-4aae-8c2e-f8e09c313be6" class="">autofs 설치</p><p id="7ebfe5a2-174b-46b8-b53c-0f008ed9b709" class=""><code>yum install -y autofs</code></p><p id="b7add9ea-74b9-4de8-bb8d-04ed9b6d833a" class="">
+</p><p id="5bd421ec-52ae-4a8c-9df9-6122c7375959" class="">
+</p><p id="15abebca-e1e4-49fc-941a-d37cb869bcfd" class="">mount했던것을 언마운트</p><p id="6b33b2d3-8b36-4392-b576-08e99d0f4ca5" class=""><code>umount /nfs_share</code></p><p id="7752ba26-e9d9-42bb-88e4-217fd66eef83" class="">
+</p><p id="d758ae4a-51fc-42ff-9fe1-64d0f3d0da2c" class="">master map 만들기</p><p id="b55930ac-92f5-4de4-a9e5-df27a1533f11" class=""><code>vi /etc/auto.master.d/direct.autofs</code></p><pre id="43d21b5a-e376-4d2c-baba-4e400e5b6c1e" class="code code-wrap"><code>/-      /etc/auto.direct # 직접 맵 마운트를 사용 설정파일은 /etc/auto.direct</code></pre><p id="5a6d4c7c-a8d4-41ea-aebc-5b9899a1f00d" class=""><code>/-</code> : 직접맵마운트를 쓰겠다</p><p id="ecb36a2e-386d-4146-9127-908016da67e7" class="">
+</p><p id="57749e9a-7bfd-4b9c-95da-993de2c5ff51" class="">
+</p><p id="4af80236-986b-4435-8e25-980488faacdd" class="">direct map 세팅</p><p id="f39ce505-1ec7-446a-bc03-4c0a9687c050" class=""><code>vi /etc/auto.direct</code></p><pre id="e1962469-5e42-4998-bfe2-224453861cb6" class="code code-wrap"><code>/nfs_share      -rw,sync        10.0.2.4:/share
+~                                                                               
+~</code></pre><p id="f7a3fd52-a199-44f2-87c5-22888f1a14c7" class="">
+</p><p id="8bdd1259-5292-4dd0-bed3-fbd651ca6b90" class="">설정 적용</p><p id="d526340d-3ea4-4cf9-985e-ad3ebe549954" class=""><code>systemctl restart autofs</code></p><p id="743025e7-3b75-4f3a-a8a8-4535fc5f0199" class="">
+</p><p id="af752629-6b91-4971-b8aa-616913a53240" class="">결과 확인</p><pre id="6c4abc39-824b-4aa1-9b96-73be63c23ea6" class="code code-wrap"><code>[root@localhost ~]# cd /nfs_share/
+[root@localhost nfs_share]# ls
+client  test</code></pre><p id="49e37b60-daa4-4815-a2c8-4ac5a74c5210" class="">
+</p><p id="0d5caa7a-9f4e-480a-b0a5-5bdd7dccd849" class="">자이제 문제가 생기거나 접속이 끊키면 알아서 언마운트가 된다</p><p id="6595c5d7-5883-4866-803e-5151f48bb400" class="">
+</p><p id="23c33f06-4c9c-46f0-929d-4a5f0cc442c4" class="">
+</p><p id="366f293d-f96c-4f01-82a5-b651dfbad3d8" class="">간접 맵 마운트</p><p id="688e5726-36cb-4583-80a9-f23225ba335e" class="">
+</p><p id="8df8fcde-574b-477c-85ec-ce1d73fff21c" class="">클라이언트 초기화</p><pre id="dffae45f-1d46-48d5-bceb-dc9f8a858d94" class="code code-wrap"><code>[root@localhost nfs_share]# systemctl stop autofs
+[root@localhost nfs_share]# rm -rf /etc/auto.master.d/direct.autofs 
+[root@localhost nfs_share]# umount /nfs_share 
+umount.nfs4: /nfs_share: device is busy
+[root@localhost nfs_share]# umount /nfs_share /
+umount.nfs4: /nfs_share: device is busy
+umount: /: target is busy.
+        (In some cases useful info about processes that use
+         the device is found by lsof(8) or fuser(1))
+[root@localhost nfs_share]# umount /nfs_share/
+umount.nfs4: /nfs_share: device is busy
+[root@localhost nfs_share]# cd ..
+[root@localhost /]# umount /nfs_share/</code></pre><p id="c2fa5590-6861-4c29-8bfe-40b072f1552b" class="">
+</p><p id="0b76ed2f-2c9b-45d3-967f-101fe1d22af3" class="">
+</p><p id="e3deba3b-6c79-4158-8e6b-0b6b96248719" class="">마스터맵 작성</p><p id="3c087d76-50d4-48ea-9665-5dd80b1cacb6" class=""><code>vi /etc/auto.master.d/indirect.autofs</code></p><pre id="13be7d53-6352-4766-b51c-dcabf9af0131" class="code code-wrap"><code>/indirect       /etc/auto.indirect #/indirect 공유파일이 생성될 곳(상대경로)</code></pre><p id="08f07e7c-332a-4ea5-9e6a-7fc128da6ac0" class="">
+</p><p id="d180eb4b-e508-42c0-be27-85c4c46e934b" class="">간접 맵 작성</p><pre id="8a1ff141-6c4e-4ba6-bf03-5e31cda7c15c" class="code code-wrap"><code>vi /etc/auto.indirect
+share   -rw,sync        10.0.2.4:/share # /indirect/share로 공유 파일이 생성된다</code></pre><p id="dcafa721-d7a0-4a1a-95d8-5b54f94b07fb" class="">
+</p><p id="45c71477-1d36-4730-9014-d734dfa3795c" class="">실제 디렉토리 생성</p><pre id="39a83a06-cbec-4df5-a0f3-4df0e2062da9" class="code code-wrap"><code>[root@localhost /]# mkdir /indirect
+[root@localhost /]# mkdir /indirect/share</code></pre><p id="106f50bc-5faa-4348-aaef-a0655fce02b4" class="">
+</p><p id="42d00f8b-f426-482b-8146-ef5b0bd61adc" class="">설정 재적용</p><p id="d6ffade9-a5ec-4610-8b28-cb1b3ef9ebaa" class=""><code>systemctl restart autofs</code></p><p id="8871b186-b229-4e0f-b9df-7cd42521c6f9" class="">
+</p><p id="5775d32d-9ef4-481b-8c17-48a61442ed9e" class="">결과확인</p><pre id="f6d67b6a-b318-4ab0-a7d2-a6fa1b260094" class="code code-wrap"><code>[root@localhost /]# ls /indirect/share
+client  test</code></pre><p id="5b9f0ca9-c9ee-4e4e-8b0c-a63e0462cd11" class="">
+</p></div></article></body></html>

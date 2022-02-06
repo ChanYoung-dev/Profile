@@ -1,0 +1,888 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux ACL, tuned, nice</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="db9d010d-6b01-4bf7-9ff1-de014ab8b28a" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Linux%20ACL,%20tuned,%20nice%20db9d010d6b014bf79ff1de014ab8b28a/kuber.png"/></div><h1 class="page-title">Linux ACL, tuned, nice</h1></header><div class="page-body"><h2 id="9db49dcf-85fc-4bd2-9cb9-f3fe3daabdee" class="">목차</h2><p id="2a401d23-c64b-40db-9251-b6fd6123f5da" class="">접근 제어 리스트(ACL)
+시스템 성능 튜닝(tuned)
+프로세스 우선 순위(nice)
+스토리지 기본</p><h1 id="1fbe1341-99bc-44d6-8e15-eb394afc4999" class="">접근 제어 리스트(ACL)</h1><ul id="106d7330-0d94-4f00-ac04-17341ff1ae6b" class="bulleted-list"><li style="list-style-type:disc">접근 제어를 세밀하게 하기 위해 사용</li></ul><ul id="cdd973ec-1783-4155-aff3-8118ae9a1e5c" class="bulleted-list"><li style="list-style-type:disc">권한을 쓰는 이유 : 리눅스가 멀티유저 환경이므로 각 사용자별로 접근 제어를
+설정해두어야 함(보안적 요소)</li></ul><ul id="7953df48-2a18-4af3-bab4-ce627a387446" class="bulleted-list"><li style="list-style-type:disc"><code>chmod</code>로 소유자나 소유그룹 같은 경우 따로 권한 설정을 할 수 있음</li></ul><ul id="80ab9efa-ee9e-41da-98c3-2188802ecfdb" class="bulleted-list"><li style="list-style-type:disc">ACL을 사용하는 이유 : 소유자나 소유그룹 이외에 특정 사용자/그룹에 대해
+권한을 따로 설정 가능</li></ul><p id="303ebb13-a4d4-44cb-a711-ab80e042b1c5" class="">
+</p><p id="e1d1dd04-3189-41a1-b471-54e4306c7c2e" class="">
+</p><p id="4117fa45-b77f-4834-ad22-4567b43a43b3" class=""><code>ls -l</code></p><pre id="032fecfa-8da9-4cda-8c68-de4e957366b3" class="code code-wrap"><code>[root@chan ~]# ls -l
+total 4
+-rw-------. 1 root root 1328 Jan 10 12:35 anaconda-ks.cfg</code></pre><p id="e84cb055-d906-40f6-ad46-b513b9ba2be1" class="">권한 뒤에 <code>.</code> 으로 표시되어 있으면 ACL이 설정되어 있지 않다는 의미(일반 권한)</p><p id="2fe98964-239c-4838-b82d-b47bc9d3bc2c" class="">권한 뒤에 <code>+</code> 로 표시되어 있으면 ACL이 설정되어 있다는 의미, 소유 그룹 권한이 다르게 표시될 수 있음</p><p id="5d435bfd-88f5-4737-8e24-dec008602005" class="">
+</p><p id="eefa5b74-eb35-4a96-9a63-6403c01f84fc" class="">ACL 권한 확인 명령어</p><p id="fdaae126-aca1-42e1-8664-e072ab880264" class=""><code>getfacl anaconda-ks.cfg</code></p><pre id="0e0c8e12-1f6b-4c62-86ee-48d5a1de8c44" class="code code-wrap"><code>[root@chan ~]# getfacl anaconda-ks.cfg 
+# file: anaconda-ks.cfg
+# owner: root
+# group: root
+user::rw-
+group::---
+other::---</code></pre><p id="dabd50ce-0dcf-4a83-8f0e-7ad4444a22e8" class="">
+</p><h3 id="7da39c96-8a65-4de9-a7bd-06a02ff5d377" class="">파일의 세부권한 확인</h3><p id="1a319ad8-e726-4851-8509-3ac11136aeac" class="">ACL 파일 권한 변경
+<code>setfacl [option] ENTRY:NAME:PERMS file-name</code><div class="indented"><ul id="331c267b-18b1-498e-b410-5e5c5de28d04" class="bulleted-list"><li style="list-style-type:disc">많이 사용하는 옵션<ul id="546337a0-a2cc-4b17-a777-e62ee470e206" class="bulleted-list"><li style="list-style-type:circle">m : 추가 / 수정할 때 사용하는 옵션</li></ul><ul id="2da7dce6-bb12-4d88-b52a-1e9ecbd5b852" class="bulleted-list"><li style="list-style-type:circle">소유자의 권한을 바꾸고 싶을 때 u::&lt;perm&gt; 파일명</li></ul><ul id="71b4d733-8bad-49f3-9c49-282b3d28ffe1" class="bulleted-list"><li style="list-style-type:circle">소유그룹의 권한을 바꾸고 싶을 때 g::&lt;perm&gt; 파일명</li></ul><ul id="b1e141a9-2d01-4739-b2bc-e8bfa4cf8c8e" class="bulleted-list"><li style="list-style-type:circle">특정 사용자의 권한을 설정할 때 u:&lt;user_name&gt;:&lt;perm&gt; 파일명</li></ul><ul id="b86448de-0615-451a-b898-0925ee2519c6" class="bulleted-list"><li style="list-style-type:circle">특정 그룹의 권한을 설정할 때 g:&lt;group_name&gt;:&lt;perm&gt; 파일명</li></ul><ul id="a8a71838-991e-42dd-8eac-2ae9a052eebd" class="bulleted-list"><li style="list-style-type:circle">mask의 권한 m::&lt;perm&gt; 파일명</li></ul></li></ul></div></p><p id="23326b96-d56c-4f74-8088-10d41441373e" class="">
+</p><p id="0aa26420-a922-4900-81b9-42ba56697845" class="">실습 전 선행 작업(유저나 파일이 없을 경우)</p><ul id="86d34ac6-369b-4ccb-aa2c-f7adeb998223" class="bulleted-list"><li style="list-style-type:disc"><code>useradd user1</code></li></ul><ul id="220000fb-988c-4e24-99c9-a051d68afe36" class="bulleted-list"><li style="list-style-type:disc"><code>touch anaconda-ks.cfg</code></li></ul><p id="afda6fac-0112-4687-84ce-43ea2766eaa9" class="">
+</p><p id="1cb33528-9e1f-42c9-b644-cd307ab37365" class="">
+</p><p id="84e6ddae-c59b-4e22-89ba-ff287de3de41" class=""><code>anaconda-ks.cfg</code> 파일에 특정 사용자 ACL 설정</p><ul id="8efaa9b5-de02-4b4e-ae4b-3b32c388b2ff" class="bulleted-list"><li style="list-style-type:disc"><code>setfacl -m u:user1:rwx anaconda-ks.cfg</code></li></ul><p id="7910c6fb-201d-4338-bc90-0c7c6f0a655c" class="">
+</p><p id="6cdb2bde-83f2-4af5-9191-7048b544fb34" class="">설정확인</p><p id="2f1ce3da-da66-4004-b6ab-a26b9d268227" class=""><code>getfacl anaconda-ks.cfg</code></p><pre id="db235567-4f09-4eae-983e-e2c502c2cd7b" class="code code-wrap"><code>[root@chan ~]# getfacl anaconda-ks.cfg 
+# file: anaconda-ks.cfg
+# owner: root
+# group: root
+user::rw-
+user:user1:rwx # 추가
+group::---
+mask::rwx # 추가
+other::---</code></pre><p id="522d5249-8786-4881-aa5c-1352e2dab1c1" class="">
+</p><h2 id="7f556103-63b3-494f-8581-ab953e7f1e63" class="">mask</h2><p id="c16b8635-1096-47e9-9d49-42b1894c45fc" class="">특정 사용자, 소유 그룹, 특정 그룹에 부여할 수 있는 최대 권한을 의미</p><p id="fa017184-9c64-4387-a5ed-0072274d71df" class=""><code>mask</code> 값을 별도로 지정하지 않으면 자동으로 <code>rwx</code> 권한 부여</p><p id="3a18608d-4682-4e2a-88ca-e3c551d941ac" class="">
+</p><p id="558f2a08-5d7e-4cdf-b0bb-d900f050da37" class="">
+</p><p id="fb4294e3-a043-4a46-a365-af371e2ba98f" class=""><code>anaconda-ks.cfg</code> 파일에 특정 그룹 ACL 설정</p><ul id="2c4bdd7a-5000-4657-b0ed-1c6ea95e56a7" class="bulleted-list"><li style="list-style-type:disc"><code>setfacl -m g:user1:r-x anaconda-ks.cfg</code></li></ul><p id="b2af7c39-6066-43ce-9ff9-6dbe03e68061" class="">
+</p><p id="8f6995a0-c754-4afe-801a-ac49b5c8f7c5" class=""><code>getfacl anaconda-ks.cfg</code></p><pre id="121f878a-d027-4897-b53f-1a4cc284adae" class="code code-wrap"><code>root@chan ~]# getfacl anaconda-ks.cfg
+# file: anaconda-ks.cfg
+# owner: root
+# group: root
+user::rw-
+user:user1:rwx
+group::---
+group:user1:r-x # 추가
+mask::rwx
+other::---</code></pre><p id="23b1a8ca-5a3d-4898-b7c6-95eda0539c50" class="">
+</p><p id="865894a4-2754-4bcf-b00e-1915d46153bf" class=""><code>anaconda-ks.cfg</code> 파일에 ACL mask 값 설정</p><ul id="9aefd3fd-4879-4c40-aee9-b2eaf4d06c8a" class="bulleted-list"><li style="list-style-type:disc"><code>setfacl -m m::r-- anaconda-ks.cfg</code></li></ul><ul id="29dc3d10-0ce7-4302-88cb-2f1e18f1952c" class="bulleted-list"><li style="list-style-type:disc"><code>getfacl anaconda-ks.cfg</code><pre id="90baf01d-8446-4c02-8266-0e2ffcbd9e08" class="code code-wrap"><code>[root@chan ~]# getfacl anaconda-ks.cfg
+# file: anaconda-ks.cfg
+# owner: root
+# group: root
+user::rw-
+user:user1:rwx			#effective:r--
+group::---
+group:user1:r-x			#effective:r--
+mask::r--
+other::---</code></pre><p id="2df517f6-9500-4be6-a807-71db3af6d4ee" class=""><code>mask</code> 값을 파일 소유자, 기타 사용자의 권한을 제한하지 않음</p><p id="351386d5-e5b2-4f03-b8b1-6598addb84ca" class=""><code>#effective:r--</code> 는 실제로 부여되는 권한(설정된 권한보다 낮을 때 표시)</p></li></ul><p id="8037fcae-3204-485b-9afa-523f056a5abb" class="">
+</p><p id="98ab3667-d906-4c82-af71-c88096f7720c" class="">
+</p><p id="2c90b875-4a5a-436b-b8cd-dd98825d6ac9" class=""><code>anaconda-ks.cfg</code> 파일에 setuid 설정 후 세부 권한 확인</p><ul id="8312c93d-6f12-4f91-9cfe-f6c17d203af7" class="bulleted-list"><li style="list-style-type:disc"><code>chmod u+s anaconda-ks.cfg</code></li></ul><ul id="502c7e76-dc55-4766-a09b-45eba720610a" class="bulleted-list"><li style="list-style-type:disc"><code>getfacl anaconda-ks.cfg</code><pre id="07dca182-16df-4f41-bfb4-2e0f1f6c676f" class="code code-wrap"><code>[root@chan ~]# getfacl anaconda-ks.cfg 
+# file: anaconda-ks.cfg
+# owner: root
+# group: root
+# flags: s--      # 추가
+user::rw-
+user:user1:rwx			#effective:r--
+group::---
+group:user1:r-x			#effective:r--
+mask::r--
+other::---</code></pre></li></ul><p id="bf739a04-3e78-4853-b0ec-ec77720d8282" class="">
+</p><p id="538cc8b0-d111-43e4-8686-8bd0543dfaa4" class="">
+</p><h2 id="4b5e5a5d-35e6-4195-b873-084be4752070" class="">디렉토리에 ACL 적용</h2><p id="c0fc64a7-0aab-40b3-aa56-932cf3841cd4" class="">실습 전 선행 작업(디렉토리가 없을 경우)</p><p id="89cc199e-97b6-4f7b-b521-d28056f46ff2" class=""><code>mkdir dirA</code></p><p id="18761717-4f99-4231-85cc-45b074d59e81" class="">
+</p><p id="96d3fca0-d579-479e-ab5d-5a70c07945b3" class=""><code>dirA</code> 디렉토리에 ACL 설정</p><p id="442979d7-e5fe-4c24-93a5-3c4cd9c095d0" class=""><code>setfacl -m u:user1:rwx dirA/</code> : user1 사용자에 <code>rwx</code> 권한 부여</p><p id="4daa3873-2ca2-48b0-86c3-f46b66cbfd6c" class=""><code>setfacl -m g:user1:r-- dirA/</code> : user1 그룹에 <code>r--</code> 권한 부여</p><p id="1fe086cb-2788-452f-aabb-1463c779744b" class="">
+</p><p id="02251886-ac60-4b91-a3ba-b67170487148" class=""><code>getfacl dirA/</code> 으로 ACL 확인</p><pre id="b434c661-469e-41bd-9ebf-0836006ddb8f" class="code code-wrap"><code>[root@chan ~]# getfacl dirA/
+# file: dirA/
+# owner: root
+# group: root
+user::rwx
+user:user1:rwx
+group::r-x
+group:user1:r--
+mask::rwx
+other::r-x</code></pre><p id="993eb825-d34e-4fa6-baef-a3ce24af7131" class="">
+</p><h2 id="f84bb07a-bead-4ee9-b8fb-e46278ba24b7" class="">디렉토리 하위에 파일, 디렉토리 생성시 기본으로 적용될 ACL 지정</h2><p id="13116d52-bcb8-4b4b-bf37-561f98958030" class="">소유자의 권한을 지정하고 싶을 때  : <code>d:u:&lt;user_name&gt;:&lt;perm&gt; 디렉토리명</code></p><p id="3268f5ba-65d4-416c-8cc1-b7963c2b6691" class="">소유그룹의 권한을 지정하고 싶을 때 : <code>d:g:&lt;user_name&gt;:&lt;perm&gt; 디렉토리명</code></p><p id="594d8b0b-705c-4db7-8a3e-76eb5c8fc7c0" class="">mask 권한 : <code>d:m:&lt;perm&gt; 디렉토리명</code></p><p id="9a260385-3859-4723-99b0-de788a56d327" class="">
+</p><p id="1d0004e4-5395-44da-a8e0-db8e493891f5" class="">실습 전 선행 작업(유저가 없는 경우)</p><ul id="9b7b5fc3-820d-448f-bdac-33de5e3ba863" class="bulleted-list"><li style="list-style-type:disc"><code>useradd user2</code></li></ul><p id="b203e0e2-b861-4157-8074-159e0adb509e" class="">
+</p><h3 id="b94b1570-06f1-471a-b961-863f45598233" class="">1 . 디렉토리 하위에 파일 생성</h3><p id="701fe820-89fb-4bc4-9dac-cb24ca05648c" class=""><code>dirA</code> 디렉토리에 <code>default ACL</code> 설정</p><p id="9e1ddced-d2a3-43a6-9c34-c82a8e21bf95" class=""><code>setfacl -m d:u:user2:rwx dirA/</code></p><p id="2ddb19b8-b9ad-44fc-83ac-5f8dc7713fea" class=""><code>setfacl -m d:g:user2:r-x dirA/</code></p><p id="af7347b3-ffe8-4b9d-9bd4-405f1864106a" class=""><code>setfacl -m d:m:r-x dirA/</code></p><p id="8640afb7-5d0a-4447-95ae-7d847dfbf548" class=""><code>getfacl diA/</code></p><pre id="46c717f6-77ae-49b0-bdcb-b9704e0df69c" class="code code-wrap"><code>[root@chan ~]# getfacl dirA/
+# file: dirA/
+# owner: root
+# group: root
+user::rwx
+user:user1:rwx
+group::r-x
+group:user1:r--
+mask::rwx
+other::r-x
+default:user::rwx
+default:user:user2:rwx		#effective:r-x
+default:group::r-x
+default:group:user2:r-x
+default:mask::r-x
+default:other::r-x</code></pre><p id="a0838cba-8ba0-4695-90fe-33e1cae7a4cc" class=""><code>touch dirA/fileA</code></p><p id="ed541df3-940a-4c73-94b5-7e7ca63eab3a" class=""><code>getfacl dirA/fileA</code></p><pre id="2d2d2fdd-268c-4cae-98d5-b5647a697ee6" class="code code-wrap"><code>[root@chan ~]# getfacl dirA/fileA
+# file: dirA/fileA
+# owner: root
+# group: root
+user::rw-
+user:user2:rwx			#effective:r--
+group::r-x			#effective:r--
+group:user2:r-x			#effective:r--
+mask::r--
+other::r--</code></pre><ul id="9395068e-ae00-4eb9-8734-6f228f5354d5" class="bulleted-list"><li style="list-style-type:disc">디렉토리 밑에 파일을 만들 때 소유자, 기타 사용자는 default ACL 권한의 영향 X</li></ul><ul id="8b2ec805-d0c6-4697-a792-9a018e7366ae" class="bulleted-list"><li style="list-style-type:disc"><code>umask</code> 영향을 받음</li></ul><ul id="c88c74fb-d2b0-4741-a27d-e509de6c0ca4" class="bulleted-list"><li style="list-style-type:disc">특정 사용자, 소유 그룹, 특정 그룹은 default ACL 적용</li></ul><ul id="91b069b8-c204-40b7-9ba6-bc4041fecd45" class="bulleted-list"><li style="list-style-type:disc"><code>mask</code> 값은 <code>default mask</code> 값에서 실행 권한을 뺀 값이 적용</li></ul><p id="0cec7f13-33e9-49f6-a807-bdff5b179c81" class="">
+</p><h3 id="034c3e26-a3de-45a8-9849-95f15eb08d5d" class="">2 . 디렉토리 하위에 디렉터리 생성</h3><p id="d8440a47-21e9-4da1-ae88-00ee3a513c73" class=""><code>mkdir dirA/dirB</code></p><p id="388b280f-cd0e-4294-8255-0c771c18d356" class=""><code>getfacl dirA/dirB</code></p><pre id="85979bab-f484-4497-ae75-cf3ab5a69e75" class="code code-wrap"><code>[root@chan ~]# getfacl dirA/dirB
+# file: dirA/dirB
+# owner: root
+# group: root
+user::rwx
+user:user2:rwx			#effective:r-x
+group::r-x
+group:user2:r-x
+mask::r-x
+other::r-x
+default:user::rwx
+default:user:user2:rwx		#effective:r-x
+default:group::r-x
+default:group:user2:r-x
+default:mask::r-x
+default:other::r-x</code></pre><p id="92643428-b3ef-4697-aebb-b9be186da3ae" class="">
+</p><p id="6b09c186-d4ac-490c-80c8-745edc58b30d" class="">
+</p><p id="1830398f-9634-4dee-a304-56ae52dcc9cc" class="">
+</p><h3 id="b9847e5f-51d4-420c-ab84-e4cbb49c0767" class="">ACL 제거</h3><p id="bc94b303-9a7e-4240-9851-5331bf976b6e" class=""><code>x</code> 옵션 사용</p><p id="d606269b-aa39-48fe-aad6-c5fe4eaf10c3" class=""><code>setfacl -x u:user2,g:user2 dirA/fileA</code></p><p id="0f5b41b9-ea9a-4b64-89c9-4f83e1834df7" class=""><code>getfacl dirA/fileA</code></p><pre id="11c3c374-0a12-4719-bb20-546ed8b3c87c" class="code code-wrap"><code>[root@chan ~]# getfacl dirA/fileA
+# file: dirA/fileA
+# owner: root
+# group: root
+user::rw-
+user:user2:rwx			#effective:r--
+group::r-x			#effective:r--
+group:user2:r-x			#effective:r--
+mask::r--
+other::r--
+
+[root@chan ~]# setfacl -x u:user2,g:user2 dirA/fileA
+[root@chan ~]# getfacl dirA/fileA
+# file: dirA/fileA
+# owner: root
+# group: root
+user::rw-
+group::r-x
+mask::r-x
+other::r--</code></pre><p id="f8fb5ef2-400e-4411-8f9b-b5832d620796" class="">
+</p><h1 id="35fb176a-e2ad-49ac-8766-32b19c8171aa" class="">시스템 성능 튜닝 : <code>tuned</code></h1><p id="e404418d-1048-438b-956f-10514f5a29e1" class="">튜닝 프로파일을 관리하는 데몬 프로세스</p><p id="5203ea00-6dc8-43a9-9faf-bebdd24c7f46" class="">튜닝 프로파일을 이용하여 정적 및 동적으로 튜닝 조정 가능</p><p id="f7d0a601-7a35-4456-82ef-760cf3ebb683" class="">
+</p><h3 id="4903acf0-f960-4311-9df5-485643b36371" class=""><code>tuned</code> 설치</h3><p id="f3c86a35-7c0f-4bf1-b116-cbf798710987" class=""><code>yum -y install tuned</code> : 튜닝 프로파일 리스트 확인</p><ul id="e7fbc60d-4a12-415a-859d-89f3910506bf" class="bulleted-list"><li style="list-style-type:disc"><code>tuned-adm list</code></li></ul><pre id="3c46db64-e7c7-4dbd-976f-bb1da4773a2c" class="code code-wrap"><code>[root@chan ~]# tuned-adm list
+Available profiles:
+- balanced                    - General non-specialized tuned profile
+- desktop                     - Optimize for the desktop use-case
+- hpc-compute                 - Optimize for HPC compute workloads
+- latency-performance         - Optimize for deterministic performance at the cost of increased power consumption
+- network-latency             - Optimize for deterministic performance at the cost of increased power consumption, focused on low latency network performance
+- network-throughput          - Optimize for streaming network throughput, generally only necessary on older CPUs or 40G+ networks
+- powersave                   - Optimize for low power consumption
+- throughput-performance      - Broadly applicable tuning that provides excellent performance across a variety of common server workloads
+- virtual-guest               - Optimize for running inside a virtual guest
+- virtual-host                - Optimize for running KVM guests
+Current active profile: virtual-guest</code></pre><p id="5599f47b-9872-4d73-a6ee-d1491f03515b" class=""><code>balanced</code> : 절전과 성능 간에 절충이 필요한 시스템 적합
+<code>desktop</code> : <code>balanced</code> 프로파일에서 파생. 대화형 애플리케이션의 빠른 응답 제공
+<code>throughput-performance</code> : 최대 처리량을 얻기 위해 시스템 튜닝
+<code>latency-performance</code> : 전력 소비가 크더라도 대기 시간이 짧아야 하는 서버 시스템
+에 적합
+<code>network-latency</code> : <code>latency-performance</code> 프로파일에서 파생. 낮은 네트워크 대기
+시간을 제공하기 위해 사용
+<code>network-throughput</code> : <code>throughput-performance</code> 프로파일에서 파생. 최대 네트워크
+처리량을 얻기 위해 사용
+<code>powersave</code> : 최대 절전을 위해 시스템을 튜닝
+<code>oracle</code> : oracle 데이터 베이스 부하에 최적화
+<code>virtual-host</code> : 가상 시스템의 호스트로 사용될 경우 최대 성능을 얻기 위해 사용
+<code>virtual-guest</code> : 가상 시스템에서 실행할 경우 최대 성능을 얻기 위해 사용</p><p id="20639dff-7b99-4b09-a7b6-3e04f52423f8" class="">
+</p><h2 id="8ac13684-251e-4b18-a7ac-675d4b507231" class="">tuned-adm</h2><p id="867808e6-2084-493c-bb21-0e36c0c6584b" class="">tuned 데몬의 설정을 관리하는데 사용하는 명령어</p><p id="5415a186-4e7f-4468-af60-d2241bf2718e" class="">현재 활성 튜닝 프로파일을 식별 : <code>tuned-adm active</code></p><pre id="a23633f8-b291-4352-b7f1-c937b00dd881" class="code code-wrap"><code>[root@chan ~]# tuned-adm active
+Current active profile: virtual-guest</code></pre><p id="2bbe25e8-df68-42b3-82a5-160a46993f0f" class="">
+</p><p id="9223fc56-af07-46a1-9c57-e26f5a379a41" class="">현재 활성 튜닝 프로파일을 변경 </p><ul id="dc21d9fa-bba3-44cd-97d7-d098843fd6af" class="bulleted-list"><li style="list-style-type:disc"><code>tuned-adm profile virtual-host</code></li></ul><ul id="63c7be92-03b1-4992-a371-b1344de01803" class="bulleted-list"><li style="list-style-type:disc"><code>tuned-adm profile virtual-guest</code></li></ul><p id="9235334d-40b1-4538-a2d1-fa8590e6f2fb" class="">
+</p><p id="7b47a413-3fe0-48d7-9add-ed0f82f0a368" class="">시스템에 맞는 튜닝 프로파일을 권장 : <code>tuned-adm recommend</code></p><p id="5066b564-bbc0-4359-8726-2d29875bbaa8" class="">tuned 튜닝 활동 해제 : <code>tuned-adm off</code></p><p id="2e547ce7-e67c-4d27-a4c2-93171ea73c8b" class="">tuned 활성화 : <code>tuned-adm profile virtual-guest</code></p><p id="59767977-9b43-43a4-af06-dcb05d7438cf" class="">
+</p><h1 id="66e77b9b-b2d3-4af3-a14d-6ba8f54eb35a" class="">프로세스 스케줄링 조정 : <code>nice</code></h1><p id="0a6265b1-9988-42be-a20c-ed3b9f0ec867" class="">
+</p><ul id="2ec1491c-2851-4c22-820c-ed83ea4ed3a6" class="bulleted-list"><li style="list-style-type:disc">Linux 및 기타 운영 체제는 Time slicing 또는 MultiTasking라는 기술 사용</li></ul><ul id="454202f2-2a2b-4eff-9603-2d378ac89e8b" class="bulleted-list"><li style="list-style-type:disc">보유 처리 장치보다 많은 프로세스 실행</li></ul><ul id="dd7c817b-dd7a-44aa-ba97-774a25fb3118" class="bulleted-list"><li style="list-style-type:disc">운영 체제 프로세스 스케줄러는 단일 코어의 프로세스 간에 빠르게 전환되어 마치 프로세스가 동시에 실행되는 것처럼 보임</li></ul><ul id="d119ed55-42d6-42d8-8008-dd54e544bc81" class="bulleted-list"><li style="list-style-type:disc">상대적인 우선 순위</li></ul><ul id="db20c7cf-fcd2-43c3-9230-3ae4e8fcb0d1" class="bulleted-list"><li style="list-style-type:disc">프로세스마다 중요도가 다름</li></ul><ul id="fc7a0d48-77b9-4a0c-97fd-2134ba99476e" class="bulleted-list"><li style="list-style-type:disc">실행되는 프로세스마다 상대적으로 우선 순위 지정 가능</li></ul><p id="ce1e5a3d-f220-40c9-a0b2-c50ecd88dbf7" class="">
+</p><h2 id="f78538a7-f6bc-4f1e-ad37-9f00ee094efe" class=""><code>nice</code> 수준 및 권한 설정</h2><p id="7fdc323c-6366-42b4-927a-b58891ee70ad" class=""><code>nice</code> 확인 할 때 <code>top</code> 명령어 사용</p><p id="6d09eab4-b260-4af5-affb-acf1e9b6cc7d" class=""><code>nice</code> 값이 낮을 경우 : 우선 순위 up</p><p id="5e64c96d-5851-4177-9ff2-4256f6a1bad7" class=""><code>nice</code> 값이 높을 경우 : 우선 순위 down</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="93fbecd9-ac3f-4146-a544-7b87c8d610f7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">일반 사용자가 <code>nice</code> 수준을 낮게 설정할 경우 동일한 시스템에서 실행되는 다른 프로세스에 영향이 미칠 수 있으므로 root 사용자만 프로세스 nice 수준을 낮게 설정 가능</div></figure><p id="fe2d35b3-9b26-419c-abb7-1b2c6c121e25" class="">일반 사용자의 경우 nice 초기 설정 할 때 0 ~ 19 설정 가능</p><p id="0f7f21b5-08f8-453a-8d51-f05b0e7fc570" class="">root 사용자의 경우 nice 초기 설정 할 때 -20 ~ 19 설정 가능</p><p id="a537e25b-cf8e-471b-94b0-f5d00f6edca3" class="">→ 20 ~ 19 범위 내에서 설정 가능</p><p id="d53b9081-0ae4-43a0-9917-1896b296f7db" class="">
+</p><h3 id="e217147c-0f42-4ace-b01a-cab08c04ff29" class="">nice 값 초기 설정</h3><p id="38913f8e-bafe-4d18-b597-5c35ddad27a6" class=""><code>nice -n 11 sleep 1000 &amp;</code></p><p id="a86a87b8-4377-4330-b8d3-31a64e9d4ff1" class=""><code>ps</code></p><pre id="c9a42336-e0d0-4a65-8d02-5b7864371c7c" class="code code-wrap"><code>top - 19:32:46 up 2 days,  5:02,  2 users,  load average: 0.00, 0.01, 0.05
+Tasks:  94 total,   2 running,  92 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :  1014756 total,   692764 free,   163156 used,   158836 buff/cache
+KiB Swap:   839676 total,   839676 free,        0 used.   712720 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND                  
+11587 root      20   0       0      0      0 S  0.0  0.0   0:00.01 kworker/0:2              
+11588 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kworker/0:0              
+11589 root      31  11  108052    356    280 S  0.0  0.0   0:00.00 sleep                    
+11590 root      20   0  162088   2208   1540 R  0.0  0.2   0:00.68 top</code></pre><p id="f57596ee-e392-4670-8b7e-7f24ca1117c8" class="">
+</p><p id="7bb3920e-48af-4fee-b5e2-ff6ac8969d4c" class="">요약해서 nice 값 확인 : <code>ps -o pid,comm,nice 11589</code></p><pre id="2bcdb8d6-c931-4703-9580-2a90cb4485e0" class="code code-wrap"><code>[root@chan ~]# ps -o pid,comm,nice 11589
+  PID COMMAND          NI
+11589 sleep            11</code></pre><p id="2aa60369-386e-4cd0-845e-f98871ea9dbd" class="">
+</p><p id="6808e37c-3d05-4714-82aa-a3a89581c167" class=""><code>renice</code>  : <code>nice</code> 값을 변경(우선 순위 변경)</p><ul id="aaff05dc-8c01-41e2-a2bd-afa5144d0f6c" class="bulleted-list"><li style="list-style-type:disc"><code>renice -n -1 11589</code><pre id="a9774a33-5af2-48c9-afcd-e5632fdd3f17" class="code code-wrap"><code>[root@chan ~]# renice -n -1 11589
+11589 (process ID) old priority 11, new priority -1</code></pre></li></ul><p id="8c702e1d-0587-40fb-8247-0476bcf3bbe8" class="">
+</p><p id="aa13cb30-93d0-4c88-8b52-01d050b5b341" class="">
+</p><h2 id="96442c8f-ffd1-4591-b6fa-e8d66a362749" class="">PR (PRIORITY)</h2><p id="6af0d745-bffa-4b76-9fa4-cf5785ecbbc1" class=""><code>nice</code> 값을 이용하지 않고, <code>priority</code> 값만을 따지는 프로세스들이 존재</p><p id="c5427c59-a6b8-4caf-adf8-8e3f12a8e3cc" class="">
+</p><h3 id="8aff7cc8-874f-4c7d-8c0c-babb4d905236" class="">리얼 타임 프로세스</h3><p id="e7dce35e-3670-4539-a32d-da159b709e5a" class="">모든 프로세스는 <code>priority</code> 값을 가짐</p><p id="2143205a-e74c-4a21-b70d-fcb8de3e5edb" class="">1 ~ 139 까지 범위 설정 가능</p><p id="3966fbbb-0294-4dc0-9916-8b8d79b07cbc" class="">1이 우선 순위가 제일 높고, 139가 우선 순위가 낮음</p><p id="6a15e476-eca5-405f-b589-8784fbe75dfe" class="">
+</p><p id="2a38b14d-79fa-42a8-aa8d-42d25f90b6d9" class="">음수 값을 갖는 프로세스들은 리얼 타임 프로세스</p><p id="17a512da-0fcc-4462-b47e-e641411d823c" class="">양수 값을 갖는 프로세스들은 일반 프로세스</p><p id="7d19479e-3824-411d-a61b-97f188d182aa" class="">
+</p><p id="ef9e8895-f85e-4602-ab2a-41adfd065baf" class="">일반적인 공식 PR - NI = 20</p><p id="0d7dcbda-dc2d-4cfd-b7f8-a164746b7f5e" class="">
+</p><p id="3a9c9817-b8a8-4796-8edd-0cc18f7a7be0" class="">
+</p><h1 id="6f6a9519-599f-4818-88a0-bab1cbff909b" class="">스토리지</h1><p id="07723664-b143-4ef6-b5c0-8e0b8dad0c55" class="">물리적인 저장장치(디스크)</p><p id="ce4e20f0-2c35-4459-95b3-7ed9da2b4545" class="">컴퓨터 데이터를 저장하는 장치</p><p id="85298342-44ea-4ca1-ad9b-8ee9b8ecf54d" class="">
+</p><p id="f0755ce0-b65a-44ef-83b7-c41dd878a50c" class="">
+</p><h3 id="e76a3f24-2ef2-4eb8-9593-d775a0701a6b" class="">연결 방식</h3><p id="47980023-d055-4505-8fe0-3e809e5ca1ea" class="">DAS(Direct Access Storage)</p><ul id="876c951f-95b0-4c48-8a0c-930d023c5024" class="bulleted-list"><li style="list-style-type:disc">직접 연결하는 방식</li></ul><ul id="6620141d-c5a9-4ec3-8144-3ba42a001cc8" class="bulleted-list"><li style="list-style-type:disc">케이블 통해서 직접 연결</li></ul><p id="e62192a7-ea4a-4e45-ae26-158eac69d27d" class="">NAS(Network Access Storage)</p><ul id="b2e0bb39-8dec-45e9-a5ab-5992560f1f4a" class="bulleted-list"><li style="list-style-type:disc">네트워크로 연결해서 쓰는 스토리지</li></ul><ul id="40bf54ff-42ed-4125-a565-4575ec97fc5e" class="bulleted-list"><li style="list-style-type:disc">서비스를 제공받는 느낌</li></ul><p id="698d508e-9af9-4030-aa9a-2a6ae0829dd7" class="">SAN(Storage Area Network)</p><ul id="0cbfe5e4-74c3-4e3f-9416-3586e620aa94" class="bulleted-list"><li style="list-style-type:disc">네트워크로 연결해서 쓰는 스토리지</li></ul><ul id="31f9691b-beb7-4637-82ec-2649697415c7" class="bulleted-list"><li style="list-style-type:disc">DAS 처럼 직접 연결해서 직접 구축하여 사용</li></ul><p id="b9f8c84b-4db2-4048-85e0-b96562343ad6" class="">파티션</p><ul id="daff6ec7-ee9b-4f54-9f70-d7c7d9caaa33" class="bulleted-list"><li style="list-style-type:disc">하드 드라이브를 여러 개의 스토리지로 나눈 공간</li></ul><p id="7ee681f8-0351-42b8-a8c0-f994facc974f" class="">파티셔닝</p><ul id="ba12eab1-47a5-4f87-acad-28d42f8b231d" class="bulleted-list"><li style="list-style-type:disc">하드 드라이브를 한 개 이상의 파티션으로 나누는 기술</li></ul><ul id="0e12cfa7-8da2-4f6f-abc5-7801deddd199" class="bulleted-list"><li style="list-style-type:disc">효율적으로, 목적에 맞게 사용하기 위함</li></ul><p id="207eeba3-49a8-470f-a692-802e1745ba55" class="">
+</p><p id="049dab64-ae96-4f0f-ba32-c055ceceaf22" class="">사용하고 있는 장치의 목록 : <code>lsblk</code></p><p id="ff74b7f4-db99-44ff-861d-506cb6dca011" class="">
+</p><h2 id="be9341a6-3ddb-4cec-bd2e-4aead8939042" class="">파티셔닝 방법 2가지</h2><p id="4b4742ab-1a16-417f-b574-e0e241badab0" class="">1 . MBR</p><p id="5f10ec79-2d49-4406-acd5-595c253da202" class="">파티셔닝 시 2TB까지만 지원(디스크가 2TB 넘어가면 안 됨)</p><p id="82941833-92ff-4161-b00d-35309a089ce2" class="">최대 주 파티션(primary) 갯수 제한(4개)</p><p id="8be9ec23-40d5-49b7-8fe4-6edc4391eefd" class="">모든 파티션을 합쳐 15개 사용 가능(안정성 보장)</p><p id="52798322-e3af-49dc-841e-df1a94b36f14" class="">최소화로 만드는 것을 권장</p><p id="114793fd-57ab-46f9-8741-e4f7d79ac4ec" class="">주 파티션이 1개 만들어진 상태에서 extended 파티션을 만들 경우 주 파티션은 더 이상 생성 불가</p><p id="91c0e02b-74a1-4681-a54c-aec7b84ad859" class="">
+</p><p id="6085c0e3-6b27-4e8c-aa66-7e5edece05be" class="">2 . GPT</p><p id="f5c5f37d-52a9-45c6-8122-9e3e46433884" class="">물리 디스크가 점차 커지고 있으며 MBR 파티셔닝 체계의 2TB 디스크 및 파티션 갯수 제한의 문제 해결을 위해 등장</p><p id="33048d80-46af-487f-86ff-d6eb03251a58" class="">8ZB 까지 지원</p><p id="14a2bdfd-eb2b-409e-90f7-c00f160b6c14" class="">파티션 갯수를 128개까지 분할 가능</p><p id="720b84c7-0de9-4272-bdd5-fd39560dae2d" class="">부팅 방식</p><p id="e9001ab7-8598-48f5-9eb8-73cf2c931c8f" class="">
+</p><h3 id="1647caa5-55d3-4285-9831-1cf81e14212e" class="">BIOS</h3><p id="3e510423-7d6f-477c-83e1-f06b0d2e1279" class="">펌웨어 인터페이스</p><p id="bf156af2-92b4-4853-99c3-6d2f6042a66d" class="">운영체제와 컴퓨터 펌웨어 간의 통역사 같은 역할 수행</p><p id="74a03a09-9ce4-433c-aadf-2b3bdaf9065e" class="">펌웨어란 하드웨어와 소프트웨어의 특성 모두 갖춘 것</p><p id="558279da-1181-4ddc-93e6-7d2475d5d74f" class="">MBR 방식으로만 사용</p><p id="496e97ed-eede-4b5f-9c79-01688f039c98" class="">운영 체제를 가동시키기 위해 설계된 오래된 유틸리티</p><p id="1dfa3c74-1ec4-44f6-ae1d-ba76d7321ed4" class="">
+</p><h3 id="7c98e307-1bac-4c34-b346-29ad0709daaa" class="">UEFI</h3><p id="c2cb9092-d6af-4d74-8b8f-6068acda67f9" class="">최신 PC용 표준 펌웨어 인터페이스</p><p id="8ee8bc43-9f1d-4815-8756-6b43bbc989e9" class="">PC 기술이 진보함에 따라 온도와 전력 모니터링, 원격 보안 관리, 가상화 등의 프로세서 등 BIOS 지원할 필요가 생김</p><p id="17baa1d3-9d1c-4823-8921-1b797d9666fd" class="">2TB 이상의 고용량 하드디스크 제어에 적합</p><p id="ca842244-8eef-40c6-a3f4-28827069f784" class="">하드웨어를 진단하지 않고 빠른 OS 부팅 가능</p><p id="252ca8cb-9cc8-4315-ae01-5bad6d9bf5be" class="">
+</p><p id="73adca7d-031f-46a2-8e38-4986c17fc3f1" class="">
+</p><h1 id="32cdf328-9e1b-44ff-b8e0-aaecf74b8e65" class="">파티셔닝 도구</h1><p id="60542524-1eec-416a-9e0e-58ab2fbf18b8" class="">fdisk, gdisk, parted</p><blockquote id="e2e153e2-41fe-4bde-843f-7984d5ac7887" class="">MBR, GPT 방식을 섞어서 사용할 수 없음</blockquote><p id="21eee385-3cec-4b91-94bb-4910f4aa70e6" class="">
+</p><h3 id="2513e8ae-859e-4f30-beba-98781b59fe34" class="">fdisk</h3><p id="e783f7ff-ade1-4584-a02c-e9b2e6d4ca92" class="">MBR 방식 전용 파티셔닝 도구</p><p id="695f420b-fdae-4dd5-86e2-c298b70c6b09" class="">파티셔닝 방법</p><p id="6dcef996-b0a5-46c8-ad27-5e1d38439b17" class=""><code>fdisk /dev/sdb</code></p><p id="b93615e2-686c-44a4-ace0-a2dd6f8084c7" class="">
+</p><p id="a20a134f-51f0-4c87-addf-b7f425c81e2c" class="">옵션</p><ul id="668868fd-59a2-420d-960d-b32344586693" class="bulleted-list"><li style="list-style-type:disc">m 옵션 : 도움말</li></ul><ul id="e6486f78-a71c-4454-93e5-26452de2b8ea" class="bulleted-list"><li style="list-style-type:disc">n 옵션 : 파티션 새로 만들기</li></ul><ul id="6dff3c8b-4887-430a-b65b-e1a9ab2dce4a" class="bulleted-list"><li style="list-style-type:disc">p 옵션 : 파티션 테이블 확인</li></ul><ul id="c968d138-af5c-4913-91d5-345e4f246215" class="bulleted-list"><li style="list-style-type:disc">d 옵션 : 파티션 제거</li></ul><ul id="73a926a5-0e64-491c-8a08-df6dc5ea11ae" class="bulleted-list"><li style="list-style-type:disc">w 옵션 : 저장</li></ul><ul id="312beccc-3726-4067-89ce-dbf045c1cea4" class="bulleted-list"><li style="list-style-type:disc">q 옵션 : 종료</li></ul><p id="5d951c26-3882-410e-8fd5-9eb4a1390c56" class="">
+</p><pre id="09392e89-e53c-4ecf-a1cc-4ca37033b00f" class="code code-wrap"><code>Command (m for help): n
+Partition type:
+p   primary (0 primary, 0 extended, 4 free)
+e   extended
+Select (default p): p
+Using default response p
+Partition number (1-4, default 1): 1
+First sector (2048-6291455, default 2048): 2048 # 0~2047 : 부팅에 필요한 섹터
+Using default value 2048
+Last sector, +sectors or +size{K,M,G} (2048-6291455, default 6291455): +500M
+Partition 1 of type Linux and of size 500 MiB is set
+Command (m for help): w</code></pre><p id="ee9b0fb7-cb5c-487e-8662-f3bfde0cfef9" class="">
+</p><p id="c39d5705-1b6e-475c-92ab-a6ec9446e7e9" class="">파티션 적용 명령어</p><p id="9b545164-78e3-451b-8128-945ac5f73004" class=""><code>udevadm settle</code></p><p id="5c630079-e020-42e1-a521-88b775be98c1" class="">
+</p><p id="cd82fde3-b7cc-427b-88b8-cc562541b6b2" class="">파티션 제거</p><pre id="abbcc3d1-aa96-4d25-9dac-3aba4c22b210" class="code code-wrap"><code>
+Command (m for help): d
+Selected partition 1
+Partition 1 is deleted</code></pre><p id="0fff0643-1c48-4458-a929-ae70a9caab59" class="">
+</p><p id="e1fe193e-c56d-47cb-acf5-d9e9aa5048db" class="">파티션 제거 후 반드시 저장(w) 및 적용</p><p id="3b395f63-dd4e-411a-b35a-7a097b57e8f0" class=""><code>udevadm settle</code></p><p id="984694c3-73fe-49ac-a56f-92d813e1b2f9" class="">
+</p><p id="a8bfa20b-136d-4871-9d85-a76d84a9c52e" class="">gdisk</p><p id="8cd51201-2b8b-404e-835a-28d754552101" class=""><code>yum -y install gdisk</code> : gpt 파티셔닝 전용 도구</p><p id="a08e2067-1298-453f-8b64-cb89698f5ebc" class="">
+</p><p id="d4ecebb2-d151-4dc1-9bc9-546f2fb390e8" class="">파티셔닝 방법</p><p id="eb019d29-ea00-484c-9cbe-1a6a603a5148" class=""><code>gdisk /dev/sdb</code></p><figure id="b314d160-c4fc-451d-8c7b-6ceeb24d227b" class="image"><a href="Linux%20ACL,%20tuned,%20nice%20db9d010d6b014bf79ff1de014ab8b28a/mbr_%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%84%82%E1%85%B5%E1%86%BC.png"><img style="width:1855px" src="Linux%20ACL,%20tuned,%20nice%20db9d010d6b014bf79ff1de014ab8b28a/mbr_%E1%84%91%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%A7%E1%84%82%E1%85%B5%E1%86%BC.png"/></a></figure><p id="e7394e02-4cdc-4b56-91bb-a58d5540fcd8" class="">
+</p></div></article></body></html>
