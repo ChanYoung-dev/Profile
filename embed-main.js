@@ -32,6 +32,12 @@ function sendRemoveBtnToParent( msg ) {
     window.parent.postMessage( msg, '*' );
 }
 
+const All_Details = document.querySelectorAll('details');
+
+All_Details.forEach(deet=>{
+    deet.open = false
+})
+
 /*
 // Show External URL in New tab
 const figures = document.querySelectorAll('figure a');
