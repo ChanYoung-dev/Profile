@@ -63,11 +63,11 @@ for f_name in os.listdir('🐍 dfd82f66284b4f8ca44c5f5f3b6e544a'):
             insert_script_to_firstLine('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/' + f_name, script)
         replace_paragraph('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/' + f_name, original_text, input_text)
         
-for f_name in os.listdir('🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/공부 기록 ~ ing d23d460f2e554944bf60448e47f982ef'):
+for f_name in os.listdir('🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/History d23d460f2e554944bf60448e47f982ef'):
     if f_name.endswith('html'):
-        first_line = read_first_line('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/공부 기록 ~ ing d23d460f2e554944bf60448e47f982ef/' + f_name)
+        first_line = read_first_line('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/History d23d460f2e554944bf60448e47f982ef/' + f_name)
         if second_script in first_line:
             print(first_line+"에는 " + second_script + "가 있습니다")
         else:
-            insert_script_to_firstLine('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/공부 기록 ~ ing d23d460f2e554944bf60448e47f982ef/' + f_name, second_script)
-        replace_paragraph('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/공부 기록 ~ ing d23d460f2e554944bf60448e47f982ef/' + f_name, original_text, input_text)
+            insert_script_to_firstLine('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/History d23d460f2e554944bf60448e47f982ef/' + f_name, second_script)
+        replace_paragraph('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/History d23d460f2e554944bf60448e47f982ef/' + f_name, original_text, input_text)

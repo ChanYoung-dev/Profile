@@ -1,0 +1,657 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><script src="../embed-main.js" defer></script> <link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>History</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d23d460f-2e55-4944-bf60-448e47f982ef" class="page sans embed-container"><header><h1 class="page-title">History</h1></header><div class="page-body"><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>이름</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>생성일</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>태그</th></tr></thead><tbody><tr id="bc1c2228-f584-4556-90b9-481d0b15c5ff"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Stark%20and%20Link%201%20-%20Fail%20bc1c2228f584455690b9481d0b15c5ff.html"><img class="icon" src="Stark%20and%20Link%201%20-%20Fail%20fbbbe62141ee46b69525e667c5ebd9e7/python.png"/>Stark and Link 1 - Fail</a></td><td class="cell-ASaD"><time>@2022년 1월 11일 오후 5:35</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Level.2</span><span class="selected-value select-value-color-red">분할정복</span><span class="selected-value select-value-color-green">알고리즘</span></td></tr><tr id="f67a3a28-564c-4310-a8df-61f6864535db"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20Commandlines%20f67a3a28564c4310a8df61f6864535db.html"><img class="icon" src="Linux%20Commandlines%2089811a2b6b034d6382afc470a6dc939b/kuber.png"/>Linux Commandlines</a></td><td class="cell-ASaD"><time>@2022년 1월 11일 오후 5:35</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="4e2bf713-892c-465e-b29a-d1875a1aa172"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Spring%20Bean,%20Container%204e2bf713892c465eb29ad1875a1aa172.html"><img class="icon" src="Spring%20Bean,%20Container%207d6413e7c55449a39eb5cc16c55bd9d1/spring.png"/>Spring Bean, Container</a></td><td class="cell-ASaD"><time>@2022년 1월 11일 오후 5:35</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-gray">스프링</span><span class="selected-value select-value-color-orange">스프링기본</span></td></tr><tr id="eab68ba3-ca69-448b-aadf-aa69cc6e287d"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/centos7%20Install%20eab68ba3ca69448baadfaa69cc6e287d.html"><img class="icon" src="centos7%20Install%20656f6ae2725544558fa3e17254523c56/kuber.png"/>centos7 Install</a></td><td class="cell-ASaD"><time>@2022년 1월 11일 오후 5:36</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="2459dc25-7fa3-4777-8f63-7d0d69ae30cc"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Stark%20and%20link%202%20-%20Success%202459dc257fa347778f637d0d69ae30cc.html"><img class="icon" src="Stark%20and%20link%202%20-%20Success%202e739f5bf6014546b39a899b4652d0ae/python.png"/>Stark and link 2 - Success</a></td><td class="cell-ASaD"><time>@2022년 1월 11일 오후 5:43</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Level.2</span><span class="selected-value select-value-color-red">분할정복</span><span class="selected-value select-value-color-green">알고리즘</span></td></tr><tr id="c3a08647-0c8e-466a-97b2-042816e39672"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Spring%20Singleton%20c3a086470c8e466a97b2042816e39672.html"><img class="icon" src="Spring%20Singleton%20b8223617b8cc430e98a9e4a27ecc7542/spring.png"/>Spring Singleton</a></td><td class="cell-ASaD"><time>@2022년 1월 11일 오후 11:56</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-gray">스프링</span><span class="selected-value select-value-color-orange">스프링기본</span></td></tr><tr id="79f652ff-9ca0-4acf-8d14-6409c508fa3d"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/HTTP%2079f652ff9ca04acf8d146409c508fa3d.html"><img class="icon" src="HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP </a></td><td class="cell-ASaD"><time>@2022년 1월 11일 오후 11:59</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">HTTP</span></td></tr><tr id="655b3b71-26b0-459d-abe1-a7bb2efca582"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/codingtest%20655b3b7126b0459dabe1a7bb2efca582.html"><img class="icon" src="Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>codingtest</a></td><td class="cell-ASaD"><time>@2022년 1월 12일 오전 12:07</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-green">알고리즘</span></td></tr><tr id="7aeb3b7b-cde1-412e-b901-2dde71ff4932"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Kubernetes%207aeb3b7bcde1412eb9012dde71ff4932.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Kubernetes</a></td><td class="cell-ASaD"><time>@2022년 1월 12일 오전 12:08</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-brown">kubernetes</span></td></tr><tr id="f7a032e1-43a4-4e95-852e-7036aa36275d"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20Advanced%20Commandlines%20f7a032e143a44e95852e7036aa36275d.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux Advanced Commandlines</a></td><td class="cell-ASaD"><time>@2022년 1월 12일 오후 6:10</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="9a38ff1d-32b1-460c-853e-8c1cd46f1322"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20Subnetting%209a38ff1d32b1460c853e8c1cd46f1322.html"><img class="icon" src="Linux%20Subnetting%209adeae2571564d01ab5b51cf437d3dc2/kuber.png"/>Linux Subnetting</a></td><td class="cell-ASaD"><time>@2022년 1월 13일 오전 10:24</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span><span class="selected-value select-value-color-orange">Network</span></td></tr><tr id="197ee903-a265-46e3-b6a8-d244a6b880e1"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/N%20and%20M(1)%20197ee903a26546e3b6a8d244a6b880e1.html"><img class="icon" src="Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>N and M(1)</a></td><td class="cell-ASaD"><time>@2022년 1월 13일 오후 7:20</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Level.0</span><span class="selected-value select-value-color-pink">순열/조합</span><span class="selected-value select-value-color-green">알고리즘</span></td></tr><tr id="766c756d-e575-429b-bc60-c67c6d227fe9"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/N%20and%20M(2)%20766c756de575429bbc60c67c6d227fe9.html"><img class="icon" src="Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>N and M(2)</a></td><td class="cell-ASaD"><time>@2022년 1월 13일 오후 7:24</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Level.0</span><span class="selected-value select-value-color-pink">순열/조합</span><span class="selected-value select-value-color-green">알고리즘</span></td></tr><tr id="88a05ae4-fafb-49b3-b394-caf2788415e6"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/N%20and%20M3)%2088a05ae4fafb49b3b394caf2788415e6.html"><img class="icon" src="Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>N and M3)</a></td><td class="cell-ASaD"><time>@2022년 1월 13일 오후 7:27</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Level.0</span><span class="selected-value select-value-color-pink">순열/조합</span><span class="selected-value select-value-color-green">알고리즘</span></td></tr><tr id="c4962923-dcaf-44f8-a82b-88c1c7d1bf1d"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Spring%20Component%20Scan%20c4962923dcaf44f8a82b88c1c7d1bf1d.html"><img class="icon" src="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/spring.png"/>Spring Component Scan</a></td><td class="cell-ASaD"><time>@2022년 1월 13일 오후 10:02</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-gray">스프링</span><span class="selected-value select-value-color-orange">스프링기본</span></td></tr><tr id="b45e7296-2cc0-4e03-9d3c-094c4266986e"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20chmod,%20systemctl,%20unit%20b45e72962cc04e039d3c094c4266986e.html"><img class="icon" src="Linux%20chmod,%20systemctl,%20unit%205616cfd2eaa141fdbb549920d1471aa1/kuber.png"/>Linux chmod, systemctl, unit</a></td><td class="cell-ASaD"><time>@2022년 1월 13일 오후 10:12</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="e22ed145-718d-45ae-adbc-bb02e4da0d9b"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/N%20and%20M(4)%20e22ed145718d45aeadbcbb02e4da0d9b.html"><img class="icon" src="Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>N and M(4)</a></td><td class="cell-ASaD"><time>@2022년 1월 14일 오후 6:07</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-orange">DFS</span><span class="selected-value select-value-color-default">Level.2</span><span class="selected-value select-value-color-green">알고리즘</span></td></tr><tr id="9fbe7ca3-2aa8-41cd-994c-4e1310c02bd4"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/N%20and%20M(7)%209fbe7ca32aa841cd994c4e1310c02bd4.html"><img class="icon" src="N%20and%20M(7)%2022e16451e8a34ce8ad09282a666a5101/python.png"/>N and M(7)</a></td><td class="cell-ASaD"><time>@2022년 1월 14일 오후 6:09</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Level.0</span><span class="selected-value select-value-color-pink">순열/조합</span><span class="selected-value select-value-color-green">알고리즘</span></td></tr><tr id="2e051c9f-579d-4a90-91ef-c84e80d5b370"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/N%20and%20M(8)%202e051c9f579d4a9091efc84e80d5b370.html"><img class="icon" src="N%20and%20M(8)%20be7476be4f8849dca096b67d66e47254/python.png"/>N and M(8)</a></td><td class="cell-ASaD"><time>@2022년 1월 14일 오후 6:09</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Level.0</span><span class="selected-value select-value-color-pink">순열/조합</span><span class="selected-value select-value-color-green">알고리즘</span></td></tr><tr id="cd9eac04-8fb0-4274-aa7f-de7091f65eba"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20log,%20nmcli,%20ssh%20cd9eac048fb04274aa7fde7091f65eba.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux log, nmcli, ssh</a></td><td class="cell-ASaD"><time>@2022년 1월 14일 오후 6:15</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span><span class="selected-value select-value-color-orange">Network</span></td></tr><tr id="b16afb31-d699-4d5f-acf2-15fb61d8e510"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Automatic%20DI%20b16afb31d6994d5facf215fb61d8e510.html"><img class="icon" src="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/spring.png"/>Automatic DI</a></td><td class="cell-ASaD"><time>@2022년 1월 14일 오후 7:59</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-gray">스프링</span><span class="selected-value select-value-color-orange">스프링기본</span></td></tr><tr id="78513cac-3fff-43b8-b5f0-3a719ff67d51"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Spring%20Annotation%20Bean%20LifeCycle%2078513cac3fff43b8b5f03a719ff67d51.html"><img class="icon" src="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/spring.png"/>Spring Annotation/ Bean LifeCycle</a></td><td class="cell-ASaD"><time>@2022년 1월 15일 오후 4:00</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-gray">스프링</span><span class="selected-value select-value-color-orange">스프링기본</span></td></tr><tr id="20359abd-16ad-4afe-aa78-3dcaf87cd8bb"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Sum%20of%20subsequence%2020359abd16ad4afeaa783dcaf87cd8bb.html"><img class="icon" src="Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>Sum of subsequence</a></td><td class="cell-ASaD"><time>@2022년 1월 15일 오후 11:22</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-yellow">백트래킹</span><span class="selected-value select-value-color-green">알고리즘</span></td></tr><tr id="79f9e5a0-2346-4715-82fc-eabde4cc07d7"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Spring%20-%20Bean%20Scope%2079f9e5a02346471582fceabde4cc07d7.html"><img class="icon" src="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/spring.png"/>Spring - Bean Scope</a></td><td class="cell-ASaD"><time>@2022년 1월 16일 오후 2:56</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-gray">스프링</span><span class="selected-value select-value-color-orange">스프링기본</span></td></tr><tr id="0f6cc064-5f1c-49cc-9e91-91770a8b513a"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20mount,%20fs,%20package,%20cron,%20sftp%200f6cc0645f1c49cc9e9191770a8b513a.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux mount, fs, package, cron, sftp</a></td><td class="cell-ASaD"><time>@2022년 1월 17일 오후 9:48</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="acc78095-9a78-4506-b2f7-85be161bf12e"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20ACL,%20tuned,%20nice%20acc780959a784506b2f785be161bf12e.html"><img class="icon" src="Linux%20ACL,%20tuned,%20nice%20db9d010d6b014bf79ff1de014ab8b28a/kuber.png"/>Linux ACL, tuned, nice</a></td><td class="cell-ASaD"><time>@2022년 1월 18일 오후 10:30</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="79d9cea5-ea79-4671-85e1-0854b20e1e2f"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%8B%E1%85%B3%E1%86%B7%2079d9cea5ea79467185e10854b20e1e2f.html">제목 없음</a></td><td class="cell-ASaD"><time>@2022년 1월 19일 오후 6:14</time></td><td class="cell-EhVw"></td></tr><tr id="eb82900c-a424-459d-8800-8dc55c111f4c"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20Storage%20eb82900ca424459d88008dc55c111f4c.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux Storage</a></td><td class="cell-ASaD"><time>@2022년 1월 19일 오후 6:14</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="4a2a4919-0591-4661-8942-c16532fcc6c5"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20Firewall,%20Booting%204a2a4919059146618942c16532fcc6c5.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux Firewall, Booting</a></td><td class="cell-ASaD"><time>@2022년 1월 20일 오후 11:29</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="7d59398b-d133-4315-8aa2-6826808724e5"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/SELinux%207d59398bd13343158aa26826808724e5.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>SELinux</a></td><td class="cell-ASaD"><time>@2022년 1월 21일 오후 6:51</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="90025117-122c-44ab-9e38-43b634168594"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/notion%20%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8C%E1%85%B5%E1%84%85%E1%85%B3%E1%86%AF%20%E1%84%80%E1%85%A2%E1%84%8B%E1%85%B5%E1%86%AB%20%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%A6%20%E1%84%83%E1%85%B3%E1%86%BC%E1%84%85%E1%85%A9%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%2090025117122c44ab9e3843b634168594.html"><span class="icon">💡</span>notion 페이지를 개인 웹에 등록하기</a></td><td class="cell-ASaD"><time>@2022년 1월 23일 오후 2:31</time></td><td class="cell-EhVw"></td></tr><tr id="38c45998-fcbb-4bd8-a3bf-4a42185c77fb"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Put%20notion%20on%20website%20by%20using%20HTML,python%2038c45998fcbb4bd8a3bf4a42185c77fb.html"><img class="icon" src="Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/spring.png"/>Put notion on website by using HTML,python</a></td><td class="cell-ASaD"><time>@2022년 1월 23일 오후 2:53</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-brown">javascript</span><span class="selected-value select-value-color-brown">python</span></td></tr><tr id="a7242337-0ec6-49c8-b2d7-fde21219e2df"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Kubernetes%20job%20a72423370ec649c8b2d7fde21219e2df.html">Kubernetes job</a></td><td class="cell-ASaD"><time>@2022년 1월 23일 오후 3:23</time></td><td class="cell-EhVw"></td></tr><tr id="25a1126d-f0d9-4b00-a066-d9b0a852c065"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20WebSever%20Security%2025a1126df0d94b00a066d9b0a852c065.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux WebSever Security</a></td><td class="cell-ASaD"><time>@2022년 1월 26일 오후 5:02</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="ddde065e-922f-4732-a012-cc8ee77db004"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20SSL%20HTTPS%20ddde065e922f4732a012cc8ee77db004.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux SSL HTTPS</a></td><td class="cell-ASaD"><time>@2022년 1월 27일 오전 10:07</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="ef632cb3-31c5-4c6d-b3d4-192efa2102d8"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20NFS%20ef632cb331c54c6db3d4192efa2102d8.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux NFS</a></td><td class="cell-ASaD"><time>@2022년 1월 27일 오전 11:39</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="803e4027-d046-49a6-a376-5ca258c58a8f"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20SAMBA-1%20803e4027d04649a6a3765ca258c58a8f.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux SAMBA-1</a></td><td class="cell-ASaD"><time>@2022년 1월 27일 오후 2:17</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="5a6361c7-e0b7-4c99-8ca4-fa9c72793789"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20SAMBA-2%205a6361c7e0b74c998ca4fa9c72793789.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux SAMBA-2</a></td><td class="cell-ASaD"><time>@2022년 1월 27일 오후 3:32</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="f426a41a-8764-4c6e-ad58-97d1caa92735"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/HTTP%20IP%20TCP%20f426a41a87644c6ead5897d1caa92735.html"><img class="icon" src="HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP IP/TCP</a></td><td class="cell-ASaD"><time>@2022년 1월 27일 오후 5:09</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-gray">스프링</span></td></tr><tr id="0c271c79-f8b1-4c72-89da-63c554ce7dba"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Flow%20of%20Web%200c271c79f8b14c7289da63c554ce7dba.html"><img class="icon" src="HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>Flow of Web</a></td><td class="cell-ASaD"><time>@2022년 1월 27일 오후 5:12</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">HTTP</span></td></tr><tr id="bf3c299b-82b6-467c-90d1-bfd3230d77e2"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/HTTP%20BASIC%20bf3c299b82b6467c90d1bfd3230d77e2.html"><img class="icon" src="HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP BASIC</a></td><td class="cell-ASaD"><time>@2022년 1월 27일 오후 5:41</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">HTTP</span></td></tr><tr id="a2b523e5-e57d-4cd3-9080-3152af9c458f"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/HTTP%20Message%20a2b523e5e57d4cd390803152af9c458f.html"><img class="icon" src="HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP Message</a></td><td class="cell-ASaD"><time>@2022년 1월 27일 오후 7:27</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">HTTP</span></td></tr><tr id="64c53cd6-b645-46d8-8f1a-b155919be052"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/HTTP%20Method%2064c53cd6b64546d88f1ab155919be052.html"><img class="icon" src="HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP Method</a></td><td class="cell-ASaD"><time>@2022년 1월 27일 오후 10:26</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">HTTP</span></td></tr><tr id="caeecac2-ce57-4d17-bfc3-49ec9be4b874"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Linux%20Proxy%20caeecac2ce574d17bfc349ec9be4b874.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Linux Proxy</a></td><td class="cell-ASaD"><time>@2022년 1월 28일 오전 10:20</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">Linux</span></td></tr><tr id="214d5ec7-9257-4bc5-bd41-0849e5093728"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Install%20Wordpress%20in%20Ubuntu%20214d5ec792574bc5bd410849e5093728.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Install Wordpress in Ubuntu</a></td><td class="cell-ASaD"><time>@2022년 1월 28일 오후 2:32</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-brown">kubernetes</span></td></tr><tr id="5f5cd725-927c-4c56-b801-bf0a59800ab4"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/Web%20encryption%205f5cd725927c4c56b801bf0a59800ab4.html"><img class="icon" src="Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750/kuber.png"/>Web encryption</a></td><td class="cell-ASaD"><time>@2022년 1월 28일 오후 4:04</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-brown">kubernetes</span></td></tr><tr id="9d4e137b-8d78-4d79-98f1-5c9f6e2823da"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/HTTP%20API%20Design%209d4e137b8d784d7998f15c9f6e2823da.html"><img class="icon" src="HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP API Design</a></td><td class="cell-ASaD"><time>@2022년 1월 29일 오후 8:50</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">HTTP</span></td></tr><tr id="c7d39596-b498-4ed4-94de-72143a9ab7bd"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/HTTP%20STATUS%20c7d39596b4984ed494de72143a9ab7bd.html"><img class="icon" src="HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP STATUS</a></td><td class="cell-ASaD"><time>@2022년 1월 30일 오후 2:59</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">HTTP</span></td></tr><tr id="a5d07882-169e-4f6d-9895-9c66682c9234"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/HTTP%20HEADER%20a5d07882169e4f6d98959c66682c9234.html"><img class="icon" src="HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP HEADER</a></td><td class="cell-ASaD"><time>@2022년 1월 31일 오후 12:48</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">HTTP</span></td></tr><tr id="99edb66a-5825-4ff6-88b2-36ecec12edd0"><td class="cell-title"><a href="History%20d23d460f2e554944bf60448e47f982ef/HTTP%20CASH%2099edb66a58254ff688b236ecec12edd0.html"><img class="icon" src="HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP CASH</a></td><td class="cell-ASaD"><time>@2022년 1월 31일 오후 3:05</time></td><td class="cell-EhVw"><span class="selected-value select-value-color-default">HTTP</span></td></tr></tbody></table></div></article></body></html>
