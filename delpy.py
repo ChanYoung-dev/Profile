@@ -4,6 +4,8 @@ import re
 
 index_num = 12  
 
+target_file = './🏖 dfd82f66284b4f8ca44c5f5f3b6e544a/'
+
 original_text = """
 a,
 a.visited {
@@ -54,15 +56,16 @@ def read_first_line(file_name):
             first_line = html_file.readline()
             return first_line
 
-for f_name in os.listdir('🐍 dfd82f66284b4f8ca44c5f5f3b6e544a'):
+for f_name in os.listdir(target_file):
     if f_name.endswith('html'):
-        first_line = read_first_line('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/' + f_name)
+        first_line = read_first_line(target_file + f_name)
         if script in first_line:
             print(first_line+"에는 " + script + "가 있습니다")
         else:
-            insert_script_to_firstLine('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/' + f_name, script)
-        replace_paragraph('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/' + f_name, original_text, input_text)
+            insert_script_to_firstLine(target_file + f_name, script)
+        replace_paragraph(target_file + f_name, original_text, input_text)
         
+'''        
 for f_name in os.listdir('🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/History d23d460f2e554944bf60448e47f982ef'):
     if f_name.endswith('html'):
         first_line = read_first_line('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/History d23d460f2e554944bf60448e47f982ef/' + f_name)
@@ -71,3 +74,4 @@ for f_name in os.listdir('🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/History d23d460f
         else:
             insert_script_to_firstLine('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/History d23d460f2e554944bf60448e47f982ef/' + f_name, second_script)
         replace_paragraph('./🐍 dfd82f66284b4f8ca44c5f5f3b6e544a/History d23d460f2e554944bf60448e47f982ef/' + f_name, original_text, input_text)
+'''

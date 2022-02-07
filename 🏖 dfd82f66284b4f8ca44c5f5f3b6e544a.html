@@ -1,0 +1,674 @@
+<html><head><script src="embed-main.js" defer></script> <link rel="stylesheet" href="notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>🏖</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5a0ad3c0-8c46-4c5c-bf3e-029ba84ce9de" class="page sans embed-container"><header><h1 class="page-title">🏖</h1></header><div class="page-body"><div id="a1766af9-bfb7-4046-aab4-57e3f2003191" class="column-list"><div id="c41581a0-1dfa-4abd-9934-f670db92affc" style="width:37.5%" class="column"><p id="a8ac7dd1-004d-4315-81ef-7ecdd4a4f062" class="">
+</p><figure id="dfd82f66-284b-4f8c-a44c-5f5f3b6e544a" class="image"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/IMG_5865.jpg"><img style="width:240px" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/IMG_5865.jpg"/></a></figure></div><div id="c0439f31-f289-475a-b6df-1a7a7462eee2" style="width:62.5%" class="column"><p id="842dc08a-65af-4156-adc5-6284956680f6" class="">
+</p><p id="b4743e60-e9ad-49f5-80b4-a6462ea54ca9" class=""><strong>이름 I</strong> 김찬영</p><p id="94717ef8-6d41-4aff-bee0-2eff58dc50be" class=""><strong>생년월일 I</strong> 1993/12/07</p><p id="0815c944-9d56-4148-b932-4912f8f915f6" class=""><strong>주소 I</strong> (16635) 경기 수원시 권선구 삼천병마로1598번길</p><p id="66f8c7d8-f899-480e-954f-e7875f86dcf8" class=""><strong>학력사항</strong> <strong>I</strong>  성결대학교(4년) 졸업</p><hr id="e1949f42-721c-44b5-8642-7f909af9b92d"/><p id="f1ab4b5a-fe36-47ea-a3f6-c7a7bc6bb4f2" class="">📞 <strong>Phone</strong>  <mark class="highlight-brown_background">010-9192-1372</mark></p><p id="868c45ce-1393-4587-9129-7527000486c4" class=""><strong>💌 Email</strong> <mark class="highlight-brown_background">emrhssla@gmail.com</mark></p><p id="d1000340-3ad8-4836-8de6-a475ccc1b92d" class=""><strong>🌐 Blog</strong> <a href="http://devlogss.ga"><mark class="highlight-brown_background">devlogss.ga</mark></a></p><p id="69053bbf-9927-4b77-be09-8e52eaba7f47" class="">🏇 포트폴리오 <mark class="highlight-brown_background"><a href="http://devlogss.ga/Profile">devlogss.ga/Profile</a></mark></p><p id="0e66fc01-1aab-4421-9b5b-dffbbcffae8b" class="">🦾 <strong>Git </strong><mark class="highlight-gray_background"><a href="https://github.com/ChanYoung-dev">https://github.com/ChanYoung-dev</a></mark></p></div></div><hr id="72c5d414-ca58-4920-b53d-28985f9d857a"/><h1 id="b353b0a9-17eb-4ea7-af0f-3feb5f963fe9" class="">📜  Total Skill</h1><p id="21c02794-92e4-4753-b52e-0154d7fb2492" class=""><code>#network</code> <code>#OS</code> <code>#Linux</code> <code>#Spring</code> <code>#HTTP</code> <code>#Algorithm</code> <code>#git</code> <code>#Python</code> <code>#JAVA</code> <code>#Javascript</code> <code>#C</code> <code>#HTML</code> <code>#CSS</code> <code>#python</code> <code>#Raspyberry pi</code></p><div id="a6d690a8-0b5a-4122-8247-6693712e993f" class="column-list"><div id="3de5ccad-08a5-4639-8a86-4a9715413935" style="width:50%" class="column"><h1 id="decd75fa-60d4-45d5-b2e2-ac5ac9f14487" class="">📚 학력</h1><h3 id="43e84600-262b-4603-87ce-52f8d44037cb" class="">성결대학교</h3><p id="3c36db8f-4f93-478a-95f1-b3c5f84349a0" class="">📟 정보통신공학과</p><p id="91c7ac93-4459-4bb1-91c9-a00458802a28" class="">💯 3.17 / 4.5</p><p id="4326f9fd-ce72-4f3f-acf4-7faeae1d33cf" class="">📆 2013.03 ~ 2020.02</p></div><div id="6e5aa91f-458d-4654-a79d-daede6e2f42f" style="width:50%" class="column"><h1 id="09d91f23-fa4f-40bf-a93f-96d88c47d8c7" class="">🗣 어학</h1><h3 id="968696e5-ae21-4222-8376-30f3b876d073" class=""><strong>TOEIC</strong></h3><p id="2aa85c84-e271-402a-b939-fb730bc25052" class="">💯 760점</p><p id="6510bda7-9ea0-4844-b7f8-6a2458d6cfe8" class="">📆 2020.07.12 취득</p><p id="86379a90-a1f1-441b-83c8-cdae5e09d459" class=""> </p></div></div><h1 id="0912bc1a-d61a-48ac-8d0e-dd1bb580e9b6" class="">🏅수상/자격증</h1><div id="65bb9924-8873-4c2b-871a-16988a9ecdc4" class="collection-content"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>자격/수상명</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>발행처/기관</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>취득일/수상일</th></tr></thead><tbody><tr id="1c5ba77c-5eeb-4f7c-a3f4-70b248c7d63b"><td class="cell-title"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2065bb992488734c2b871a16988a9ecdc4/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5%E1%84%80%E1%85%B5%E1%84%89%E1%85%A1%201c5ba77c5eeb4f7ca3f470b248c7d63b.html"><span class="icon">📰</span>정보처리기사</a></td><td class="cell-?CJ;">한국산업인력공단</td><td class="cell-MZ[Y"><time>@2019년 8월 16일</time></td></tr><tr id="29b6641d-88a9-44bc-ac05-3f6dacd23abb"><td class="cell-title"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2065bb992488734c2b871a16988a9ecdc4/1%E1%84%8C%E1%85%A9%E1%86%BC%E1%84%87%E1%85%A9%E1%84%90%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AE%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%86%E1%85%A7%E1%86%AB%E1%84%92%E1%85%A5%2029b6641d88a944bcac053f6dacd23abb.html"><span class="icon">🚘</span>1종보통운전면허</a></td><td class="cell-?CJ;">경찰청(운전면허시험관리단)</td><td class="cell-MZ[Y"><time>@2014년 10월 5일</time></td></tr><tr id="2c517397-75cc-414c-adbe-ae20a592f78e"><td class="cell-title"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2065bb992488734c2b871a16988a9ecdc4/%E1%84%92%E1%85%A1%E1%86%AB%E1%84%80%E1%85%AE%E1%86%A8%E1%84%89%E1%85%A1%E1%84%82%E1%85%B3%E1%86%BC%E1%84%85%E1%85%A7%E1%86%A8%E1%84%80%E1%85%A5%E1%86%B7%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%B5%E1%84%92%E1%85%A5%E1%86%B7%201%E1%84%80%E1%85%B3%E1%86%B8%202c51739775cc414cadbeae20a592f78e.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2065bb992488734c2b871a16988a9ecdc4/%E1%84%92%E1%85%A1%E1%86%AB%E1%84%80%E1%85%AE%E1%86%A8%E1%84%89%E1%85%A1%E1%84%82%E1%85%B3%E1%86%BC%E1%84%85%E1%85%A7%E1%86%A8%E1%84%80%E1%85%A5%E1%86%B7%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%B5%E1%84%92%E1%85%A5%E1%86%B7%201%E1%84%80%E1%85%B3%E1%86%B8%202c51739775cc414cadbeae20a592f78e/%E1%84%90%E1%85%A2%E1%84%80%E1%85%B3%E1%86%A8%E1%84%86%E1%85%A1%E1%84%8F%E1%85%B3.png"/>한국사능력검정시험 1급</a></td><td class="cell-?CJ;">국사편찬위원회</td><td class="cell-MZ[Y"><time>@2019년 8월 23일</time></td></tr><tr id="487c3a45-751b-4896-9560-4c923c7a3ae2"><td class="cell-title"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2065bb992488734c2b871a16988a9ecdc4/MOS%20Outlook@%202010%20487c3a45751b489695604c923c7a3ae2.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2065bb992488734c2b871a16988a9ecdc4/MOS%20Outlook@%202010%20487c3a45751b489695604c923c7a3ae2/outlook.png"/>MOS Outlook@ 2010</a></td><td class="cell-?CJ;">Microsoft</td><td class="cell-MZ[Y"><time>@2018년 12월 18일</time></td></tr><tr id="856736bc-efaf-4857-b563-b069836e3411"><td class="cell-title"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2065bb992488734c2b871a16988a9ecdc4/MOS%20Word%202010%20Expert%20856736bcefaf4857b563b069836e3411.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2065bb992488734c2b871a16988a9ecdc4/MOS%20Word%202010%20Expert%20856736bcefaf4857b563b069836e3411/word.png"/>MOS Word 2010 Expert</a></td><td class="cell-?CJ;">Microsoft</td><td class="cell-MZ[Y"><time>@2018년 10월 30일</time></td></tr><tr id="d7cbeb79-85b3-4c81-8765-6797913a2068"><td class="cell-title"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2065bb992488734c2b871a16988a9ecdc4/%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%B3%E1%86%B7%20ICT%20%E1%84%80%E1%85%A9%E1%86%BC%E1%84%86%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A1%E1%86%BC%20d7cbeb7985b34c8187656797913a2068.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/%E1%84%8C%E1%85%A6%E1%84%86%E1%85%A9%E1%86%A8%20%E1%84%8B%E1%85%A5%E1%86%B9%E1%84%82%E1%85%B3%E1%86%AB%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%2065bb992488734c2b871a16988a9ecdc4/%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%B3%E1%86%B7%20ICT%20%E1%84%80%E1%85%A9%E1%86%BC%E1%84%86%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%20%E1%84%8B%E1%85%B5%E1%86%B8%E1%84%89%E1%85%A1%E1%86%BC%20d7cbeb7985b34c8187656797913a2068/hanium2.jpeg"/>한이음 ICT 공모전 입상</a></td><td class="cell-?CJ;">한국정보산업연합회</td><td class="cell-MZ[Y"><time>@2019년 12월 5일</time></td></tr></tbody></table></div><h1 id="145aee13-1bcf-4f3f-bfd5-fb9793f3f852" class="">🛠 Skills</h1><h2 id="9c56b91b-3e56-4be1-94c6-e6f6c85a4ece" class="">🌱 Spring </h2><div id="42bc5ece-0c56-4533-9232-f52e136a6325" class="column-list"><div id="6d1b4bf4-82e0-412d-b1ce-098c67455195" style="width:56.25%" class="column"><p id="c124d647-3072-46ce-945c-5a3297ca01db" class="">김영한 강사님의 <a href="https://www.inflearn.com/roadmaps/373">스프링 로드맵</a>을 통해 MVC, REST API, Spring Boot 등을
+익혔습니다. 비록 프로젝트를 실습하진 않았지만, 스프링의 실무 스킬들과 중요한 개념에 대해 많은 것을 배울 수 있었습니다.</p></div><div id="3a39466b-667b-495e-8999-69cac7b78ff1" style="width:43.75%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="440495da-5f1e-4313-b338-4c3bca10597b"><div style="font-size:1.5em"><span class="icon">🏇🏼</span></div><div style="width:100%">공부 기록<ul id="8646b4c7-e2be-47fc-acdd-a186b6e1c9ba" class="toggle"><li><details open=""><summary>스프링 핵심 원리 - Log</summary><div><figure id="1b342aca-2f6c-4973-bca3-e0cb12343475" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/spring.png"/>Spring - Bean Scope</a></figure><figure id="07ed613f-0da3-48c8-84b2-2150451d6aba" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Spring%20Annotation%20Bean%20LifeCycle%2007ed613f0da348c884b22150451d6aba.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/spring.png"/>Spring Annotation/ Bean LifeCycle</a></figure><figure id="e4708973-864b-4f3a-8da4-c6d2c18a4ce5" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Automatic%20DI%20e4708973864b4f3a8da4c6d2c18a4ce5.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Spring%20-%20Bean%20Scope%201b342aca2f6c4973bca3e0cb12343475/spring.png"/>Automatic DI</a></figure><p id="b0d19554-e9e2-44b2-bbb9-55c1ed95862f" class="">
+</p></div></details></li></ul><ul id="08e26a00-91b3-457e-88c6-ca5158fc9d49" class="toggle"><li><details open=""><summary>HTTP - Log</summary><div><figure id="68db4c5d-05eb-4502-ad2c-867d89c7d340" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP CASH</a></figure><figure id="0143cfbe-b6c9-4814-94ee-f9443586035a" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20HEADER%200143cfbeb6c9481494eef9443586035a.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP HEADER</a></figure><figure id="3defde7d-ec76-4f51-8059-ea42d9828ff7" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20STATUS%203defde7dec764f518059ea42d9828ff7.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP STATUS</a></figure><figure id="8385bf65-95b3-4d8c-8a3a-0e4f138e4a67" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20API%20Design%208385bf6595b34d8c8a3a0e4f138e4a67.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP API Design</a></figure><figure id="52960502-878b-48a0-88a5-3ce555b7ee02" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20Method%2052960502878b48a088a53ce555b7ee02.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP Method</a></figure><figure id="39c87d3d-643f-436d-9aff-f8b76826a6f0" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20Message%2039c87d3d643f436d9afff8b76826a6f0.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP Message</a></figure><figure id="adb7529f-e011-4dad-b28a-f36fee081120" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20BASIC%20adb7529fe0114dadb28af36fee081120.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>HTTP BASIC</a></figure><figure id="f75553df-9bc2-494d-89a4-70a24e917752" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Flow%20of%20Web%20f75553df9bc2494d89a470a24e917752.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/HTTP%20CASH%2068db4c5d05eb4502ad2c867d89c7d340/http.png"/>Flow of Web</a></figure><figure id="5e0ae862-5fa4-497f-9dd0-74c97b27ba34" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Web encryption</a></figure><p id="eb85bd93-3f75-410e-b92b-b9ef0a9db172" class="">
+</p></div></details></li></ul><ul id="a65ef921-3432-4d7f-8950-04ad3096241c" class="toggle"><li><details open=""><summary>스프링 MVC 기본 - Log</summary></details></li></ul><ul id="12200946-8a72-4f42-be33-9dc810193f1e" class="toggle"><li><details open=""><summary>스프링 MVC 응용(예정)</summary></details></li></ul></div></figure></div></div><hr id="010487ce-e1d2-4c9e-81bf-c13972390dcb"/><div id="9b2555e3-7c1d-4547-908e-6d484d1120df" class="column-list"><div id="93811544-bbeb-460d-8492-9fa81585d4fe" style="width:50%" class="column"><h2 id="4b829afa-d827-446b-a65c-2226eddd05de" class="">⚙️ Linux </h2><p id="8fda9f7b-a960-4c5e-b621-32b474eb312a" class="">리눅스로 Stoarge 관리, 서버구축, 시스템관리, 보안(SSL, 방화벽, 권한) 설정 등을 할 수 있습니다</p><ul id="8dd3d44c-bfeb-4205-bdd5-0224e81274b1" class="block-color-orange_background toggle"><li><details open=""><summary>Linux - Log</summary><div><figure id="dc5833c5-0c54-44d7-bf6d-542d341c4750" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20Proxy%20dc5833c50c5444d7bf6d542d341c4750.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux Proxy</a></figure><figure id="86ed8305-b163-4300-879f-52143bb3a7f4" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20SAMBA-2%2086ed8305b1634300879f52143bb3a7f4.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux SAMBA-2</a></figure><figure id="9b7fe1ee-3390-4ee9-be2f-d221073fd467" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20SAMBA-1%209b7fe1ee33904ee9be2fd221073fd467.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux SAMBA-1</a></figure><figure id="c8bd38b7-81ec-4ce8-a38a-a8172b621870" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20NFS%20c8bd38b781ec4ce8a38aa8172b621870.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux NFS</a></figure><figure id="1f440ed5-ca25-4972-9758-a7b72378dac3" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20SSL%20HTTPS%201f440ed5ca2549729758a7b72378dac3.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux SSL HTTPS</a></figure><figure id="fb4e8a0f-c68d-421b-a4e0-1d1106cb8161" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20WebSever%20Security%20fb4e8a0fc68d421ba4e01d1106cb8161.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux WebSever Security</a></figure><figure id="0e277a56-0869-4fea-bbd1-9cbbf27f47c4" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/SELinux%200e277a5608694feabbd19cbbf27f47c4.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>SELinux</a></figure><figure id="c2c94dae-85c8-4435-9a08-52ba438107d8" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20Firewall,%20Booting%20c2c94dae85c844359a0852ba438107d8.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux Firewall, Booting</a></figure><figure id="2576b715-8538-4b80-b645-796dd147727c" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20Storage%202576b71585384b80b645796dd147727c.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux Storage</a></figure><figure id="db9d010d-6b01-4bf7-9ff1-de014ab8b28a" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20ACL,%20tuned,%20nice%20db9d010d6b014bf79ff1de014ab8b28a.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20ACL,%20tuned,%20nice%20db9d010d6b014bf79ff1de014ab8b28a/kuber.png"/>Linux ACL, tuned, nice</a></figure><figure id="d5727569-5ebe-430a-ab63-7c1b4e783b88" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20mount,%20fs,%20package,%20cron,%20sftp%20d57275695ebe430aab637c1b4e783b88.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux mount, fs, package, cron, sftp</a></figure><figure id="c2d7906b-2be1-413c-9c09-530b26dfb92d" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20log,%20nmcli,%20ssh%20c2d7906b2be1413c9c09530b26dfb92d.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux log, nmcli, ssh</a></figure><figure id="5616cfd2-eaa1-41fd-bb54-9920d1471aa1" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20chmod,%20systemctl,%20unit%205616cfd2eaa141fdbb549920d1471aa1.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20chmod,%20systemctl,%20unit%205616cfd2eaa141fdbb549920d1471aa1/kuber.png"/>Linux chmod, systemctl, unit</a></figure><figure id="9adeae25-7156-4d01-ab5b-51cf437d3dc2" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20Subnetting%209adeae2571564d01ab5b51cf437d3dc2.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20Subnetting%209adeae2571564d01ab5b51cf437d3dc2/kuber.png"/>Linux Subnetting</a></figure><figure id="cded0aff-a60b-422a-afa0-547631700bb8" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20Advanced%20Commandlines%20cded0affa60b422aafa0547631700bb8.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux Advanced Commandlines</a></figure><figure id="656f6ae2-7255-4455-8fa3-e17254523c56" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/centos7%20Install%20656f6ae2725544558fa3e17254523c56.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/centos7%20Install%20656f6ae2725544558fa3e17254523c56/kuber.png"/>centos7 Install</a></figure><figure id="89811a2b-6b03-4d63-82af-c470a6dc939b" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20Commandlines%2089811a2b6b034d6382afc470a6dc939b.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20Commandlines%2089811a2b6b034d6382afc470a6dc939b/kuber.png"/>Linux Commandlines</a></figure><figure id="a15a8bdf-c8c3-4279-a130-58faa42c6bf9" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%20a15a8bdfc8c34279a13058faa42c6bf9.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Web encryption</a></figure><p id="8824a19a-026b-421e-8642-42c7390f6c30" class="">
+</p></div></details></li></ul></div><div id="1382fe48-ef91-446a-8037-6829c46321da" style="width:50%" class="column"><h3 id="4d911ce9-0fea-453d-84ea-fb9093ff2de4" class="">🗃 Algorithm / Datastructure</h3><p id="c19c9f7a-377a-4da2-950e-850c8a8723fb" class="">python을 이용하여 그리드, 분할정복, DFS, BFS등에 대해 학습하고 배열, 스택, 큐, 포인터와 같은 자료구조들의 차이를 이해할수 있습니다</p><ul id="0ed1e906-3df0-4fc6-a965-5d256ad9d477" class="block-color-purple_background toggle"><li><details open=""><summary>알고리즘/자료구조 - Log</summary><div><figure id="6c35f1f1-eccd-4592-bc39-1156f2237ae4" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>Sum of subsequence</a></figure><figure id="be7476be-4f88-49dc-a096-b67d66e47254" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/N%20and%20M(8)%20be7476be4f8849dca096b67d66e47254.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/N%20and%20M(8)%20be7476be4f8849dca096b67d66e47254/python.png"/>N and M(8)</a></figure><figure id="22e16451-e8a3-4ce8-ad09-282a666a5101" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/N%20and%20M(7)%2022e16451e8a34ce8ad09282a666a5101.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/N%20and%20M(7)%2022e16451e8a34ce8ad09282a666a5101/python.png"/>N and M(7)</a></figure><figure id="42dc8c71-851e-4b53-9289-980c92a23205" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/N%20and%20M(4)%2042dc8c71851e4b539289980c92a23205.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>N and M(4)</a></figure><figure id="74a4dcdc-b28f-47c7-8a00-a40b33d85a6c" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/N%20and%20M3)%2074a4dcdcb28f47c78a00a40b33d85a6c.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>N and M3)</a></figure><figure id="82212538-3d2f-44d1-985f-a65e0d54cd50" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/N%20and%20M(2)%20822125383d2f44d1985fa65e0d54cd50.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>N and M(2)</a></figure><figure id="3059573a-2b34-4c2a-b8b7-5e654cb13de8" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/N%20and%20M(1)%203059573a2b344c2ab8b75e654cb13de8.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Sum%20of%20subsequence%206c35f1f1eccd4592bc391156f2237ae4/python.png"/>N and M(1)</a></figure><figure id="2e739f5b-f601-4546-b39a-899b4652d0ae" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Stark%20and%20link%202%20-%20Success%202e739f5bf6014546b39a899b4652d0ae.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Stark%20and%20link%202%20-%20Success%202e739f5bf6014546b39a899b4652d0ae/python.png"/>Stark and link 2 - Success</a></figure><figure id="fbbbe621-41ee-46b6-9525-e667c5ebd9e7" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Stark%20and%20Link%201%20-%20Fail%20fbbbe62141ee46b69525e667c5ebd9e7.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Stark%20and%20Link%201%20-%20Fail%20fbbbe62141ee46b69525e667c5ebd9e7/python.png"/>Stark and Link 1 - Fail</a></figure><figure id="c8ab3986-5ba6-4006-9985-c5a0f9956cc0"><a href="https://devlogss.ga/Python/CodingTest/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">CodingTest</div><div class="bookmark-description">Chan&#x27;s develop history</div></div><div class="bookmark-href"><img src="https://devlogss.ga/assets/logo.ico/favicon-16x16.png" class="icon bookmark-icon"/>https://devlogss.ga/Python/CodingTest/</div></div></a></figure><p id="475edd53-5ba0-4ba6-bfd6-9e0443684f1e" class="">
+</p></div></details></li></ul></div></div><hr id="1e70fb19-42cd-4389-83e1-a1cf6d6daa26"/><p id="e48cec90-dbf8-45fd-bfa1-96ec3cfb9520" class="">
+</p><div id="518ec44a-b75e-4b87-a1d4-304f3343883f" class="column-list"><div id="0c5a2d06-32b2-4901-a491-911a9e4b5e88" style="width:50%" class="column"><h2 id="ca463de4-6b6a-497e-99fb-a6ee727b5369" class="">🌏 Network</h2><p id="ba2a1056-cf0a-4e39-9869-0974f21647bd" class="">OSI 7계층, TCP/IP, 서브네팅, CRC, SSL 등 기본적인 네트워크 개념에 대해 학습</p><ul id="8a98a9c1-3d9b-4f53-8e46-e26dd583b641" class="block-color-teal_background toggle"><li><details open=""><summary>Network - Log</summary><div><figure id="cc41324d-ea64-40d2-9f1a-d9ee7f375f5d" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20log,%20nmcli,%20ssh%20cc41324dea6440d29f1ad9ee7f375f5d.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Linux log, nmcli, ssh</a></figure><figure id="4c6fa464-cfa5-4d23-8eea-85f9728e8c29" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20Subnetting%204c6fa464cfa54d238eea85f9728e8c29.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Linux%20Subnetting%209adeae2571564d01ab5b51cf437d3dc2/kuber.png"/>Linux Subnetting</a></figure><figure id="8f66d3ec-a676-4a06-acfc-2d8c0d15727f" class="link-to-page"><a href="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%208f66d3eca6764a06acfc2d8c0d15727f.html"><img class="icon" src="%F0%9F%8F%96%20dfd82f66284b4f8ca44c5f5f3b6e544a/Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/>Web encryption</a></figure><figure id="86598cdd-86ed-46a8-bbb9-e34258466c3f"><a href="https://devlogss.ga/CS/Network/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Network</div><div class="bookmark-description">Chan&#x27;s develop history</div></div><div class="bookmark-href"><img src="https://devlogss.ga/assets/logo.ico/favicon-16x16.png" class="icon bookmark-icon"/>https://devlogss.ga/CS/Network/</div></div></a></figure><p id="3587a078-cb15-4fc2-b108-1f12db564491" class="">
+</p></div></details></li></ul></div><div id="33be6169-f200-4863-b61e-09347205eb26" style="width:49.99999999999999%" class="column"><h2 id="42dd7053-6a33-4504-b73e-2745fba25553" class="">🔧 OS</h2><p id="4d88a684-e3d5-4ffc-a1f1-a78b67b72730" class="">메모리 관리 기법, 프로세스, 디스크 스케줄링 등 기본적인 운영체제 개념에 대해 학습</p><ul id="3618824f-4af8-4d94-93df-b92ceee8508b" class="block-color-blue_background toggle"><li><details open=""><summary>OS - Log</summary><div><figure id="d22854ea-1305-4e57-8650-6f87b0adb6c6"><a href="https://devlogss.ga/CS/OS/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">OS</div><div class="bookmark-description">Chan&#x27;s develop history</div></div><div class="bookmark-href"><img src="https://devlogss.ga/assets/logo.ico/favicon-16x16.png" class="icon bookmark-icon"/>https://devlogss.ga/CS/OS/</div></div></a></figure><p id="7e4747f9-d0f0-4a15-b6e7-d7647dd3339d" class="">
+</p></div></details></li></ul><p id="177638b2-f4cd-416f-b96e-522862919b61" class="">
+</p></div></div><h1 id="f5fe36c7-0bbd-4ee8-b20f-c2a558924b4b" class=""><strong>👩🏻‍💻</strong> 공모전/프로젝트</h1><h2 id="5c5083a1-c704-430e-94b1-a002fe92be3a" class="">범용성 스마트미러</h2><hr id="3105adf1-c285-435c-a5dd-f2fad3240305"/><div id="c99b7653-cc06-46bd-ae93-e3fd7815d135" class="column-list"><div id="3b952440-ac85-4ea8-894a-978683ecd677" style="width:31.25%" class="column"><blockquote id="a3925cfb-6cce-4890-81eb-856722073f9f" class="">카메라를 통해 사용자정보를 분석하여 사용자맞춤형서비스를 제공하는 거울형컴퓨터 개발</blockquote><p id="e4dc8283-1ae3-46d9-9b2f-1dc009a99d5a" class=""><code>#javascript</code> <code>#DOM</code> <code>#Python</code> <code>#git</code> <code>#CSS</code> <code>#초음파센서</code></p><p id="4bbcbc62-290e-45ee-9f78-8ffc4e527426" class="">2019.01 ~ 2019.12
+<mark class="highlight-gray"><em>입상수상</em></mark></p></div><div id="08311de4-7411-4c08-99fc-093fb4476c18" style="width:68.75%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="bf9c8f84-781e-409f-a398-6135028636b3"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">오픈소스 <a href="https://magicmirror.builders/">매직미러</a>를 이용하여 범용성 스마트미러입니다. 오픈소스는 여러 모듈들로 구성되어있습니다.오픈소스개발문서와 javascript 그리고 DOM query에 대해 공부한 뒤, 기존 모듈들을 커스텀하거나, 모듈을 직접 개발하여 스마트미러를 개발하였습니다.</div></figure><ul id="e998cf73-a0b9-4171-800a-1152c76019d7" class="bulleted-list"><li style="list-style-type:disc">두가지의 스마트미러<ul id="23b5372d-5deb-4573-ac98-173a8e39c770" class="bulleted-list"><li style="list-style-type:circle">미용실용</li></ul><ul id="cb6b017e-58c6-4512-8573-16c2060f310e" class="bulleted-list"><li style="list-style-type:circle">공항용</li></ul></li></ul><ul id="945f06a0-bbdd-401c-8c7f-995ac297c1b4" class="bulleted-list"><li style="list-style-type:disc">역할 : 팀장</li></ul><ul id="e1ae5ad4-37cb-415b-b4ef-703578d0d919" class="bulleted-list"><li style="list-style-type:disc">프로그래밍 담당<ul id="fca91c3e-716a-47ff-9481-f5ab7d6e3593" class="bulleted-list"><li style="list-style-type:circle">전체적인 Business Logic 설계</li></ul><ul id="22d0cecc-487c-4068-a0dc-8aaae05637cb" class="bulleted-list"><li style="list-style-type:circle">카메라로 찍은 이미지를 이용한 다양한 웹컨텐츠 개발</li></ul><ul id="105ad2dd-fea0-4125-931e-92e9141fdc44" class="bulleted-list"><li style="list-style-type:circle">프로젝트관리기술 활용</li></ul><ul id="6c1a7724-26a4-4d41-b2c0-52a55d5bca4e" class="bulleted-list"><li style="list-style-type:circle">외국오픈소스포럼 활용</li></ul></li></ul><ul id="fd7b5b20-7d36-45cd-a7d6-a7385a940dba" class="bulleted-list"><li style="list-style-type:disc">실행영상</li></ul><figure id="128a95b2-24b5-45c0-873a-580c170eef27"><div class="source"><a href="https://www.youtube.com/watch?v=DuVUfmSpNm8">https://www.youtube.com/watch?v=DuVUfmSpNm8</a></div></figure><ul id="a17bc599-57e5-4a4c-b088-ad0f519d960b" class="bulleted-list"><li style="list-style-type:disc">상세내용 및 개발기록</li></ul><figure id="a4405da6-b3d5-45ac-a506-e62e6360bc2e"><a href="https://github.com/ENTITYSmartMirror/BeautyMirror" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">GitHub - ENTITYSmartMirror/BeautyMirror: 오픈소스(Magicmirror)를 이용한 미용실용 거울</div><div class="bookmark-description">하단 이미지 클릭시 재생 cf) 사진 찍기 기능을 이용하려면 opencv 설치필요 I. 프로젝트 수행계획 1. 프로젝트 개요 가. 프로젝트 소개 나. 추진배경 및 필요성 다. 자료조사 라. 제한요소 2. 프로젝트 내용 가. 주요기능 나. 개발환경 다. 필요 기자재 라. 동작 흐름도 마. 제한요소 바. 프로젝트 추진일정 3. 프로젝트 수행방법 II.</div></div><div class="bookmark-href"><img src="https://github.com/favicon.ico" class="icon bookmark-icon"/>https://github.com/ENTITYSmartMirror/BeautyMirror</div></div><img src="https://opengraph.githubassets.com/a3ae8accc5d05cea27d199e03c9644769e7957ae294935af91b55568cb5f48e8/ENTITYSmartMirror/BeautyMirror" class="bookmark-image"/></a></figure></div></div><h2 id="27aaa5a2-c9c1-4e0d-ad99-ed10e7fa6456" class="">포트폴리오 사이트 개발</h2><hr id="95697a50-3ab7-4acb-aff1-af13b9b041d3"/><div id="b8b1e444-bf0f-4832-b95b-4c9427bdca70" class="column-list"><div id="5fcbc6ee-a10a-4034-83eb-295038766371" style="width:31.25%" class="column"><blockquote id="facd0b55-eae8-490f-8df8-ab323daa7c21" class="">취업을 위한 웹버전 포트폴리오 사이트</blockquote><p id="5a9ee675-8c8e-459d-ad45-136142ca2250" class=""><code>#javascript</code> <code>#HTML</code> <code>#CSS</code> <code>#git</code> <code>#반응형웹</code> <code>#Python</code> <code>#Notion</code></p><p id="386c53e3-944e-4da0-840f-3f54ad375dd5" class="">2021.09 ~ 2021.11
+</p></div><div id="4a59d057-d833-44b3-b73f-0c125919af97" style="width:68.75%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="06a6afe6-fd43-48a6-af0b-0743783e8b26"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">템플릿 없이 순수 HTML, javascript, CSS를 이용하여 개인 포트폴리오 사이트를 개발하였습니다. </div></figure><ul id="391a790d-c70d-4aac-b767-15ba490ff73d" class="bulleted-list"><li style="list-style-type:disc">개인프로젝트</li></ul><ul id="1c52d4da-b931-4fc9-8e68-4d46a8fce6f1" class="bulleted-list"><li style="list-style-type:disc">모바일에서도 직관성있게 보기 위하여, 반응형으로 웹사이트 개발</li></ul><ul id="0229becf-f8f1-4395-9ed6-513c8cfa34fa" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.notion.so/Put-notion-on-website-by-using-HTML-python-38c45998fcbb4bd8a3bf4a42185c77fb">Python을 이용하여 notion과도 연동</a></li></ul><ul id="9a3ed10d-9d57-4430-ba10-fd1ba88e57e7" class="bulleted-list"><li style="list-style-type:disc"> 링크<p id="3a346b59-055a-4b70-bb4c-19789812a0f7" class=""><a href="https://devlogss.ga/Profile/">https://devlogss.ga/Profile/</a></p><figure id="168729c7-5d77-4441-93d2-d84d22a3f992"><a href="https://devlogss.ga/Profile/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Chan&#x27;s Portfolio</div><div class="bookmark-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis earum perferendis error labore ex debitis placeat rerum deserunt alias voluptatem, laudantium exercitationem odio, laborum, dolor fugiat eveniet. Amet, ab numquam! Ellie /Samsung</div></div><div class="bookmark-href"><img src="https://devlogss.ga/Profile/img/jaguar.png" class="icon bookmark-icon"/>https://devlogss.ga/Profile/</div></div><img src="https://devlogss.ga/Profile/img/rasp3.jpeg" class="bookmark-image"/></a></figure></li></ul></div></div><h2 id="edd83627-7f02-4e38-b03d-abbe77e84997" class="">음식점 리뷰사이트</h2><hr id="676aa413-c379-427d-8930-bbb8c585ef60"/><div id="02f37745-d188-4f7b-b2c3-702d1897b6d0" class="column-list"><div id="953f1f5f-df50-4f18-9219-609d209fbfa5" style="width:31.25%" class="column"><blockquote id="c6b1cda6-acd3-47df-8cbf-a30c4224f795" class="">레스토랑과 리뷰로 맛집찾기 웹앱</blockquote><p id="bc3b0383-4704-4ed1-8c0f-3b2d2e85dbf7" class=""><code>#Python</code> <code>#Django</code></p><p id="f04bf00c-972d-4743-869b-a956e8b3198b" class="">2021.09 ~ 2019.11
+</p></div><div id="59ce4223-e508-4884-841e-07e6d930cd68" style="width:68.75%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="df4f6830-ea57-485a-bc88-f5644040c603"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">백엔드를 이해하기 위하여 Django Framework를 이용하여 아주 간단하지만 RESTFul한 CRUD 웹어플케이션 개발</div></figure><ul id="caf9b19e-8a89-4d83-a93c-3d47ad41d996" class="bulleted-list"><li style="list-style-type:disc">개인프로젝트</li></ul><ul id="923fd983-a266-42bc-9f22-7c0e1a989bbb" class="bulleted-list"><li style="list-style-type:disc">간단한 웹 실습<ul id="43bc37e7-ace8-4574-8666-94157508d831" class="bulleted-list"><li style="list-style-type:circle">MVC의 이해</li></ul><ul id="22d41446-9322-46b4-b99e-ee8832006857" class="bulleted-list"><li style="list-style-type:circle">RESTFul API의 이해</li></ul><ul id="4e208076-bad4-4780-b529-a4be025955d0" class="bulleted-list"><li style="list-style-type:circle">HTTP에 대한 이해</li></ul></li></ul><ul id="2b2dfc76-3dca-47e1-aef9-fd00f783ec52" class="bulleted-list"><li style="list-style-type:disc">링크<p id="60f062e9-2ac7-449b-8b72-9171a93bc040" class=""><a href="http://djangopractice.world/third/list/">http://djangopractice.world/third/list/</a></p><figure id="60410d61-7ae8-41f6-b17d-a7a4b3c97dc3"><a href="http://djangopractice.world/third/list/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">음식점</div></div><div class="bookmark-href">http://djangopractice.world/third/list/</div></div></a></figure><p id="bcfcb60c-8ffb-4418-aabd-d36da2804b06" class="">
+</p><p id="6f368297-8264-4a27-a291-d421daa3eb4b" class="">
+</p></li></ul></div></div><p id="875508fc-636f-488e-a1c0-39f4def959d1" class="">
+</p></div></article></body></html>

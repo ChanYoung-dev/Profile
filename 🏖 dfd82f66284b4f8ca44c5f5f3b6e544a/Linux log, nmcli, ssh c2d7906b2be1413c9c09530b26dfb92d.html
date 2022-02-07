@@ -1,0 +1,919 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux log, nmcli, ssh</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c2d7906b-2be1-413c-9c09-530b26dfb92d" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Web%20encryption%205e0ae8625fa4497f9dd074c97b27ba34/kuber.png"/></div><h1 class="page-title">Linux log, nmcli, ssh</h1></header><div class="page-body"><h2 id="bbe1a56d-9263-4b75-ba42-c7ddbd4706c2" class="">목차</h2><p id="e89ee8ac-44e4-41f3-a4c0-5d32e83a97c5" class="">1. 특수 권한 부여 방법
+2. umask
+3. 소유권 변경
+4. ssh 원격 접속
+5. 로그 관리
+6. 네트워킹 관리</p><blockquote id="64f06905-3248-442e-b74e-0fa51a648984" class="">vim 커맨드 모드에서 /[찾을 단어] 을 입력하면 검색 가능</blockquote><h1 id="19692128-7af4-4dff-8627-d75bde618b46" class="">특수 권한 부여</h1><p id="db9b9ada-0831-47cf-87df-e10aec83168d" class=""><code>chmod [숫자] 파일명</code>
+
+특수권한 + 일반권한</p><blockquote id="1a5df7a5-0358-49a1-9522-fc6c0f94084f" class="">setuid - 4
+setgid - 2
+stickybit - 1</blockquote><ul id="3f30e9be-1a57-46df-93d1-9cc5267525b0" class="bulleted-list"><li style="list-style-type:disc"><code>chmod 3674 dirB</code><p id="88d898d2-db4b-4031-8e41-6c20ec94af36" class=""><code>3</code> = 특수권한( <code>2</code> (setgid)+ <code>1</code>(stickybit) )</p><pre id="36fd11d2-6c29-4dcc-8698-0bde39370d5c" class="code code-wrap"><code>[root@servera ~]# ls -ld dirB
+drwxr-xr-x. 2 root root 6 Jan 20 03:03 dirB
+[root@servera ~]# chmod 3674 dirB
+[root@servera ~]# ls -ld dirB
+drw-rwsr-T. 2 root root 6 Jan 20 03:03 dirB</code></pre><p id="db16cd11-5571-47cb-96d4-627c5451465a" class="">기타 사용자 권한에 실행권한이 없기 때문에 T(대문자) 가 표기</p></li></ul><p id="3ea363a5-eec7-43fc-bf01-bcbdb394541d" class="">
+</p><ul id="f0a82386-9c8d-46a6-87a3-b01c900d61e2" class="bulleted-list"><li style="list-style-type:disc"><code>umask</code><p id="39ce2691-deae-4204-b7a5-0260e4e71921" class="">현재 설정된 권한 값을 확인하는 명령어</p><pre id="f06a6eae-cb4e-440d-8de1-cb4bf44a5212" class="code code-wrap"><code>[root@servera ~]# umask
+0022</code></pre><p id="fb2fd59a-8096-488a-8e4a-a13b05456326" class="">디렉토리 기본값 : 777
+파일 기본값 : 666</p><p id="0802af0a-548d-4ee6-b7ba-e64b70cd2165" class="">기본 권한 = 기본값 - umask</p><ul id="487317e1-14ee-4d2e-8f46-f0291c11cb88" class="bulleted-list"><li style="list-style-type:circle"><code>umask</code> 기본값은 <code>/etc/profile</code> 에 저장</li></ul><ul id="9f44c232-3cf0-4c93-9fec-39c145acf202" class="bulleted-list"><li style="list-style-type:circle"><code>umask</code> 값을 변경하고 싶은 경우 <code>/etc/profile</code> 파일 내 하단에 <code>umask [숫자]</code> 를 입력한 후 저장 및 재부팅 진행</li></ul></li></ul><p id="809da9de-20a6-4769-ba7a-1bd6f541ac02" class="">
+</p><h1 id="80d04435-7054-49f3-ad58-b54142096252" class="">소유권 바꾸기 <code>chown</code></h1><ul id="68f17ec4-7dd6-4617-bc6b-c14451ab02c7" class="bulleted-list"><li style="list-style-type:disc"><code>chown user1 fileA</code><p id="cfb6e876-3dd0-4c7f-81a5-c6363b9ccf25" class="">fileA의 소유자가 user1으로 변경</p></li></ul><ul id="c501400c-48e2-4ef1-85fb-339c19f4d476" class="bulleted-list"><li style="list-style-type:disc"><code>chown :user1 fileA</code><p id="076977b0-3074-4e7b-bcd7-432aff4e183f" class="">fileA의 소유그룹이 user1으로 변경</p></li></ul><ul id="1dfe2954-53bd-46fa-9993-2468989f3111" class="bulleted-list"><li style="list-style-type:disc"><code>chown root:root fileA</code><p id="c716d7cb-a582-4691-a523-0717ad5be552" class="">fileA의 소유자와 소유그룹이 root로 변경됨</p></li></ul><p id="c30a368c-e252-463c-bc6e-c4fee10e2ed1" class="">
+</p><p id="6791f120-6999-488e-bbca-5b8d07347e28" class="">
+</p><p id="ed427608-305a-4999-b705-3405edc90847" class="">
+</p><p id="c3e6f24a-4838-4de1-8aa6-a486f2caf9bd" class="">
+</p><h1 id="b495ede1-3f81-44eb-925a-228ee4022cf2" class="">ssh : 원격 접속 프로토콜</h1><p id="f31b62a0-1bea-47ef-b6d3-b22dbc5a8f9b" class="">ssh 프로토콜을 사용하여 안전하지 않은 네트워크를 암호화된 보안방식으로 통신 → <code>https</code></p><p id="c4c71caf-5a79-4a90-ad63-f996a86f6835" class="">telnet 등 다른 프토토콜들도 있지만 안정성을 위해 ssh 사용</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a228ec6f-eeaa-4fab-be41-b94c2537a9b0"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">사용 형식)
+<code>ssh [호스트명]</code>
+<code>ssh [사용자명]@[호스트명]</code>
+<code>ssh [사용자명]@[ip 주소]</code>
+<code>ssh [사용자명]@[ip 주소] [명령어]</code></div></figure><p id="519ced0f-91d9-48e7-b331-7e84482873ac" class="">
+</p><p id="bdc93c75-5ec3-471e-b5aa-f4f9d318fb68" class="">일회성 명령어를 입력한 후 로그아웃</p><ul id="1e0616e3-0aad-4157-93a5-b8db99df722d" class="bulleted-list"><li style="list-style-type:disc">가상머신 2번에 ssh 접속<p id="ed68e83d-9d37-41a8-b6a0-652d34c0b730" class=""><code>ssh </code><code><a href="mailto:root@192.168.56.11">root@192.168.56.10</a></code>  </p><pre id="079f307e-97b5-4b89-b994-5eb4688e10d4" class="code code-wrap"><code>The authenticity of host &#x27;192.168.56.11 (192.168.56.11)&#x27; can&#x27;t be established.
+ECDSA key fingerprint is SHA256:fkSI/Z25q4kYI47T/oZYJp/JDkANUVrM3Vs2EwGhGWM.
+ECDSA key fingerprint is MD5:c3:52:1a:a1:e0:9d:72:1a:2d:f8:2b:04:ec:26:b8:e4.
+Are you sure you want to continue connecting (yes/no)?</code></pre><p id="46876e03-64bb-405d-b991-03bf99ad40fa" class=""><code>yes</code> 입력시 원격 접속 가능</p><p id="9bca2e34-a8c5-4e23-8e92-d7b7381c787c" class=""><code>no</code> 입력시 원격 접속 불가</p><p id="f525f163-6df3-4466-8863-c464e8b1c358" class=""><code>logout</code> : 원격 접속을 종료하고 빠져나옴</p><p id="2784d768-5218-4db2-a68a-cb9c24e96022" class=""><code>exit</code> : 명령어 사용 가능</p></li></ul><ul id="3d2f9946-a12b-4ee0-9c60-e397b7658a8c" class="bulleted-list"><li style="list-style-type:disc">가상머신 1번에 저장된 공개키 확인</li></ul><pre id="48b653ee-bfbe-43b9-b1dc-deef371e70d2" class="code code-wrap"><code>[root@servera ~]# cat .ssh/known_hosts 
+192.168.56.10 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOOv7ZpXlZ+LEhWLUnykZAbKzrF1G8BT0QhfNIYEHQJsf6Z7uu3PQLY3QPocKDfn28aemrJD7LBoC6hFK5LB47M=
+serverb ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOOv7ZpXlZ+LEhWLUnykZAbKzrF1G8BT0QhfNIYEHQJsf6Z7uu3PQLY3QPocKDfn28aemrJD7LBoC6hFK5LB47M=</code></pre><ul id="b625d2a8-8cbc-49b2-bd46-b0ed31e8378f" class="bulleted-list"><li style="list-style-type:disc">원격 접속 대상인 가상머신 2번에 저장된 개인키 공개키 확인</li></ul><pre id="c555c23d-6084-482d-8f29-2c1cb0e42153" class="code code-wrap"><code>[root@servera ~]# ls /etc/ssh
+moduli       ssh_host_ecdsa_key      ssh_host_ed25519_key.pub
+ssh_config   ssh_host_ecdsa_key.pub  ssh_host_rsa_key
+sshd_config  ssh_host_ed25519_key    ssh_host_rsa_key.pub</code></pre><p id="c4378026-7b27-492d-bff3-c8cd65639c22" class=""><code>ssh_host_ecdsa_key</code> : 개인키</p><p id="05c2787e-4707-46a9-969c-03deac93d822" class=""><code>ssh_host_ecdsa_key.pub</code> : 공개키(public)</p><p id="d0b7d4f3-e19a-4c2f-81e9-e8fb60784e89" class="">
+</p><p id="3b352fc1-3f22-44bf-bc8c-d9f02dd7c3c0" class="">
+</p><h2 id="eaae72b0-9669-4991-b617-8f75dd08da67" class="">ssh 키 기반 인증 방식</h2><ul id="877588ca-8923-4cb0-9e47-8b3f3d5904e9" class="bulleted-list"><li style="list-style-type:disc">패스워드를 사용하지 않아도 되는 편의성</li></ul><ul id="13119679-9456-458a-9750-d5bd10d493c7" class="bulleted-list"><li style="list-style-type:disc">접속할 수 있는 사용자를 제안(보안)</li></ul><ul id="09bab9bf-2f8b-4053-ad51-f7aec40ba602" class="bulleted-list"><li style="list-style-type:disc">접속할 클라이언트에서 키 생성</li></ul><p id="4665a392-20b6-4a80-9e33-502cdadb1f0f" class=""><code>ssh-keygen</code></p><pre id="86916b91-c5ed-494d-9e5b-06dedf6441f4" class="code code-wrap"><code>Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):	&lt;- 키 저장 위치 지정
+Enter passphrase (empty for no passphrase):		&lt;- 2차 비밀번호 설정
+Enter same passphrase again:			&lt;- 2차 비밀번호 확인
+Your identification has been saved in /root/.ssh/id_rsa.	&lt;- 개인키 이름
+Your public key has been saved in /root/.ssh/id_rsa.pub.	&lt;- 공개키 이름
+The key fingerprint is:
+SHA256:lz6sRHyR+CLpZH7E1DqejC8oikoKCiW+wxmsLiYyeN0 root@localhost.localdomain
+The key&#x27;s randomart image is:
++---[RSA 2048]----+
+|                 |
+|         o .     |
+|        o +      |
+|       = o o     |
+|o .   = S =      |
+|.=   = B O       |
+|oo. o+ * +      |
+|#=+ o E+ . .     |
+|&amp;..   .o        |
++----[SHA256]-----+</code></pre><p id="92ef41d3-f910-4648-bd94-56f1dda3fb5c" class="">
+</p><ul id="c8347cee-a5d9-47be-b356-3b15fb2b3f8c" class="bulleted-list"><li style="list-style-type:disc">공개키를 서버(접속할 곳)에 복사<p id="5aa00201-d580-466c-860c-4d40a5076f8f" class=""><code>ssh-copy-id </code><code><a href="mailto:root@192.168.56.11">root@192.168.5</a></code><code>6.10</code></p></li></ul><ul id="9c2dea64-98b7-4fcb-b6e2-02fe2dff269b" class="bulleted-list"><li style="list-style-type:disc">키를 가지고 ssh 접속하기<p id="f5616c03-3b5f-4b86-9379-25bbb8118098" class=""><code>ssh </code><code><a href="mailto:root@192.168.56.11">root@192.168.56.11</a></code></p></li></ul><ul id="4a68ccce-f6b0-4aaf-bd8b-ead3211951d3" class="bulleted-list"><li style="list-style-type:disc">서버에서 복사된 키 확인<p id="933b9e4a-707f-4dca-8520-8e3057141870" class=""><code>cat .ssh/authorized_keys</code></p></li></ul><p id="e0f4b38c-2071-4dd6-b7d2-1dfd54f1357e" class="">
+</p><p id="e16c688a-9ecc-43f6-a32c-626b2ae7b693" class="">
+</p><ul id="ecce2801-2edc-4054-bbed-751c4e935acc" class="bulleted-list"><li style="list-style-type:disc">ssh-keygen 에서 -f 옵션 사용하여 키의 이름을 별도로 지정 가능<p id="6f7a3aa3-e9cc-4771-8a7f-142cfafc8c4a" class=""><code>ssh-keygen -f .ssh/key-with-pass</code></p></li></ul><pre id="2b69257f-cb3d-4cbf-812a-11f4d80349f3" class="code code-wrap"><code>Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase): 123123	&lt;- 2차 비밀번호 입력
+Enter same passphrase again: 123123			&lt;- 2차 비밀번호 확인
+Your identification has been saved in .ssh/key-with-pass.
+Your public key has been saved in .ssh/key-with-pass.pub.
+The key fingerprint is:
+SHA256:22OYe9uAoafq8nEyAV8jDZE/WI4AtpfvTS1CYFhT96c root@localhost.localdomain
+The key&#x27;s randomart image is:
++---[RSA 2048]----+
+|.oo=++ .         |
+|..+ =oo .        |
+| ..+.B+  . .     |
+|  .o=o+.. o      |
+|    oo +SE       |
+|    ..+..B       |
+|    +.o.* =      |
+|  .  = o o.+     |
+|   ++.. .....    |
++----[SHA256]-----+</code></pre><p id="99f6b593-bdbc-435b-947e-a185f7bb4d5c" class="">
+</p><ul id="1b5f0efd-0c39-4c35-8039-7ae0f12bc286" class="bulleted-list"><li style="list-style-type:disc">별도로 생성한 키의 공개키를 서버에 복사<p id="b5f63573-1e74-4091-8a45-0ac76f3007cd" class=""><code>ssh-copy-id -i .ssh/key-with-pass.pub root@192.168.56.10</code></p></li></ul><ul id="cb805bf7-7edf-4460-bb03-2da4263102ad" class="bulleted-list"><li style="list-style-type:disc">지정한 키로 서버에 접속<p id="4916167a-cf05-42cf-9f6b-c35d6699098c" class=""><code>ssh -i .ssh/key-with-pass root@192.168.56.10</code></p></li></ul><p id="9b950107-af21-41a0-92fb-325e670e74d1" class="">
+</p><p id="3c577f54-3be5-405a-89ac-abbd73e83314" class="">개인키는 유포되지 않도록 조심해야 함
+개인키의 권한은 소유자만 가지고 있어야 함</p><p id="d9dabae3-2ae1-4115-bbce-a9014ecff37f" class="">프로그램을 사용하여 임시로 키 파일에 설정된 암호를 메모리에 캐시(클라이언트)</p><p id="a980ed8f-1a00-43ec-a445-15111c0846d5" class="">
+</p><h3 id="e31f59b0-ad56-4b4e-9812-f22b45f4b308" class="">passphrase 암호</h3><p id="0414171e-c69b-4f87-a04f-02481c46bade" class="">런타임 설정이므로 영구적으로 사용 불가</p><ul id="2e30caa4-38db-48bc-b564-c38c90cce307" class="bulleted-list"><li style="list-style-type:disc">시스템 내부에 저장된 ssh-agent 변수를 실행<p id="f49e6705-2040-4755-8eca-4a608cc6cd2a" class=""><code>eval $(ssh-agent)</code></p></li></ul><ul id="a5d9b347-b620-45a8-9588-9e3a17f5c1ee" class="bulleted-list"><li style="list-style-type:disc">2차 비밀번호 메모리에 캐시<p id="199d143b-3c08-411c-b131-c5f3fa9ad32b" class=""><code>ssh-add .ssh/key-with-pass</code></p></li></ul><ul id="fb591985-8bc3-4780-9440-1f746332f9e0" class="bulleted-list"><li style="list-style-type:disc">passphrase 없이 ssh 접속 확인<p id="61f37c24-226a-45fd-a500-fc55a1f1f28d" class=""><code>ssh -i .ssh/key-with-pass root@192.168.56.11</code></p></li></ul><p id="76c169f3-8a06-460a-96a5-1110f66eb3aa" class="">
+</p><p id="687796de-2f9d-4a61-88d0-96d11d415dae" class="">
+</p><h2 id="ae2e788a-bcb3-423c-9808-43320cb5bb7f" class=""><code>/etc/ssh/sshd_config</code></h2><p id="728e805c-ad4a-437d-9342-48762a4391ec" class="">ssh 데몬 설정파일</p><p id="b866e9f8-b006-4bf2-b8c0-50d431515b3f" class="">
+</p><pre id="1a9b5676-ea6b-47dd-8470-f8214b868ba6" class="code code-wrap"><code># Authentication:
+
+#LoginGraceTime 2m
+#PermitRootLogin yes
+#StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10</code></pre><h3 id="27349147-0a8d-4d21-b464-1912ecb023d2" class="">PermitRootLogin</h3><p id="c838e302-d43e-4fab-b54e-4e1db4cfc4f1" class=""><code>yes</code> 설정 시 루트로 바로 로그인 가능</p><p id="db63173e-1c66-4871-ab16-7bba6b97353c" class=""><code>no</code> 설정 시 루트로 바로 로그인 불가</p><p id="bc2aab3f-7b0d-4093-93b0-8881d2eb5a01" class="">
+</p><pre id="6f363163-818e-4a29-8aa0-40c327a74efa" class="code code-wrap"><code># To disable tunneled clear text passwords, change to no here!
+#PasswordAuthentication yes
+#PermitEmptyPasswords no
+PasswordAuthentication yes</code></pre><h3 id="0e8ca799-acd9-460a-a024-84f22376ad5b" class="">PasswordAuthentication</h3><p id="90c12d26-6688-4942-add8-240f5cb9f2ff" class=""><code>yes</code> 설정 시 모든 사용자에 대해서 패스워드 인증 방식 허용</p><p id="1297aac8-5290-4d57-b2fc-a01229a0bfb2" class=""><code>no</code> 설정 시 모든 사용자에 대해서 키 기반 인증 방식 허용 (패스워드 X)</p><p id="2e475762-1d65-49e4-a2c5-c85fbb240055" class="">
+</p><p id="7906da2a-d947-40be-8db8-4c26f71bc0b1" class="">
+</p><h1 id="12f56c48-98e9-46f4-b4e0-6e9c381e79a4" class="">로그</h1><p id="e3c19984-ca8c-48c0-85b8-c5ca48efbdda" class="">어디에서 문제가 발생했는지, 무슨 작업을 했는지를 확인하기 위한 목적으로 기록</p><p id="ab930598-31fa-430c-b3c7-cd85865b51f1" class="">특정 서비스에 의해서 기록</p><ul id="ae4b9ec4-9cf1-4fb3-b26a-0028200130bc" class="bulleted-list"><li style="list-style-type:disc">이벤트 발생시
+이벤트 -&gt; <code>systemd-journald</code> -&gt; <code>syslogd</code>
+                    1차 가공                    2차 가공
+                 (/run/log/journal)        (/var/log)</li></ul><blockquote id="06651eea-a6c1-4923-9751-d5fc08c3265c" class=""><code>run</code> 디렉토리는 휘발성 디렉토리</blockquote><ul id="e768752e-dd33-4624-826c-7dba12f3316a" class="bulleted-list"><li style="list-style-type:disc">비교
+                        <code>journal</code>	                 	<code>syslog</code>
+저장 형태	      바이너리 형식	        ASCII 텍스트 형식
+저장 유지	          휘발성                   비휘발성(일정 시간 지난 후 삭제)
+확인 명령어      journalctl	              일반적인 확인 명령어
+(cat, tail, head, vim, ...)</li></ul><p id="23f42945-aa96-48c1-9e92-21d642547b20" class="">
+</p><h2 id="73e80ac6-8a33-4583-a5b0-502d1b48b933" class=""><code>journal</code> 파일 내용 확인</h2><pre id="f3a86758-2b04-4520-b5fd-c4076941e3ce" class="code code-wrap"><code>[root@localhost ~]# head -n 3 /run/log/journal/df926b423b46d1449d9af6c8c8ae8479//system.journal 
+.i????????????D??x?????ߒB;F?D????Ȯ?y}j?ԩ?JɅp&gt;@)???m*?iD??x?????c???$??@????3??kWmV?q???&quot;?
+
+              ?
+
+               ??????????????????
+                                 ??
+                                  B????(?(??@?@?w
+                                                 ?w
+                                                   ??????
+                                                         ??
+
+
+
+
+                                                           `?`?`x
+                                                                 `x
+                                                                   ?
+                                                                    ?
+                                                                     0?
+                                                                       0?
+                                                                         ??????????h?h?????0?0?xAxA??
+        ??
+          8?8?  ???????? ? ?0e
+
+                             (T(T????????`?`?0?0?@?@???
+                                                       ??
+                                                         ??8?
+                                                             ??PP?M?M&amp;&amp;??
+                                                                         ??
+                                                                           ????PIPI0C0C???? % %?
+   ȼ?????
+         xv??h6h??|??
+                     8
+8
+?????[
+      ?[
+        ?M
+[root@localhost ~]#</code></pre><p id="027dfdda-0fe6-45c1-8f40-257f7857f938" class="">바이너리 형식이기 때문에 사용자가 육안으로 식별하기 힘듬</p><p id="2f5b551d-c591-41df-a1bd-06f07d0ed752" class="">
+</p><ul id="0d93679c-4a5a-48ac-b2c3-a082434bf8d7" class="bulleted-list"><li style="list-style-type:disc">journal 로그 확인<pre id="7c0b6104-1910-4e9e-8161-69575ed1826e" class="code code-wrap"><code>[root@localhost ~]# journalctl
+-- Logs begin at Mon 2022-01-10 00:29:57 EST, end at Tue 2022-01-11 18:01:01 EST. --
+Jan 10 00:29:57 localhost.localdomain systemd-journal[92]: Runtime journal is using 6.1M (max
+Jan 10 00:29:57 localhost.localdomain kernel: Initializing cgroup subsys cpuset
+Jan 10 00:29:57 localhost.localdomain kernel: Initializing cgroup subsys cpu
+Jan 10 00:29:57 localhost.localdomain kernel: Initializing cgroup subsys cpuacct
+Jan 10 00:29:57 localhost.localdomain kernel: Linux version 3.10.0-1160.el7.x86_64 (mockbuild
+Jan 10 00:29:57 localhost.localdomain kernel: Command line: BOOT_IMAGE=/vmlinuz-3.10.0-1160.e
+Jan 10 00:29:57 localhost.localdomain kernel: e820: BIOS-provided physical RAM map:
+...</code></pre><p id="3b1df162-f470-4661-8dc9-a1058e15d8f7" class="">2차 가공된 로그보다 많은 로그 확인 가능</p><p id="4b775c57-89b6-4061-9325-d2f98530e1ea" class="">
+</p></li></ul><h2 id="05b827ac-338c-4fc8-9b56-3e7daf356ff4" class=""> <code>syslog</code> 파일 확인</h2><ul id="f1754265-bab5-4a74-8c3d-a27a71107442" class="bulleted-list"><li style="list-style-type:disc"><code>/var/log</code> 각종 로그 관련 파일<pre id="efd463f9-3a38-4c6e-96a5-e0b3e791c36d" class="code code-wrap"><code>[root@localhost ~]# ls /var/log
+anaconda  boot.log-20220111  cron       grubby_prune_debug  messages  secure    tuned
+audit     btmp               dmesg      lastlog             qemu-ga   spooler   wtmp
+boot.log  chrony             firewalld  maillog             rhsm      tallylog</code></pre></li></ul><ul id="bbaf818e-c293-4538-9861-011aa1cf37c5" class="bulleted-list"><li style="list-style-type:disc"><code>/var/log/secure</code> : secure 관련 로그<pre id="386435d9-0073-4608-a575-3cb138111afd" class="code code-wrap"><code>[root@localhost ~]# tail -n 5 /var/log/secure
+Jan 11 17:24:05 localhost sshd[10961]: pam_succeed_if(sshd:auth): requirement &quot;uid &gt;= 1000&quot; not met by user &quot;root&quot;
+Jan 11 17:24:27 localhost sshd[10961]: Failed password for root from 192.168.56.1 port 50543 ssh2
+Jan 11 17:27:14 localhost sshd[10965]: Accepted publickey for root from 192.168.56.1 port 50559 ssh2: RSA SHA256:f2vAAeNCFaZ9zVtWoWXX/8wP4prOkrXkJws+VHZsVZU
+Jan 11 17:27:55 localhost sshd[10965]: pam_unix(sshd:session): session opened for user root by (uid=0)
+Jan 11 17:52:48 localhost sshd[10345]: pam_unix(sshd:session): session closed for user root</code></pre></li></ul><ul id="b2596d64-7d1f-4c3d-8963-59ea4d110c85" class="bulleted-list"><li style="list-style-type:disc"><code>tail</code> 에서 실시간 모니터링<p id="d9f1fe8d-1511-441d-8fe1-8a3a393d7b24" class=""><code>-f</code> 옵션</p><p id="2a88a0db-ca00-42d9-ad76-97911bdcff97" class=""><code>tail -f /var/log/secure</code></p><p id="d32b4deb-087b-4329-b1c0-bde42346c8de" class=""><code>ctrl</code> + <code>c</code>로 빠져나오기</p><p id="32735d01-3c0d-4a90-8661-bec7ad65d9b8" class="">
+</p><p id="74ca10f5-250d-4f15-8f63-ad1ff6b16052" class="">
+</p></li></ul><p id="1730edc5-ed81-4d68-8520-a9907537b6a7" class="">
+</p><h2 id="5b0284ee-7996-4c39-87a2-d89130bd1b87" class=""><code>/etc/rsyslog.conf</code>: 로그 설정 파일</h2><pre id="b6646a5e-1105-4684-95a2-23ae73cc278f" class="code code-wrap"><code>#### RULES ####
+
+# Log all kernel messages to the console.
+# Logging much else clutters up the screen.
+#kern.*                                                 /dev/console
+
+# Log anything (except mail) of level info or higher.
+# Don&#x27;t log private authentication messages!
+*.info;mail.none;authpriv.none;cron.none                /var/log/messages
+
+# The authpriv file has restricted access.
+authpriv.*                                              /var/log/secure
+# authpriv(인증) 종류의 모든 우선 순위 이벤트를 기록
+# Log all the mail messages in one place.
+mail.*                                                  -/var/log/maillog
+
+
+# Log cron stuff
+cron.*                                                  /var/log/cron</code></pre><p id="5bc03937-b178-4eb5-a711-0bd1a8505c8b" class="">
+</p><h3 id="483ff60f-4655-41b5-ad44-06230964e2f6" class="">syslog 우선 순위</h3><p id="687c1ddf-3b77-4859-b725-b1bcb20c7c2c" class="">
+<code>emerg</code> - 시스템이 불능상태에 빠졌을 경우
+<code>alert</code> - 시스템이 멈출 수 있는 치명적인 오류인 경우
+<code>crit </code>- 시스템에 영향이 있을 수 있는 경우
+<code>err</code> - 명령어가 잘못된 경우
+<code>warning</code> - 설정은 되지만 조건에 충족하지 못하는 경우
+<code>notice</code> - 에러가 아닌 알람에 대한 메세지
+<code>info</code> - 단순한 프로그램에 대한 메세지
+<code>debug</code> - 디버깅에 대한 메세지</p><p id="e00fd50d-20ba-47e7-9c96-ae1a2938614f" class="">
+</p><ul id="79102adb-b922-42e4-a6d3-7fed6aca8c90" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/logrotate.conf</code> :<p id="5e21683f-fe2e-4d2b-9b28-6363385e8ab2" class="">주기적으로 시간 정보를 확인하여 보관 기간이 지난 파일을 압축, 삭제 등의기능을 처리해주는 설정 파일</p></li></ul><p id="330886b4-6c6d-45f8-82ef-ef378c92ca12" class="">
+</p><p id="e5e71769-b138-4d04-be98-62f9e287a7e2" class="">
+</p><h3 id="5724bafa-e393-422f-bcde-34cb11bfa14f" class=""><code>logger</code> : 로그메시지 생성</h3><p id="cd8bcdde-98d3-4140-9db8-4c2fff4a3ff6" class=""><code>logger -p authpriv.emerg &quot;test logger&quot;</code></p><p id="46181e04-cd79-4479-bb7f-8cdff289f858" class=""><code>p</code>옵션으로 로그 종류와 우선 순위를 지정하여 전송 가능</p><p id="2eb6ed2b-fb81-4724-9c57-e48b9bee87a8" class="">
+</p><ul id="78b899e9-8e85-45e8-9b0d-a6bb66f9c4ab" class="bulleted-list"><li style="list-style-type:disc">journal 로그 영구 저장
+<code>/etc/systemd/journald.conf</code>
+8버전 이상<pre id="f7f5b4dc-468d-4b7d-ae37-a5e77e2c521f" class="code code-wrap"><code>[root@localhost ~]# vi /etc/systemd/journald.conf
+
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+#
+# Entries in this file show the compile time defaults.
+# You can change settings by editing this file.
+# Defaults can be restored by simply deleting this file.
+#
+# See journald.conf(5) for details.
+
+[Journal]
+#Storage=auto
+#Compress=yes
+#Seal=yes</code></pre><p id="6ee65083-5c54-4311-8ab4-6f8de64a4f74" class="">Storage 부분을 <code>auto</code> -&gt; <code>persistent</code></p><p id="a1ab5c3b-08e8-4db9-bc18-5c0146109d73" class=""><code>/var/log/journal</code> 디렉토리가 자동 생성되며 로그 파일이 기록됨</p></li></ul><p id="a397a674-74f6-4c61-85a2-3f275535fa7f" class="">
+</p><p id="135146ad-6101-4acb-85bf-fce8b9f74294" class="">
+</p><h3 id="d669bd80-0a38-4e56-9830-2b8f918624b0" class=""><code>timedatectl</code> : 현재 시스템에 사용하는 시간 정보, NTP 서비스 가동 여부 등 항목 확인 가능</h3><ul id="2686adf1-e2f5-48b9-9747-40535d8dc63d" class="bulleted-list"><li style="list-style-type:disc">시간 설정이 가능한 지역 확인<pre id="b0724c13-5be7-4e27-98c4-e4c7d263435f" class="code code-wrap"><code>[root@localhost ~]# timedatectl list-timezones
+Africa/Abidjan
+Africa/Accra
+Africa/Addis_Ababa
+Africa/Algiers
+Africa/Asmara
+Africa/Bamako
+Africa/Bangui
+Africa/Banjul</code></pre></li></ul><p id="6fddc100-bfd0-472b-b51e-02625a59a1dd" class="">
+</p><ul id="f52e0251-5d89-4539-b8fb-87e8f20764ce" class="bulleted-list"><li style="list-style-type:disc">시간을 서울 지역으로 변경<p id="6a107aa2-4408-4081-80c0-5c5799aa4a2a" class=""><code>timedatectl set-timezone Asia/Seoul</code></p></li></ul><p id="18a9e0ca-a548-4bff-97e4-2f023c140e51" class="">
+</p><ul id="855d4845-40c3-46a4-b2a5-c142c9ee4d2a" class="bulleted-list"><li style="list-style-type:disc"><code>chronyd</code><p id="2f6ced8d-a51d-41e7-8039-22886d3da7d8" class="">네트워크로 구성된 환경에서 구동되는 시스템들의 시간 동기화 프로토콜</p><p id="26bcc1a1-8b6c-4e28-b404-40b8a75674d2" class=""><code>/etc/chrony.conf</code></p><pre id="08649773-cb04-4ec8-af35-54aea6a47a5a" class="code code-wrap"><code># Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+server 0.centos.pool.ntp.org iburst
+server 1.centos.pool.ntp.org iburst
+server 2.centos.pool.ntp.org iburst
+server 3.centos.pool.ntp.org iburst</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f91c1003-4ec9-48ac-a389-ea478851624b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">iburst : 동기화시간을 단축시켜준다.</div></figure></li></ul><ul id="76f3c6e2-82e2-4a21-b908-dfdee9b831d3" class="bulleted-list"><li style="list-style-type:disc">시간 동기화 확인 : <code>chronyc sources -v</code><p id="b262bbde-1037-4f39-b93e-ce81a537e492" class=""><code>v</code> 옵션을 사용하여 <code>chrony</code> 서버에 대한 정보 출력</p><pre id="5a2cca88-c0a9-40e0-a103-9d3cf5c3b2ab" class="code code-wrap"><code>[root@localhost ~]# chronyc sources -v
+210 Number of sources = 4
+
+  .-- Source mode  &#x27;^&#x27; = server, &#x27;=&#x27; = peer, &#x27;#&#x27; = local clock.
+ / .- Source state &#x27;*&#x27; = current synced, &#x27;+&#x27; = combined , &#x27;-&#x27; = not combined,
+| /   &#x27;?&#x27; = unreachable, &#x27;x&#x27; = time may be in error, &#x27;~&#x27; = time too variable.
+||                                                 .- xxxx [ yyyy ] +/- zzzz
+||      Reachability register (octal) -.           |  xxxx = adjusted offset,
+||      Log2(Polling interval) --.      |          |  yyyy = measured offset,
+||                                \     |          |  zzzz = estimated error.
+||                                 |    |           \
+MS Name/IP address         Stratum Poll Reach LastRx Last sample               
+===============================================================================
+^? 106.247.248.106               2  10     0   42h   -257us[+1549us] +/-   44ms
+^? 211.233.40.78                 2  10     0   42h    -25us[+1781us] +/-   33ms
+^? 13.209.84.50                  2  10     0   42h  -4305us[-4305us] +/- 9588us
+^? 211.233.84.186                2  10     0   42h   +877us[ +877us] +/-   61ms</code></pre><p id="04946b17-0050-4634-a1e3-48cc49ddc00c" class="">
+</p></li></ul><h1 id="6373a2c6-bd15-41d6-9444-02f07688a8b8" class="">네트워킹 관리</h1><ul id="3199461f-f223-4e14-a603-30bdc4ec0700" class="bulleted-list"><li style="list-style-type:disc">네트워크 인터페이스 확인<p id="f08aaa4c-705a-4f58-aef9-035f66075758" class=""><code>ifconfig</code></p></li></ul><ul id="2bbeea2c-158d-4ce3-afb3-8958e4c8cba6" class="bulleted-list"><li style="list-style-type:disc">IP 정보 확인<p id="daf4fa38-84d1-4d38-9d08-dd9f0a86faf2" class=""><code>ip addr show</code></p></li></ul><ul id="60aecd51-cc0f-43cc-9a35-35451c37feaa" class="bulleted-list"><li style="list-style-type:disc">라우팅 테이블 상태 정보 확인<p id="b75601e0-2ff3-412b-ab09-e73c61524f08" class=""><code>ip route</code></p></li></ul><ul id="120260ae-c85e-4a46-8aac-23fbf0f9ff0c" class="bulleted-list"><li style="list-style-type:disc">패킷의 흐름 확인 1<p id="786fd878-659f-4e53-909a-34cf3197c0c4" class=""><code>yum -y install traceroute</code></p><p id="4e2b1283-46d4-415b-ad4f-bb71c7076e5d" class=""><code>traceroute </code><code><a href="http://www.google.com/">www.google.com</a></code></p></li></ul><ul id="a0531119-0507-4b65-9a9e-148e293ed91b" class="bulleted-list"><li style="list-style-type:disc">패킷의 흐름 확인 2<p id="6c286c7f-75b9-474c-a1e6-69223b7f55c9" class=""><code>tracepath </code><code><a href="http://www.google.com/">www.google.com</a></code></p></li></ul><p id="a56047c3-0a1f-4b96-811f-9a79db093a13" class="">
+</p><figure id="74ac3fef-414e-49e4-8e23-3f448819e3a5" class="image"><a href="Linux%20log,%20nmcli,%20ssh%20c2d7906b2be1413c9c09530b26dfb92d/virtualbox_%E1%84%82%E1%85%A6%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3.png"><img style="width:1414px" src="Linux%20log,%20nmcli,%20ssh%20c2d7906b2be1413c9c09530b26dfb92d/virtualbox_%E1%84%82%E1%85%A6%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3.png"/></a></figure><h1 id="c0ba3e0d-d0f8-4c02-ab04-1a70cc63031e" class=""><code>nmcli</code> : cli 환경에서 사용하는 명령어</h1><ul id="803c9fe3-1f7d-424d-a12d-f73e6e634f11" class="bulleted-list"><li style="list-style-type:disc">네트워크 관리는 수퍼유저 권한 필요</li></ul><ul id="9dea3369-e715-4aa7-ad68-1441524b5c22" class="bulleted-list"><li style="list-style-type:disc">명령어를 입력하여 설정을 변경하는 것이므로 네트워크 서비스를 재시작해주는 것이 아닌 <code>nmcli con reload </code>명령어를 입력해주어야 함</li></ul><ul id="07bbb069-8888-42af-bb83-2ea20cf62625" class="bulleted-list"><li style="list-style-type:disc">네트워크 장치로 연결 정보 확인하기<p id="952193cb-d043-49e5-a307-82b8846110f7" class=""><code>nmcli dev status</code></p></li></ul><ul id="556fad2b-5fea-432e-a2a0-83f06da0a159" class="bulleted-list"><li style="list-style-type:disc">네트워크 장치 세부 정보 확인<p id="f810ed63-d99d-4d6b-bf23-9fe0bdeb9aac" class=""><code>nmcli dev show</code></p></li></ul><ul id="ef86664c-a68f-4865-bfb8-68cc8070f2eb" class="bulleted-list"><li style="list-style-type:disc">연결 설정 정보 확인<p id="5a3774b6-f8a8-4d00-a8bc-70ba41d7f559" class=""><code>nmcli con show</code></p><pre id="2ffbb90a-a5ff-4a2f-988f-ade1df466187" class="code code-wrap"><code>[root@chan ~]# nmcli con show
+NAME    UUID                                  TYPE      DEVICE 
+ens2    e58f0b20-8649-4e8c-8a1d-181c5cf4cb71  ethernet  enp0s8 
+ens1    51745453-2359-4dff-9ace-e48f821f9c6f  ethernet  enp0s3 
+enp0s3  02ac81fa-57e4-45e4-af2a-2edb6b4a724f  ethernet  --     
+enp0s8  26d123f8-5721-49bb-92d1-f58f58d220d4  ethernet  --</code></pre></li></ul><ul id="26e83e2c-3d80-4353-9a3f-4d203eb00900" class="bulleted-list"><li style="list-style-type:disc">특정 연결 설정 정보 확인<p id="edc66366-c3f7-4afe-b13e-7fd0a275a03e" class=""><code>nmcli con show &#x27;ens1&#x27;</code></p></li></ul><ul id="85378730-3f26-4b6b-8cfd-ad8b14318707" class="bulleted-list"><li style="list-style-type:disc">dhcp 자동으로 연결<p id="bb754287-5fa6-4dcb-a07d-2224718d9f66" class=""><code>nmcli con add con-name ens3 type ethernet ifname enp0s8</code></p><p id="4d6de54f-dbfb-48c8-b86a-05a9198bbc0b" class=""><code>nmcli con up ens3</code></p></li></ul><ul id="f8570f02-3947-47ee-be22-db3e3a832516" class="bulleted-list"><li style="list-style-type:disc">네트워크 수동 설정 추가</li></ul><p id="7def01b1-6c0b-4de5-8d25-24857e747719" class=""><code>nmcli con add con-name ens4 type ethernet ifname enp0s8 \ ipv4.method manual ipv4.addresses 192.168.56.10/24 \ ipv4.gateway 192.168.56.1 ipv4.dns 8.8.8.8</code></p><p id="329cf4cd-1fc2-4d15-aec8-76516f5630ee" class=""><code>nmcli con up ens4</code></p><ul id="81702afa-4b7e-4842-8b71-307f34c27619" class="bulleted-list"><li style="list-style-type:disc">네트워크 연결 설정 변경<p id="d03822ef-3616-4820-bf5e-959af54b37e1" class=""><code>nmcli con mod ens4 ipv4.addresses 192.168.56.12</code></p><p id="280053ee-c329-413d-9066-435d148c0921" class="">해당하는 부분을 바꿔주면 됨</p><p id="e8ec841c-83a6-44f5-b328-aad9610649ba" class="">설정 변경 후 해줘야 할 것</p><p id="0830b2a8-40d7-4955-8314-b8fba526bf37" class=""><code>nmcli con reload</code></p><p id="d8058c3e-d31e-4b90-9fad-422a7576bdfb" class=""><code>nmcli con down ens4</code></p><p id="86287a44-ceb0-4e82-98ee-681609f4a648" class=""><code>nmcli con up ens4</code></p><p id="c99c4c8a-9f52-4b7a-a941-9a32064afcfb" class="">설정 변경 후 설정을 다시 로드해주고 해당 연결을 해제 후 다시 연결</p></li></ul><p id="fddac52d-eab8-48f8-8375-3c9fd80cbfca" class="">
+</p><ul id="1a2038ac-21cc-46b2-bc47-4e30e444731f" class="bulleted-list"><li style="list-style-type:disc">다른 ip로 연결해줄 시 putty 연결이 끊어짐<p id="2b34fbfe-ee96-415d-8cc8-07d1b482b88f" class=""><code>192.168.56.12</code> putty 연결 후</p><p id="fd63733b-21d5-40ad-a24b-f1f2b8210633" class=""><code>nmcli con up ens2</code></p><p id="ff07996d-4ee1-42e0-96ec-19880023c6d4" class="">192.168.56.10 putty 연결</p></li></ul><ul id="7330e3c3-d3de-487c-8fea-f1bcd7e89779" class="bulleted-list"><li style="list-style-type:disc">네트워크 연결 제거<p id="3933fb2f-eda6-48a8-b3a8-17af8e2446d6" class=""><code>nmcli con del ens3</code></p><p id="cd969e03-56fb-48c0-acfd-ec836e77f8bc" class="">
+</p></li></ul><ul id="3ad145bc-7ca2-4fa7-8a34-2e78629831ed" class="bulleted-list"><li style="list-style-type:disc">호스트네임 변경 방법(2가지)<ul id="4945be2c-f874-4cc8-baa5-e53c05d5c0a4" class="bulleted-list"><li style="list-style-type:circle"><code>/etc/hostname</code> 내용 변경<p id="f4d2825f-8845-41e5-8859-811f159fd0b0" class=""><code>hostnamectl set-hostname servera</code></p><pre id="88f9047a-e802-42fb-be45-401882e1440e" class="code code-wrap"><code>[root@localhost ~]# hostnamectl set-hostname chan
+[root@localhost ~]# hostname
+chan</code></pre></li></ul><p id="c52ccdc1-90eb-42e6-afa3-374f99fede51" class=""><div class="indented"><p id="eae79355-109d-480b-97b0-8de897978994" class="">적용시킬려면 reboot를 해야한다.</p><p id="212c2bc6-fe04-4f8a-896e-c862852e144f" class="">하지만 <code>bash</code> 를 이용하면 즉시 적용된다</p><pre id="231d9ece-2b67-4aac-bfa0-802da87870df" class="code code-wrap"><code>[root@localhost ~]# bash
+[root@chan ~]#</code></pre></div></p></li></ul><p id="ad9ea816-ed9b-4142-91eb-df9532a1d368" class="">
+</p><h3 id="563ee33d-0dc4-4e74-a80c-6821ae08e822" class=""><code>/etc/host</code></h3><p id="d99275b0-2b66-4525-acf2-e0c728064f51" class="">도메인 네임의 이름을 확인하여 호스트 네임을 ip 주소로 또는 그 반대로 변환하는데 사용</p><p id="96b01160-1d25-490f-ad6c-2a8eb213163a" class=""><code>vi /etc/hosts</code></p><pre id="b0c639b9-20cc-4288-9feb-8715b6936a72" class="code code-wrap"><code>...
+192.168.56.10 serverb    &lt;--- 마지막 줄에 추가</code></pre><ul id="356723b7-4818-40c6-86ef-8e1d3101e8b9" class="bulleted-list"><li style="list-style-type:disc">serverb로 ssh 접속<p id="0c497d8c-e278-4d8a-8544-c86bd25fba93" class=""><code>ssh root@serverb</code></p><p id="f37070ca-b9de-4aa4-a241-899edca56def" class="">192.168.56.10로 접속됨</p></li></ul><p id="5cb8258f-0b4e-4446-9beb-ca20aee8724b" class=""><a href="mailto:gsoh@nobreak.co.kr">gsoh@nobreak.co.kr</a></p></div></article></body></html>
