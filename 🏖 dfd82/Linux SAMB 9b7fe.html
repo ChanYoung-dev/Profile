@@ -1,0 +1,727 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux SAMBA-1</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9b7fe1ee-3390-4ee9-be2f-d221073fd467" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Web%20encryp%205e0ae/kuber.png"/></div><h1 class="page-title">Linux SAMBA-1</h1></header><div class="page-body"><p id="00e7bc45-319a-4979-84e2-3e126bfbb8f5" class="">SMB/CIFS : 윈도우와 리눅스가 공유할수 있게한다</p><p id="b13d40d1-5af6-42a4-a2e6-4f287aa95e4d" class="">
+</p><p id="337d59e6-f3ac-4bfd-a517-3a30616e07d9" class="">윈도우에서 <code>C://samba</code>(공유할 디렉토리) 생성</p><p id="dd50d709-1e51-46dd-8068-aa10ae04453b" class="">
+</p><figure id="878d7603-591d-4e66-91e5-c2c98078ad64" class="image"><a href="Linux%20SAMB%209b7fe/Untitled.png"><img style="width:866px" src="Linux%20SAMB%209b7fe/Untitled.png"/></a></figure><p id="2584ee76-b542-4184-aea8-bc9b7a84f5ec" class="">위와 같이 설정</p><p id="29d6d2b1-0659-4267-b380-e9d64c3b364c" class="">
+cmd를 관리자모드로 켠다</p><p id="224fce14-ab2d-49c6-a522-f4f8c4e3cb1c" class="">User(root) 추가</p><p id="aa39e1a0-0ce3-4df0-81b7-18844c4e0607" class=""><code>net user /add root 1234</code></p><p id="1bdcb666-35e5-47cb-9867-6ba1869a2a0a" class=""><code>net user</code></p><p id="0739e146-c2e5-4c82-a21c-72c65675110d" class="">
+</p><p id="cc280d7f-14b8-47a8-9fee-f216b7ee3419" class="">
+</p><p id="41fb827c-6b8e-44b6-bd2c-6517c4434bf7" class="">Centos 1로 접속</p><p id="350babe1-4d44-46d3-a256-d160528c70ed" class="">필요항목 확인</p><pre id="13b7e831-22c4-491e-85f7-38a2f41e474c" class="code code-wrap"><code>[root@localhost ~]# rpm -qa | grep samba
+samba-client-libs-4.10.16-5.el7.x86_64
+samba-libs-4.10.16-5.el7.x86_64
+samba-common-libs-4.10.16-5.el7.x86_64
+samba-client-4.10.16-5.el7.x86_64
+samba-common-4.10.16-5.el7.noarch
+[root@localhost ~]# yum -y install cifs-utils-devel.s</code></pre><p id="ae5e8731-40a7-4326-ad8f-c6cc82789fed" class="">
+</p><p id="c1acfefc-c5d2-4e26-b672-2906a5a4e9d0" class="">
+</p><p id="dfd4557f-25ac-4ad5-9271-69fa16120a14" class="">공유파일 확인</p><pre id="8025b5c5-475d-4fa1-ab75-52669cc4cc03" class="code code-wrap"><code>[root@localhost ~]# smbclient -L 10.0.2.6
+Enter SAMBA\root&#x27;s password: 
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	C$              Disk      Default share
+	IPC$            IPC       Remote IPC
+	samba           Disk      
+Reconnecting with SMB1 for workgroup listing.
+do_connect: Connection to 10.0.2.6 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)
+Unable to connect with SMB1 -- no workgroup available</code></pre><p id="76211008-8bd3-42fd-bd27-06a663daa0a7" class="">
+</p><p id="f0dec7b7-e6fe-4ab3-9155-c3ff0996b575" class="">mount 작업</p><pre id="bf9e80f7-2747-4976-9ed6-2ff48006a028" class="code code-wrap"><code>[root@localhost ~]# mkdir /samba1
+[root@localhost ~]# mount -t cifs //10.0.2.6/samba /samba1</code></pre><p id="f43ee679-8c02-424f-a262-a960586fb23d" class="">
+</p><p id="640d0005-8008-413e-b4ac-1d339e1ffa2d" class="">
+</p><p id="2015f73e-4b2b-4565-8983-344992f292e8" class="">확인을 위해 윈도우에서 <code>test.txt</code>추가</p><pre id="62c253f1-4bf9-4134-a62f-00c7a9fae81c" class="code code-wrap"><code>[root@localhost ~]# ls /samba1/
+test.txt</code></pre><p id="55662278-2f74-41ae-ac3d-4f142291e85f" class="">확인</p><p id="f1b31cd9-bb8a-41ef-8f0e-a51a54a6b9b8" class="">
+</p><p id="affb8495-b05d-4bc7-830b-48c1d1330a9f" class="">window 2017 이후에는 뒤에 <code>-o vers=2.0</code> 붙여야한다</p><p id="dab94288-f18a-4d87-8ca8-35855fdb3e62" class=""><code>mount -t cifs //10.0.2.6/samba /samba1 -o vers=2.0</code></p><hr id="5983fb46-3506-43d9-817b-6903ef48a2b6"/><p id="21bf8d8b-794c-4841-b334-c329cbb2b0a1" class="">
+</p><h2 id="aee074e6-48e6-4d28-bda6-575822e638b9" class="">로그인없이 공유파일 접속하기</h2><p id="6b5f856d-c18c-41c2-aa19-01939a63d7b8" class="">
+</p><p id="ec358d17-2c55-43ad-9abe-6fe9a555385e" class="">초기화</p><p id="5a86c3a1-d7f8-4b64-833a-8782ba7e19c0" class=""><code>umount /samba1</code></p><p id="3bfc6242-0dcb-46d1-b9b4-de4d51aaa0fb" class="">
+</p><p id="dd7316f5-8175-4b91-831b-82d5a3aecb11" class="">유저 정보 등록</p><p id="6691ea9a-3b8d-4a1e-b600-babd2381b467" class=""><code>vi /etc/cred</code></p><pre id="a058c26c-1853-4237-8952-3332bda683b8" class="code code-wrap"><code>username=root
+password=1234</code></pre><p id="8cd76400-61d3-48ec-84f9-5c52ddd052f7" class="">
+</p><p id="4c8906d0-e96c-481b-915c-1ef57cf9ac07" class="">mount</p><p id="1ea52623-af8e-4117-9971-701d9769f362" class=""><code>mount -t cifs -o credentials=/etc/cred //10.0.2.17/samba /samba1</code></p><p id="0854fa07-a7f9-4bc0-81f6-185ed61217dd" class="">
+</p><p id="78736b86-2145-4e17-9cb6-d67a0562817d" class="">
+</p><hr id="f7cd1ced-1fac-4071-9f02-e7d7c3a0fb76"/><h1 id="fee3e377-3906-4ee2-a513-131b9bf55e1c" class="">autofs를 이용한 자동마운트</h1><h2 id="fe046820-7701-47e0-a466-6f4521891436" class="">직접 맵 마운트</h2><p id="79a0934d-9422-4cb3-bebd-0c1c3b4d5984" class="">
+</p><p id="d0256526-9cb8-44be-bc3a-5eb6c9648b23" class="">초기화 : <code>umount /samba1</code></p><p id="ee50241d-da65-49de-bca9-c89998d2e2f5" class="">
+</p><p id="ad8c6b12-e46d-4277-86b0-f7dac829b457" class="">autofs 설치 : <code>yum install -y autofs</code></p><p id="215d9eca-2703-42ec-bd91-21f93cfe8689" class="">
+</p><p id="382db410-921a-48a8-a906-8446d8efa776" class="">마스터 맵 설정</p><p id="dd5f41a1-b22c-455c-ac4f-b55116a82152" class=""><code>vi /etc/auto.master.d/direct.autofs</code></p><pre id="bc91f2f9-d2ea-409d-a56d-a06870021b0c" class="code code-wrap"><code>/-      /etc/auto.direct</code></pre><p id="3caab244-fa32-4927-acb0-b3bd306f9bc6" class="">
+</p><p id="a48826d9-e23d-428b-9bfd-77dbb541d0f6" class="">직접 맵 설정</p><p id="91d8d80a-11da-4c00-a984-69b6000e6971" class=""><code>vi /etc/auto.direct</code></p><pre id="e49ad67d-28c0-45b4-8ebf-ab75ac83726b" class="code code-wrap"><code>
+/samba1 -fstype=cifs,credentials=/etc/cred      ://10.0.2.6/samba</code></pre><p id="fc22c9e7-7b21-428f-b9a7-a21a71e6de5e" class="">
+</p><p id="475214ea-65bf-43bc-9264-e9c743ae18e1" class="">설정 적용 및 확인</p><pre id="316118c0-a5e6-4dea-adf5-b8414f237639" class="code code-wrap"><code>[root@localhost ~]# systemctl restart autofs
+[root@localhost ~]# ls /samba1
+test.txt</code></pre><p id="1699ad3f-ad86-4cf0-a901-0de01d2fd05f" class="">
+</p><h2 id="3e8076c1-5307-41de-bbf7-f0640ce06245" class="">간접 맵 마운트</h2><p id="5737c24b-637d-4829-9ba1-8d475b388991" class="">초기화</p><pre id="a1d5eb82-e2a9-4be0-9743-d91064251b9f" class="code code-wrap"><code>[root@localhost ~]# systemctl stop autofs
+[root@localhost ~]# umount /samba1
+umount: /samba1: not mounted
+[root@localhost ~]# rm -rf /etc/auto.master.d/direct.autofs</code></pre><p id="ad1277f7-0dc0-455c-9d7b-0334ee628873" class="">
+</p><p id="72003c90-191c-47dd-a6fe-fe9c00a30ebb" class=""><code>vi /etc/auto.master.d/indirect.autofs</code></p><pre id="6b100f9f-4485-467f-9553-8dc93a072e95" class="code code-wrap"><code>/indirect       /etc/auto.indirect</code></pre><p id="badf17ac-694c-4ef6-ae25-2c424140a9be" class="">
+</p><p id="7b78108c-6f3b-4ccc-9a1a-2fd22e158bb7" class=""><code>vi /etc/auto.indirect</code></p><pre id="cda689cf-6212-4feb-b73b-3389a0dc0ee6" class="code code-wrap"><code>share   -fstype=cifs,credentials=/etc/cred      ://10.0.2.6/samba</code></pre><p id="314aa6fd-6d70-48ea-9b70-ff8929770427" class="">
+</p><p id="f52e8e15-13fc-4ee0-9d24-4e014a825483" class="">디렉토리를 만든 후 설정 적용 후 확인</p><pre id="6aa2d3d2-4730-43be-bd8c-98eb2bd4f249" class="code code-wrap"><code>[root@localhost ~]# mkdir /indirect
+[root@localhost ~]# mkdir /indirect/share
+[root@localhost ~]# systemctl restart autofs
+[root@localhost ~]# ls /indirect/share
+test.txt</code></pre><p id="a5914323-8779-4fb5-8feb-7243f849853b" class="">
+</p><p id="cf51906b-f3b8-4ccd-886d-cfc8b8dc5907" class="">
+</p></div></article></body></html>

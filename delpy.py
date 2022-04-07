@@ -4,7 +4,7 @@ import re
 
 index_num = 12  
 
-target_file = './🏖 dfd82f66284b4f8ca44c5f5f3b6e544a/'
+target_file = './🏖 dfd82/'
 
 original_text = """
 a,

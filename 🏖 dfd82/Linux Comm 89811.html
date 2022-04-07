@@ -1,0 +1,706 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux Commandlines</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="89811a2b-6b03-4d63-82af-c470a6dc939b" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Linux%20Comm%2089811/kuber.png"/></div><h1 class="page-title">Linux Commandlines</h1></header><div class="page-body"><p id="2f864055-2fdf-43b1-86fd-a86c0eec0364" class=""><code>history</code> : 여태까지 사용했던 명령어를 출력</p><h3 id="02004480-0486-4225-be7e-ea5096094b05" class="">shell</h3><ul id="72c2d456-7915-4e9e-8bc5-898c16f97306" class="bulleted-list"><li style="list-style-type:disc">텍스트 기반의 인터페이스</li></ul><ul id="2240aa74-2d4d-4416-88e1-26e311e0dee1" class="bulleted-list"><li style="list-style-type:disc">프로그램</li></ul><h3 id="8e816f0a-e9eb-4b04-9704-959694d1f5f9" class="">shell의 종류</h3><ul id="7aa2343a-1cf9-40a7-ae29-200d7c898113" class="bulleted-list"><li style="list-style-type:disc">sh : 초기의 쉘(born shell)</li></ul><ul id="2ffa3023-dd0a-4cbd-a097-45a934554941" class="bulleted-list"><li style="list-style-type:disc">bash : sh의 업그레이드 버전(가장 많이 사용)</li></ul><ul id="d3ff52b1-051a-4afa-96c0-42e281a7426f" class="bulleted-list"><li style="list-style-type:disc">csh</li></ul><ul id="022569e8-d5f4-49f4-82d8-d7618d8ce4c1" class="bulleted-list"><li style="list-style-type:disc">ksh</li></ul><ul id="8c0b3a13-2879-49e8-b829-61f919734a93" class="bulleted-list"><li style="list-style-type:disc">zsh : 개발자, 운영자 입장에서 사용하기 용이</li></ul><h3 id="eadae6d1-c5e7-4618-9201-d099a07f9d83" class="">경로 관련</h3><figure id="3b787443-5437-445b-8e77-7ea3e4bf109a" class="image"><a href="Linux%20Comm%2089811/%E1%84%8C%E1%85%A5%E1%86%AF%E1%84%83%E1%85%A2_%E1%84%80%E1%85%A7%E1%86%BC%E1%84%85%E1%85%A9_%E1%84%89%E1%85%A1%E1%86%BC%E1%84%83%E1%85%A2_%E1%84%80%E1%85%A7%E1%86%BC%E1%84%85%E1%85%A9.png"><img style="width:1915px" src="Linux%20Comm%2089811/%E1%84%8C%E1%85%A5%E1%86%AF%E1%84%83%E1%85%A2_%E1%84%80%E1%85%A7%E1%86%BC%E1%84%85%E1%85%A9_%E1%84%89%E1%85%A1%E1%86%BC%E1%84%83%E1%85%A2_%E1%84%80%E1%85%A7%E1%86%BC%E1%84%85%E1%85%A9.png"/></a></figure><p id="ef95df2f-1153-413f-b574-2443d45db524" class="">
+상대 경로
+<code>.</code> (점 하나)</p><ul id="dbf12f26-e6f6-4c49-a7e5-83d4ec894e53" class="bulleted-list"><li style="list-style-type:disc">현재 디렉토리를 의미</li></ul><p id="94cc9284-b5f2-4d6b-8234-bfbfacea2b76" class=""><code>..</code> (점 두개)</p><ul id="9518c454-10e9-4d07-8612-58f0a59329a5" class="bulleted-list"><li style="list-style-type:disc">상위 디렉토리를 의미</li></ul><h3 id="a8f65423-8a5e-47ec-a109-ca1c29e3f658" class="">파일 확인 명령어</h3><p id="100428b7-d7a9-4cee-b6c4-3190df65699f" class="">
+<code>cat</code> : 파일 내용 전체 확인</p><ul id="00d030f3-ea20-4e43-ba51-b42475dce472" class="bulleted-list"><li style="list-style-type:disc">ex) <code># cat anaconda-ks.cfg</code></li></ul><p id="d8e50163-c91b-4a0b-9a36-7f29686060e6" class=""><code>head</code> : 파일의 상단부를 확인</p><ul id="914eb290-5548-4d26-af1b-591eacd30911" class="bulleted-list"><li style="list-style-type:disc">옵션 미사용시 10줄 출력</li></ul><ul id="918bf129-f48e-4404-941c-203c205ea7e9" class="bulleted-list"><li style="list-style-type:disc">ex) <code># head anaconda-ks.cfg</code></li></ul><ul id="e9f0051d-d679-4198-9bd0-37816f2ce64d" class="bulleted-list"><li style="list-style-type:disc">ex) <code># head -n 5 anaconda-ks.cfg</code></li></ul><ul id="9908ba9c-a991-4f0f-81e4-76a6ef227841" class="bulleted-list"><li style="list-style-type:disc">n 옵션을 사용하여 원하는 줄 수 만큼 출력</li></ul><p id="759ea542-8749-4e1e-bf9b-6a2c29e4dc17" class=""><code>tail</code> : 파일의 하단부를 확인</p><ul id="d077cf55-ed0a-47f0-82d9-8a50e2a08300" class="bulleted-list"><li style="list-style-type:disc">옵션 미사용시 10줄 출력</li></ul><ul id="e955076a-c53e-4ef6-bee4-08a4e3106f83" class="bulleted-list"><li style="list-style-type:disc">ex) <code># tail anaconda-ks.cfg</code></li></ul><ul id="0c497545-b641-4e25-93f4-af6496efa2b6" class="bulleted-list"><li style="list-style-type:disc">ex) <code># tail -n 5 anaconda-ks.cfg</code></li></ul><ul id="59fbf4a4-b569-40ca-b76a-42b53a5701eb" class="bulleted-list"><li style="list-style-type:disc">n 옵션을 사용하여 원하는 줄 수 만큼 출력</li></ul><p id="4dbc92f0-566f-40e4-af12-b5470aa8e049" class=""><code>more</code> : 파일의 내용을 한 페이지씩 확인</p><ul id="9e9d8842-db41-4f31-8131-27d8b3522b70" class="bulleted-list"><li style="list-style-type:disc">스페이바로 이동 가능(화살표 방향키 사용 불가)</li></ul><ul id="6023460b-bad9-4452-aebf-648b4367b9da" class="bulleted-list"><li style="list-style-type:disc">내용 전체를 보고 난 후 명령줄로 복귀</li></ul><ul id="e780a4a6-c180-4642-ae49-77ff8c68c978" class="bulleted-list"><li style="list-style-type:disc">ex) <code># more anaconda-ks.cfg</code></li></ul><p id="e56caea9-9368-484f-9c01-1c90e1a858c9" class=""><code>less</code> : 파일의 내용을 한 페이지씩 확인</p><ul id="8e901a23-2e53-4b9f-bcf2-0bb1671ef59d" class="bulleted-list"><li style="list-style-type:disc">스페이바로 이동 가능</li></ul><ul id="902124d6-bec3-4535-bc0f-269bd15eb1ae" class="bulleted-list"><li style="list-style-type:disc">화살표 방향키 사용 가능</li></ul><ul id="3e17a80d-9292-4f7c-a735-c96069b61a85" class="bulleted-list"><li style="list-style-type:disc">내용 전체를 보고 난 후 <code>q</code>로 빠져나와야 함</li></ul><ul id="42978cbc-d8de-4877-8f48-58bce3576c16" class="bulleted-list"><li style="list-style-type:disc">ex) <code># less anaconda-ks.cfg</code></li></ul><p id="832dcd6e-87f4-4f99-bf08-53c67dfdb8ea" class="">grep : 파일 내용에서 문자열 검색</p><ul id="1855a3e1-26f8-4062-a569-03508d4917cd" class="bulleted-list"><li style="list-style-type:disc">| (파이프) 를 같이 사용</li></ul><ul id="8fd4e0e7-d92e-49e2-84b5-5271b11c589c" class="bulleted-list"><li style="list-style-type:disc">ex) <code># cat anaconda-ks.cfg | grep CDROM</code></li></ul><h3 id="bd75abb3-6203-4a93-9ca3-edfb0e1946fd" class="">파일 관리 명령어</h3><p id="7879076f-e425-4d41-ac5f-1440b6632dda" class="">
+                  파일		       디렉토리
+생성	  touch, vim	         mkdir</p><p id="81b65a6f-c728-42c2-b9cf-c96db09a806a" class="">이동   mv 파일명 이동할위치    mv 디렉토리명 이동할위치</p><p id="f7a7cb86-abaa-4bbf-8433-9ccc3a64ef1f" class="">복사   cp 파일명 복사할위치    cp -r 디렉토리명 복사할위치</p><p id="fcbbb528-5809-4ad9-8d0f-f2b9bb203438" class="">삭제	      rm		         rm -r (rmdir)</p><p id="4fb10bec-0441-492e-a662-13c340b271a9" class="">cp, mv, rm 명령어 사용시 메시지를 출력하도록 설정된 파일</p><ul id="d6cde11a-9962-4968-b386-5b017d165a92" class="bulleted-list"><li style="list-style-type:disc">.bashrc 에 설정되어 있음</li></ul><p id="7c989742-4298-41ec-92be-34567adbe636" class="">빈 파일 생성</p><ul id="c2c007d4-93d2-4e64-aab0-dddeb922b4d3" class="bulleted-list"><li style="list-style-type:disc">ex) <code># touch fileA</code></li></ul><ul id="8a3e6495-9411-4dc6-bd64-8203b31900b5" class="bulleted-list"><li style="list-style-type:disc">ex) <code># touch fileB fileC</code></li></ul><ul id="85380f9b-fa19-4839-9926-6d8f3fb7d5e3" class="bulleted-list"><li style="list-style-type:disc">빈 파일 여러 개 생성 가능</li></ul><ul id="52348acb-64cf-49aa-be27-e1d868c0787e" class="bulleted-list"><li style="list-style-type:disc">만들어진 파일은 <code>ls</code> 명령어로 확인 가능</li></ul><p id="d9275459-526a-4224-b3d0-f605bb158eb3" class="">빈 디렉토리 생성</p><ul id="b387dede-6c97-4588-9316-e9dd5fb0ffb1" class="bulleted-list"><li style="list-style-type:disc">ex) <code># mkdir dirA</code></li></ul><ul id="dbbfb8a4-2cd7-4a18-b34c-7f2afec874b5" class="bulleted-list"><li style="list-style-type:disc">ex) <code># mkdir dirB dirC</code></li></ul><ul id="ef804ea0-7271-4dbb-85e4-f0d09a856b64" class="bulleted-list"><li style="list-style-type:disc">빈 디렉토리 여러 개 생성 가능</li></ul><ul id="58288861-5f6a-4a26-82dd-ce03a729f262" class="bulleted-list"><li style="list-style-type:disc">만들어진 디렉토리는 ls 명령어로 확인 가능</li></ul><p id="1d077f14-c6cc-45e3-89db-1522bc093648" class="">파일 이동</p><ul id="249a76be-5b31-44b1-b0f0-8321fb31a815" class="bulleted-list"><li style="list-style-type:disc">ex) <code># mv fileA dirA</code></li></ul><ul id="3a6f92e4-7e24-4cb5-8037-cc72b98d3553" class="bulleted-list"><li style="list-style-type:disc">파일 fileA를 디렉토리 dirA 안으로 이동</li></ul><ul id="4cbe1b97-f3b8-45b3-8c79-52d431045437" class="bulleted-list"><li style="list-style-type:disc">ex) <code># mv fileE file2</code></li></ul><ul id="182f3199-9e53-46f7-ad76-83854d8bbba5" class="bulleted-list"><li style="list-style-type:disc">파일 fileE를 file2로 이름 변경</li></ul><p id="ab9b20b0-3fd8-4b33-b803-ec9292c68d2d" class="">디렉토리 이동</p><ul id="33439619-cafb-422d-9233-31e16753e440" class="bulleted-list"><li style="list-style-type:disc">ex) <code># mv dirB dirA</code></li></ul><ul id="abd165f6-11c8-4fe7-b5d1-e3004ecae4b7" class="bulleted-list"><li style="list-style-type:disc">디렉토리 dirB를 디렉토리 dirA 안으로 이동</li></ul><ul id="9d86aec6-4a50-49ef-b154-894bd9a42942" class="bulleted-list"><li style="list-style-type:disc">ex) <code># mv dirE dir2</code></li></ul><ul id="9bb46f46-be87-4d5e-a39d-22d40ef9eaca" class="bulleted-list"><li style="list-style-type:disc">디렉토리 dirE를 dir2로 이름 변경</li></ul><ul id="7d093b39-c158-4a44-b681-d30e300745cb" class="bulleted-list"><li style="list-style-type:disc">변경할 디렉토리명은 해당 위치에 똑같은 이름이 없어야 함</li></ul><p id="72c5d31e-9bee-475e-bd2a-d197cd7b784d" class="">파일 복사</p><ul id="b3571df8-5a9e-4d95-9cf4-9b296a9f989b" class="bulleted-list"><li style="list-style-type:disc">ex) <code># cp fileB dirA</code></li></ul><ul id="2e79cca7-106e-4a11-8969-0509e3eb209d" class="bulleted-list"><li style="list-style-type:disc">파일 fileB를 디렉토리 dirA 안으로 복사</li></ul><ul id="b86e3089-188a-43d0-b635-390fca37171c" class="bulleted-list"><li style="list-style-type:disc">ex) <code># cp fileB dirC/file1</code></li></ul><ul id="e8cf05f7-4cc5-47ca-b13e-d915efe2c606" class="bulleted-list"><li style="list-style-type:disc">파일 fileB를 디렉토리 dirC 안에 file1 이름으로 복사</li></ul><p id="da352702-4161-4253-b758-a19f2c722f7f" class="">디렉토리 복사</p><ul id="0f64b1c1-b350-4ab8-a6b9-681d991743ef" class="bulleted-list"><li style="list-style-type:disc">ex) <code># cp -r dirC dirD</code></li></ul><ul id="a6972a09-fd97-45d9-8e2d-3949c856c970" class="bulleted-list"><li style="list-style-type:disc">디렉토리 dirC를 디렉토리 dirD 안으로 복사</li></ul><ul id="77cf8780-f20a-42aa-b561-06487e97334b" class="bulleted-list"><li style="list-style-type:disc">ex) <code># cp -r dirC dirD/dirF</code></li></ul><ul id="987cd873-b52b-4e89-a2e0-90dfa0276647" class="bulleted-list"><li style="list-style-type:disc">디렉토리 dirC를 디렉토리 dirD 안에 dirF 이름으로 복사</li></ul><p id="210139b4-b6ee-4f0a-a95d-c0d8eea8ec70" class="">파일 삭제</p><ul id="0bbee5d7-a467-46a2-9912-bb3bb8cf7d1e" class="bulleted-list"><li style="list-style-type:disc">ex) <code># rm fileB</code></li></ul><ul id="9c7a8a30-87ec-43a9-b217-4790180d3a3f" class="bulleted-list"><li style="list-style-type:disc">fileB 삭제 (삭제 전 질문)</li></ul><ul id="0225105f-2e2e-474e-8764-b3c00c16f30e" class="bulleted-list"><li style="list-style-type:disc">ex) <code># rm -f fileC</code></li></ul><ul id="eaa2602d-1943-4ac2-a96d-92d43616e8ac" class="bulleted-list"><li style="list-style-type:disc">fileC 강제로 삭제 (삭제 전 질문 X)</li></ul><p id="642d036c-279a-4a7d-8614-e72c472f65f4" class="">디렉토리 삭제</p><ul id="def03236-7e2d-4e26-9525-5a10c8074ed9" class="bulleted-list"><li style="list-style-type:disc">ex) <code># rm -r dirA</code></li></ul><ul id="1b87e6a3-58b3-409b-8722-05eb4c3e51a8" class="bulleted-list"><li style="list-style-type:disc">dirA 삭제 (내부 파일 삭제 질문)</li></ul><ul id="b274df6b-6097-4ebb-a0d2-0dbcc6c9892e" class="bulleted-list"><li style="list-style-type:disc">ex) <code># rm -rf dirD</code></li></ul><ul id="9e073786-1993-41fa-b5e7-91a6f3238c34" class="bulleted-list"><li style="list-style-type:disc">dirD 강제로 삭제 (내부 파일 삭제 질문 X)</li></ul><p id="714c22ee-a874-4be5-a48d-b8a571ae5dde" class=""><code>rmdir</code> 은 내부파일이 없을 경우 삭제 가능</p><p id="d5f28ad5-0558-4cbf-87e7-6d8ba4a30e96" class="">
+</p><p id="435b8d6d-cd9b-4bdf-9a1f-74f11f0cec27" class="">
+</p><h2 id="ff81dd7e-3bdf-488e-a71f-4d8a0a94cdb0" class="">Link</h2><p id="4ea7cbe7-2ee8-4559-be57-e3a6442e9101" class="">
+</p><figure id="51f799d5-b745-4fe8-95e8-36fe227a5e06" class="image"><a href="Linux%20Comm%2089811/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC%E1%84%8F%E1%85%B3_%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC%E1%84%8F%E1%85%B3.png"><img style="width:1616px" src="Linux%20Comm%2089811/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC%E1%84%8F%E1%85%B3_%E1%84%92%E1%85%A1%E1%84%83%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC%E1%84%8F%E1%85%B3.png"/></a></figure><p id="37ca041e-41fc-490b-bf99-e1fa31f82aa8" class="">하드링크</p><ul id="db342f06-be22-4809-b2cb-73dea2997d3f" class="bulleted-list"><li style="list-style-type:disc">inode 테이블과의 연결고리를 만들어 주는 것</li></ul><ul id="7c348bfe-9991-4c7a-b8d4-60f6b010c0bd" class="bulleted-list"><li style="list-style-type:disc"><code>ln</code> 명령어를 사용해서 생성</li></ul><ul id="a1e2857c-aa41-4d88-b5a5-fe1cb2e98a51" class="bulleted-list"><li style="list-style-type:disc">다른 소유자의 파일을 참조하기 위해 로그인 등의 과정을
+거치지 않고 하드링크를 이용하여 참조 가능</li></ul><ul id="107d11f3-dedb-4833-bc98-8d182777f4cc" class="bulleted-list"><li style="list-style-type:disc">원본 파일 삭제 시 링크 수 감소</li></ul><p id="5c0f31d9-59e6-4458-bc4f-2db88b76a733" class="">소프트링크</p><ul id="db7825bb-8154-448f-bafa-b84e48bb97b8" class="bulleted-list"><li style="list-style-type:disc">파일 이름과의 연결고리를 만들어주는 것</li></ul><ul id="ea27a71b-70fe-4993-9cd9-87e451322b81" class="bulleted-list"><li style="list-style-type:disc">원본 파일의 이름을 거쳐 접근</li></ul><ul id="61c7fbce-8672-4863-8a24-d568c6618304" class="bulleted-list"><li style="list-style-type:disc"><code>ln -s</code> 명령어를 사용하여 생성</li></ul><ul id="fd67e98d-9007-4f9f-b759-459136e50f3a" class="bulleted-list"><li style="list-style-type:disc">명령어 사용 목적으로 많이 생성</li></ul><ul id="f6032c59-55a7-4fa1-90f7-f12e84385899" class="bulleted-list"><li style="list-style-type:disc">경로가 복잡한 디렉토리에 쉽게 접근하기 위해 사용</li></ul><h3 id="8cf86d71-ebe0-4c8d-b217-30f9eb911f8d" class="">실습
+</h3><ol type="1" id="ea196b14-16c9-41cc-a5f1-8ce5325c41dc" class="numbered-list" start="1"><li>실습을 위해 모든 파일 제거 : <code>rm -rf *</code></li></ol><ol type="1" id="527af896-d972-41a7-b0ca-dc0c72c5b2ec" class="numbered-list" start="2"><li>링크 파일 생성을 위한 기본 파일 생성 : <code>echo 1234 &gt; fileA</code></li></ol><ol type="1" id="cf5bd756-5c18-42b2-82f1-cfbd4394db6e" class="numbered-list" start="3"><li>파일 내용 확인 : <code>cat fileA</code></li></ol><ul id="d9d02480-3a3a-42ad-9a3c-e447e679a57f" class="bulleted-list"><li style="list-style-type:disc">결과) <code>1234</code></li></ul><ol type="1" id="bcb7f26f-0b0b-4c4b-bb27-78d44518c555" class="numbered-list" start="4"><li>소프트링크 파일 생성 : <code>ln -s fileA soft_fileA</code></li></ol><ol type="1" id="36979a3a-ced5-4f5e-9729-4291bee2aaf6" class="numbered-list" start="5"><li>소프트링크 참조 정보 확인 : <code>ls -l</code></li></ol><ul id="aeef379e-0ddb-4ff8-bdf7-755646e1677e" class="bulleted-list"><li style="list-style-type:disc">결과)<code> lrwxrwxrwx. 1 root root 5 Jan 11 01:11 soft_fileA -&gt; fileA</code></li></ul><ol type="1" id="e71ed86a-283b-4089-a7cc-964fe29b08b9" class="numbered-list" start="6"><li>하드링크 파일 생성 : <code>ln fileA hard_fileA</code></li></ol><ol type="1" id="a8fe571d-39b8-48de-9565-2de24feb1ded" class="numbered-list" start="7"><li>하드링크 참조 정보 확인 : <code>ls -l</code></li></ol><ul id="c13775a3-0a17-4141-8bdf-696f07aa0c4c" class="bulleted-list"><li style="list-style-type:disc">결과) <code>-rw-r--r--. 2 root root 5 Jan 11 01:09 hard_fileA</code></li></ul><ol type="1" id="b16f340e-0801-48de-840f-36f51dc0614b" class="numbered-list" start="8"><li>원본 파일 삭제 : <code>rm -f fileA</code></li></ol><ol type="1" id="b0f74a02-c95e-4699-89b1-3a04f7825ec3" class="numbered-list" start="9"><li>파일 리스트 확인 : <code>ls -l</code></li></ol><pre id="29f7cd1a-c08a-498d-8036-d20d5e5c700f" class="code code-wrap"><code>rw-r--r--. 1 root root 5 Jan 11 01:09 hard_fileA
+lrwxrwxrwx. 1 root root 5 Jan 11 01:11 soft_fileA(빨간색) -&gt; fileA(빨간색)</code></pre><ul id="3246391c-f002-4411-8793-c5a6d6fe3dbb" class="bulleted-list"><li style="list-style-type:disc">하드 링크 파일의 숫자가 2-&gt;1 감소</li></ul><ul id="2f6dd217-cfa5-4440-9754-441eb63c910f" class="bulleted-list"><li style="list-style-type:disc">소프트링크 파일은 사용 불가</li></ul><ol type="1" id="ba0b2bc1-6539-4f8c-b755-b5506422776a" class="numbered-list" start="10"><li>fileA 파일 재생성 : <code>touch fileA</code></li></ol><ol type="1" id="74255eec-79e8-4b20-a829-50acbe87cc44" class="numbered-list" start="11"><li>파일 리스트 확인 : <code>ls -l</code></li></ol><pre id="12e5051c-9d66-4554-bd08-cf0e3d926428" class="code code-wrap"><code>rw-r--r--. 1 root root 0 Jan 11 01:23 fileA
+-rw-r--r--. 1 root root 5 Jan 11 01:09 hard_fileA
+lrwxrwxrwx. 1 root root 5 Jan 11 01:11 soft_fileA -&gt; fileA</code></pre><ul id="4c3a5f50-9647-4b03-a5e0-571b63763cc5" class="bulleted-list"><li style="list-style-type:disc">전에 생성했던 fileA 와는 다른 fileA가 생성됨</li></ul><ul id="a8f9829e-ec96-4b02-bc2b-ba80df905324" class="bulleted-list"><li style="list-style-type:disc">소프트링크 파일은 새로 생성한 fileA를 참조함</li></ul><ul id="cfd520d0-1dd2-41c1-b054-511a7584bd14" class="bulleted-list"><li style="list-style-type:disc">하드링크는 기존 fileA가 참조하던 data를 참조</li></ul><h3 id="d426757d-ade7-4da0-83c0-552cbd447dd0" class="">검색</h3><p id="e22df2e7-a60d-47c8-a19b-576c2cb69a8a" class="">
+<code>locate</code></p><ul id="0f8d8373-82f4-404b-8432-edbb242cc525" class="bulleted-list"><li style="list-style-type:disc">명령어 형식 : <code>locate [파일명]</code></li></ul><ul id="09bc44ab-7ce3-4647-8003-02bdfe4db3e9" class="bulleted-list"><li style="list-style-type:disc">목록 데이터베이스를 주기적으로 갱신해줘야 함</li></ul><ul id="d89f67bb-56cc-4516-b3ef-834a7e70ce2a" class="bulleted-list"><li style="list-style-type:disc">이름을 기반으로 검색</li></ul><p id="d2d7c93c-b248-400f-a417-d124105d88f5" class="">locate 사용을 위한 데이터베이스 목록 패키지 다운로드 : <code>sudo yum -y install mlocate</code></p><p id="a3bad239-df85-4423-98ed-eed9eaf19cf3" class="">locate 데이터베이스 업데이트 : <code>updatedb</code></p><p id="6d414398-acbe-46ff-b00e-0f8c4bfad4d7" class="">locate 명령어 사용 : <code>locate fileA</code></p><p id="ccf18043-6adc-4ac7-9e52-00eff9090b71" class="">결과)</p><pre id="2d4456ad-2277-47f7-b885-4a838b46a5f0" class="code code-wrap"><code>
+/root/fileA
+/root/hard_fileA
+/root/soft_fileA</code></pre><p id="d1efb207-9295-4173-9f67-f42c1deddf02" class="">
+</p><p id="8a07b008-9ad4-42bd-b8f1-51377e10ff45" class="">
+</p><p id="5b0462aa-833b-4bc5-a3f2-5eb0286e2b44" class=""><code>find</code></p><ul id="38d8f09a-dba6-472f-9b24-050a05ce0d1e" class="bulleted-list"><li style="list-style-type:disc">명령어 형식 : <code>find [경로 조건]</code> </li></ul><ul id="ea59a390-1bbd-4f07-a166-6c8e36e2152d" class="bulleted-list"><li style="list-style-type:disc">경로를 기준으로 하위 검색</li></ul><ul id="b8e1f2a0-7d02-489c-8fbe-c80acfc1b483" class="bulleted-list"><li style="list-style-type:disc">직접 접근하여 찾는 방식</li></ul><ul id="46f515bc-311a-4071-865e-ed623c7cb1a6" class="bulleted-list"><li style="list-style-type:disc">여러 가지 조건으로 검색 가능</li></ul><ul id="b42f5058-ce7f-44db-903a-362286766a9d" class="bulleted-list"><li style="list-style-type:disc">검색과 동시에 추가 작업 가능</li></ul><p id="83f8d638-6462-4476-a549-956767028e8b" class="">
+</p><p id="1ed78665-c398-4c44-8612-a0aa39366372" class="">최상위 디렉토리 하단에 위치한 이름에 <code>file</code> 이라는 단어가 들어가는 모든 파일을 검색</p><p id="0de72a1b-ae36-4d95-92a1-0c5ea70a3ded" class=""><code>find / -name &quot;</code><code><em>file</em></code><code>&quot;</code></p><ul id="167d4494-ff3b-4882-a10e-b1330193fe3d" class="bulleted-list"><li style="list-style-type:disc">locate file 과 같은 명령어</li></ul><p id="8c37b3dd-897c-4a75-8718-7bd50c0914bc" class="">
+</p><p id="b1ad266f-7ac4-47b8-adbc-bb292b698c29" class="">최상위 디렉토리 하단에 위치한 이름에 <code>file</code> 이라는 단어가 들어가는 모든 파일 중 30k 이상 50k 이하 파일을 검색</p><p id="a248f274-d127-4f97-8531-6516ec770c18" class=""><code>find / -name &quot;</code><code><em>file</em></code><code>&quot; -size +30k -size -50k</code></p><p id="4afedc5b-92b7-46a6-9f27-2f30f4642558" class="">
+</p><p id="edd239eb-e5bf-41a7-8796-597f42b03504" class="">
+</p><p id="3591b538-1a97-4395-8a7d-ee151545a323" class="">최상위 디렉토리 하단에 위치한 이름에 <code>file</code> 이라는 단어가 들어가는 모든 파일 중 30k 이상 50k 이하 파일을 검색하여 dirA에 복사</p><p id="302ec765-b5e5-4e72-b18c-22ca551e1415" class=""><code>mkdir dirA</code></p><p id="51ac1dac-2bd5-420d-8178-92f4d7fedd53" class=""><code>find / -name &quot;</code><code><em>file</em></code><code>&quot; -size +30k -size -50k -exec cp {} dirA \;</code></p><ul id="d4a79bcf-5165-4799-8f80-c3eddfce28a7" class="bulleted-list"><li style="list-style-type:disc"><code>exec</code> 옵션을 사용하여 복사 가능</li></ul><ul id="1ab566e0-890d-407d-a4ba-933e9855de88" class="bulleted-list"><li style="list-style-type:disc"><code>{}</code> 중괄호에 찾은 결과가 들어감</li></ul><ul id="ff38b731-2737-4ac9-8bec-43599597a6d7" class="bulleted-list"><li style="list-style-type:disc"><code>exec</code> 옵션을 사용하게 되면 반드시 맨 뒤에 <code>\;</code></li></ul><p id="db23b9ea-f622-4998-9d43-cad2af543635" class="">
+</p><p id="55e04973-a373-477f-8cff-72e04813f8cc" class="">
+</p><p id="d2e39699-b81a-4668-ac81-bb900c19ab83" class="">최상위 디렉토리 하단에 위치한 이름에 file 이라는 단어가 들어가는 모든 파일 중 30k 이상 50k 이하 파일을 검색하여 파일 목록을 <code>fileB</code>에 저장</p><p id="6de0dff0-b3a8-4b73-ae5c-64e8ebd694cb" class=""><code>find / -name &quot;</code><code><em>file</em></code><code>&quot; -size +30k -size -50k &gt; fileB</code></p><p id="7565d2a1-95ba-439c-b5d2-942ef0a87f88" class="">결과)</p><pre id="c500bfc1-b097-4991-8529-ad7bca1c7da0" class="code code-wrap"><code>
+/etc/selinux/targeted/contexts/files/file_contexts.homedirs.bin
+/root/dirA/file_contexts.homedirs.bin
+/root/dirA/libuser_files.so
+/root/dirA/zipfile.pyo
+/root/dirA/zipfile.pyc
+/usr/lib64/libuser/libuser_files.so
+/usr/lib64/python2.7/zipfile.pyo
+/usr/lib64/python2.7/zipfile.pyc</code></pre><p id="d09ff1f6-3da4-40ff-b32b-aa2b5bd11722" class="">
+</p><p id="8e560674-0125-4fe8-8c8d-a71014f6a3ca" class="">
+</p><p id="11f4d093-2407-49b6-85db-6786173f2b06" class="">
+</p><p id="30a41e45-95a5-402e-a936-bc0720097788" class=""><code>file</code></p><ul id="322ac995-16ad-4f37-91db-54f5790edb05" class="bulleted-list"><li style="list-style-type:disc"><code>file [파일명]</code></li></ul><ul id="78c2ff39-9cfd-48b5-a5da-de60821e8d0c" class="bulleted-list"><li style="list-style-type:disc">해당 파일이 무슨 파일인지 확인할 때 사용하는 명령어</li></ul><p id="396118ef-a75b-4da8-a88c-87dbfaa63cf8" class=""><code>file fileA</code><div class="indented"><p id="88a8ca44-4df8-44d8-a366-6d3f93cebcdc" class="">결과) <code>fileA: empty</code></p></div></p><p id="eeee6416-b80c-453d-a0b4-3147c5af0c09" class=""><code>file fileB</code></p><p id="cd7806b4-c825-464d-8bd8-8e251270ea29" class="">결과) <code>fileB: ASCII text</code></p><p id="6bab9c4a-6307-45ea-a042-82a74313484d" class=""><code>file dirA</code></p><p id="daa81c59-757b-4766-851f-e4a4199d2eea" class="">결과) <code>dirA: directory</code></p><p id="f92713ad-d0d5-46be-8799-073f5bad9de7" class=""><code>file soft_fileA</code></p><p id="8b11bf27-eca5-4f84-9537-159f4e06720d" class="">결과) <code>soft_fileA: symbolic link to `fileA&#x27;</code></p><p id="b984e0f3-408a-439c-aba2-8aebc9f6827a" class="">
+</p></div></article></body></html>

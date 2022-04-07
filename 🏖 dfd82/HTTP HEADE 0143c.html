@@ -1,0 +1,737 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>HTTP HEADER</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0143cfbe-b6c9-4814-94ee-f9443586035a" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="HTTP%20CASH%2068db4/http.png"/></div><h1 class="page-title">HTTP HEADER</h1></header><div class="page-body"><p id="71c040fa-c975-4b51-bede-c2363972c685" class="">message body - RFC7230</p><figure id="1b78b570-0752-4f84-88c4-fa5a87b6d2f0" class="image"><a href="HTTP%20HEADE%200143c/Untitled.png"><img style="width:754px" src="HTTP%20HEADE%200143c/Untitled.png"/></a></figure><ul id="a698908c-e99d-4a6b-a0a0-45090fbd1695" class="bulleted-list"><li style="list-style-type:disc">메시지 본문(message body)을 통해 표현 데이터 전달</li></ul><ul id="3521d3d5-627c-4c90-8a78-8c138b2bc42b" class="bulleted-list"><li style="list-style-type:disc">메시지 본문 = 페이로드(payload)</li></ul><ul id="97f5c335-cb49-4ea3-a8c3-ef96f634396a" class="bulleted-list"><li style="list-style-type:disc"><strong>표현</strong>은 요청이나 응답에서 전달할 실제 데이터</li></ul><ul id="6f448888-9de1-46b3-a121-3f4d086393b8" class="bulleted-list"><li style="list-style-type:disc"><strong>표현 헤더는 표현데이터를 해석할 수 있는 정보 제공</strong><ul id="f90e08b7-d39a-442e-be90-78cd6f52cef6" class="bulleted-list"><li style="list-style-type:circle">데이터 유형(html, json), 데이터 길이, 압축 정보</li></ul></li></ul><p id="541c42c6-512f-413e-b6c5-63e24885f5a5" class="">
+</p><h2 id="9e6f16ed-41c9-42ff-b983-f37eed13be48" class="">표현</h2><p id="f81105e4-7c5b-48ea-9506-d20f8327c6fb" class="">Content-Type: 표현 데이터의 형식
+Content-Encoding: 표현 데이터의 압축 방식
+Content-Language: 표현 데이터의 자연 언어
+Content-Length: 표현 데이터의 길이
+</p><h2 id="8de34c19-8309-4dce-9293-6327fee322fb" class="">협상</h2><p id="37a364d3-707f-4c65-bfa2-df5129dd5940" class="">Accept: 클라이언트가 선호하는 미디어 타입 전달
+Accept-Charset: 클라이언트가 선호하는 문자 인코딩
+Accept-Encoding: 클라이언트가 선호하는 압축 인코딩
+Accept-Language: 클라이언트가 선호하는 자연 언어
+</p><p id="1a734863-bf36-4863-b0a8-db34958e5609" class="">Accept-Language 적용 전</p><figure id="7720289c-c6a5-4eb2-a1a5-1de00f579b59" class="image"><a href="HTTP%20HEADE%200143c/Untitled%201.png"><img style="width:962px" src="HTTP%20HEADE%200143c/Untitled%201.png"/></a></figure><p id="3bee26e5-0f8c-4109-a0e8-6e595e5a55ba" class="">
+</p><p id="fb6904ab-83b4-408d-85c8-08a636617b19" class="">Accept-Language 적용 후</p><figure id="caa17d0e-de5d-4034-8478-03c268918a5c" class="image"><a href="HTTP%20HEADE%200143c/Untitled%202.png"><img style="width:1008px" src="HTTP%20HEADE%200143c/Untitled%202.png"/></a></figure><p id="554673b1-5e3a-4cda-986b-1b2123c8c215" class="">
+</p><p id="2e6374fa-b228-453c-8084-11e262779c84" class="">Accept - 우선순위</p><ul id="9a7aa052-8185-4787-aba5-69a7e4cf6a71" class="bulleted-list"><li style="list-style-type:disc">구체적인 것이 우선한다.</li></ul><ul id="14f2a505-33ee-46c0-a046-6f8d40cdfeea" class="bulleted-list"><li style="list-style-type:disc">Accept: <strong>text/*</strong>, <strong>text/plain</strong>, <strong>text/plain;format=flowed</strong>, <strong>/*</strong><p id="db1f36cd-41e5-4329-aab9-570083205979" class="">1. text/plain;format=flowed
+2. text/plain
+3. text/*</p><p id="dc28b827-bfea-4cb0-b9f7-e001f9be656b" class="">
+</p></li></ul><ul id="71b47438-36c9-4c93-8a72-cba81cf791b6" class="bulleted-list"><li style="list-style-type:disc">구체적인 것을 기준으로 미디어 타입을 맞춘다.</li></ul><ul id="91c09feb-e0b8-4d27-a86d-5b56884121c9" class="bulleted-list"><li style="list-style-type:disc">Accept: <strong>text/*</strong>;q=0.3, <strong>text/html</strong>;q=0.7, <strong>text/html;level=1</strong>,</li></ul><p id="967e3a17-29b0-4d96-bb00-457d9c5b2672" class=""><strong>text/html;level=2</strong>;q=0.4, <strong>/*</strong>;q=0.5</p><figure id="3472c83c-bd6d-44c5-a005-140f1648a46c" class="image"><a href="HTTP%20HEADE%200143c/Untitled%203.png"><img style="width:314px" src="HTTP%20HEADE%200143c/Untitled%203.png"/></a></figure><p id="e394f06b-80ee-4e13-a80e-f53917d1abbc" class="">
+</p><p id="c86179da-2bd3-435e-a493-e97f2ca17b37" class="">예시</p><figure id="92e7b6cd-df0f-43b4-bf8c-ae932e2219bf" class="image"><a href="HTTP%20HEADE%200143c/Untitled%204.png"><img style="width:2384px" src="HTTP%20HEADE%200143c/Untitled%204.png"/></a></figure><p id="84a118e6-85c0-4203-bbeb-4935467ee575" class="">
+</p><h2 id="0a5ae027-cc5a-4e57-8c07-d9b3085de455" class="">전송 방식</h2><h3 id="6666f992-3fee-4b01-81a8-0c9f443a1a4d" class="">단순 전송</h3><pre id="40b95cee-17a9-4893-ba7b-1ba1a39203b3" class="code code-wrap"><code>HTTP/1.1 200 OK
+Content-Type: text/html;charset=UTF-8
+Content-Length: 3423
+
+&lt;html&gt;
+	&lt;body&gt;...&lt;/body&gt;
+&lt;/html&gt;</code></pre><p id="f60df6e6-0254-444a-9df9-28fa31b7b588" class="">
+</p><h3 id="5816484d-fc80-4d7e-9e1e-192a907eb23b" class="">압축 전송</h3><pre id="b50d7e52-7371-4ca2-b293-73135106e7fa" class="code code-wrap"><code>HTTP/1.1 200 OK
+Content-Type: text/html;charset=UTF-8 
+Content-Encoding: gzip 
+Content-Length: 521
+
+lkj123kljoiasudlkjaweioluywlnfdo912u34ljko98udjkl</code></pre><p id="f73c668f-1653-47c7-acd3-c13d6f71ad79" class="">
+</p><h3 id="2e369571-b5cb-44e6-88c4-9b002e0e2240" class="">분할 전송</h3><pre id="077cb697-b7cf-433c-9b8c-bfdcb29a76fc" class="code code-wrap"><code>HTTP/1.1 200 OK 
+Content-Type: text/plain 
+Transfer-Encoding: chunked
+
+5 
+Hello 
+5 
+World 
+0
+\r\n</code></pre><p id="162e27ad-d33f-4243-84a4-6c2fb5141d77" class="">
+</p><h3 id="1e94e12c-b8d8-4193-b5e3-d45915d92237" class="">범위 전송</h3><p id="93c304fb-53f0-4013-8201-f4231f1bc86c" class="">파일이나 이미지 전송중 0~1000까지 전송되고 1000에서 끊어졌을 경우</p><figure id="d8adb0c6-bdbd-4815-9e87-b201dd9f5264" class="image"><a href="HTTP%20HEADE%200143c/Untitled%205.png"><img style="width:1044px" src="HTTP%20HEADE%200143c/Untitled%205.png"/></a></figure><p id="caa9840e-f8b2-4f7d-8ed1-fb7477623386" class="">
+</p><h1 id="42e2fe28-0df2-48fa-8c0a-e4ca623285be" class="">정보</h1><h2 id="2593aea9-2eaf-4c12-9d3c-1990273fec6b" class="">Referer</h2><ul id="6988e4f6-c55f-4564-8f10-30ac5bcc1de3" class="bulleted-list"><li style="list-style-type:disc">현재 요청된 페이지의 이전 웹 페이지 주소</li></ul><ul id="7329102e-66ab-4a81-a41f-a9e0f534c283" class="bulleted-list"><li style="list-style-type:disc">A → B로 이동하는 경우 B를 요청할 때 <code>Referer: A</code>를 포함해서 요청</li></ul><ul id="9d0df435-81c5-40b9-885d-23137b424b79" class="bulleted-list"><li style="list-style-type:disc">Referer를 사용해서 유입 경로 분석 가능</li></ul><ul id="c3dfda65-2ac6-40e4-9ad2-5e22f0d10978" class="bulleted-list"><li style="list-style-type:disc">요청에서 사용</li></ul><p id="934e9763-c517-4ad1-b834-5a721245f472" class="">hello 위키피디아에서 링크를 클릭하여 링크로 넘어갔을시</p><figure id="db66a2b9-692a-4771-a1f4-0c81dd5348e3" class="image"><a href="HTTP%20HEADE%200143c/Untitled%206.png"><img style="width:2296px" src="HTTP%20HEADE%200143c/Untitled%206.png"/></a></figure><p id="94677065-04d7-4fd6-b5c1-12abeba8c3c3" class="">
+</p><h2 id="5cbea16f-652d-454a-83cc-7a355676367e" class="">User-Agent</h2><ul id="a49ef31c-9618-46a7-a07d-789dc37b3711" class="bulleted-list"><li style="list-style-type:disc">유저의 애플리케이션 정보</li></ul><ul id="83c831cb-02dd-403b-92ce-244d665a79a7" class="bulleted-list"><li style="list-style-type:disc">어떤 종류의 브라우저에서 장애가 발생하는지 파악 가능</li></ul><ul id="f70ffac2-eef2-4ac3-b2e4-bb0c1112b4f5" class="bulleted-list"><li style="list-style-type:disc">요청에서 사용</li></ul><figure id="dec8b33b-9e3d-41df-a12a-56b752379189" class="image"><a href="HTTP%20HEADE%200143c/Untitled%207.png"><img style="width:2384px" src="HTTP%20HEADE%200143c/Untitled%207.png"/></a></figure><ul id="015b1c6c-05a3-46b8-8514-cc08cbd7692a" class="bulleted-list"><li style="list-style-type:disc"><strong>user-agent: </strong>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36</li></ul><p id="d718daeb-3069-41ac-bcf3-8d603784e318" class="">
+</p><h2 id="f1e70934-f200-4d6d-9c98-daf18a534641" class="">Server</h2><ul id="62d86b2e-b192-4c8e-9144-ce2a9f280576" class="bulleted-list"><li style="list-style-type:disc">요청을 처리하는 ORIGIN 서버의 소프트웨어 정보</li></ul><ul id="28311e0c-b894-4f15-be88-4936d27909dd" class="bulleted-list"><li style="list-style-type:disc">응답에서 사용</li></ul><figure id="9068dd73-937c-4018-bc70-bdb7ac0f407f" class="image"><a href="HTTP%20HEADE%200143c/Untitled%208.png"><img style="width:2384px" src="HTTP%20HEADE%200143c/Untitled%208.png"/></a></figure><p id="8852cba8-77ea-41a3-821e-0ace890d8890" class="">
+</p><h2 id="7e49c7d1-d1c7-412e-b8ff-c554cc1e8fed" class="">Date</h2><ul id="1212ac42-6957-4bc8-93b6-e1c93c6bf7c0" class="bulleted-list"><li style="list-style-type:disc">메시지가 발생한 날짜와 시간</li></ul><ul id="2bbab74a-4a52-415d-84cc-e6bda9dd4f07" class="bulleted-list"><li style="list-style-type:disc">응답에서 사용</li></ul><p id="ed6c25fd-713b-474c-af05-d8a932874a7e" class="">
+</p><h2 id="3ba1687a-8698-4fec-bd8c-8eead2211537" class="">Host</h2><pre id="307c3e77-4ab8-431e-b10b-05fc33c0142d" class="code code-wrap"><code>GET /search?q=hello&amp;hl=ko HTTP/1.1 
+Host: www.google.com</code></pre><p id="805f3594-2e67-473e-b0b5-958867d1702a" class=""><strong>요청한 호스트 정보(도메인)</strong></p><ul id="bfbc5788-cb28-46d6-bb63-3b329beac3b1" class="bulleted-list"><li style="list-style-type:disc">요청에서 사용</li></ul><ul id="a2b12206-50e9-44ac-85a1-2232ddd668eb" class="bulleted-list"><li style="list-style-type:disc">필수</li></ul><ul id="637759c6-59ad-41b3-8557-31a5ce397dec" class="bulleted-list"><li style="list-style-type:disc">하나의 서버가 여러 도메인을 처리해야 할 때</li></ul><ul id="cfa59999-5f1e-4c4f-ba70-a434aced8cc7" class="bulleted-list"><li style="list-style-type:disc">하나의 IP 주소에 여러 도메인이 적용되어 있을때</li></ul><p id="4578e510-7659-4cd1-83ea-97fb3baa8cff" class="">
+</p><p id="544f819b-81bf-447d-a280-01119e5966a6" class="">하나의 IP에 여러개의 도메인을 운영할 경우</p><ul id="e82ddc90-2836-4b7f-b1f2-73d00001292d" class="bulleted-list"><li style="list-style-type:disc">Host정보가 없을 경우</li></ul><figure id="47455fc0-bb06-48ed-96da-a4c50f861ef8" class="image"><a href="HTTP%20HEADE%200143c/Untitled%209.png"><img style="width:1142px" src="HTTP%20HEADE%200143c/Untitled%209.png"/></a></figure><p id="7bcf103e-7c0e-4dfc-a02f-cf8286b58bb0" class="">
+</p><ul id="93043d1c-294b-416b-a6e7-d6fd7ea703a8" class="bulleted-list"><li style="list-style-type:disc">Host정보가 있을 경우</li></ul><figure id="ede4d857-66e1-49e7-a3c1-b397b805888f" class="image"><a href="HTTP%20HEADE%200143c/Untitled%2010.png"><img style="width:1112px" src="HTTP%20HEADE%200143c/Untitled%2010.png"/></a></figure><p id="3d48403e-2805-4e5a-9e65-81a31ccb7386" class="">
+</p><h2 id="d5730871-6741-4a1d-aa7d-bd5e33d739ed" class="">Location</h2><ul id="bd602c4c-543c-40f1-8828-39431550b70a" class="bulleted-list"><li style="list-style-type:disc">웹 브라우저는 3xx 응답의 결과에 Location 헤더가 있으면, Location 위치로 자동 이동(리다이렉트)</li></ul><ul id="9e076d9f-5a14-4bcb-a7c4-3584e92d6f05" class="bulleted-list"><li style="list-style-type:disc">응답코드 3xx에서 설명</li></ul><ul id="1eddfe69-2969-4b6c-8788-b0853bede18b" class="bulleted-list"><li style="list-style-type:disc">201 (Created): Location 값은 요청에 의해 생성된 리소스 URI</li></ul><ul id="314e8ff1-6135-48f5-bf8e-5993216468cd" class="bulleted-list"><li style="list-style-type:disc">3xx (Redirection): Location 값은 요청을 자동으로 리디렉션하기 위한 대상 리소스를 가리킴</li></ul><p id="c5e2b043-2177-4ec3-bb32-0687a69623eb" class="">
+</p><h2 id="6158137c-719c-4d72-8757-eec6c4f776b0" class="">Authorization</h2><ul id="97acb10d-99d7-49ca-a52b-98453b1867d5" class="bulleted-list"><li style="list-style-type:disc">클라이언트 인증 정보를 서버에 전달</li></ul><ul id="0dd8ab9e-7399-4cbf-92ea-dc1bd1db9999" class="bulleted-list"><li style="list-style-type:disc">Authorization : Basic xxxxxxxxxx</li></ul><p id="4e272d39-886e-4b2e-b62e-2d21869430da" class="">
+</p><h3 id="1ac28506-68fc-40c1-8e54-b5da517791fd" class="">WWW-Authenticate</h3><ul id="fd5e0b8d-27ce-4f79-bb18-b37a14993c1b" class="bulleted-list"><li style="list-style-type:disc">리소스 접근시 필요한 인증 방법 정의</li></ul><ul id="8a1798d6-6782-4dae-9c8b-df05f63e67eb" class="bulleted-list"><li style="list-style-type:disc">401 Unauthorized 응답과 함께 사용<ul id="d3c7b1be-3401-4342-b3ae-8654761c64f8" class="bulleted-list"><li style="list-style-type:circle">401 →루트권한이 필요한 유저의 로그인 필요</li></ul></li></ul><ul id="48e516ea-ce39-478d-93d4-e01796124766" class="bulleted-list"><li style="list-style-type:disc">WWW-Authenticate: Newauth realm=&quot;apps&quot;, type=1,</li></ul><p id="363f548f-5799-45ed-9464-8e655a791e9b" class="">title=&quot;Login to \&quot;apps\&quot;&quot;, Basic realm=&quot;simple&quot;</p><p id="791cf89a-487e-47cc-bdf1-eaea270655fb" class="">
+</p><h1 id="bffd2d88-d0c9-4711-b13b-013b4f340e91" class="">쿠키</h1><ul id="c9b207f9-5b34-48fa-adee-64f3a64cb49e" class="bulleted-list"><li style="list-style-type:disc">Set-Cookie: 서버에서 클라이언트로 쿠키 전달(응답)</li></ul><ul id="d6f89561-4f98-4e3d-80e2-2b4997f5ba03" class="bulleted-list"><li style="list-style-type:disc">Cookie: 클라이언트가 서버에서 받은 쿠키를 저장하고, HTTP 요청시 서버로 전달</li></ul><p id="8fa0954c-5c6d-48b5-8fa5-dd078bb19f77" class="">
+</p><h3 id="da82b5ee-79ba-4000-901f-efd6fbcedc1f" class="">쿠키 미사용시</h3><figure id="f73b21d8-d4d2-4459-a9c9-c90bf6b36c3b" class="image"><a href="HTTP%20HEADE%200143c/Untitled%2011.png"><img style="width:1040px" src="HTTP%20HEADE%200143c/Untitled%2011.png"/></a></figure><p id="1729f9b2-b75b-4b50-a285-7f098377d02f" class="">
+</p><p id="3935bc8c-8571-4696-a2c1-642ba1db18c2" class="">로그인</p><figure id="d1dde1d5-ac00-45bc-bc9a-8ba9cc083820" class="image"><a href="HTTP%20HEADE%200143c/Untitled%2012.png"><img style="width:1052px" src="HTTP%20HEADE%200143c/Untitled%2012.png"/></a></figure><p id="f776b65a-8800-4c4a-9980-5fc5b06f75a9" class="">
+</p><p id="3f6c329f-b392-4391-9dd6-8925ab48839a" class="">로그인 이후 welcome 페이지 접근</p><figure id="7f438f54-9e01-4e14-aeea-a5bb2aa33f02" class="image"><a href="HTTP%20HEADE%200143c/Untitled%2013.png"><img style="width:1068px" src="HTTP%20HEADE%200143c/Untitled%2013.png"/></a></figure><p id="fd1738b9-591f-4d15-82ff-5f057b5cce2c" class="">
+</p><ul id="eb04c0d6-98e1-4250-b98d-9a7eec0f2a4e" class="bulleted-list"><li style="list-style-type:disc">이러한 이유는  HTTP는 Stateless이기 때문이다</li></ul><ul id="47663696-1d93-4f25-9fbc-ce1e4576a7ed" class="bulleted-list"><li style="list-style-type:disc">클라이언트와 서버가 요청과 응답을 주고 받으면 연결이 끊어진다.</li></ul><ul id="e4125820-e35f-4eb0-a567-1d670a043bd2" class="bulleted-list"><li style="list-style-type:disc">클라이언트가 다시 요청하면 서버는 이전 요청을 기억하지 못한다</li></ul><ul id="67fcad7a-53bb-4a57-8766-aea818fff7fd" class="bulleted-list"><li style="list-style-type:disc">클라이언트와 서버는 서로 상태를 유지하지 않는다.
+(지속적 연결로 잠깐 유지는 가능하지만)</li></ul><p id="39b4ed17-ab5a-4aa9-a319-897d402abe70" class="">
+</p><h3 id="e8c946b9-469f-4454-89ec-23919244a64e" class="">쿠키 사용시</h3><p id="0d4ac270-2d16-4312-8d98-69737b10bed6" class="">로그인</p><figure id="e3a3c8d4-c073-44f9-9d2e-d497671d01b7" class="image"><a href="HTTP%20HEADE%200143c/Untitled%2014.png"><img style="width:1048px" src="HTTP%20HEADE%200143c/Untitled%2014.png"/></a></figure><p id="cc848cce-1a89-450e-b42e-24169e6eb0fa" class="">
+</p><p id="230537f6-6dc9-4b55-bd0e-4e6b3e072bc8" class="">로그인 이후 welcome 페이지 접근</p><figure id="efaf5319-9514-4f6b-8737-f6e0887048dd" class="image"><a href="HTTP%20HEADE%200143c/Untitled%2015.png"><img style="width:1046px" src="HTTP%20HEADE%200143c/Untitled%2015.png"/></a></figure><p id="bd58b05c-86bb-409d-b6d5-b1f99bc996d4" class="">세션키를 서버 데이터베이스에서 생성해놓고 세션 ID를 클라이언트에게 반환을 한다 </p><p id="fe0d4f64-f125-48fe-b2d5-ce3cf528ce10" class="">그 이후 클라이언트가 서버에 접속할때마다 sectionID를 보내고 서버는 세션ID와 세션 key를 확인하여 검증한다</p><p id="eabe353f-9c94-4bbb-b1ed-7fb544fd2524" class="">
+</p><p id="03ec1017-a526-4ecb-97d1-28df0c5d4ac2" class="">
+</p><p id="be77d0f6-a919-4d35-be75-26ba757b01d6" class="">모든 요청에 쿠키 정보 자동 포함</p><figure id="79d9c21b-af3b-42d4-8e88-afa5f51acd5b" class="image"><a href="HTTP%20HEADE%200143c/Untitled%2016.png"><img style="width:808px" src="HTTP%20HEADE%200143c/Untitled%2016.png"/></a></figure><p id="31fe3ae1-3dce-4079-8380-70da63bfda68" class="">
+</p><p id="dcc66648-4499-461e-9113-1777e849c452" class="">사용처<div class="indented"><ul id="edd34214-4a4a-4513-8690-620ccad24100" class="bulleted-list"><li style="list-style-type:disc">사용자 로그인 세션관리</li></ul><ul id="68705fda-9077-40f5-95de-10c60d7c4e36" class="bulleted-list"><li style="list-style-type:disc">광고 정보 트래킹( 이 유저가 어느 정보를 잘 보는지)</li></ul></div></p><p id="ef5837ac-2c89-4820-9d93-088c78292b5d" class="">쿠키 정보는 항상 서버에 전송됨<div class="indented"><ul id="82fb168e-1f7d-43ad-ae37-8aaab6851be4" class="bulleted-list"><li style="list-style-type:disc">네트워크 트래픽 추가 유발</li></ul><ul id="bf679aef-0669-427e-b756-03206696ac07" class="bulleted-list"><li style="list-style-type:disc">최소한의 정보만 사용(세션 id, 인증 토큰)</li></ul><ul id="b1dca552-a1ec-4f6b-822d-3bc966e2d1a8" class="bulleted-list"><li style="list-style-type:disc">서버에 전송하지 않고, 웹 브라우저 내부에 데이터를 저장하고 싶으면 웹 스토리지 (localStorage, sessionStorage) 참고</li></ul></div></p><p id="a0ef6384-8142-48dc-afdb-97f2191d0fba" class="">주의!</p><ul id="7002a2fb-65c3-41c2-ab92-2911f874424a" class="bulleted-list"><li style="list-style-type:disc">보안에 민감한 데이터는 저장하면 안됨(주민번호, 신용카드 번호 등등)
+</li></ul><p id="56253738-7fea-461e-991a-77e4569c4767" class="">
+</p><h2 id="bc649e2c-c029-468a-8571-1a6d5d757b45" class="">쿠키 - 생명주기</h2><p id="42b78142-07cc-4d79-9f2c-928859906446" class="">Set-Cookie: <strong>expires</strong>=Sat, 26-Dec-2020 04:39:21 GMT</p><ul id="87ea6709-2fe3-4bc9-8fcc-cffecb847574" class="bulleted-list"><li style="list-style-type:disc">만료일이 되면 쿠키 삭제</li></ul><p id="e6e8e3f1-2cfe-4ca8-a37e-372712f2225d" class="">Set-Cookie: <strong>max-age</strong>=3600 (3600초)</p><ul id="407cbbcd-b1db-4417-ba8f-a5996b88bce0" class="bulleted-list"><li style="list-style-type:disc">0이나 음수를 지정하면 쿠키 삭제</li></ul><p id="7039153e-640d-4ffe-9cd9-6c1bbbd353d5" class="">세션 쿠키: 만료 날짜를 생략하면 브라우저 종료시 까지만 유지
+영속 쿠키: 만료 날짜를 입력하면 해당 날짜까지 유지
+</p><h2 id="4bb7d401-dde2-47c6-bf40-a5ba81fc4af0" class="">쿠키 - 도메인</h2><p id="dca4e156-a7c3-4484-9f60-98d0c35180f9" class=""><strong>명시: 명시한 문서 기준 도메인 + 서브 도메인 포함</strong></p><p id="b4d9959f-fc6a-40c9-8b6e-24b4cdd6d71e" class="">예 ) domain = example.org</p><ul id="0a3bd85a-b047-47fb-9f4e-c3b07f90896c" class="bulleted-list"><li style="list-style-type:disc"><a href="http://example.org">example.org</a> 뿐만아니라 dev.example.org도 쿠키 접근</li></ul><p id="031a088e-0a1d-47e1-9073-464f43880a47" class="">
+</p><p id="8141ebb3-a30d-4c55-9602-7776d032e3f9" class=""><strong>생략: 현재 문서 기준 도메인만 적용</strong></p><ul id="b635fb74-c678-43c2-983f-2475193ab4ff" class="bulleted-list"><li style="list-style-type:disc">example.org에서만 가능</li></ul><p id="56621a2f-433f-4ca6-97ae-d853f5746c33" class="">
+</p><h2 id="fa77960b-bb61-416b-bfbe-d1879032db70" class="">쿠키 - 경로</h2><p id="63a82dbb-275a-46bc-b377-03dd71717d32" class="">예) path = /home</p><p id="8bebfedf-2dfc-42b6-9ca7-38b89fe3f95d" class=""><strong>이 경로를 포함한 하위 경로 페이지만 쿠키 접근
+</strong></p></div></article></body></html>

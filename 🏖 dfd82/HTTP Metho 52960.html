@@ -1,0 +1,710 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>HTTP Method</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="52960502-878b-48a0-88a5-3ce555b7ee02" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="HTTP%20CASH%2068db4/http.png"/></div><h1 class="page-title">HTTP Method</h1></header><div class="page-body"><p id="6d149b51-a25d-4093-a1f5-353526214918" class=""><strong>리소스와 행위을 분리가장 중요한 것은 리소스를 식별하는 것</strong></p><p id="b414e3fd-ceab-4b42-bde7-3cb55559cffa" class=""><strong></strong></p><p id="f21fad7d-c06b-444b-9b88-4e9d37615554" class=""><strong>URI는 리소스만 식별!</strong></p><p id="868968f8-ae62-4a32-bcd9-aa7160c4b418" class=""><strong>리소스</strong>와 해당 리소스를 대상으로 하는 <strong>행위</strong>을 분리</p><ul id="17f9e2c0-1402-454c-a9c8-cbd15b153e67" class="bulleted-list"><li style="list-style-type:disc">리소스: 회원</li></ul><ul id="8f2721af-6ccb-4507-9f7c-0b882c0aeadf" class="bulleted-list"><li style="list-style-type:disc">행위: 조회, 등록, 삭제, 변경</li></ul><ul id="ef7da0ce-eb8e-455d-8fb4-960737f930a1" class="bulleted-list"><li style="list-style-type:disc">리소스는 명사, 행위는 동사 (미네랄을 캐라)
+</li></ul><p id="4d2b292b-21e3-481c-ade4-81153339904b" class="">ex)</p><ul id="07af0c00-4526-4fe1-ba4f-38640304142c" class="bulleted-list"><li style="list-style-type:disc"><strong>회원 </strong>목록 조회 /members</li></ul><ul id="b5187ee0-f48e-42db-b228-8291e7408ed1" class="bulleted-list"><li style="list-style-type:disc"><strong>회원 </strong>조회 /members/{id} <strong>&gt; 어떻게 구분하지?</strong></li></ul><ul id="3c5007b0-d1d7-480a-a19a-80e489af73cf" class="bulleted-list"><li style="list-style-type:disc"><strong>회원 </strong>등록 /members/{id} <strong>&gt; 어떻게 구분하지?</strong></li></ul><ul id="ad6c1301-660a-469e-8f9b-3249dab50a4d" class="bulleted-list"><li style="list-style-type:disc"><strong>회원 </strong>수정 /members/{id} <strong>&gt; 어떻게 구분하지?</strong></li></ul><ul id="a1f4fbad-b28e-4b52-9d3a-ae677daaa65f" class="bulleted-list"><li style="list-style-type:disc"><strong>회원 </strong>삭제 /members/{id} <strong>&gt; 어떻게 구분하지?</strong></li></ul><p id="6aa1d97c-322c-4d31-8646-98bc84954fe7" class="">행위(메서드)는 어떻게 구분? → HTTP Method로 구분한다</p><p id="a5ab2062-dc30-45d9-a087-050dbd403c7e" class="">
+</p><h1 id="e597178f-8fc8-4e9c-99aa-517ae72f276c" class="">GET</h1><pre id="04896ce6-4697-4520-ace8-e5023e380a00" class="code code-wrap"><code>GET /members/100 HTTP/1.1
+Host: localhost:8080
+</code></pre><ul id="77e200f6-8570-4336-8ee6-5e20569596d1" class="bulleted-list"><li style="list-style-type:disc">리소스 조회</li></ul><ul id="dedb0e02-3089-40d0-9da0-52bf4312a3ca" class="bulleted-list"><li style="list-style-type:disc">서버에 전달하고 싶은 데이터는 query(쿼리 파라미터, 쿼리 스트링)를 통해서 전달</li></ul><ul id="421581e5-5298-49e1-b306-584c15e0d68f" class="bulleted-list"><li style="list-style-type:disc">메시지 바디를 사용해서 데이터를 전달할 수 있지만, 지원하지 않는 곳이 많아서 권장하지 않음</li></ul><p id="98ecbddd-9bc2-4eda-aa9d-8def8c968695" class="">응답데이터</p><pre id="177cf03d-c5dd-4341-a5cd-b78684b221d6" class="code code-wrap"><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 34
+
+/members/100
+
+{
+	&quot;username&quot;: &quot;young&quot;,
+	&quot;age&quot;: 20
+
+}</code></pre><hr id="be53aebb-7280-4e04-93df-7e97fab24a41"/><p id="f98eb11b-e513-4159-b1c8-66ac5cd03253" class="">
+</p><h1 id="76530508-ad7d-4eef-8350-d319a7733e9a" class="">POST</h1><hr id="be70544b-d905-4c04-9b12-f87eb31ddbbf"/><pre id="ca5d06a4-d85a-460c-ae18-2e7d8391420f" class="code code-wrap"><code>POST /members HTTP/1.1
+Content-Type: application/json
+
+{
+	&quot;username&quot;: &quot;hello&quot;,
+	&quot;age&quot;: 20
+
+}</code></pre><hr id="9d000844-1151-4379-a2c9-21bed8c993f5"/><p id="2d5ffea1-6483-4bd9-afc0-12d72dda3dca" class="">
+</p><figure id="5915f487-fbc9-4e47-9f78-45664fdff760" class="image"><a href="HTTP%20Metho%2052960/Untitled.png"><img style="width:1208px" src="HTTP%20Metho%2052960/Untitled.png"/></a></figure><p id="fe0d7037-8807-4ff8-960b-a5bac7fad0c8" class="">
+</p><p id="5342694b-4db4-4c9c-9360-69e390448d9f" class="">
+</p><p id="c0e86fc1-6c2e-4860-9252-8fdc1c9499db" class=""><strong>1. 새 리소스 생성(등록)</strong></p><p id="3f14338c-33a2-4eb8-ad53-c6215ccb6d8b" class="">서버가 아직 식별하지 않은 새 리소스 생성</p><p id="b698d321-42c7-4d34-a4bc-ffcfb97d7753" class=""><strong>2. 요청 데이터 처리</strong></p><ul id="0ed17e99-d958-4782-b093-865b349412d7" class="bulleted-list"><li style="list-style-type:disc">단순히 데이터를 생성하거나, 변경하는 것을 넘어서 프로세스를 처리해야 하는 경우</li></ul><ul id="504d00bc-eca1-4367-9c0c-46b8e4831ea8" class="bulleted-list"><li style="list-style-type:disc">예) 주문에서 결제완료 -&gt; 배달시작 -&gt; 배달완료 처럼 단순히 값 변경을 넘어 프로세스의 상태가 변경되는 경우</li></ul><ul id="23382ddc-8189-4269-a236-1077ff182b44" class="bulleted-list"><li style="list-style-type:disc">POST의 결과로 새로운 리소스가 생성되지 않을 수도 있음</li></ul><ul id="03aa727c-a1d9-4129-9313-a2252e9aba90" class="bulleted-list"><li style="list-style-type:disc">예) POST /orders/{orderId}/start-delivery (<strong>컨트롤 URI</strong>)</li></ul><p id="59686e18-df52-438c-85b6-2149102ab155" class=""><strong>3. 다른 메서드로 처리하기 애매한 경우</strong></p><ul id="dfd4abbc-dee6-4a45-82e3-f9b03ad7400a" class="bulleted-list"><li style="list-style-type:disc">예) JSON으로 조회 데이터를 넘겨야 하는데, GET 메서드를 사용하기 어려운 경우</li></ul><ul id="a981c035-a325-4af9-9eeb-0f6bb099c8c6" class="bulleted-list"><li style="list-style-type:disc">애매하면 POST</li></ul><p id="aca8f57b-8cb7-4ead-9c2e-91f5818c9f78" class="">
+</p><p id="edab8e9f-890b-4c73-8e09-97c5c1223d1c" class="">HTML 양식에 입력 된 필드와 같은 데이터 블록을 데이터 처리 프로세스에 제공</p><ul id="e338e377-ae5d-4bc1-a804-2d531de7e26b" class="bulleted-list"><li style="list-style-type:disc">예) HTML FORM에 입력한 정보로 회원 가입, 주문 등에서 사용</li></ul><p id="61f82a65-d3a7-41f9-8e6b-e460ef0a9423" class="">게시판, 뉴스 그룹, 메일링 리스트, 블로그 또는 유사한 기사 그룹에 메시지 게시</p><ul id="cdb21669-e696-49f2-b421-64eda8585ba5" class="bulleted-list"><li style="list-style-type:disc">예) 게시판 글쓰기, 댓글 달기</li></ul><p id="825a6fcb-c44c-4b9b-8aef-11daf24b8eb6" class="">서버가 아직 식별하지 않은 새 리소스 생성</p><ul id="2d8c3c83-8fe7-4771-885f-579119e5eb31" class="bulleted-list"><li style="list-style-type:disc">예) 신규 주문 생성</li></ul><p id="4e208b3d-6937-41f6-86dc-334f95796b11" class="">기존 자원에 데이터 추가</p><ul id="de3d7be4-f4c2-428e-9cf9-3aac9b9a3f12" class="bulleted-list"><li style="list-style-type:disc">예) 한 문서 끝에 내용 추가하기</li></ul><p id="60edc3c8-c06c-48c3-9802-056385e08ba7" class="">
+</p><p id="26a80581-9dd5-4909-99c8-21a409c862af" class=""><strong>정리: 이 리소스 URI에 POST 요청이 오면 요청 데이터를 어떻게 처리할지 리소스마다 따로 정해야 함 &gt; 정해진 것이 없음</strong></p><p id="be05cded-22de-484e-8ac5-773439ad55c6" class="">
+</p><h1 id="fb7817ac-bcbd-4845-a0fb-8c554abc3a1c" class="">PUT</h1><pre id="ba0a4ecb-10fb-4a61-812d-38be1481cc27" class="code code-wrap"><code>PUT /members/100 HTTP/1.1 Content-Type: application/json
+{
+	&quot;username&quot;: &quot;hello&quot;, &quot;age&quot;: 20
+}</code></pre><p id="edbc2d91-a32a-4e4a-8b26-d0a3229d4e0e" class="">POST : /members</p><p id="d3e6f532-5ac0-4103-809a-b7453edf70be" class="">PUT : /members/100</p><p id="74b47914-2629-44a5-a33f-f75db3d7c434" class="">POST와 달리 /members/100 으로 클라이언트가 리소스를 식별한다</p><p id="37f752b3-bdb7-42ec-9cf7-310af6c8c1bf" class="">리소스를 완전히 대체한다</p><p id="77829743-980d-478f-99ee-c48c1a15270b" class="">
+</p><h1 id="0314f57f-937e-42c8-8c70-4e8c3af54d27" class="">PATCH</h1><pre id="75df0f82-3f22-45db-ac98-6da4f866dbbe" class="code code-wrap"><code>PATCH /members/100 HTTP/1.1 Content-Type: application/json
+{
+&quot;age&quot;: 50
+}</code></pre><p id="c09b3a45-5c51-44de-9dc5-f3caa3e0067c" class="">POST와 달리 없는 부분은 추가해준다</p><p id="18c15f28-3b08-402b-9aac-97393eff75a2" class="">
+</p><h1 id="20c79474-e637-43f7-9cf8-d08f7ec4aa23" class="">HTTP 메서드 속성</h1><figure id="36625657-c953-4652-a743-af7da82a27d6" class="image"><a href="HTTP%20Metho%2052960/Untitled%201.png"><img style="width:2322px" src="HTTP%20Metho%2052960/Untitled%201.png"/></a></figure><h3 id="f0cc7170-6f91-478a-802d-d63aae0d40a2" class="">안전(Safe Methods)</h3><ul id="e46423b6-cc13-4de6-8f97-3a8e2f2f599a" class="bulleted-list"><li style="list-style-type:disc">호출해도 리소스를 변경하지 않는다.</li></ul><h3 id="0a9741be-4de9-459d-b6dd-1dfe2a971e0d" class="">멱등(Idempotent Methods)</h3><ul id="8f60a551-51b9-4dc2-b082-2bcd6a4250b1" class="bulleted-list"><li style="list-style-type:disc">f(f(x)) = f(x)한 번 호출하든 두 번 호출하든 100번 호출하든 결과가 똑같다.<p id="4072237a-cfc7-4df0-b084-f232c14f4166" class=""><strong>GET</strong>: 한 번 조회하든, 두 번 조회하든 같은 결과가 조회된다.</p><p id="868f9a8e-1055-48f0-872e-1ccd3e125e67" class=""><strong>PUT</strong>: 결과를 대체한다. 따라서 같은 요청을 여러번 해도 최종 결과는 같다.
+<strong>DELETE</strong>: 결과를 삭제한다. 같은 요청을 여러번 해도 삭제된 결과는 똑같다.
+<mark class="highlight-brown_background"><strong>POST</strong></mark><mark class="highlight-brown_background">: 멱등이 아니다! 두 번 호출하면 같은 결제가 중복해서 발생할 수 있다.</mark></p></li></ul><ul id="7d85ee1d-20f6-4294-873d-2fd9ab73c396" class="bulleted-list"><li style="list-style-type:disc">활용<p id="10d000b9-789d-4f70-b403-3d118a5acf4c" class="">자동 복구 메커니즘</p><p id="da4c4c2d-d045-4ffb-b89b-c66f9e326684" class="">서버가 TIMEOUT 등으로 정상 응답을 못주었을 때, 클라이언트가 같은 요청을 다시 해도 되는가? 판단 근거</p></li></ul><h3 id="a4897582-1485-46de-881e-ca2c68359041" class="">캐시가능(Cacheable Methods)</h3><p id="48ea5a83-272e-443d-ba26-62eb71ca2820" class="">응답 결과 리소스를 캐시해서 사용해도 되는가?</p><ul id="13c6220d-9c83-4821-94f3-773db98f5f51" class="bulleted-list"><li style="list-style-type:disc">GET, HEAD, POST, PATCH 캐시가능</li></ul><ul id="ddc70460-283d-4cf5-bb51-e5b28edbb432" class="bulleted-list"><li style="list-style-type:disc">실제로는 GET, HEAD 정도만 캐시로 사용</li></ul><p id="3061f357-a816-47e2-80c7-23fa4e04f3f3" class="">POST, PATCH는 본문 내용까지 캐시 키로 고려해야 하는데, 구현이 쉽지 않음</p><p id="7e6c9760-446e-43a1-9b9f-02ea48a6d331" class="">
+</p><h1 id="6733bce6-d899-45ee-a0c3-968f5c08dd85" class="">클라이언트에서 서버로 데이터 전송</h1><ul id="4003111b-ea84-404d-9a43-d71424a4ea1d" class="bulleted-list"><li style="list-style-type:disc">정적 데이터 조회<ul id="9155b105-b6fe-4dde-bb32-56d3f590fda6" class="bulleted-list"><li style="list-style-type:circle">이미지, 정적 테스트 문서</li></ul></li></ul><ul id="763bf02f-00c3-41b9-9153-d5b9c2b428a5" class="bulleted-list"><li style="list-style-type:disc">동적 데이터 조회<ul id="15092f71-7466-4d45-a7c3-7654c3ba8463" class="bulleted-list"><li style="list-style-type:circle">주로 검색, 게시판 목록에서 정렬 필터(쿼리 파라미터)</li></ul></li></ul><ul id="1fb9631f-adb2-45ca-bf29-f0468b5371c2" class="bulleted-list"><li style="list-style-type:disc">HTML Form을 통한 데이터 전송<ul id="e35d4584-56a8-4415-b157-09e449128c4b" class="bulleted-list"><li style="list-style-type:circle">회원가입, 상품 주문, 데이터 변경</li></ul></li></ul><ul id="16f55485-5f55-4f4a-a68d-059bd5ad4a64" class="bulleted-list"><li style="list-style-type:disc">HTTP API를 통한 데이터 전송<ul id="2ab9b3ae-e9d1-4d93-827f-5e74025f75d5" class="bulleted-list"><li style="list-style-type:circle">회원 가입, 상품 주문, 데이터 변경</li></ul><ul id="24a8e0cf-3a92-4eba-9c4c-a762ee301ce4" class="bulleted-list"><li style="list-style-type:circle">서버 to 서버, 앱 클라이언트, 웹 클라이언트(AJAX)</li></ul></li></ul><p id="56220762-6521-4117-8fb7-6157cf88d986" class="">
+</p><p id="2a0866e8-349a-4392-9b08-1749187f3635" class="">
+</p></div></article></body></html>

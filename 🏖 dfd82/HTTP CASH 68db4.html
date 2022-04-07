@@ -1,0 +1,685 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>HTTP CASH</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="68db4c5d-05eb-4502-ad2c-867d89c7d340" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="HTTP%20CASH%2068db4/http.png"/></div><h1 class="page-title">HTTP CASH</h1></header><div class="page-body"><h1 id="279ec854-fdb0-4af7-a4dd-a121e48aaff1" class="">캐시가 없을때 이미지 조회</h1><figure id="a95baa3a-5dbe-42f5-a6e1-ebeeec129732" class="image"><a href="HTTP%20CASH%2068db4/Untitled.png"><img style="width:1110px" src="HTTP%20CASH%2068db4/Untitled.png"/></a></figure><figure id="8d071664-2cbc-4158-bcd3-5691eadd5c97" class="image"><a href="HTTP%20CASH%2068db4/Untitled%201.png"><img style="width:1106px" src="HTTP%20CASH%2068db4/Untitled%201.png"/></a></figure><ul id="eda6368b-3929-4f01-a58c-31e151902d5e" class="bulleted-list"><li style="list-style-type:disc">데이터가 변경되지 않아도 계속 네트워크를 통해서 데이터를 다운로드 받아야 한다.</li></ul><ul id="1d04808b-46ae-44ec-b02d-571637e3217f" class="bulleted-list"><li style="list-style-type:disc">인터넷 네트워크는 매우 느리고 비싸다.</li></ul><ul id="acadbb3b-69cf-442e-89c4-fc1a195287ca" class="bulleted-list"><li style="list-style-type:disc">브라우저 로딩 속도가 느리다.</li></ul><ul id="0aae23bc-b9c4-4036-a741-fcad4de57ad7" class="bulleted-list"><li style="list-style-type:disc">느린 사용자 경험</li></ul><p id="d4666adb-a896-4f06-a46a-f5dde531dcad" class="">
+</p><h1 id="73a6afcb-dca0-4513-b516-95777d2f4e55" class="">캐시 적용 후 이미지 조회</h1><figure id="c5a50161-dbfd-48db-9f34-68893e82fa92" class="image"><a href="HTTP%20CASH%2068db4/Untitled%202.png"><img style="width:1122px" src="HTTP%20CASH%2068db4/Untitled%202.png"/></a></figure><figure id="9efa7ae3-d884-4923-ab43-1060db250ab5" class="image"><a href="HTTP%20CASH%2068db4/Untitled%203.png"><img style="width:1108px" src="HTTP%20CASH%2068db4/Untitled%203.png"/></a></figure><figure id="bb1c1374-d5d7-4c7c-95f7-5228245e6999" class="image"><a href="HTTP%20CASH%2068db4/Untitled%204.png"><img style="width:1014px" src="HTTP%20CASH%2068db4/Untitled%204.png"/></a></figure><figure id="a5e18839-20b9-4feb-babe-062b39a087eb" class="image"><a href="HTTP%20CASH%2068db4/Untitled%205.png"><img style="width:1012px" src="HTTP%20CASH%2068db4/Untitled%205.png"/></a></figure><ul id="ee0ca09b-d732-418c-b7e5-a729b90b17a9" class="bulleted-list"><li style="list-style-type:disc">캐시 덕분에 캐시 가능 시간동안 네트워크를 사용하지 않아도 된다.</li></ul><ul id="9bc456bf-dedb-4b73-b669-0526bc43944b" class="bulleted-list"><li style="list-style-type:disc">비싼 네트워크 사용량을 줄일 수 있다.</li></ul><ul id="9a99a99a-4570-4f5d-9668-2cf4a3d748f2" class="bulleted-list"><li style="list-style-type:disc">브라우저 로딩 속도가 매우 빠르다.</li></ul><ul id="0e65de0a-341b-47d5-844c-f5bb05d3801d" class="bulleted-list"><li style="list-style-type:disc">빠른 사용자 경험</li></ul><p id="50a289da-fc46-49bd-8617-c7c6289b18d9" class="">
+</p><p id="5b60a110-cc28-4027-9ee0-6308865ccce2" class="">캐시 유효기간이 초과했을 경우</p><figure id="4da90823-2e27-4b61-a5c3-1fd77581002a" class="image"><a href="HTTP%20CASH%2068db4/Untitled%206.png"><img style="width:1100px" src="HTTP%20CASH%2068db4/Untitled%206.png"/></a></figure><figure id="f241ed34-7875-4e53-9ba0-96c03ceffc6b" class="image"><a href="HTTP%20CASH%2068db4/Untitled%207.png"><img style="width:1108px" src="HTTP%20CASH%2068db4/Untitled%207.png"/></a></figure><ul id="b614166d-e711-40af-99c4-bafc12f4d271" class="bulleted-list"><li style="list-style-type:disc">당연하게 다시 서버에 조회를 하고 캐시를 갱신한다</li></ul><figure id="ef8c7af2-c51e-4dbc-82e7-c6b621200e9b" class="image"><a href="HTTP%20CASH%2068db4/Untitled%208.png"><img style="width:1094px" src="HTTP%20CASH%2068db4/Untitled%208.png"/></a></figure><ul id="2d129e86-07e1-4815-bbcf-904c0b1f5973" class="bulleted-list"><li style="list-style-type:disc">하지만 기존 캐시에 있던 이미지와 같은 이미지면 의미없는 네트워크 다운로드가 또다시 발생한다</li></ul><p id="55a82d5e-4bc0-40cb-b750-d90d393a59ad" class="">
+</p><h1 id="70bf0763-63f0-475d-b3fe-3e9d9c8816f5" class="">검증 헤더</h1><h2 id="4d8d9ec9-09bc-4451-b04c-5568ed5107b4" class="">검증헤더 1 - Last-Modified</h2><p id="0743c6df-fd16-4ad8-b12e-a375f4e43059" class="">클라이언트의 캐시 데이터와 서버의 데이터가 같다는 사실을 확인하는 방법</p><figure id="19956db9-4d37-4880-a8be-84d8c36f9ece" class="image"><a href="HTTP%20CASH%2068db4/Untitled%209.png"><img style="width:567px" src="HTTP%20CASH%2068db4/Untitled%209.png"/></a></figure><figure id="acfbbf5a-fe75-4097-acbf-87d824ea7d94" class="image"><a href="HTTP%20CASH%2068db4/Untitled%2010.png"><img style="width:606px" src="HTTP%20CASH%2068db4/Untitled%2010.png"/></a></figure><ul id="442e8e2b-f163-4497-9b71-6ba39ecaae39" class="bulleted-list"><li style="list-style-type:disc">캐시 유효 시간이 초과해도, 서버의 데이터가 갱신되지 않으면 304 Not Modified + 헤더 메타 정보만 응답(바디X)</li></ul><ul id="99c87918-91c1-43a4-bd76-89fab5b6857d" class="bulleted-list"><li style="list-style-type:disc">클라이언트는 서버가 보낸 응답 헤더 정보로 캐시의 메타 정보를 갱신</li></ul><ul id="8a89f728-220f-4e17-b367-cbb87a68877f" class="bulleted-list"><li style="list-style-type:disc">클라이언트는 캐시에 저장되어 있는 데이터 재활용</li></ul><ul id="ad906c1b-4196-4bb9-a7c9-57e5e656aadd" class="bulleted-list"><li style="list-style-type:disc">결과적으로 네트워크 다운로드가 발생하지만 용량이 적은 헤더 정보만 다운로드</li></ul><ul id="bb036eb0-9f49-44a9-8acd-83b1e14857ed" class="bulleted-list"><li style="list-style-type:disc">매우 실용적인 해결책</li></ul><p id="679846c6-3adf-44fe-9bc9-6ae024d5e5fc" class="">
+</p><p id="58296515-bd00-4337-85c0-5eb78c7ec045" class="">단점</p><ul id="57f03f5f-1b97-4684-822b-d0cf568bb052" class="bulleted-list"><li style="list-style-type:disc">1초 미만(0.x초) 단위로 캐시 조정이 불가능</li></ul><ul id="5bb07216-45df-4b1d-84d5-e39072f85171" class="bulleted-list"><li style="list-style-type:disc">날짜 기반의 로직 사용</li></ul><p id="ff2c136e-6be2-4f01-bdb3-2487a667ce67" class="">
+</p><h2 id="876e42ed-251d-4573-8794-b99f179bb58f" class="">검증헤더 2 - ETag</h2><ul id="085d4fa0-37b6-4053-baa5-4e338c0abcb4" class="bulleted-list"><li style="list-style-type:disc">캐시용 데이터에 임의의 고유한 버전 이름을 달아둠<ul id="45ff3b1c-b302-4b8a-badb-e2caada94309" class="bulleted-list"><li style="list-style-type:circle">예) ETag: &quot;v1.0&quot;, ETag: &quot;a2jiodwjekjl3&quot;</li></ul></li></ul><ul id="6bea7e57-4c7f-46ac-a36b-f1a5a765fad3" class="bulleted-list"><li style="list-style-type:disc">데이터가 변경되면 이 이름을 바꾸어서 변경함(Hash를 다시 생성)<ul id="0891da80-70c2-4b95-a9d6-19614aea5174" class="bulleted-list"><li style="list-style-type:circle">예) ETag: &quot;aaaaa&quot; -&gt; ETag: &quot;bbbbb&quot;</li></ul></li></ul><ul id="dbc773f7-702c-41b3-a6f9-bef3bcd510dd" class="bulleted-list"><li style="list-style-type:disc">진짜 단순하게 ETag만 보내서 같으면 유지, 다르면 다시 받기!</li></ul><figure id="cd9d107d-58d9-44f2-a175-77378ce6399a" class="image"><a href="HTTP%20CASH%2068db4/Untitled%2011.png"><img style="width:565px" src="HTTP%20CASH%2068db4/Untitled%2011.png"/></a></figure><figure id="2f6fe640-4078-41e3-ae7b-dac78b9ebe7e" class="image"><a href="HTTP%20CASH%2068db4/Untitled%2012.png"><img style="width:601px" src="HTTP%20CASH%2068db4/Untitled%2012.png"/></a></figure><ul id="4a55bc9f-b008-49f7-90dc-03d4ad9ed274" class="bulleted-list"><li style="list-style-type:disc"><strong>캐시 제어 로직을 서버에서 완전히 관리</strong></li></ul><ul id="95ec01e3-7672-4746-b9a2-e0336299fefe" class="bulleted-list"><li style="list-style-type:disc">클라이언트는 단순히 이 값을 서버에 제공(클라이언트는 캐시 메커니즘을 모름)</li></ul><p id="159ef456-b5e8-4027-a0d7-f8a966947434" class="">
+</p><p id="d8446552-ec3e-4603-817e-85359431ac90" class="">
+</p><h2 id="50cbd146-6017-4e7e-8053-e05d9f5b3930" class="">캐시 제어 헤더</h2><h3 id="e8b3fda6-41e3-4498-a3f3-6b08bc73c511" class="">Cache - Control - 캐시 제어</h3><p id="a835f79a-4207-4a41-9e24-2f9b997ede44" class="">Cache-Control: max -age<div class="indented"><ul id="0abfa2a0-4c68-4f16-a902-343cc55a5f09" class="bulleted-list"><li style="list-style-type:disc">캐시 유효 시간, 초 단위</li></ul></div></p><p id="81d8bac2-6811-49e8-9389-83375bf4e256" class="">Cache-Control: no-cache<div class="indented"><ul id="1905abc2-2cb3-474d-a07d-98f8fe34f605" class="bulleted-list"><li style="list-style-type:disc">데이터는 캐시해도 되지만, 항상 ORIGIN서버(프록시서버X)에 검증하고 사용</li></ul><ul id="50a99552-f08c-4443-b2dd-5ae9ec9876f4" class="bulleted-list"><li style="list-style-type:disc">즉 유효기간 관계없이 항상 서버와의 etag와 클라이언트의 etag를 확인해본다</li></ul></div></p><p id="06667a31-3691-4c57-859e-0905d3c896e7" class="">Cache-Control: no-store<div class="indented"><ul id="ac1397d0-80e6-4b77-9974-a2e5bcea3d96" class="bulleted-list"><li style="list-style-type:disc">데이터에 민감한 정보가 있으므로 저장하면 안됨</li></ul><p id="e83a3986-dff1-4a70-9d0c-b418f3f339a9" class="">
+</p><p id="b8f10da6-0e04-425b-9053-a99ae97de2f4" class="">
+</p></div></p><h2 id="76544b6b-7f7c-4ad9-be5a-c718dbf4ff19" class="">프록시 캐시</h2><p id="51f47ee7-2c7e-4dc9-bc08-cf2ef2700b4e" class="">원 서버 대신 프록시 캐시 서버를 사용하면 더 빠르게 통신할 수 있다</p><figure id="723fa4dd-a97c-418a-85cc-7a8cd6f04b58" class="image"><a href="HTTP%20CASH%2068db4/Untitled%2013.png"><img style="width:1108px" src="HTTP%20CASH%2068db4/Untitled%2013.png"/></a></figure><p id="813161e9-c985-46f0-8c25-364f94e241ad" class="">프록시 캐시서버를 통해 통신하기때문에 0.1초만 걸린다</p><p id="e44cb361-6f5b-4ab2-971b-b38179c38f0c" class="">유튜브를 예시로 들면 유명한 유튜버는 이미 프록시 캐시서버에 해당 유튜버에 대한 많은 캐시가 있기 때문에 통신이 빠르지만 유명하지 않은 유튜버는 프록시 캐시서버가 원 서버까지 갔다와야하기때문에 오래걸림</p><p id="8e0c6741-6aa9-4c3c-bd04-0c698f8d4ea8" class=""><strong>Cache-Control: public</strong></p><ul id="1ae431b2-91fd-4268-87e8-8a6d9d727dec" class="bulleted-list"><li style="list-style-type:disc">응답이 public 캐시에 저장되어도 됨</li></ul><p id="e02a9dde-fccc-4dfd-916e-25d8493e7566" class=""><strong>Cache-Control: private</strong></p><ul id="5073b828-3715-4b93-b874-6976f6a6a034" class="bulleted-list"><li style="list-style-type:disc">응답이 해당 사용자만을 위한 것임, private 캐시에 저장해야 함(기본값)</li></ul><p id="ce7f2da5-ec68-4e64-8586-06de821001fe" class="">
+</p><h2 id="970444ad-78a2-4d67-aa93-0fe801c9070f" class="">캐시 무효화</h2><p id="be94d8e5-de28-4bbc-ae4b-3ddef1fa00b4" class="">확실한 캐시 무효화 응답</p><ul id="e7c448bd-040d-4804-9484-25d6009928fa" class="bulleted-list"><li style="list-style-type:disc"><strong>Cache-Control: no-cache, no-store, must-revalidate
+</strong></li></ul><ul id="7d9b44e4-60bf-41ea-8f9f-3379ff0479cb" class="bulleted-list"><li style="list-style-type:disc">Pragma: no-cache<ul id="9db6418a-18c8-4988-8385-b663010343c0" class="bulleted-list"><li style="list-style-type:circle">HTTP 1.0 하위 호환</li></ul><p id="a5ba9217-863b-4a57-bb16-6a5b2fbbad2b" class="">
+</p><p id="3e61a9ea-b0c8-4bad-a948-476f625262e4" class="">
+</p></li></ul><h3 id="81389b28-0c2c-481e-a8fb-de2445d1fad7" class="">no-cache vs must-revalidate</h3><p id="abb74321-e3f9-4401-8f6e-a359896bf17b" class=""><strong>no-cache에서 프록시 캐시와 원서버 연결이 끊켰을 경우</strong></p><figure id="56df9178-b667-468e-bdec-b2b6be9eb866" class="image"><a href="HTTP%20CASH%2068db4/Untitled%2014.png"><img style="width:1076px" src="HTTP%20CASH%2068db4/Untitled%2014.png"/></a></figure><p id="85ae3ddc-3389-434c-b59b-f08a9d89416f" class="">
+</p><p id="baf016ed-d5c6-4fba-8404-e8c53387954a" class=""><strong>must-revalidate에서 프록시 캐시와 원 서버 연결이 끊켰을 경우</strong></p><figure id="2551ee3a-f928-4bd4-8037-cba30efcb82a" class="image"><a href="HTTP%20CASH%2068db4/Untitled%2015.png"><img style="width:1074px" src="HTTP%20CASH%2068db4/Untitled%2015.png"/></a></figure><p id="9f621a2d-8fc0-4410-abf9-146e68b75b7e" class="">
+</p><p id="10bfac1e-9f07-49aa-ac05-a7ebbe5759fd" class="">
+</p><p id="81ab5eb3-5164-413e-a43c-f88e023083fe" class="">Cache-Control: <strong>no - cache</strong><div class="indented"><ul id="95aec277-3da2-40b7-9c55-cc5b3ead199c" class="bulleted-list"><li style="list-style-type:disc">데이터는 캐시해도 되지만, 항상 원서버(프록시X)에 검증하고 사용</li></ul></div></p><p id="5154bdae-c12c-4f28-b675-9bcbb65ea462" class="">Cache-Control: <strong>must-revalidate</strong><div class="indented"><ul id="73611271-7218-47c1-a87c-7a5490048f38" class="bulleted-list"><li style="list-style-type:disc">캐시 만료 후 최초 조회시 원 서버(프록시X)에 검증해야함</li></ul><ul id="7464435f-a046-4ed4-a5a0-3596fcc8aef5" class="bulleted-list"><li style="list-style-type:disc">원 서버 접근 실패시 반드시 오류가 발생해야함 - 504(Gateway Timeout)</li></ul><ul id="e5bbf1b3-6ed5-4897-ac5d-7491d1d8f276" class="bulleted-list"><li style="list-style-type:disc">must-revalidate는 캐시 유효 시간이라면 캐시를 사용함</li></ul></div></p></div></article></body></html>

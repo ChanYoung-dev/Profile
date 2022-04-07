@@ -1,0 +1,781 @@
+<html><head><script src="../embed-sub.js" defer></script><link rel="stylesheet" href="../notion-mainstyle.css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Linux chmod, systemctl, unit</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5616cfd2-eaa1-41fd-bb54-9920d1471aa1" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Linux%20chmo%205616c/kuber.png"/></div><h1 class="page-title">Linux chmod, systemctl, unit</h1></header><div class="page-body"><p id="b0188efe-52f1-4a1e-9952-27d231dd5442" class="">
+</p><h1 id="34091765-6fd5-46f4-9468-03314135d4a7" class="">서비스 유닛 제어</h1><ul id="023dc75f-0ee1-4e2c-9701-5b9b732f95ba" class="bulleted-list"><li style="list-style-type:disc">관리자 권한 필요</li></ul><ul id="8964d978-a1e8-4275-988e-a6f56d28c853" class="bulleted-list"><li style="list-style-type:disc">httpd 서비스 설치<p id="0b6897e1-a761-4994-8820-e9ac13c68294" class=""><code>yum -y install httpd</code></p></li></ul><ul id="1676e36e-efdf-46d3-8cbc-184f53cdb148" class="bulleted-list"><li style="list-style-type:disc">httpd 서비스 상태 확인<p id="c779ad4b-d9f7-48b7-9f5b-dc17ef15b5e0" class=""><code>systemctl status httpd</code></p></li></ul><ul id="f4c90f7f-2fab-44f0-86ea-9aa7f6ae31d5" class="bulleted-list"><li style="list-style-type:disc">httpd 서비스 실행<p id="7d98ff92-89dc-4860-8bea-c3b10339991a" class=""><code>systemctl start httpd</code></p></li></ul><ul id="bca1ae40-9ad8-4e68-bdc6-4f07d80c014c" class="bulleted-list"><li style="list-style-type:disc">httpd 서비스 상태 확인<p id="d259a9b0-7614-4081-9547-61a951ae76f4" class=""><code>systemctl status httpd</code></p><pre id="648695c6-83a1-458e-9ab7-3a889ee5ae87" class="code code-wrap"><code>[user1@servera ~]$ systemctl status httpd
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+   Active: active (running) since Tue 2022-01-18 13:01:23 KST; 1 day 12h ago
+     Docs: man:httpd(8)
+           man:apachectl(8)
+ Main PID: 1103 (httpd)
+   Status: &quot;Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec&quot;
+   CGroup: /system.slice/httpd.service
+           ├─1103 /usr/sbin/httpd -DFOREGROUND
+           ├─1157 /usr/sbin/httpd -DFOREGROUND
+           ├─1158 /usr/sbin/httpd -DFOREGROUND
+           ├─1159 /usr/sbin/httpd -DFOREGROUND
+           ├─1160 /usr/sbin/httpd -DFOREGROUND
+           └─1161 /usr/sbin/httpd -DFOREGROUND</code></pre><p id="24fab7dc-35ef-4b5e-afff-d94258312b1a" class="">
+</p></li></ul><ul id="55471fd0-75f9-4b25-8647-d6d5607dc377" class="bulleted-list"><li style="list-style-type:disc">서비스 유닛 정보
+<code>Loaded</code> - 서비스 유닛이 메모리에 로드되었는지의 여부
+<code>Active</code> - 서비스 유닛이 실행 중인지의 여부 확인
+<code>Main PID </code>- 기본 프로세스 ID
+<code>status</code> - 서비스에 대한 추가 정보</li></ul><ul id="9e0a0610-2ba3-4b25-8ebd-2fefcbf7627d" class="bulleted-list"><li style="list-style-type:disc">systemctl 출력의 서비스 상태
+<code>active(running)</code> - 프로세스 정상 실행중
+<code>active(exited)</code> - 초기 설정을 완료하고 대기중
+<code>active(waiting)</code> - 인터럽트 신호 대기
+<code>inactive</code> - 실행 중이 아님
+<code>enabled</code> - 부팅할 때 시작
+<code>disabled</code> - 부팅할 때 시작되지 않도록 설정</li></ul><ul id="8918e9e2-1ba9-4977-b010-adbc8a9f21e6" class="bulleted-list"><li style="list-style-type:disc">httpd 서비스 중지<p id="f3a76b57-a050-4e55-a823-30aedf28fc88" class=""><code>systemctl stop httpd</code></p></li></ul><ul id="4ea50727-9b60-480f-bde4-3426311ca2b7" class="bulleted-list"><li style="list-style-type:disc"><code>restart</code> : 메모리에 있는 서비스를 다시 내리고 설정파일과 함께 실행<p id="077549a1-7c75-4185-ab0c-973c0247a064" class="">명확하게 설정파일을 다시 읽어 올 수 있음</p><ul id="c802641f-305d-4c5a-aa91-c5062f0a828e" class="bulleted-list"><li style="list-style-type:circle">httpd 서비스 재시작<p id="8445ba6e-576f-4836-a626-6dfec81c2393" class=""><code>systemctl restart httpd</code></p></li></ul></li></ul><ul id="c41fb56f-adaa-457a-8f7e-c7ab6a9df179" class="bulleted-list"><li style="list-style-type:disc"><code>reload</code> : 서비스가 실행되는 상태에서 설정파일만 다시 반영<p id="cd6e7804-2616-4130-b2e3-dd8297d5a70d" class="">서비스 재시작 중 발생할 수 있는 문제를 방지</p></li></ul><ul id="2f0693a7-802b-4ec2-80ae-bf0241141dda" class="bulleted-list"><li style="list-style-type:disc">httpd 구성파일 리로드<p id="8c641372-512b-4218-b3c3-62f26f635976" class=""><code>systemctl reload httpd</code></p></li></ul><ul id="e48c6198-40ef-413f-aa20-4175a02bfbc3" class="bulleted-list"><li style="list-style-type:disc">시스템이 재부팅되어도 서비스가 구동되도록 설정<p id="d097ab19-c087-49fd-a3d2-546bcb06b119" class=""><code>systemctl enable httpd</code></p></li></ul><ul id="12757707-7775-4436-8a44-df427524b1c3" class="bulleted-list"><li style="list-style-type:disc">시스템이 재부팅되면 서비스가 구동되지 않도록 설정<p id="3acab7db-c33f-4795-a131-d2a7eab2d866" class=""><code>systemctl disable httpd</code></p></li></ul><p id="218cc13c-1690-4eb8-af44-d7d8eab7526e" class="">
+</p><p id="38695bcd-8b76-42bc-b9c5-fa4d411a2ea4" class="">
+</p><h1 id="f31bb52a-0db2-4842-994a-ee80c092c57f" class="">로컬 사용자 및 그룹 관리
+</h1><h3 id="fec9819d-5fb5-40be-9a62-2799e4020bb7" class="">사용자 및 그룹</h3><p id="abf35567-7ece-4f1d-b2e3-bca2b92ab1e4" class="">사용자와 그룹은 시스템에서 필수적인 요소</p><p id="cdb41a4e-6803-44d4-876a-b350174f52f1" class="">사용자가 없으면 시스템에 로그인할 수도 없고 사용할 수도 없음</p><p id="3f5a6558-2537-4886-ad03-2e10a5b19137" class="">
+</p><h3 id="6da4847b-7753-4ad5-a288-a9fbb7acd0eb" class="">사용자</h3><ul id="5c4b85f4-9460-4b49-819e-373e8f632476" class="bulleted-list"><li style="list-style-type:disc">로그인 대상</li></ul><ul id="11feb763-6863-4136-9fc6-990fa0b43fa3" class="bulleted-list"><li style="list-style-type:disc">접근 제어 기준으로 분류(1차적)</li></ul><ul id="4130027a-b817-49d3-8b50-2af5f5263ffa" class="bulleted-list"><li style="list-style-type:disc">다른 사용자와 명령을 실행할 수 있는 프로그램 간의 보안 경계 제공</li></ul><ul id="fd1de7d4-b9c5-4c5e-a4ab-272647df127f" class="bulleted-list"><li style="list-style-type:disc">일반 사용자로 root 디렉토리 내 파일 리스트나 <code>/etc/shadow</code> 파일내용을 볼 수 없음</li></ul><ul id="d87a8787-c5db-473e-bce2-69471c225cc2" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/passwd</code> 파일에 사용자에 대한 정보 저장</li></ul><ul id="e217e035-5742-418f-9d98-10898f89934f" class="bulleted-list"><li style="list-style-type:disc">슈퍼유저, 시스템 사용자, 일반 사용자로 분류<ul id="4e663d0b-d0fd-43ad-94bd-90fb75d62d8b" class="bulleted-list"><li style="list-style-type:circle">0번 : root</li></ul><ul id="96614f3f-eb38-4429-ae9b-d4215de74df0" class="bulleted-list"><li style="list-style-type:circle">1 ~ 999번 : 시스템 사용자, 프로세스에서 사용<p id="7c69249f-a87e-42eb-94a8-a842ca8eee16" class="">각각의 프로세스에 맞춰 시스템에 대한 엑세스 제한</p></li></ul><ul id="4da601d9-c484-4fb6-8d28-b1c955f780ae" class="bulleted-list"><li style="list-style-type:circle">1000번 이상 : 일반 사용자, 작업에 사용</li></ul></li></ul><p id="56b45eb7-1781-43e8-bbc7-3612d4224910" class="">
+</p><h3 id="5e425c69-9f8e-458d-b0d0-bb7012ccacf9" class="">그룹</h3><ul id="c2ab4789-32a4-4c20-aeb5-ea47c8cbb939" class="bulleted-list"><li style="list-style-type:disc">사용자 하나하나에 권한 부여를 하기엔 작업이 너무 많아짐</li></ul><ul id="a4ad5037-cc83-4e23-8f2f-36c536ed623a" class="bulleted-list"><li style="list-style-type:disc">사용자들의 집합</li></ul><ul id="9aa12e0d-4c6c-4515-82ba-0e5bc84339e1" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/group</code> 파일에 그룹에 대한 정보 저장</li></ul><ul id="95430498-d746-467f-8e5f-a5423d327d71" class="bulleted-list"><li style="list-style-type:disc">접근 제어 기준으로 분류 (2차적)</li></ul><ul id="e55017eb-0648-4220-99c7-cdbcbc3a8f1c" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/passwd</code> 파일 확인<p id="9c72c328-39f7-4d6d-a33b-88156fcdbbe1" class=""><code>cat /etc/passwd | grep root</code></p><ul id="a49c6373-757d-4803-a07e-c89b94dbf5c0" class="bulleted-list"><li style="list-style-type:circle"><code>root:x:0:0:root:/root:/bin/bash</code></li></ul></li></ul><p id="d887b2bf-21c6-49e7-b066-b0d951db996c" class="">                     1  2 3  4    5             6         7</p><ol type="1" id="269e3ca9-f381-4de1-bcdc-4cc59a5f1612" class="numbered-list" start="1"><li><code>root</code> : 사용자의 이름, 로그인 할 때 사용</li></ol><ol type="1" id="b585ff0e-95c8-4697-ad02-f4192905a1a3" class="numbered-list" start="2"><li><code>x</code> : 패스워드 (현재 <code>/etc/shadow</code> 파일에 저장)</li></ol><ol type="1" id="a4b337e4-fcd3-42c5-8bf9-2e7cfde5285d" class="numbered-list" start="3"><li><code>0</code> : 사용자의 UID, 시스템에서 사용자를 식별하는 번호</li></ol><ol type="1" id="4d06d2fb-42bc-447b-b82e-20b2fec7b8a1" class="numbered-list" start="4"><li><code>0</code> : 그룹의 GID, 시스템에서 그룹을 식별하는 번호</li></ol><ol type="1" id="b1c3a889-db4e-4173-a2ea-64b71df7c61f" class="numbered-list" start="5"><li><code>root</code> : 메모(정보) or 코멘트</li></ol><ol type="1" id="86093502-3d44-411a-86c7-bb46689ada95" class="numbered-list" start="6"><li><code>/root</code> : 사용자의 홈디렉토리</li></ol><ol type="1" id="9d37b679-ce8e-42a1-9664-742a9d8d0fb3" class="numbered-list" start="7"><li><code>/bin/bash</code> : 사용 중인 쉘</li></ol><p id="759e7dfc-0cf2-4b11-9a1f-6f364fa97020" class="">
+</p><p id="a4b99120-2e71-4877-863e-a0d2f489378a" class="">
+</p><ul id="d714fecc-d51f-4dcf-a9bb-96116669f819" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/group</code> 파일 확인<p id="e61ab101-4991-43cb-ba6d-8af78f2848a2" class=""><code>cat /etc/group | grep root</code></p><ul id="2e3b05d1-5c00-4bd1-b3ce-00ae7243f081" class="bulleted-list"><li style="list-style-type:circle"><code>root:x:0:</code><p id="8a0f2b49-0aab-4217-8c6d-36f3d7b9b9e8" class="">        1  2 3 4</p></li></ul></li></ul><ol type="1" id="5a6ca1de-03dd-44a3-bf59-69f038921736" class="numbered-list" start="1"><li><code>root</code> : 그룹 이름</li></ol><ol type="1" id="1db94ee3-14e2-492b-8010-dddbcf51371e" class="numbered-list" start="2"><li><code>x</code> : 그룹 패스워드 (현재 /<code>etc/gshadow</code> 파일에 저장)</li></ol><ol type="1" id="8860d123-435d-4761-917f-cb1266c207ee" class="numbered-list" start="3"><li><code>0</code> : 그룹 아이디, GID</li></ol><ol type="1" id="74b5ae11-95a8-4e1e-9828-b91389df0a0c" class="numbered-list" start="4"><li><code>(공백)</code> : 이 그룹을 보조 그룹으로 지정하고 있는 사용자의 목록</li></ol><p id="83ebd561-a864-4368-82a7-eee581ab486c" class="">
+</p><h2 id="3744d198-c726-43d4-8159-3709d361283a" class="">사용자</h2><ul id="e156e68c-08a7-4b12-89fb-04524e7cf0ca" class="bulleted-list"><li style="list-style-type:disc">사용자 확인</li></ul><p id="d87db81e-2456-447d-8aeb-83c940741364" class=""><code>id</code></p><pre id="ea6a0591-ddbf-484e-b716-53342ce43e94" class="code code-wrap"><code>[user1@servera ~]$ id
+uid=1111(user1) gid=1004(user2) groups=1004(user2),1007(user5) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</code></pre><ul id="7063dd85-1621-401b-9bf0-c5259a86f68e" class="bulleted-list"><li style="list-style-type:disc">슈퍼유저(root)<p id="22e00edb-9c3c-4f88-9a90-cb51f785a94d" class="">다양한 권한을 가진 사용자</p><p id="fc4fa644-0356-46b4-9a4e-48c9deef6d11" class="">uid가 0번으로 고정</p></li></ul><ul id="965a1923-b935-4d2b-a4da-ce4386fec5e4" class="bulleted-list"><li style="list-style-type:disc">일반 사용자에서 root 사용자로 로그인할 때 &quot;su -&quot; 사용</li></ul><ul id="2ce2528d-b82b-4744-ab23-14a879815380" class="bulleted-list"><li style="list-style-type:disc"><code>sudo</code><p id="1e753b86-3f56-4b7c-849d-6f0f3ae5f1b0" class="">관리자 권한으로 명령 실행</p><p id="48c307f7-ef34-4a2b-9ba5-33d3d5f5b9b9" class=""><code>sudo</code> 사용할 경우 <code>/var/log/secure</code>파일에 로그 기록</p><p id="9bf5f3ec-7faa-405f-8049-47cb6367bebb" class="">관리자 권한을 갖는 사용자 vs 일반 사용자
+<code>sudo</code> 사용 가능	           <code>sudo</code> 사용 불가</p></li></ul><ul id="642cf9b8-0134-452e-b1b5-eb8fbedd6652" class="bulleted-list"><li style="list-style-type:disc">사용자 및 그룹 관리<p id="54713e2a-ce2c-424e-8496-a323bc0b74a8" class="">관리자 권한 필요</p></li></ul><p id="8749a22f-a989-47f0-a847-e6310f534f88" class="">
+</p><p id="02f270c5-4b79-466d-b32a-6c7c7b7c78a1" class="">
+</p><h1 id="90b295d8-f7e2-4218-9896-7932bafba128" class="">
+<code>useradd</code> : 사용자 생성</h1><ul id="9b79f2cf-8b26-4707-8200-7b84e2b17736" class="bulleted-list"><li style="list-style-type:disc"><code>useradd user1</code><p id="01865347-5cf4-4b5a-8fcd-6ba1ed286fdd" class=""><code>tail -n 1 /etc/passwd</code></p><p id="5f0d2094-3043-4b06-88d8-8117bdfc68a2" class="">결과) <code>user1:x:1000:1000::/home/user1:/bin/bash</code></p><p id="6c25f753-b2ec-4dec-9687-5d515fc0672a" class=""><code>tail -n 1 /etc/group</code></p><p id="1879fcea-66fd-42d6-b9ba-afac46389f51" class="">결과) <code>user1:x:1000:</code></p><ul id="44d64e57-8f03-41af-8794-62acf8e469be" class="bulleted-list"><li style="list-style-type:circle">일반 사용자 생성 시 기본 그룹도 생성</li></ul></li></ul><p id="6cb410d4-01ce-4be7-9efa-6ca823ed6e04" class="">
+</p><h3 id="8bf8da7f-9d5d-4ef5-9324-6e4dfb93ef18" class="">옵션</h3><ul id="1de5f844-7cb2-4aa1-b90c-64d3fd2ed4f2" class="bulleted-list"><li style="list-style-type:disc">u 옵션<p id="cc9a64e9-27b2-451b-8082-921cfc93dcd0" class="">사용자의 아이디를 지정</p><p id="456c465a-be10-48f2-b20e-9302e5d3a83b" class=""><code>useradd -u 1004 user2</code></p><p id="977a7f21-4fa9-49d7-9134-136a3916c21d" class=""><code>tail -n 1 /etc/passwd</code></p><ul id="fcbf089f-31fd-4c31-bcae-d12b38bd2c7f" class="bulleted-list"><li style="list-style-type:circle">결과) <code>user2:x:1004:1004::/home/user2:/bin/bash</code></li></ul><ul id="6f9c61e1-6fae-441c-a6bc-bd1bed94fd42" class="bulleted-list"><li style="list-style-type:circle">UID를 지정하여 생성시에 똑같은 GID도 생성</li></ul></li></ul><ul id="e7d8a4ce-0a56-49ad-b0f4-af5a9a557282" class="bulleted-list"><li style="list-style-type:disc">g 옵션<p id="d68a7a24-e420-43bf-8065-c048d32dc4a5" class="">기본 그룹 지정</p><p id="15c2882f-805c-4f7c-b0c0-b9bff2cebc0b" class=""><code>useradd -g 1004 user3</code></p><p id="636e893c-cf77-4c31-9a93-5169c5e65818" class=""><code>tail -n 1 /etc/passwd</code></p><p id="3c5ab7a7-d1cd-49a8-a8ad-d82fa0cc25c6" class="">결과) <code>user3:x:1005:1004::/home/user3:/bin/bash</code></p><p id="dd1b7dbb-7087-4f01-84a7-eb08639dad2c" class="">사용자를 생성할 때 그룹을 지정할 시 있는 그룹으로 지정해야 함</p><ul id="73e1008c-e294-475a-951d-a121318d433b" class="bulleted-list"><li style="list-style-type:circle">사용자 생성시 가장 마지막 번호 다음 숫자로 UID를 부여<ul id="c6ef5240-45ac-4e7b-8478-abdc2fbc34ca" class="bulleted-list"><li style="list-style-type:square">user3 에 해당하는 기본 그룹은 생성 X</li></ul></li></ul></li></ul><ul id="f259d5df-6daa-4911-abe8-1dd33bcfccac" class="bulleted-list"><li style="list-style-type:disc">G 옵션<p id="76850fec-436d-44f0-af9b-258dea1b654a" class="">보조 그룹 지정</p><p id="c66ee208-ec19-4348-a336-b0aae7f5863b" class=""><code>useradd -G 1000 user4</code></p><p id="cc64ad5d-c1b5-4dd1-b0d8-bc05bce8bbb7" class=""><code>tail -n 1 /etc/passwd</code></p><p id="edf8d57b-2b15-4cde-ad13-9d5c47ead4c8" class="">결과) user4:x:1006:1006::/home/user4:/bin/bash</p><ul id="2e5f1ec4-40bb-4d10-8eee-b9bd97994d24" class="bulleted-list"><li style="list-style-type:circle">보조그룹 지정 확인<p id="26279287-757d-40f3-9eea-c613b79ebb16" class=""><code>tail /etc/group | grep 1000</code></p><p id="ad167584-3c70-4c90-92f1-5796a2267045" class="">결과)
+<code>user1:x:1000:user4</code>
+</p></li></ul></li></ul><ul id="f1834add-4e8b-4c27-ba07-9b305328b632" class="bulleted-list"><li style="list-style-type:disc">s 옵션<p id="464c21e1-3f69-4a68-9c3f-fc41b6ba1cdf" class="">쉘 지정</p><p id="4400b2b0-62f6-4fd9-acb2-a19c7d4e26ef" class=""><code>useradd -s /bin/sh user5</code></p><p id="c33c491e-6905-44a3-8393-74f6dfdcbd39" class=""><code>tail -n 1 /etc/passwd</code></p><ul id="abf85273-52c9-4d26-b19f-10f3626eb18d" class="bulleted-list"><li style="list-style-type:circle"><code>user5:x:1007:1007::/home/user5:/bin/sh</code>
+</li></ul></li></ul><ul id="e00359ec-2a66-4cd3-80c5-66961ecf1c4c" class="bulleted-list"><li style="list-style-type:disc">D 옵션<p id="d7576e5c-3b06-46bb-81f4-9ada4e56de11" class="">사용자 생성시 기본 정보 확인</p><p id="3e829e19-2d33-4e90-90b7-4744ac998198" class=""><code>useradd -D</code></p></li></ul><p id="680a9074-0111-4889-beeb-fc6bfdbbe4ee" class="">
+</p><p id="f9bc6325-56e8-48c2-a025-d9f622757e02" class=""><div class="indented"><h1 id="05e90a75-ee96-4cc7-beb3-552f218339b2" class=""><code>usermod</code> : 사용자 변경</h1></div></p><p id="fad29a65-20a6-4297-b28c-25c16eb438e1" class="">
+</p><p id="1f87cf07-5c26-468a-8e77-f7b57325f24f" class="">
+</p><ul id="da1d26c0-4715-45c1-9628-068a54e8423d" class="bulleted-list"><li style="list-style-type:disc">u 옵션<p id="b65eef2c-7144-43d4-8e28-243030fc124a" class="">UID 변경</p><p id="472e21f4-0c22-4cef-94f5-920e39e19a2d" class=""><code>usermod -u 1111 user1</code></p></li></ul><ul id="16c0fb44-c951-4040-9e28-d6fa205b9408" class="bulleted-list"><li style="list-style-type:disc">g 옵션<p id="15cef77e-877b-4aa1-8084-1c73ce68b841" class="">GID 변경</p><p id="6054d08d-e879-4897-92ee-0c71090a6bb9" class=""><code>usermod -g 1004 user1</code></p><p id="f0c3ea80-0441-4607-9226-ee8298185c05" class="">속해있던 기본 그룹은 그대로 유지</p></li></ul><ul id="991c6c11-a766-44f3-9691-c68fa3647ad4" class="bulleted-list"><li style="list-style-type:disc">G 옵션<p id="dc9cc3d6-5787-41ed-b90f-6e7740494efb" class="">보조 그룹 변경</p><p id="fb3d3610-b754-4b75-8ff4-4164553612b8" class=""><code>usermod -G 1007 user1</code></p></li></ul><ul id="ccad454f-30fb-43ce-b22d-2e496dfab1c5" class="bulleted-list"><li style="list-style-type:disc">s 옵션<p id="d6b56b44-2b89-43fe-8bed-40e4fa251213" class="">쉘 변경</p><p id="b57b7d1f-00e3-419b-a11b-6020a52664d2" class=""><code>usermod -s /bin/bash user5</code></p><p id="a932bf6b-6bdf-44a8-9028-8e0cb9493528" class="">팁) <code>/sbin/nologin</code> 은 쉘에 로그인할 필요가 없는 사용자에게 부여</p></li></ul><p id="418762e6-30eb-4069-99db-665fbd93f0ae" class="">
+</p><p id="4a9de3a4-d499-45d3-9acd-9269426e7f56" class="">
+</p><h2 id="8d595161-9d63-42a0-bdf9-f20bf5f0bc60" class=""><code>userdel</code> : 사용자 제거</h2><p id="08afc27c-772d-4dd5-85b3-d07fced5232a" class="">
+</p><ul id="7b5c2a8c-c99b-49cd-b623-1e52822b7429" class="bulleted-list"><li style="list-style-type:disc"><code>userdel user5</code><p id="d2df20cd-9b1d-4ab9-af8d-ed072c119103" class="">user5 그룹에 다른 사용자가 속해있는 경우 그룹 삭제 X</p><p id="90f1b7e4-aa59-47c0-b7cc-84c69211f4e8" class="">사용자 홈 디렉토리는 그대로 남아 있음</p></li></ul><ul id="97317a11-83b5-4260-b62a-74aec70c661f" class="bulleted-list"><li style="list-style-type:disc">r옵션<p id="29b5f9f0-2e0c-40dc-a247-60b693e1b490" class=""><code>userdel -r user4</code></p><p id="93788ff5-1964-4827-acae-98dd60a01231" class="">사용자 홈 디렉토리도 같이 제거</p></li></ul><p id="d97ff475-6026-4c78-a881-a1a33944bb2f" class="">
+</p><p id="07c52b05-a66b-4951-91d3-4a258643340a" class="">
+</p><h1 id="304f9a55-1c96-4a57-bebc-aa436d40a274" class="">그룹</h1><p id="f17bba35-4727-47d2-a1ba-2dc53417b84c" class="">
+</p><h3 id="c14bdbb2-6567-4286-b75f-4b58bda3de27" class=""><code>groupadd</code> : 그룹 생성</h3><ul id="0007b287-5957-4a38-a0d0-c29a7cf981b4" class="bulleted-list"><li style="list-style-type:disc"><code>groupadd group1</code><p id="9064cf44-ac03-42bd-bbfd-5adb072bb3b0" class=""><code>tail -n 1 /etc/group</code></p><p id="cb7c1770-72fd-4562-b39f-84c178963def" class="">결과) <code>group1:x:1008:</code></p></li></ul><ul id="3363ee7f-c884-4db9-8c05-b3ee2f54ab30" class="bulleted-list"><li style="list-style-type:disc">g옵션<p id="37e3cb98-36de-4a42-b241-9307dc586178" class="">GID 지정하여 그룹 생성</p><p id="e2bcc86f-324c-4b73-8049-804c20ae6e5e" class=""><code>groupadd -g 2000 group2</code></p></li></ul><h3 id="8d7edf60-f110-4f1e-9149-e080084d84c2" class=""><code>groupmod</code> : 그룹 변경
+</h3><ul id="eafbdb3c-9151-46dc-9bf6-46b8b7fbca1c" class="bulleted-list"><li style="list-style-type:disc">g 옵션<p id="0493401d-539a-4cca-93b3-f8f8ac54007a" class="">GID 변경</p><p id="e3e4da3a-3154-42cf-aaff-a71c57b2eb33" class=""><code>groupmod -g 3000 group2</code></p><p id="03dae489-8963-42c2-82ff-65437632fba4" class=""><code>tail -n 1 /etc/group</code></p></li></ul><p id="35c984fd-5484-4877-af95-7ca9943392b5" class="">결과) <code>group2:x:3000:</code></p><h3 id="73692265-e8f7-49bc-be25-fd2af5f26657" class=""><code>groupdel</code> : 그룹 제거</h3><ul id="727a1e25-c712-4cae-8cc4-0eedf3e0f2c1" class="bulleted-list"><li style="list-style-type:disc"><code>groupdel user5</code></li></ul><p id="5ccdd0e6-6eae-46c1-b38e-a5814f831da8" class="">
+</p><p id="6b7f8dea-c7f5-4a0b-baff-c3b6fa4549cf" class="">
+</p><ul id="10869d39-b00d-44fa-8c1f-e44636c2af17" class="bulleted-list"><li style="list-style-type:disc">root 사용자에서 일반 사용자로 로그인<p id="c5e9fd36-5f8b-497d-8915-a2c80604ba76" class=""><code>su - user1</code></p></li></ul><ul id="94943e10-946e-42d2-85da-11ee438f9b8b" class="bulleted-list"><li style="list-style-type:disc">일반 사용자에서 root 사용자로 로그인
+<code>$ su -</code></li></ul><p id="53c97464-5604-49c6-8250-3090086d0da7" class="">
+</p><blockquote id="935fb1d9-fc3b-457c-b12e-7752812019d5" class="">root 사용자는 명령줄 처음에 <code>#</code> 표기
+일반 사용자는 명령줄 처음에 <code>$</code> 표기</blockquote><p id="ece1c2a9-6c7e-43c5-9a91-407ccbb873f3" class="">
+</p><ul id="8126f66f-aad5-42ef-817c-26a1cccc11d7" class="bulleted-list"><li style="list-style-type:disc">일반 사용자에서 시스템 관련 명령어를 입력할 경우 root 비밀번호 필요</li></ul><p id="5881c6b5-f143-4f4a-b8ac-219fd177052d" class="">
+</p><p id="6eeb41d9-543f-477c-9427-061980f9577d" class="">
+</p><h1 id="1ba43b56-695e-4dff-a847-e02141f2fb59" class="">사용자 생성 후 관리자 권한 획득 방법(두가지)
+</h1><ul id="27099849-2820-4902-92e2-ba9cb5ace215" class="bulleted-list"><li style="list-style-type:disc">선행 작업<p id="e764ab29-9319-4ed5-81b7-a9c7b10d73ea" class="">일반 사용자 비밀번호 변경</p><p id="9147e8df-586f-4686-9da9-4bc6ec44022a" class=""><code>passwd user1</code></p><p id="5594cb76-f211-4134-bf0e-539cd9e57c3b" class="">먼저 user1의 비밀번호를 변경(root 비밀번호와 다르게 설정)</p></li></ul><p id="48978f7d-be05-4655-82a6-9f0d4791afa3" class="">
+</p><p id="f4436ac6-0141-4557-921c-38f565c5c6f0" class="">
+</p><h2 id="0d75a9d1-16e8-439a-8c27-471c7d823a54" class="">방법 첫 번째</h2><p id="d4c483d9-0450-479a-a5a9-2312922d22da" class=""><code>sudoers</code> 파일 수정</p><ul id="d41e784c-01fb-4d74-8717-acbe2b391459" class="bulleted-list"><li style="list-style-type:disc"><code>vim /etc/sudoers</code></li></ul><pre id="b5ddd6c6-b994-4a0e-b346-09c6e54a9ec5" class="code code-wrap"><code>## Allow root to run any commands anywhere 
+root    ALL=(ALL)       ALL
+user1   ALL=(ALL)       ALL</code></pre><p id="fba2ffdc-b296-4587-b61a-aafa6c5757a7" class="">
+</p><h2 id="8e17993d-dcd2-439d-b8bb-c64c6d8634bb" class="">방법 두번째</h2><p id="8188d43f-ee04-4c8f-bc39-1f8b257543f5" class=""><code>wheel</code> 그룹에 넣기
+</p><ul id="89bb1a9e-aae0-471d-a3b4-a45d7fb418cf" class="bulleted-list"><li style="list-style-type:disc">일반 사용자 <code>wheel</code> 보조 그룹 설정<p id="3fba5b14-a5ee-4ae3-ba4d-3cf2367c0fdc" class=""><code>usermod -G 10 user2</code></p><p id="5419f2f0-6015-45fc-b8c1-6e8980ba14ea" class="">보조 그룹에 대한 정보는 <code>/etc/sudoers</code> 에 설정되어 있음</p><pre id="3e49a705-5096-4afa-b148-5b0aa1282305" class="code code-wrap"><code>## Allows people in group wheel to run all commands
+%wheel  ALL=(ALL)       ALL</code></pre></li></ul><blockquote id="82d0c0c8-6d11-4e01-a5b5-da243fb243b2" class="">su - 명령으로 root 로 로그인 할 경우 root 사용자의 홈디렉토리로 이동
+su 명령으로 root 로 로그인할 경우 작업 디렉토리는 그대로 사용</blockquote><p id="4fd26468-6163-41fc-ba0d-476cd8fb645c" class="">
+</p><h3 id="f224bb7a-cd22-42e4-b2b0-0b36ac3c0935" class="">사용자 암호 관리</h3><p id="2cf9fa89-eeb0-4ce2-b960-a8ea444057a0" class=""><code>/etc/shadow</code> 디렉토리에 정보가 저장</p><p id="b5c2cb6b-f5c3-4cab-bc3b-e177bd7310ec" class=""><code>head -n 1 /etc/shadow3</code></p><pre id="3847b6ba-5c6d-4018-ad41-e2b0d231b403" class="code code-wrap"><code>root:$6$Kuu3cydETuBmFPoN$0UXdEHZliO3hxkkrjp72gpR6WVdtfdkBmeEgF0
+7NHGoHePMEYX4bc22/vZsKf.Sju0utCM8/CLerebM2F7iQx/::0:99999:7:::</code></pre><ul id="abeb9fd2-b8f8-4cce-90bc-410a14a708d3" class="bulleted-list"><li style="list-style-type:disc"><code>root</code> - 사용자명</li></ul><ul id="39576f0c-3471-4567-bcbf-29c0d28a4744" class="bulleted-list"><li style="list-style-type:disc"><code>$6$Kuu3cydETuBmFPoN$0UXdEHZliO3hxkkrjp72gpR6WVdtfdkBmeEgF07NHGoHePMEYX4bc22/vZsKf.Sju0utCM8/CLerebM2F7iQx/</code> - 암호<ul id="e329fc1e-1a9f-48b1-833d-4926aa3188f2" class="bulleted-list"><li style="list-style-type:circle"><code>$6</code> : 해시 알고리즘 종류, sha512</li></ul><ul id="e04a5491-8779-41ea-ad70-6c2a7e214010" class="bulleted-list"><li style="list-style-type:circle"><code>$Kuu3cydETuBmFPoN</code> : 추가된 랜덤값(solt값)</li></ul><ul id="c984f00b-8417-4e99-90a5-ea9226d3d705" class="bulleted-list"><li style="list-style-type:circle"><code>$0UXdEHZliO3hxkkrjp72gpR6WVdtfdkBmeEgF07NHGoHePMEYX4bc22/vZsKf.Sju0utCM8/CLerebM2F7iQx/ </code> :  결과값</li></ul></li></ul><ul id="83c8a4cf-b136-4668-b89e-d795565724ce" class="bulleted-list"><li style="list-style-type:disc"><code>(공백)</code> - 암호가 변경된 마지막 날, 1970년 1월 1일 이후로 설정되며 UTC 시간대로 계산</li></ul><ul id="77d701b0-a521-470a-bbaa-dc0a8d9a80d9" class="bulleted-list"><li style="list-style-type:disc"><code>0</code> - 사용자가 암호를 다시 변경하기 위해 경과해야 하는 최소 일 수</li></ul><ul id="1ca67fe8-c131-4f88-b803-b43d94f427f9" class="bulleted-list"><li style="list-style-type:disc"><code>99999</code> - 암호 만기일, 1970년 1월 1일 기준으로 설정</li></ul><ul id="df5c863f-b9de-4b37-8582-2b258864b467" class="bulleted-list"><li style="list-style-type:disc"><code>7</code> - 암호 만기일 전 경고 기간</li></ul><ul id="308ac0e9-4d63-4ec0-9a41-44c04a1a497d" class="bulleted-list"><li style="list-style-type:disc"><code>(공백)</code> - 암호가 만료되어도 로그인 할 수 있는 기간</li></ul><ul id="e014c989-278f-4e84-86d8-f2830cda449f" class="bulleted-list"><li style="list-style-type:disc"><code>(공백)</code> - 계정 만료일, 1970년 1월 1일 기준으로 설정</li></ul><ul id="60799bfd-262e-43a2-b57f-2ab6b81d2e30" class="bulleted-list"><li style="list-style-type:disc"><code>(공백)</code> - 사용 X (예약)</li></ul><p id="277d4b89-1435-4da6-bd2e-4872ad44cd6b" class="">
+</p><pre id="5ee7b745-cbfa-4abf-bff3-f852453d5667" class="code code-wrap"><code>[root@servera ~]# tail -n 5 /etc/shadow
+apache:!!:19003::::::
+user1:$6$emO7eorU$JJgXyV9EAosZW60Vjspaos1Yw/XCq6FzAUTVop9r/JM90XgIYpARoqoRg9GYH3m34iL3bhvMBmlx3mvCLnF0Y0:19003:3:99999:7:::
+user3:!!:19003:0:99999:7:::
+user6:!!:19011:0:99999:7:::
+user7:!!:19011:0:99999:7:::</code></pre><p id="bcffa394-d403-4c17-b6c3-0687bae258a3" class="">
+</p><ul id="f06430e7-ac59-41f4-8b7b-2fbdefee399c" class="bulleted-list"><li style="list-style-type:disc"><code>/etc/shadow</code> 파일에서 2번째 필드<p id="0bd844e4-f0aa-47e2-a7a8-de3deee3a056" class=""><code>*</code>  : 패스워드 잠금 상태, 별도의 인증 방식 필요
+<code>!!</code>  : 암호 설정 x</p><blockquote id="f3544bee-e37c-4b79-b49d-56f3489ec78e" class="">root 사용자에서 암호 설정이 안 된 일반 사용자로 로그인 가능</blockquote><blockquote id="607131b2-6e2c-4324-a59e-2c7e877a6677" class="">일반 사용자에서 암호 설정이 안 된 일반 사용자로 로그인 불가</blockquote></li></ul><ul id="293fc2ca-e8db-4c83-86b2-13d8dc61a8c5" class="bulleted-list"><li style="list-style-type:disc"><code>chage</code> : 비밀번호와 관련된 설정을 할 수 있음
+옵션
+- <code>l</code>옵션 : 설정 확인(소문자 l)<p id="154ba039-ae3e-4028-9ec9-83db20df41c1" class="">      <code>chage -l user1</code></p><ul id="f623b779-ef3b-48bd-ae12-ffc413032a5e" class="bulleted-list"><li style="list-style-type:circle"><code>m</code> 옵션 : 최소 사용 기간 설정<p id="ba38a880-5c10-4d09-a371-bc4ab6bdc2f4" class=""><code>chage -m 3 user1</code></p></li></ul><ul id="5f79703f-78a3-4a79-ad7a-d74cf8132214" class="bulleted-list"><li style="list-style-type:circle"><code>M</code> 옵션 : 최대 사용 기간 설정<p id="0ee45a6e-b464-42c4-9724-015e383995e0" class=""><code>chage -M 100 user1</code></p></li></ul><ul id="55328739-6433-4699-a14c-727b0f1540c7" class="bulleted-list"><li style="list-style-type:circle"><code>W</code> 옵션 : 암호 만료 전 경규 기간 설정<p id="28ac0d45-6d6a-4374-a27c-5bfbcb457498" class=""><code>chage -W 10 user1</code></p></li></ul><ul id="23e67824-6585-418e-8078-b7e078847207" class="bulleted-list"><li style="list-style-type:circle"><code>I</code> 옵션 : 비활성 기간(암호가 만료되어도 로그인 할 수 있는 기간) (대문자 i)<p id="51fc0eb8-ce8d-45ae-a49b-71becae71fb1" class=""><code>chage -I 30 user1</code></p></li></ul></li></ul><p id="c2f947b3-68e4-4ec2-9519-3a3c8b9f9d4d" class="">
+</p><h2 id="3660f063-de18-44ac-936a-1ee65730b1f7" class=""><code>chmod</code> : 접근제어</h2><p id="79022e03-abbe-4370-9b6b-f43db65a4bae" class="">파일에 대한 엑세스 제어 / 접근제어 /권한과 관련있는 부분 / 권한 변경
+</p><p id="8dcd6ffa-e920-4493-b97e-a3d4b41a7a26" class="">권한</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b0a1b683-ac84-4594-93ed-a61a5ee9d704"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>r</code> -&gt; <code>ls</code>가 가능한가
+<code>w</code> -&gt; 편집이 가능한가
+<code>x</code> -&gt; cd dir 이가능한가</div></figure><p id="48ebb8b5-e5ec-4293-b894-926fab60689a" class="">
+</p><ul id="9e054da4-19c9-4d6e-9993-f8e3b5f3344b" class="bulleted-list"><li style="list-style-type:disc">fileA 정보확인<pre id="07ce1e81-6a63-4fdb-b9c2-dc7946722bad" class="code code-wrap"><code>[root@servera ~]# ls -l fileA
+-rw-r--r--. 1 root root 7 Jan 19 21:25 fileA</code></pre></li></ul><p id="d7951707-9f11-44a1-8a5b-aefe24b998db" class="">
+</p><ul id="e1de8363-ab68-469f-ab3b-e242d1dd07f2" class="bulleted-list"><li style="list-style-type:disc">fileA를 소유자는 rwx 권한, 그룹은 rw-, 기타사용자 아무 권한 없게 설정하기<p id="7adda67e-c89b-4cde-8451-58c66522c5a8" class=""><code>chmod u+x fileA; chmod g+w fileA ; chmod o-r fileA</code></p><p id="b5411085-50df-43ce-89c1-c28d5682080e" class="">
+</p></li></ul><ul id="e41374a4-e221-464f-8082-8f72adefaf16" class="bulleted-list"><li style="list-style-type:disc">결과확인</li></ul><pre id="db54d1c1-08ad-4ef7-a79d-a3b529e75ee4" class="code code-wrap"><code>[root@servera ~]# ls -l fileA
+-rwxrw----. 1 root root 7 Jan 19 21:25 fileA</code></pre><p id="bd0a91dd-71df-48df-acca-9e9ccd159fad" class="">
+</p><ul id="691aaf38-b052-45a8-8373-a43e0c073752" class="bulleted-list"><li style="list-style-type:disc">fileC를 소유자, 그룹, 기타 사용자의 권한에서 읽기 권한을 빼기<p id="0e1e89e3-2b90-4b36-9f4a-ecb512d2db7f" class=""><code>chmod a-r fileC</code></p></li></ul><p id="85c04ded-2f2d-4fae-bcb3-ed292f608c5e" class="">
+</p><ul id="80c8edad-cf69-4dc3-acdc-30653c6f65a9" class="bulleted-list"><li style="list-style-type:disc">fileB를 소유자는 rwx 권한, 그룹은 rw-, 기타사용자 아무 권한 없게 설정하기<p id="f95ecd72-7217-41a5-95d4-c66f204cecec" class=""><code>chmod 760 fileB</code></p></li></ul><p id="b50262b9-822e-4f96-b7d8-6c015d4a27e9" class="">
+</p><ul id="5aa53030-92d3-4a54-b399-872743f10410" class="bulleted-list"><li style="list-style-type:disc">특수권한<p id="301414bd-2dc7-4bbb-9bfd-7a5874533d33" class="">세 가지 권한 이외에도 추가 액세스 관련 기능 제공</p><p id="a0f396da-8fe2-45d7-b17b-9b135e822007" class=""><strong>소유자에서의 </strong><code><strong>s</strong></code><strong>, 소유그룹에서의 </strong><code><strong>s</strong></code><strong>, 기타사용자의 </strong><code><strong>t</strong></code></p><ul id="d2a65ac0-41bf-47dc-9af0-c2953f4c68d6" class="bulleted-list"><li style="list-style-type:circle">소유자에서의 <code>s</code> : setid<p id="80832352-293f-4be5-9ef5-df1bc657b141" class="">파일을 실행할 때 파일의 소유자 권한으로 실행</p><pre id="8f6c78db-ef95-4df0-ac20-4b3dbc759374" class="code code-wrap"><code>[root@servera ~]# ls -l /bin/passwd
+-rwsr-xr-x. 1 root root 27856 Apr  1  2020 /bin/passwd</code></pre></li></ul><ul id="c39765a6-b6f5-4650-af60-b8cdfed3955c" class="bulleted-list"><li style="list-style-type:circle">소유 그룹에서의 <code>s</code> : setgid<p id="49cd1a1a-ffb4-4ce1-80af-78f382ee74ff" class="">디렉토리에서 설정할 수 있는 기능</p><p id="1a97cce0-1068-44cf-879c-59266a10ea90" class="">디렉토리에 새로 생성된 파일에는 디렉토리의 소유 그룹과 일치하는 소유 그룹이 설정됨</p><pre id="13b79d0f-02ed-4be0-8967-d37365f34246" class="code code-wrap"><code>[root@servera ~]# ls -ld /run/log/journal/
+drwxr-sr-x. 3 root systemd-journal 60 Jan 18 13:01 /run/log/journal/</code></pre></li></ul><ul id="06a64c26-54cf-48c8-a528-553dcdbd73d3" class="bulleted-list"><li style="list-style-type:circle">기타 사용자에서의 <code>t</code> : sticky bit<p id="e05d76a3-8be9-4bbb-81cd-f9cce0e89e6e" class="">디렉토리에서만 사용</p><p id="b269cafb-c717-49d4-9e40-36fcf9d6f738" class="">특정 디렉토리를 누구나 자유롭게 사용할 수 있게 하기 위함(공용 디렉토리)</p><p id="203c6061-d7e2-4d22-95ba-af00f050a22f" class="">쓰기는 아무나 가능하나 생성된 파일은 타 사용자가 강제로 제거 불가</p><pre id="99271c96-7584-4a8a-8e5a-02cdb00d0434" class="code code-wrap"><code>
+[root@servera ~]# ls -ld /tmp
+drwxrwxrwt. 12 root root 4096 Jan 19 13:28 /tmp</code></pre></li></ul></li></ul><p id="f196292e-30c0-42e1-8a0b-786050907413" class=""><div class="indented"><ul id="ba049d55-7de2-4285-9a6a-2e1e0963a7ed" class="bulleted-list"><li style="list-style-type:disc">setuid 설정<pre id="f145979d-ad1d-4995-a93d-69fa45a7e521" class="code code-wrap"><code>[root@servera ~]# ls -l fileA
+-rwxrw----. 1 root root 7 Jan 19 21:25 fileA
+[root@servera ~]# chmod u+s fileA
+[root@servera ~]# ls -l fileA
+-rwsrw----. 1 root root 7 Jan 19 21:25 fileA</code></pre></li></ul><ul id="2a864141-a269-42f8-8dd5-c1e744171aec" class="bulleted-list"><li style="list-style-type:disc">setgid 설정<pre id="e17c51d4-8272-4ce7-a19c-f0bbbb5be0a2" class="code code-wrap"><code>[root@servera ~]# ls -ld dirB
+drwxr-xr-x. 2 root root 6 Jan 20 02:51 dirB
+[root@servera ~]# chmod g+s dirB
+[root@servera ~]# ls -ld dirB
+drwxr-sr-x. 2 root root 6 Jan 20 02:51 dirB</code></pre></li></ul><ul id="a0f216a3-099a-4a6f-b179-51d73c2a20bb" class="bulleted-list"><li style="list-style-type:disc">stickybit 설정<pre id="d4517ba0-6008-44a3-91ca-3ffc9ca1e036" class="code code-wrap"><code>[root@servera ~]# ls -ld dirB
+drwxr-sr-x. 2 root root 6 Jan 20 02:51 dirB
+[root@servera ~]# chmod o+t dirB
+[root@servera ~]# ls -ld dirB
+drwxr-sr-t. 2 root root 6 Jan 20 02:51 dirB</code></pre><p id="4750c761-0670-4f55-a2a2-79765bc24988" class="">실행 권한이 없는 상태에서 setuid, setgid, stickybit 설정을 하게 되면
+각각 대문자 S, 대문자 S, 대문자 T 가 표기됨</p></li></ul></div></p><p id="60cfe69f-42eb-4cf9-aab7-e058c0671dce" class="">
+</p></div></article></body></html>
