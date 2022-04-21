@@ -258,18 +258,23 @@ arrowUp.addEventListener('click', () => {
 const workBtnContainer = document.querySelector('.work_categories');
 const projectContainter = document.querySelector('.work_projects');
 const projects = document.querySelectorAll('.project'); 
+const projectsInfo = document.querySelectorAll('.project_info');
 workBtnContainer.addEventListener('click', (event) => {
     const filter = event.target.dataset.filter || event.target.parentNode.dataset.filter;
+    console.log(event.target.parentNode.dataset.filter) 
     if(filter == null){
         return;
     }
     //Remove selection from the previous item and select the new one
     const active = document.querySelector('.category_btn.selected');
     active.classList.remove('selected');
+    projectsInfo.forEach((projectInfo) =>{
+        projectInfo.classList.add('invisible');
+    });
     //const target = e.target.nodeName === 'BUTTON' ? e.target: e.target.parentNode;
     if(event.target.dataset.filter == null){
         event.target.parentNode.classList.add('selected');
-    }
+    }   
     else{
         event.target.classList.add('selected');
     }
@@ -281,8 +286,8 @@ workBtnContainer.addEventListener('click', (event) => {
         {
             if ( filter === '*'){
                 work_height =1;
-            } else if(filter === "etc"){
-                work_height=4;
+            } else if(filter === "Main"){
+                work_height=3;
                 
             } else if(filter === "electronics"){
                 work_height=3;
@@ -316,6 +321,38 @@ workBtnContainer.addEventListener('click', (event) => {
     console.log(filter);
     */ 
     
+});
+
+projectsInfo.forEach((projectInfo) =>{
+    projectInfo.classList.add('invisible');
+});
+projects.forEach((project) =>{
+    
+    project.addEventListener('click', (event) => {
+        console.log(event.target)
+        projectsInfo.forEach((projectInfo) =>{
+            if(projectInfo.classList.contains(event.target.id) ==true || projectInfo.classList.contains(event.target.parentNode.id) ==true)
+            {
+                if(!projectInfo.classList.contains('invisible')){
+                    projectInfo.classList.add('invisible');
+                    return;
+                }
+
+                projectInfo.classList.remove('invisible');
+                
+                
+
+                var element = document.querySelector('.work_projects'); 
+                element.scrollIntoView({behavior: "smooth"});
+            }
+            else{
+                projectInfo.classList.add('invisible');
+                console.log("no search",projectInfo);
+            }
+        });
+        
+        
+    });
 });
 
 //Activate the menu when scrolling.

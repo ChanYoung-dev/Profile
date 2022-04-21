@@ -360,8 +360,11 @@
         <h1>PROJECT 💼</h1>
         <h3></h3>
         <div class="work_categories">
-            <buttton class="category_btn selected" data-filter="*">
+            <buttton class="category_btn" data-filter="*">
                 ALL<span class="category_count">8</span>
+            </buttton>
+            <buttton class="category_btn selected" data-filter="Main">
+                MAIN<span class="category_count">3</span>
             </buttton>
             <buttton class="category_btn" data-filter="Software">
                 SOFTWARE<span class="category_count">4</span>
@@ -369,40 +372,39 @@
             <buttton class="category_btn" data-filter="electronics">
                 ELECTRONIC<span class="category_count">3</span>
             </buttton>
-            <buttton class="category_btn" data-filter="etc">
-                ETC<span class="category_count">1</span>
-            </buttton>
         </div>
         <div class="work_projects">
             <a
-             href="http://djangopractice.world/third/list/" class="project" target="blank" data-type="Software"
+             href="http://djangopractice.world/third/list/" class="project invisible" target="blank" data-type="Software" 
              >
                 <img class="project_img" src="./img/django_basic.png" alt="BeautyMirror">
-                <div class="project_description">
+                <div class="project_description" id = "django_info">
                     <h3>Django Basic</h3>
                     <span>with Django</span>
                 </div>
             </a>
             <a
-             href="https://github.com/ENTITYSmartMirror/BeautyMirror" class="project" target="blank" data-type="Software"
+              class="project BeautyMirror main_project" target="blank" data-type="Main" data-link="#info"
              >
+            
                 <img class="project_img" src="./img/mirrorback.png" alt="BeautyMirror">
-                <div class="project_description">
+                <h2 class="main_project_description">대표</h2>
+                <div class="project_description" id = "BeautyMirror_info">
                     <h3>Beauty Mirror</h3>
                     <span>with hanium</span>
                 </div>
             </a>
             <a
-             href="https://github.com/ChanYoung-dev/imageProcessing" class="project" target="blank" data-type="etc"
+             href="https://github.com/ChanYoung-dev/imageProcessing" class="project imageProcessing invisible" target="blank" data-type="electronic"
              >
                 <img class="project_img" src="./img/opencv.png" alt="BeautyMirror">
-                <div class="project_description">
+                <div class="project_description" id = "imageProcessing_info">
                     <h3>Image processing</h3>
                     <span>with opencv</span>
                 </div>
             </a>
             <a
-             href="https://github.com/ChanYoung-dev/C_game/" class="project" target="blank" data-type="Software"
+             href="https://github.com/ChanYoung-dev/C_game/" class="project invisible" target="blank" data-type="Software"
              >
                 <img class="project_img" src="./img/c.png" alt="BeautyMirror">
                 <div class="project_description">
@@ -411,7 +413,7 @@
                 </div>
             </a>
             <a
-             href="https://github.com/ChanYoung-dev/digitsystem" class="project" target="blank" data-type="electronics"
+             href="https://github.com/ChanYoung-dev/digitsystem" class="project invisible" target="blank" data-type="electronics"
              >
                 <img class="project_img" src="./img/digitsystem.jpeg" alt="BeautyMirror">
                 <div class="project_description">
@@ -420,7 +422,7 @@
                 </div>
             </a>
             <a
-             href="https://github.com/ChanYoung-dev/communicationsystem" class="project" target="blank" data-type="electronics"
+             href="https://github.com/ChanYoung-dev/communicationsystem" class="project invisible" target="blank" data-type="electronics"
              >
                 <img class="project_img" src="./img/digitcommunication.png" alt="BeautyMirror">
                 <div class="project_description">
@@ -429,7 +431,7 @@
                 </div>
             </a>
             <a
-             href="https://github.com/ChanYoung-dev/SERVERpractice" class="project" target="blank" data-type="Software"
+             href="https://github.com/ChanYoung-dev/SERVERpractice" class="project invisible" target="blank" data-type="Software"
              >
                 <img class="project_img" src="./img/appach.png" alt="BeautyMirror">
                 <div class="project_description">
@@ -438,7 +440,7 @@
                 </div>
             </a>
             <a
-             href="https://github.com/ChanYoung-dev/-low-pass-filter" class="project" target="blank" data-type="electronics"
+             href="https://github.com/ChanYoung-dev/-low-pass-filter" class="project invisible" target="blank" data-type="electronics"
              >
                 <img class="project_img" src="./img/electronic.png" alt="BeautyMirror">
                 <div class="project_description">
@@ -447,7 +449,7 @@
                 </div>
             </a>
             <a
-             href="https://github.com/ChanYoung-dev/healthapplication" class="project" target="blank" data-type="Software"
+             href="https://github.com/ChanYoung-dev/healthapplication" class="project invisible" target="blank" data-type="Software"
              >
                 <img class="project_img" src="./img/application.png" alt="BeautyMirror">
                 <div class="project_description">
@@ -455,7 +457,53 @@
                     <span>with Android</span>
                 </div>
             </a>
-                
+        </div>
+        <div class="projects_info">
+            <div class="project_info django_info">
+                django-info
+            </div>
+            <div class="project_info BeautyMirror_info">
+                <table class="tg">
+                    <thead>
+                      <tr>
+                        <th class="tg-etw5" colspan="13">범용성 스마트미러</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="tg-5gdt" width="150px">프로젝트 목적</td>
+                        <td class="tg-g7eu" colspan="12"><span style="font-weight:400;font-style:normal">카메라를 통해 사용자정보를 분석하여 사용자맞춤형서비스를 제공하는 거울형컴퓨터 개발</span></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-af00">인력 구성</td>
+                        <td class="tg-eajd" colspan="12">5명</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">작업기간</td>
+                        <td class="tg-g7eu" colspan="12">2018년 12월 - 2020년 1월</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-af00">주요 업무 및 상세역할</td>
+                        <td class="tg-eajd" colspan="12">1. 전체적인 Business Logic 설계<br>2. 카메라로 찍은 이미지를 이용한 다양한 웹컨텐츠 개발</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">사용언어 및 개발환경</td>
+                        <td class="tg-g7eu" colspan="12">nodeJS, javascript, Python Script, git, css</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-af00">느낀점</td>
+                        <td class="tg-eajd" colspan="12">공모전 프로젝트에 나가 카메라를 통해 사용자 정보를 분석하여 사용자 맞춤형 서비스를 제공하는 거울형 컴퓨터 개발라는 주제로 스마트미러라는 사물인터넷을 구현을 해보았습니다.<br> 하지만 프로젝트 진행 초기에는 프로젝트를 비효율적으로 관리하여 협업에 여러 문제 상황이 생겼었습니다. 이 때 소프트웨어공학 기술을 활용하여 해결하였고 효과적인 프로젝트계획 및 관리에 대해 경험할 수 있었습니다.<br> 이러한 툴을 통해  프로젝트를 관리하여 방해요인을 최대한 줄임으로써 원활한 프로젝트를 진행할 수 있었습니다. 또한, 문제를 해결하는 과정은 또 하나의 성숙과 발전으로 가는 과정임을 깨달았습니다. 이를 통해 입상까지 수상할 수 있었습니다.</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">참고자료</td>
+                        <td class="tg-g7eu" colspan="12">magicmirror.forum</td>
+                      </tr>
+                    </tbody>
+                    </table>
+            </div>
+            <div class="project_info imageProcessing_info">
+                imageProcessing-info
+            </div>
         </div>
     </section>
     <!--  Testimonials-->
