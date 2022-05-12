@@ -259,7 +259,9 @@ const workBtnContainer = document.querySelector('.work_categories');
 const projectContainter = document.querySelector('.work_projects');
 const projects = document.querySelectorAll('.project'); 
 const projectsInfo = document.querySelectorAll('.project_info');
+const projectH2 = document.querySelector('.project_h2');
 workBtnContainer.addEventListener('click', (event) => {
+    projectH2.classList.remove('invisible');
     const filter = event.target.dataset.filter || event.target.parentNode.dataset.filter;
     console.log(event.target.parentNode.dataset.filter) 
     if(filter == null){
@@ -329,12 +331,13 @@ projectsInfo.forEach((projectInfo) =>{
 projects.forEach((project) =>{
     
     project.addEventListener('click', (event) => {
-        console.log(event.target)
+        projectH2.classList.add('invisible');
         projectsInfo.forEach((projectInfo) =>{
             if(projectInfo.classList.contains(event.target.id) ==true || projectInfo.classList.contains(event.target.parentNode.id) ==true)
             {
                 if(!projectInfo.classList.contains('invisible')){
                     projectInfo.classList.add('invisible');
+                    projectH2.classList.remove('invisible');
                     return;
                 }
 

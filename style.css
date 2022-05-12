@@ -925,18 +925,18 @@ h1 span:nth-child(14) {
   background-color: white;
 }
 
-.tg  {border-collapse:collapse;border-color:#616161;border-spacing:0;}
+.tg  {border-collapse:collapse;border-color:#000000;border-spacing:0;}
 th, td{text-align: center;}
 .tr{border:2px;}
-.tg td{background-color:#fdf6e3;border-color:#93a1a1;border-style:solid;border-width:1px;color:#002b36;
+.tg td{background-color:#fdf6e3;border-color:#93a1a1;border-style:solid;border-width:3px;color:#002b36;
   font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{background-color:#657b83;border-color:#93a1a1;border-style:solid;border-width:1px;color:#fdf6e3;
+.tg th{background-color:#657b83;border-color:#93a1a1;border-style:solid;border-width:3px;color:#fdf6e3;
   font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-etw5{background-color:#ffc702;border-color:inherit;color:#000000;font-size:32px;text-align:center;vertical-align:top}
-.tg .tg-af00{background-color:#343434;border-color:#ffcc00;color:#ffffff;font-weight:bold;text-align:center;vertical-align:center;border-width: 0px 0px 1px 0px;}
-.tg .tg-5gdt{background-color:#343434;border-color:#ffcc00;color:#ffffff;font-weight:bold;text-align:center;vertical-align:center;border-width: 0px 0px 1px 0px;}
-.tg .tg-g7eu{background-color:#343434;border-color:#ffcc00;color:#ffffff;text-align:left;vertical-align:center;border-width: 0px 0px 1px 0px;}
-.tg .tg-eajd{background-color:#343434;border-color:#ffcc00;color:#ffffff;text-align:left;vertical-align:center;border-width: 0px 0px 1px 0px;line-height: 2em;}
+.tg .tg-etw5{background-color:#000000;border-color:inherit;color:#ffc702;font-size:32px;text-align:center;vertical-align:top}
+.tg .tg-af00{background-color:#343434;border-color:#ffcc00;color:#ffffff;font-weight:bold;text-align:center;vertical-align:center;border-width: 0px 0px 3px 0px;}
+.tg .tg-5gdt{background-color:#343434;border-color:#ffcc00;color:#ffffff;font-weight:bold;text-align:center;vertical-align:center;border-width: 0px 0px 3px 0px;}
+.tg .tg-g7eu{background-color:#343434;border-color:#ffcc00;color:#ffffff;text-align:left;vertical-align:center;border-width: 0px 0px 3px 0px;}
+.tg .tg-eajd{background-color:#343434;border-color:#ffcc00;color:#ffffff;text-align:left;vertical-align:center;border-width: 0px 0px 3px 0px;line-height: 2em;}
 
 .project_info.invisible{
   display:none;
@@ -1462,14 +1462,30 @@ th, td{text-align: center;}
 
 .projects_info{
   padding: 10px 100px;
+  
 }
+
+.project_h2.invisible{
+  display: none;
+}
+
+.project_h2{
+  transition: all var(--animation-duration);
+}
+
 table{
   border: 5px solid black;
   border-width: 5px 0px 5px 0px;
 }
 
+.project_info .tg{
+  margin: auto;
+}
 
+video{
+  width: 80%;
+}
 
-
-
-
+tr a{
+  text-decoration: underline;
+}

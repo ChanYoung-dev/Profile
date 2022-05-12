@@ -361,7 +361,7 @@
         <h3></h3>
         <div class="work_categories">
             <buttton class="category_btn" data-filter="*">
-                ALL<span class="category_count">8</span>
+                ALL<span class="category_count">11</span>
             </buttton>
             <buttton class="category_btn selected" data-filter="Main">
                 MAIN<span class="category_count">3</span>
@@ -383,12 +383,23 @@
                     <span>with Django</span>
                 </div>
             </a>
-            <a
-              class="project BeautyMirror main_project" target="blank" data-type="Main" data-link="#info"
-             >
-            
-                <img class="project_img" src="./img/mirrorback.png" alt="BeautyMirror">
+            <a class="project K5SMovie main_project" target="blank" data-type="Main" data-link="#info">
+                <img class="project_img" src="./img/k5smovie.png" alt="K5SMovie">
                 <h2 class="main_project_description">대표</h2>
+                <div class="project_description" id = "K5SMovie_info">
+                    <h3>K5S Movie</h3>
+                    <span>with Kubernetes</span>
+                </div>
+            </a>
+            <a class="project Portfolio main_project" target="blank" data-type="Main" data-link="#info">
+                <img class="project_img" src="./img/portfolio.png" alt="Portfolio">
+                <div class="project_description" id = "Portfolio_info">
+                    <h3>Portfolio</h3>
+                    <span>with HTML/Javascript/CSS</span>
+                </div>
+            </a>
+            <a class="project BeautyMirror main_project" target="blank" data-type="Main" data-link="#info">
+                <img class="project_img" src="./img/mirrorback.png" alt="BeautyMirror">
                 <div class="project_description" id = "BeautyMirror_info">
                     <h3>Beauty Mirror</h3>
                     <span>with hanium</span>
@@ -457,10 +468,110 @@
                     <span>with Android</span>
                 </div>
             </a>
+            <h2 class="project_h2">원하는 프로젝트를 클릭하세요</h2>
         </div>
         <div class="projects_info">
-            <div class="project_info django_info">
-                django-info
+            <div class="project_info K5SMovie_info">
+                <table class="tg">
+                    <thead>
+                      <tr>
+                        <th class="tg-etw5" colspan="13">K5S Movie</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="tg-5gdt" width="150px">프로젝트 목적</td>
+                        <td class="tg-g7eu" colspan="12"><span style="font-weight:400;font-style:normal">교육기간동안 배워둔 Kubernetes와 Spring을 이용하여 MSA방식으로 웹개발</span></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-af00">인력 구성</td>
+                        <td class="tg-eajd" colspan="12">DevOps 1명 BE 2명(본인) Crawling 1명</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">작업기간</td>
+                        <td class="tg-g7eu" colspan="12">교육기간: 2022년 01월 - 2022년 04월<br> 작업기간: 2022년 04월 - 2022년 05월</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-af00">주요 업무 및 상세역할</td>
+                        <td class="tg-eajd" colspan="12">
+                            - Spring과 JPA를 이용하여 RDBMS 개발<br>
+                            - Thymeleaf를 이용하여 Spring MVC기반 개발<br>
+                            - WebFlux를 이용하여 서버간의 API 통신을 통한 MSA 방식 개발<br>
+                            - git Branch 전략을 통하여 효율적으로 개발 프로세스 진행
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">사용언어 및 개발환경</td>
+                        <td class="tg-g7eu" colspan="12">Java, Spring, Spring Boot, JPA, Jenkins, Kubernetes, Docker, AWS</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-af00">느낀점</td>
+                        <td class="tg-eajd" colspan="12">
+                            - Spring과 JPA, MVC 패턴 등에 대한 이해도를 높일수 있었습니다<br> 
+                            - Jenkins, Kubernetes를 통해 CI/CD 자동화 배포에 대해 익힐 수 있었습니다<br>
+                            - 네트워크, HTTP등에 대해 익힐 수 있었습니다
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">시현 영상</td>
+                        <td class="tg-g7eu" colspan="12">
+                            <video src="./videos/k5smovie.mp4" controls>
+                                이 브라우저에서 지원하지 않는 영상입니다.
+                            </video>                         
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">참고자료</td>
+                        <td class="tg-g7eu" colspan="12"><a href="https://github.com/K5S-TEAM/HotMovie/wiki">Github↗️</a></td>
+                      </tr>
+                    </tbody>
+                    </table>
+            </div>
+            <div class="project_info Portfolio_info">
+                <table class="tg">
+                    <thead>
+                      <tr>
+                        <th class="tg-etw5" colspan="13">Portfolio WebSite</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="tg-5gdt" width="150px">프로젝트 목적</td>
+                        <td class="tg-g7eu" colspan="12"><span style="font-weight:400;font-style:normal">HTML/CSS/Javascript의 기초를 이용하여 정적 웹사이트 개발</span></td>
+                      </tr>
+                      <tr>
+                        <td class="tg-af00">인력 구성</td>
+                        <td class="tg-eajd" colspan="12">개인 프로젝트</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">작업기간</td>
+                        <td class="tg-g7eu" colspan="12">2021년09월~ </td>
+                      </tr>
+                      <tr>
+                        <td class="tg-af00">주요 업무 및 상세역할</td>
+                        <td class="tg-eajd" colspan="12">
+                            - 프레임워크 없이 순수 HTML, CSS, Javascript만을 통해 웹 개발ㅤㅤㅤㅤㅤㅤ<br>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">사용언어 및 개발환경</td>
+                        <td class="tg-g7eu" colspan="12">HTML, CSS, Javascript, Git</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-af00">느낀점</td>
+                        <td class="tg-eajd" colspan="12">
+                            HTML, CSS, Javascript에 대한 기초 이론을 실습할 수 있었습니다
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">참고자료</td>
+                        <td class="tg-g7eu" colspan="12">
+                            <a href="https://chanyoung-dev.github.io/Profile/">웹사이트 주소↗️</a>
+                            <a href="https://github.com/ChanYoung-dev/Profile">Github↗️</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                    </table>
             </div>
             <div class="project_info BeautyMirror_info">
                 <table class="tg">
@@ -484,7 +595,9 @@
                       </tr>
                       <tr>
                         <td class="tg-af00">주요 업무 및 상세역할</td>
-                        <td class="tg-eajd" colspan="12">1. 전체적인 Business Logic 설계<br>2. 카메라로 찍은 이미지를 이용한 다양한 웹컨텐츠 개발</td>
+                        <td class="tg-eajd" colspan="12">
+                            - 카메라로 찍은 이미지를 DOM API를 이용하여 다양한 웹 컨텐츠 개발<br>
+                            - 초음파 센서를 사용하여 모니터 제어를 통한 전력 제어
                       </tr>
                       <tr>
                         <td class="tg-5gdt">사용언어 및 개발환경</td>
@@ -492,17 +605,25 @@
                       </tr>
                       <tr>
                         <td class="tg-af00">느낀점</td>
-                        <td class="tg-eajd" colspan="12">공모전 프로젝트에 나가 카메라를 통해 사용자 정보를 분석하여 사용자 맞춤형 서비스를 제공하는 거울형 컴퓨터 개발라는 주제로 스마트미러라는 사물인터넷을 구현을 해보았습니다.<br> 하지만 프로젝트 진행 초기에는 프로젝트를 비효율적으로 관리하여 협업에 여러 문제 상황이 생겼었습니다. 이 때 소프트웨어공학 기술을 활용하여 해결하였고 효과적인 프로젝트계획 및 관리에 대해 경험할 수 있었습니다.<br> 이러한 툴을 통해  프로젝트를 관리하여 방해요인을 최대한 줄임으로써 원활한 프로젝트를 진행할 수 있었습니다. 또한, 문제를 해결하는 과정은 또 하나의 성숙과 발전으로 가는 과정임을 깨달았습니다. 이를 통해 입상까지 수상할 수 있었습니다.</td>
+                        <td class="tg-eajd" colspan="12">
+                            javascript를 통한 DOM query에 대해 이해할 수 있었고, 효과적인 프로젝트 관리와 팀워크에 대해 배울수 있었습니다.  
+                      </tr>
+                      <tr>
+                        <td class="tg-5gdt">시현 영상</td>
+                        <td class="tg-g7eu" colspan="12">
+                            <video src="./videos/beautymirror.mp4" controls>
+                                이 브라우저에서 지원하지 않는 영상입니다.
+                            </video>                         
+                        </td>
                       </tr>
                       <tr>
                         <td class="tg-5gdt">참고자료</td>
-                        <td class="tg-g7eu" colspan="12">magicmirror.forum</td>
+                        <td class="tg-g7eu" colspan="12">
+                            <a href="https://github.com/ENTITYSmartMirror/BeautyMirror">Github↗️</a>
+                        </td>
                       </tr>
                     </tbody>
                     </table>
-            </div>
-            <div class="project_info imageProcessing_info">
-                imageProcessing-info
             </div>
         </div>
     </section>
