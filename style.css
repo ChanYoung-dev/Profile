@@ -1,6 +1,25 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 /* Global */
 
+@font-face {
+
+  src : url("../fonts/SansitaOne.ttf");
+
+  font-family: "Sansita One";
+
+}
+
+h1{
+  font-family: "Sansita One", cursive;
+  text-shadow: 0 15px 2px #000;
+  color: #FFCC00;
+}
+h2{
+  font-family: "Sansita One", cursive;
+  text-shadow: 0 2px 1px #000;
+  color: #e0daae;
+}
+
 :root {
   /* Color */
   --color-white: #ddd;
@@ -80,14 +99,12 @@ body {
 h1 {
   font-size: var(--font-large);
   font-weight: var(--weight-bold);
-  color: var(--color-dark-grey);
   margin: 16px 0px;
 }
 
 h2 {
   font-size: var(--font-medium);
   font-weight: var(--weight-semi-bold);
-  color: var(--color-dark-grey);
   margin: 8px 0;
 }
 
@@ -533,7 +550,7 @@ h1 span:nth-child(14) {
 }
 #summary.show-ani {
   opacity: 1;
-  animation: fadeIn2 2s ease-in;
+  animation: fadeIn2 1s ease-in;
 }
 #summary.show {
   display: block;
@@ -552,7 +569,7 @@ h1 span:nth-child(14) {
 }
 #about.show-ani {
   opacity: 1;
-  animation: fadeIn2 5s ease-in;
+  animation: fadeIn2 1s ease-in;
 }
 #about.show {
   display: block;
@@ -601,7 +618,7 @@ h1 span:nth-child(14) {
 .major_icon {
   width: 170px;
   height: 170px;
-  line-height: 235px;
+  line-height: 225px;
   margin: auto;
 
   border: 3px solid var(--color-yellow);
@@ -659,6 +676,11 @@ h1 span:nth-child(14) {
   font-weight: var(--weight-semi-bold);
   color: #778492;
 }
+.job_what a{
+  font-weight: var(--weight-semi-bold);
+  color: #778492;
+}
+
 .job_name {
   font-size: var(--font-small);
   font-weight: var(--weight-semi-bold);
@@ -670,8 +692,6 @@ h1 span:nth-child(14) {
 .job_img {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
-  border: 2px solid white;
   transform: translateY(10px);
 }
 
@@ -681,7 +701,7 @@ h1 span:nth-child(14) {
 }
 #skills.show-ani {
   opacity: 1;
-  animation: fadeIn2 5s ease-in;
+  animation: fadeIn2 1s ease-in;
 }
 #skills.show {
   display: block;
@@ -796,7 +816,7 @@ h1 span:nth-child(14) {
 
 #work.show-ani {
   opacity: 1;
-  animation: fadeIn2 5s ease-in;
+  animation: fadeIn2 1s ease-in;
 }
 #work.show {
   opacity: 1;
@@ -945,8 +965,8 @@ th, td{text-align: center;}
 
 .main_project_description{
   position: relative;
-  right: 180px;
-  bottom:110px;
+  right: 195px;
+  bottom:80px;
   color:#ffcc00;
 }
 
@@ -960,7 +980,7 @@ th, td{text-align: center;}
 }
 #testimonials.show-ani {
   opacity: 1;
-  animation: fadeIn2 5s ease-in;
+  animation: fadeIn2 1s ease-in;
 }
 #testimonials.show {
   opacity: 1;
@@ -999,7 +1019,7 @@ th, td{text-align: center;}
 }
 #git.show-ani {
   opacity: 1;
-  animation: fadeIn3 5s ease-in;
+  animation: fadeIn3 1s ease-in;
 }
 #git.show {
   opacity: 1;
@@ -1200,19 +1220,19 @@ th, td{text-align: center;}
   
   #about.show-ani {
     opacity: 1;
-    animation: fadeIn2 2s ease-in;
+    animation: fadeIn2 1s ease-in;
   }
   #skills.show-ani {
     opacity: 1;
-    animation: fadeIn2 2s ease-in;
+    animation: fadeIn2 1s ease-in;
   }
   #work.show-ani {
     opacity: 1;
-    animation: fadeIn2 2s ease-in;
+    animation: fadeIn2 1s ease-in;
   }
   #git.show-ani {
     opacity: 1;
-    animation: fadeIn3 2s ease-in;
+    animation: fadeIn3 1s ease-in;
   }
 
   :root {
@@ -1467,10 +1487,12 @@ th, td{text-align: center;}
 
 .project_h2.invisible{
   display: none;
+  
 }
 
 .project_h2{
   transition: all var(--animation-duration);
+  color: var(--color-dark-grey);
 }
 
 table{
@@ -1488,4 +1510,8 @@ video{
 
 tr a{
   text-decoration: underline;
+}
+
+th h2{
+  color: #FFCC00
 }
