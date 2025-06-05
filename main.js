@@ -252,7 +252,7 @@ const projects = document.querySelectorAll('.project');
 const projectsInfo = document.querySelectorAll('.project_info');
 const projectH2 = document.querySelector('.project_h2');
 workBtnContainer.addEventListener('click', (event) => {
-    projectH2.classList.remove('invisible');
+    // projectH2.classList.remove('invisible');
     const filter = event.target.dataset.filter || event.target.parentNode.dataset.filter;
     console.log(event.target.parentNode.dataset.filter) 
     if(filter == null){
@@ -263,6 +263,9 @@ workBtnContainer.addEventListener('click', (event) => {
     active.classList.remove('selected');
     projectsInfo.forEach((projectInfo) =>{
         projectInfo.classList.add('invisible');
+        if(filter === 'Main' && projectInfo.classList.contains('benepia_info')){
+            projectInfo.classList.remove('invisible');
+        }
     });
     //const target = e.target.nodeName === 'BUTTON' ? e.target: e.target.parentNode;
     if(event.target.dataset.filter == null){
@@ -274,7 +277,11 @@ workBtnContainer.addEventListener('click', (event) => {
     projectContainter.classList.add('anim-out');
     setTimeout(() => {
     projects.forEach((project) =>{
-        
+        if(filter === 'Main' && project.classList.contains('benepia')) {
+            project.classList.add('active');
+        }else{
+            project.classList.remove('active');
+        }
         if ( filter === '*' || filter === project.dataset.type)
         {
             if ( filter === '*'){
@@ -318,21 +325,45 @@ workBtnContainer.addEventListener('click', (event) => {
 
 projectsInfo.forEach((projectInfo) =>{
     projectInfo.classList.add('invisible');
+    if(projectInfo.classList.contains('benepia_info')){
+        projectInfo.classList.remove('invisible');
+    }
 });
+
+projects.forEach(project => {
+    project.addEventListener('click', function() {
+        // 모든 프로젝트에서 active 제거
+        projects.forEach(p => p.classList.remove('active'));
+        // 클릭한 프로젝트에 active 추가
+        this.classList.add('active');
+    });
+});
+
 projects.forEach((project) =>{
+
+
     
     project.addEventListener('click', (event) => {
-        projectH2.classList.add('invisible');
+        /*
+        // 클릭한 프로젝트에 active 추가
+        if(!project.classList.contains('active')) {
+            project.classList.add('active');
+        }else{
+            project.classList.remove('active');
+        }
+*/
+        // projectH2.classList.add('invisible');
         projectsInfo.forEach((projectInfo) =>{
             if(projectInfo.classList.contains(event.target.id) ==true || projectInfo.classList.contains(event.target.parentNode.id) ==true)
             {
                 if(!projectInfo.classList.contains('invisible')){
                     projectInfo.classList.add('invisible');
-                    projectH2.classList.remove('invisible');
+                    // projectH2.classList.remove('invisible');
                     return;
                 }
 
                 projectInfo.classList.remove('invisible');
+
                 
                 
 
