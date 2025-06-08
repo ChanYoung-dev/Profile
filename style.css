@@ -910,6 +910,11 @@ h1 span:nth-child(14) {
   transition: border 0.2s;
 }
 
+#hiddenForm {
+  position: relative;
+  z-index: 9999;
+}
+
 .project.active {
   border: 2px solid red;
 }
