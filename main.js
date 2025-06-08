@@ -446,3 +446,44 @@ function scrollIntoView(selector){
     selectNavItem(navItems[sectionIds.indexOf(selector)]);
 };
 
+function popUpInputForm(){
+    const hiddenForm = document.querySelector('#hiddenForm');
+
+    // hiddenForm안에 데이터는 모두 초기화
+    document.querySelector('#dollar').value = '';
+    document.querySelector('#percent').value = '';
+    document.querySelector('#result').value = '';
+
+    if( hiddenForm.style.display === 'none' || hiddenForm.style.display === ''){
+        hiddenForm.style.display = 'block';
+    }else{
+        hiddenForm.style.display = 'none';
+    }
+}
+
+
+function calculate() {
+    const dollar = document.querySelector('#dollar').value;
+    const percent = document.querySelector('#percent').value;
+    const result = document.querySelector('#result');
+
+    if(dollar === '' || percent === ''){
+        alert('값을 입력해주세요.');
+        return;
+    }
+    
+    // 익절률시 percent%만큼 수익이고 원하는 수익금은 dollar일 경우 얼마를 투자해야하는가
+    const investment = dollar / (percent / 100);
+    result.value = investment.toFixed(2); // 소수점 둘째자리까지 표시
+
+}
+
+function erase(){
+    const dollar = document.querySelector('#dollar');
+    const percent = document.querySelector('#percent');
+    const result = document.querySelector('#result');
+
+    dollar.value = '';
+    percent.value = '';
+    result.value = '';
+}

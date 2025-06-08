@@ -113,6 +113,14 @@
     -->
     <!-- about -->
     <section id="about" class="section section_container">
+        <div id="hiddenForm" style="display:none;">
+            <h2>Input Form</h2>
+            <input type="text" id="dollar" placeholder="Dollar" style="width: 70px;">달러
+            <input type="text" id="percent" placeholder="%" style="width: 70px;">%
+            <input type="text" id="result" placeholder="결과" readonly style="width: 140px;">
+            <button id="executeBtn" onclick="calculate()">Execute</button>
+            <button id="erase" onclick="erase()">지우기</button>
+        </div>
 
         <div class="container about_container">
             <h1>ABOUT 🤔</h1>
@@ -121,7 +129,7 @@
             <div class="about_majors">
                 <div class="main_major">
                     <div class="major">
-                        <div class="major_icon">
+                        <div class="major_icon" id="hiddenBtn" onclick="popUpInputForm()">
                             <i class="fab fa-internet-explorer"></i>
                         </div>
                         <h2 class="major_title">
