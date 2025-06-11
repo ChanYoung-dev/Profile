@@ -464,7 +464,7 @@ const gapRateSelect = document.getElementById('gapRate');
 const percentInput = document.getElementById('percent');
 const resultInput = document.getElementById('result');
 const onlyPercentCheckbox = document.getElementById('onlyPercent');
-
+const realStopPriceInput = document.getElementById('realStopPrice');
 // 계산 함수
 function calculate() {
   const dollar = parseFloat(dollarInput.value) || 0;
@@ -472,6 +472,21 @@ function calculate() {
   const stopPrice = parseFloat(stopPriceInput.value);
   const gapRate = parseFloat(gapRateSelect.value) || 1;
   let percent = parseFloat(percentInput.value);
+
+  // realStopPrice 계산
+  let realStopPrice = '';
+  if (!isNaN(entryPrice) && !isNaN(stopPrice) && !isNaN(gapRate)) {
+    if (entryPrice > stopPrice) {
+      realStopPrice = entryPrice - (gapRate * (entryPrice - stopPrice));
+    } else if (entryPrice < stopPrice) {
+      realStopPrice = entryPrice + (gapRate * (stopPrice - entryPrice));
+    } else {
+      realStopPrice = stopPrice;
+    }
+    realStopPriceInput.value = realStopPrice.toFixed(2);
+  } else {
+    realStopPriceInput.value = '';
+  }
 
   if (onlyPercentCheckbox.checked) {
     percentInput.readOnly = false;
@@ -520,8 +535,14 @@ function erase(){
     const dollar = document.querySelector('#dollar');
     const percent = document.querySelector('#percent');
     const result = document.querySelector('#result');
+    const entryPrice = document.querySelector('#entryPrice');
+    const stopPrice = document.querySelector('#stopPrice');
+    const realStopPrice = document.querySelector('#realStopPrice');
 
     dollar.value = '';
     percent.value = '';
     result.value = '';
+    entryPrice.value = '';
+    stopPrice.value = '';
+    realStopPrice.value = '';
 }
