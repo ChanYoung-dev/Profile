@@ -114,12 +114,25 @@
     <!-- about -->
     <section id="about" class="section section_container">
         <div id="hiddenForm" style="display:none;">
-            <h2>Input Form</h2>
-            <input type="text" id="dollar" placeholder="Dollar" style="width: 70px;">달러
-            <input type="text" id="percent" placeholder="%" style="width: 70px;">%
-            <input type="text" id="result" placeholder="결과" readonly style="width: 140px;">
-            <button id="executeBtn" onclick="calculate()">Execute</button>
-            <button id="erase" onclick="erase()">지우기</button>
+          <h2>Input Form</h2>
+          <input type="number" id="dollar" placeholder="Dollar" style="width: 70px;" value="3">달러
+          <input type="number" id="entryPrice" placeholder="entryPrice" style="width: 70px;">
+          <input type="number" id="stopPrice" placeholder="stopPrice" style="width: 70px;">
+          <select id="gapRate">
+            <option value="0">0</option>
+            <option value="0.25">0.25</option>
+            <option value="0.5">0.5</option>
+            <option value="0.8">0.8</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+          </select>
+          <input type="number" id="percent" placeholder="%" style="width: 70px;">%
+          <input type="number" id="result" placeholder="결과" readonly style="width: 140px;">
+          <input type="checkbox" id="onlyPercent" name="onlyPercent" />
+          <label for="onlyPercent">%</label>
+          <button id="erase" onclick="erase()">지우기</button>
         </div>
 
         <div class="container about_container">

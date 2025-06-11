@@ -28,13 +28,13 @@ let work_height=1;
             console.log('mobile');
             //summary.remove();
             if(window.scrollY > (home_Height/6)){
-                
+
                 about.classList.add('show-ani');
-                
+
             } else {
                 about.classList.remove('show-ani');
             }
-            
+
             if(window.scrollY > homeHeight+(aboutHeight*(0.70))){
                 //console.log("skills")
                 skills.classList.add('show-ani');
@@ -91,13 +91,13 @@ let work_height=1;
         else if(a==0 && !(isMobile())){
             console.log('mobileX');
             if(window.scrollY > (home_Height/6)){
-                
+
                 about.classList.add('show-ani');
-                
+
             } else {
                 about.classList.remove('show-ani');
             }
-            
+
             if(window.scrollY > homeHeight+(aboutHeight*(1/4))){
                 //console.log("skills")
                 skills.classList.add('show-ani');
@@ -152,7 +152,7 @@ let work_height=1;
                 }
             }
         }
-        
+
         }
 
     );
@@ -248,13 +248,13 @@ arrowUp.addEventListener('click', () => {
 // Handle projects  when tapping on th work_categoris
 const workBtnContainer = document.querySelector('.work_categories');
 const projectContainter = document.querySelector('.work_projects');
-const projects = document.querySelectorAll('.project'); 
+const projects = document.querySelectorAll('.project');
 const projectsInfo = document.querySelectorAll('.project_info');
 const projectH2 = document.querySelector('.project_h2');
 workBtnContainer.addEventListener('click', (event) => {
     // projectH2.classList.remove('invisible');
     const filter = event.target.dataset.filter || event.target.parentNode.dataset.filter;
-    console.log(event.target.parentNode.dataset.filter) 
+    console.log(event.target.parentNode.dataset.filter)
     if(filter == null){
         return;
     }
@@ -270,7 +270,7 @@ workBtnContainer.addEventListener('click', (event) => {
     //const target = e.target.nodeName === 'BUTTON' ? e.target: e.target.parentNode;
     if(event.target.dataset.filter == null){
         event.target.parentNode.classList.add('selected');
-    }   
+    }
     else{
         event.target.classList.add('selected');
     }
@@ -288,13 +288,13 @@ workBtnContainer.addEventListener('click', (event) => {
                 work_height =1;
             } else if(filter === "Main"){
                 work_height=3;
-                
+
             } else if(filter === "electronics"){
                 work_height=3;
-                
+
             } else if(filter === "Software"){
                 work_height=2;
-                
+
             }
             /*project.style.display = 'block';*/
             project.classList.remove('invisible');
@@ -319,8 +319,8 @@ workBtnContainer.addEventListener('click', (event) => {
     }
 
     console.log(filter);
-    */ 
-    
+    */
+
 });
 
 projectsInfo.forEach((projectInfo) =>{
@@ -342,7 +342,7 @@ projects.forEach(project => {
 projects.forEach((project) =>{
 
 
-    
+
     project.addEventListener('click', (event) => {
         /*
         // 클릭한 프로젝트에 active 추가
@@ -364,10 +364,10 @@ projects.forEach((project) =>{
 
                 projectInfo.classList.remove('invisible');
 
-                
-                
 
-                var element = document.querySelector('.work_projects'); 
+
+
+                var element = document.querySelector('.work_projects');
                 element.scrollIntoView({behavior: "smooth"});
             }
             else{
@@ -375,8 +375,8 @@ projects.forEach((project) =>{
                 console.log("no search",projectInfo);
             }
         });
-        
-        
+
+
     });
 });
 
@@ -414,7 +414,7 @@ const observerCallback = (entries,observer) => {
             if(entry.boundingClientRect.y <0){
                 selectedNavIndex = index +1;
             } else{
-                selectedNavIndex = index -1; 
+                selectedNavIndex = index -1;
             }
         }
     });
@@ -449,11 +449,6 @@ function scrollIntoView(selector){
 function popUpInputForm(){
     const hiddenForm = document.querySelector('#hiddenForm');
 
-    // hiddenForm안에 데이터는 모두 초기화
-    document.querySelector('#dollar').value = '';
-    document.querySelector('#percent').value = '';
-    document.querySelector('#result').value = '';
-
     if( hiddenForm.style.display === 'none' || hiddenForm.style.display === ''){
         hiddenForm.style.display = 'block';
     }else{
@@ -462,21 +457,64 @@ function popUpInputForm(){
 }
 
 
+const dollarInput = document.getElementById('dollar');
+const entryPriceInput = document.getElementById('entryPrice');
+const stopPriceInput = document.getElementById('stopPrice');
+const gapRateSelect = document.getElementById('gapRate');
+const percentInput = document.getElementById('percent');
+const resultInput = document.getElementById('result');
+const onlyPercentCheckbox = document.getElementById('onlyPercent');
+
+// 계산 함수
 function calculate() {
-    const dollar = document.querySelector('#dollar').value;
-    const percent = document.querySelector('#percent').value;
-    const result = document.querySelector('#result');
+  const dollar = parseFloat(dollarInput.value) || 0;
+  const entryPrice = parseFloat(entryPriceInput.value);
+  const stopPrice = parseFloat(stopPriceInput.value);
+  const gapRate = parseFloat(gapRateSelect.value) || 1;
+  let percent = parseFloat(percentInput.value);
 
-    if(dollar === '' || percent === ''){
-        alert('값을 입력해주세요.');
-        return;
+  if (onlyPercentCheckbox.checked) {
+    percentInput.readOnly = false;
+    if (percent && gapRate) {
+      const result = dollar / (percent * gapRate / 100);
+      resultInput.value = isFinite(result) ? result.toFixed(2) : '';
+    } else {
+      resultInput.value = '';
     }
-    
-    // 익절률시 percent%만큼 수익이고 원하는 수익금은 dollar일 경우 얼마를 투자해야하는가
-    const investment = dollar / (percent / 100);
-    result.value = investment.toFixed(2); // 소수점 둘째자리까지 표시
-
+  } else {
+    percentInput.readOnly = true;
+    if (entryPrice && stopPrice && entryPrice !== 0) {
+      percent = Math.abs((entryPrice - stopPrice) / entryPrice * 100);
+      percentInput.value = percent.toFixed(2);
+      if (percent && gapRate) {
+        const result = dollar / (percent * gapRate / 100);
+        resultInput.value = isFinite(result) ? result.toFixed(2) : '';
+      } else {
+        resultInput.value = '';
+      }
+    } else {
+      percentInput.value = '';
+      resultInput.value = '';
+    }
+  }
 }
+
+// 이벤트 리스너 등록
+[dollarInput, entryPriceInput, stopPriceInput, gapRateSelect, percentInput, onlyPercentCheckbox].forEach(el => {
+  el.addEventListener('input', calculate);
+  el.addEventListener('change', calculate);
+});
+
+// onlyPercent 체크박스 상태 바뀔 때 percent 필드 속성 변경
+onlyPercentCheckbox.addEventListener('change', () => {
+  if (onlyPercentCheckbox.checked) {
+    percentInput.readOnly = false;
+  } else {
+    percentInput.readOnly = true;
+  }
+  calculate();
+});
+
 
 function erase(){
     const dollar = document.querySelector('#dollar');
