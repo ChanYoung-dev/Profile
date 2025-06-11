@@ -465,6 +465,7 @@ const percentInput = document.getElementById('percent');
 const resultInput = document.getElementById('result');
 const onlyPercentCheckbox = document.getElementById('onlyPercent');
 const realStopPriceInput = document.getElementById('realStopPrice');
+const percentGap = document.getElementById('percentGap');
 // 계산 함수
 function calculate() {
   const dollar = parseFloat(dollarInput.value) || 0;
@@ -491,8 +492,9 @@ function calculate() {
   if (onlyPercentCheckbox.checked) {
     percentInput.readOnly = false;
     if (percent && gapRate) {
+      percentGap.value = percent * gapRate;
       const result = dollar / (percent * gapRate / 100);
-      resultInput.value = isFinite(result) ? result.toFixed(2) : '';
+      resultInput.value = isFinite(result) ? result.toFixed(5) : '';
     } else {
       resultInput.value = '';
     }
@@ -500,10 +502,11 @@ function calculate() {
     percentInput.readOnly = true;
     if (entryPrice && stopPrice && entryPrice !== 0) {
       percent = Math.abs((entryPrice - stopPrice) / entryPrice * 100);
-      percentInput.value = percent.toFixed(2);
+      percentInput.value = percent.toFixed(5);
+      percentGap.value = percent * gapRate;
       if (percent && gapRate) {
-        const result = dollar / (percent * gapRate / 100);
-        resultInput.value = isFinite(result) ? result.toFixed(2) : '';
+        const result = dollar / (percentGap.value / 100);
+        resultInput.value = isFinite(result) ? result.toFixed(5) : '';
       } else {
         resultInput.value = '';
       }
@@ -538,6 +541,7 @@ function erase(){
     const entryPrice = document.querySelector('#entryPrice');
     const stopPrice = document.querySelector('#stopPrice');
     const realStopPrice = document.querySelector('#realStopPrice');
+    const percentGap = document.querySelector('#percentGap');
 
     dollar.value = '';
     percent.value = '';
@@ -545,4 +549,5 @@ function erase(){
     entryPrice.value = '';
     stopPrice.value = '';
     realStopPrice.value = '';
+    percentGap.value = '';
 }
