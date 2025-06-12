@@ -484,7 +484,7 @@ function calculate() {
     } else {
       realStopPrice = stopPrice;
     }
-    realStopPriceInput.value = realStopPrice.toFixed(2);
+    realStopPriceInput.value = realStopPrice.toFixed(5);
   } else {
     realStopPriceInput.value = '';
   }
