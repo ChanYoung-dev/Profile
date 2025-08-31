@@ -9,13 +9,34 @@
 
 }
 
+@font-face {
+  font-family: 'GmarketSans';
+  src: url('/fonts/GmarketSansBold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSans';
+  src: url('/fonts/GmarketSansLight.otf') format('opentype');
+  font-weight: 300; /* light는 일반적으로 300의 폰트 가중치에 해당합니다. */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSans';
+  src: url('/fonts/GmarketSansMedium.otf') format('opentype');
+  font-weight: 500; /* medium은 일반적으로 500의 폰트 가중치에 해당합니다. */
+  font-style: normal;
+}
+
 h1{
-  font-family: "Sansita One", cursive;
+  font-family: "Sansita One", 'GmarketSans', cursive;
   text-shadow: 0 15px 2px #000;
   color: #FFCC00;
 }
 h2{
-  font-family: "Sansita One", cursive;
+  font-family: "Sansita One", 'GmarketSans',cursive;
   text-shadow: 0 2px 1px #000;
   color: #e0daae;
 }
@@ -1203,7 +1224,7 @@ th, td{text-align: center;}
   .home_contents {
     padding-top: 40px;
   }
-  
+
   .main_project_description{
     position: relative;
     right: 180px;
@@ -1216,8 +1237,8 @@ th, td{text-align: center;}
 }
 
 @media screen and (max-width: 768px) {
-  
-  
+
+
   .main_project_description{
     position: relative;
     right: 180px;
@@ -1238,7 +1259,7 @@ th, td{text-align: center;}
       transform: none;
     }
   }
-  
+
   #about.show-ani {
     opacity: 1;
     animation: fadeIn2 1s ease-in;
@@ -1503,12 +1524,12 @@ th, td{text-align: center;}
 
 .projects_info{
   padding: 10px 100px;
-  
+
 }
 
 .project_h2.invisible{
   display: none;
-  
+
 }
 
 .project_h2{
