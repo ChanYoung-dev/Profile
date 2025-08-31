@@ -41,7 +41,7 @@
           background-color: #2f3542;
           border-radius: 10px;
         }
-        ..gha-feed::-webkit-scrollbar-track {
+        .gha-feed::-webkit-scrollbar-track {
           background-color: grey;
           border-radius: 10px;
           box-shadow: inset 0px 0px 5px white;
@@ -222,7 +222,7 @@
                     <div class="job_description">
                     <h3 class="job_what"><a href="">서버 개발자 재직↗️</a></h3>
                     <p class="job_name">SK엠앤서비스
-                        <p class="job_period">(2022.07-2025.06)</p>
+                        <p class="job_period">(2022.07~)</p>
                     </p>
                     </div>
                 </div>
@@ -452,6 +452,13 @@
                 </div>
             </a>
             <br/>
+            <a class="project coin main_project" target="blank" data-type="Main" data-link="#info">
+              <img class="project_img" src="./img/venom.JPG" alt="coin">
+              <div class="project_description" id = "coin_info">
+                <h3>Coin</h3>
+                <span>with Binance, Upbit</span>
+              </div>
+            </a>
             <a class="project K5SMovie main_project" target="blank" data-type="Main" data-link="#info">
                 <img class="project_img" src="./img/k5smovie.png" alt="K5SMovie">
 <!--                <h2 class="main_project_description">대표</h2>-->
@@ -541,80 +548,162 @@
         </div>
         <div class="projects_info">
             <div class="project_info benepia_info">
+              <table class="tg">
+                <thead>
+                <tr>
+                  <th class="tg-etw5" colspan="13"><h2>베네피아</h2></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td class="tg-5gdt" width="150px">프로젝트 목적</td>
+                  <td class="tg-g7eu" colspan="12"><span style="font-weight:400;font-style:normal">SK엠앤서비스의 베네피아 쇼핑몰 개발</span></td>
+                </tr>
+                <tr>
+                  <td class="tg-af00">인력 구성</td>
+                  <td class="tg-eajd" colspan="12">DevOps 1명 BE 2명(본인) Crawling 1명</td>
+                </tr>
+                <tr>
+                  <td class="tg-5gdt">경력기간</td>
+                  <td class="tg-g7eu" colspan="12">2022년 07월 - 2025년 06월</td>
+                </tr>
+                <tr>
+                  <td class="tg-af00">회사 및 담당 직무</td>
+                  <td class="tg-eajd" colspan="12">
+                    - 3700개의 고객사들이 이용하는 임직원들을 위한 복지포인트 쇼핑몰<br>
+                    - 커머스개발(주문) 담당<br>
+                    - 풀스택 MSA 개발<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tg-af00">주요 업무 및 상세역할</td>
+                  <td class="tg-eajd" colspan="12">
+                    < 고객사 맞춤형 커머스 복지몰 [베네피아] : 주문 및 전시 담당 ><br>
+                    1. 주문쪽 테스트코드를 도입하여 위험성을 줄이고 유지보수성을 높임<br>
+                    ㅤㅤ - 새로운 기능을 도입하는 경우에도 기존 주문 기능에 대해 정상적으로 동작하는지 확인가능<br>
+                    2. 초도배송비 복구 프로세스를 자체개발  <br>
+                    - 관련 요청건을 연1500건 -> 연10건이하로 줄임<br>
+                    3. 주문상태값(취/교/반/배송중/배송완료) 프로세스를 자체개발
+                    - 변경 요청건 연 800건 -> 연100건이하로 줄임<br>
+                    4. 매년 ISMS 인증을 위한 보안 취약점 대응<br>
+                    ㅤㅤ- 커머스 전반적인 프로젝트 내 XSS Annotation 및 필터를 도입하여 XSS 취약점 대응<br>
+                    5. 주문 관련 장애 대응<br>
+                    6. 전시관련구좌 통합 개발<br>
+                    7. 몰고도화 개발<br>
+                    ㅤㅤ- 취소/반품/교환 기능 개선 및 개발<br>
+                    ㅤㅤ- 상품/배송비 분리 개발<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tg-5gdt">사용언어 및 개발환경</td>
+                  <td class="tg-g7eu" colspan="12">Java, Spring Boot, mybatis, Oracle, Docker, Normard, JSP</td>
+                </tr>
+                <tr>
+                  <td class="tg-af00">느낀점</td>
+                  <td class="tg-eajd" colspan="12">
+                    - 복잡한 도메인(커머스, 주문, 고객사)에 대한 이해도를 높일 수 있었습니다<br>
+                    - 레거시 시스템에 대해 리팩토링, 테스트코드를 적용할 수 있는 실력을 갖출수 있었습니다<br>
+                    - XSS에 대한 이해도를 높일 수 있었습니다.<br>
+                    - javascript에 대하여 이해도를 높일 수 있었습니다.<br>
+                    - 타 부서와의 협엽능력을 키울 수 있었습니다.
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tg-5gdt">관련 이미지</td>
+                  <td class="tg-g7eu" colspan="12">
+                    <img src="./img/benepia1.png" width="30%"/>
+                    <img src="./img/benepia2.png" width="30%"/>
+                    <img src="./img/benepia3.png" width="30%"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tg-5gdt">참고자료</td>
+                  <td class="tg-g7eu" colspan="12">
+                    - <a href="http://newfront.benepia.co.kr/login/login.do">베네피아 PC↗️</a><br>
+                    - <a href="https://play.google.com/store/apps/details?id=com.sk.benepia">베네피아 안드로이드 앱↗️</a><br>
+                    - <a href="https://itunes.apple.com/kr/app/benepia-benepia/id918784071?l=en=8">베네피아 IOS 앱↗️</a>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="project_info coin_info">
                 <table class="tg">
                     <thead>
                     <tr>
-                        <th class="tg-etw5" colspan="13"><h2>베네피아</h2></th>
+                        <th class="tg-etw5" colspan="13"><h2>코인관련개발</h2></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="tg-5gdt" width="150px">프로젝트 목적</td>
-                        <td class="tg-g7eu" colspan="12"><span style="font-weight:400;font-style:normal">SK엠앤서비스의 베네피아 쇼핑몰 개발</span></td>
-                    </tr>
-                    <tr>
-                        <td class="tg-af00">인력 구성</td>
-                        <td class="tg-eajd" colspan="12">DevOps 1명 BE 2명(본인) Crawling 1명</td>
-                    </tr>
-                    <tr>
-                        <td class="tg-5gdt">경력기간</td>
-                        <td class="tg-g7eu" colspan="12">2022년 07월 - 2025년 06월</td>
-                    </tr>
-                    <tr>
-                        <td class="tg-af00">회사 및 담당 직무</td>
-                        <td class="tg-eajd" colspan="12">
-                            - 3700개의 고객사들이 이용하는 임직원들을 위한 복지포인트 쇼핑몰<br>
-                            - 커머스개발(주문) 담당<br>
-                            - 풀스택 MSA 개발<br>
+                        <td class="tg-5gdt" width="150px">코인 알람 개발</td>
+                        <td class="tg-g7eu" colspan="2" style="text-align: center">
+                        <img src="./img/insta20250824.gif" style="width: 300px"/><br>
+                        </td>
+                        <td class="tg-eajd" colspan="10">
+                          - NodeJs, Binance API, Upbit API 활용 </br>
+                          - Telegram, X, Instagram, Facebook, Threads 등 API를 이용하여 SNS에 동시 포스팅 </br>
+                          - 알림 조건 </br>
+                          ㅤㅤ 1 거래량이 터졌을 경우 </br>
+                          ㅤㅤ 2 급등/급락 했을 경우 </br>
+                          - 2025.08.25기준 텔레그램 팔로워 200명
                         </td>
                     </tr>
                     <tr>
-                        <td class="tg-af00">주요 업무 및 상세역할</td>
-                        <td class="tg-eajd" colspan="12">
-                            < 고객사 맞춤형 커머스 복지몰 [베네피아] : 주문 및 전시 담당 ><br>
-                            1. 주문쪽 테스트코드를 도입하여 위험성을 줄이고 유지보수성을 높임<br>
-                            ㅤㅤ - 새로운 기능을 도입하는 경우에도 기존 주문 기능에 대해 정상적으로 동작하는지 확인가능<br>
-                            2. 초도배송비 복구 프로세스를 자체개발  <br>
-                              - 관련 요청건을 연1500건 -> 연10건이하로 줄임<br>
-                            3. 주문상태값(취/교/반/배송중/배송완료) 프로세스를 자체개발
-                              - 변경 요청건 연 800건 -> 연100건이하로 줄임<br>
-                            4. 매년 ISMS 인증을 위한 보안 취약점 대응<br>
-                            ㅤㅤ- 커머스 전반적인 프로젝트 내 XSS Annotation 및 필터를 도입하여 XSS 취약점 대응<br>
-                            5. 주문 관련 장애 대응<br>
-                            6. 전시관련구좌 통합 개발<br>
-                            7. 몰고도화 개발<br>
-                            ㅤㅤ- 취소/반품/교환 기능 개선 및 개발<br>
-                            ㅤㅤ- 상품/배송비 분리 개발<br>
-                        </td>
+                      <td class="tg-5gdt" width="150px">코인 지표 개발</td>
+                      <td class="tg-g7eu" colspan="6" style="text-align: center">
+                        <img src="./img/indicator.png" style="width: 50%"/>
+                        <br>
+                        - TradingView Script 활용 </br>
+                        - 지표가 출현할때 알림이 울리도록 세팅 </br>
+                      </td>
                     </tr>
                     <tr>
-                        <td class="tg-5gdt">사용언어 및 개발환경</td>
-                        <td class="tg-g7eu" colspan="12">Java, Spring Boot, mybatis, Oracle, Docker, Normard, JSP</td>
-                    </tr>
-                    <tr>
-                        <td class="tg-af00">느낀점</td>
-                        <td class="tg-eajd" colspan="12">
-                            - 복잡한 도메인(커머스, 주문, 고객사)에 대한 이해도를 높일 수 있었습니다<br>
-                            - 레거시 시스템에 대해 리팩토링, 테스트코드를 적용할 수 있는 실력을 갖출수 있었습니다<br>
-                            - XSS에 대한 이해도를 높일 수 있었습니다.<br>
-                            - javascript에 대하여 이해도를 높일 수 있었습니다.<br>
-                            - 타 부서와의 협엽능력을 키울 수 있었습니다.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tg-5gdt">관련 이미지</td>
-                        <td class="tg-g7eu" colspan="12">
-                            <img src="./img/benepia1.png" width="30%"/>
-                            <img src="./img/benepia2.png" width="30%"/>
-                            <img src="./img/benepia3.png" width="30%"/>
-                        </td>
+                      <td class="tg-5gdt" width="150px">코인자동매매 시스템</td>
+                      <td class="tg-g7eu" colspan="12">
+
+                        <h2>1. 백테스팅</h2>
+                        <figure style="text-align: center">
+                          <img src="./img/excel3.png" style="width: 100%"/>
+                          <figcaption>여러가지 조건들의 조합</figcaption>
+                        </figure>
+                        <figure style="text-align: center">
+                          <img src="./img/excel4.png" style="width: 100%"/>
+                          <figcaption>백테스팅 결과</figcaption>
+                        </figure>
+                        - 위에서 만든 지표를 통해 전략 개발 </br>
+                        - NodeJ로 Binance Ohlcv 데이터를 활용하여 백테스팅 실행하여 검증</br>
+                        - 여러가지 조건을 변경하며 최적의 전략을 찾아감 </br>
+                        - 최적의 전략을 찾기위해 수많은 변수값들을 변경하며 멀티프로세싱으로 약 천만개의 Input값들을 백테스팅을 진행</br>
+                        ㅤㅤ 1 상승률의 기울기가 비슷하게 유지되는가(volatility, sortinoRatio)</br>
+                        ㅤㅤ 2 최대낙폭이 적은가(MDD) </br>
+                        ㅤㅤ 3 나머지 PSI(Population Stability Index) 참고하여 작성</br>
+                        <h2>2. 2차 백테스팅</h2>
+                        <figure style="text-align: center">
+                          <img src="./img/backTestingBinance.png" style="width: 100%; max-width: 300px"/>
+                          <figcaption>TradingView Script를 통하여 백테스팅</figcaption>
+                          - 위 백테스팅에서 선정된 조건들을 TradingView Script로 작성하여 다시 한번 괴리가 없는지 확인</br>
+                        </figure>
+                        <h2>3. 자동매매시스템</h2>
+                        <figure style="text-align: center">
+                          <img src="./img/binanceCopy.png" style="width: 30%; max-width: 300px"/>
+                          <img src="./img/binancecopy1.PNG" style="width: 30%; max-width: 300px"/>
+                          <img src="./img/binancecopy2.PNG" style="width: 30%; max-width: 300px"/>
+                          <figcaption>바이낸스 자동매매시스템</figcaption>
+                        </figure>
+                        - 백테스팅을 바탕으로 자동매매시스템 개발 </br>
+                        - nodeJs와 Binance API를 활용</br>
+                      </td>
+
                     </tr>
                     <tr>
                         <td class="tg-5gdt">참고자료</td>
                         <td class="tg-g7eu" colspan="12">
-                            - <a href="http://newfront.benepia.co.kr/login/login.do">베네피아 PC↗️</a><br>
-                            - <a href="https://play.google.com/store/apps/details?id=com.sk.benepia">베네피아 안드로이드 앱↗️</a>
-                            - <a href="https://itunes.apple.com/kr/app/benepia-benepia/id918784071?l=en=8">베네피아 IOS 앱↗️</a>
+                            - <a href="https://t.me/skyrocketAlert">코인 급등알림↗️</a><br>
+                            - <a href="https://kr.tradingview.com/script/BndDYoeA/">지표(트레이딩뷰)↗️</a><br>
+                            - <a href="https://kr.tradingview.com/script/0j70sxaA/">지표 백테스팅(트레이딩뷰)↗️</a><br>
+                          - <a href="https://www.binance.com/copy-trading/lead-details/4631211808102672897?ref=1133860780">Copy Trading 1↗️</a></br>
+                            - <a href="https://www.binance.com/copy-trading/lead-details/4646740830390679297?isPrivate=true&ref=1133860780">Copy Trading 2↗️</a>
                         </td>
                     </tr>
                     </tbody>
