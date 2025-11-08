@@ -1,46 +1,53 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 /* Global */
-
+/* ===== 폰트 선언 ===== */
 @font-face {
-
-  src : url("./fonts/SansitaOne.ttf");
-
-  font-family: "Sansita One";
-
+  font-family: 'SansitaOneEN';
+  src: url('./fonts/SansitaOne.ttf') format('truetype');
+  unicode-range: U+0020-007E; /* 기본 라틴 문자 영역 (영문) */
 }
 
 @font-face {
-  font-family: 'GmarketSans';
+  font-family: 'GmarketSansKR';
+  src: url('/fonts/GmarketSansLight.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  unicode-range: U+AC00-D7A3; /* 한글 영역 */
+}
+
+@font-face {
+  font-family: 'GmarketSansKR';
+  src: url('/fonts/GmarketSansMedium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  unicode-range: U+AC00-D7A3;
+}
+
+@font-face {
+  font-family: 'GmarketSansKR';
   src: url('/fonts/GmarketSansBold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
+  unicode-range: U+AC00-D7A3;
 }
 
-@font-face {
-  font-family: 'GmarketSans';
-  src: url('/fonts/GmarketSansLight.otf') format('opentype');
-  font-weight: 300; /* light는 일반적으로 300의 폰트 가중치에 해당합니다. */
-  font-style: normal;
+/* ===== 텍스트 스타일 ===== */
+h1, h2 {
+  /* 각 문자별로 자동 폰트 분리 적용됨 */
+  font-family: 'GmarketSansKR', 'SansitaOneEN', cursive;
+  text-shadow: 0 2px 1px #000;
+  color: #FFCC00;
 }
 
-@font-face {
-  font-family: 'GmarketSans';
-  src: url('/fonts/GmarketSansMedium.otf') format('opentype');
-  font-weight: 500; /* medium은 일반적으로 500의 폰트 가중치에 해당합니다. */
-  font-style: normal;
-}
-
-h1{
-  font-family: "Sansita One", 'GmarketSans', cursive;
+h1 {
   text-shadow: 0 15px 2px #000;
   color: #FFCC00;
 }
-h2{
-  font-family: "Sansita One", 'GmarketSans',cursive;
+
+h2 {
   text-shadow: 0 2px 1px #000;
   color: #e0daae;
 }
-
 
 
 :root {
