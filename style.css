@@ -49,6 +49,10 @@ h2 {
   color: #e0daae;
 }
 
+body {
+  font-family: 'GmarketSansKR', 'SansitaOneEN', cursive;
+}
+
 
 :root {
   /* Color */
