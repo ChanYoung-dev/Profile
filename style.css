@@ -49,8 +49,8 @@ h2 {
   color: #e0daae;
 }
 
-body {
-  font-family: 'GmarketSansKR', 'SansitaOneEN', cursive;
+.project_info{
+ margin-bottom: 100px;
 }
 
 
@@ -120,7 +120,8 @@ body {
 }
 
 body {
-  font-family: "Roboto Mono", monospace;
+  font-family: 'GmarketSansKR', 'SansitaOneEN', monospace;
+  font-weight: 200;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
   cursor: default;
