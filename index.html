@@ -619,7 +619,7 @@
                     ㅤㅤ▪️ 외부 장애 상황에서도 주문 서비스 안정성 확보<br><br>
                     <hr></hr>
 
-                    <br><p style="font-size: 22px;"><b>4. 운영 모니터링 체계 구축</b></p><br>
+                    <br><p style="font-size: 22px;"><b>4. 운영 모니터링 체계 구축</b></p>
                     <br>
                     <p>🤷🏼‍♂️WHY</p>
                     ㅤㅤ▪️ 일일 로그를 분석하며 장애 발생 여부를 점검하고, 오류 원인 파악 및 개선 조치를 통해 운영 안정화<br>
@@ -629,9 +629,9 @@
                     ㅤㅤ▪️ 중복 주문, 연마감 포인트 처리, 귀책 전환 등 주요 오류에 대한 근본 원인 분석 및 개선<br>
                     <p>📈IMPACT</p>
                     ㅤㅤ▪️ 장애 원인 인지 시간 20분 → 2분 이내 단축<br>
-                    ㅤㅤ▪️ 유지보수 비용 절감 및 장애 리스크 최소화에 최적화 아키텍처 확보<br><br><br>
+                    ㅤㅤ▪️ 유지보수 비용 절감 및 장애 리스크 최소화에 최적화 아키텍처 확보<br><br>
                     <hr></hr>
-                    <br><br>
+                    <br>
                     <h2>ISMS 대응</h2>
                     <p>🤷🏼‍♂️WHY</p>
                     ㅤㅤ▪️ MSA 구조에서 서비스별로 XSS 대응 방식이 제각각 적용<br>
@@ -641,29 +641,29 @@
                     ㅤㅤ▪️ 전사 공통 XSS 애노테이션 등 처리 방식 통합<br>
                     <p>📈IMPACT</p>
                     ㅤㅤ▪️ 이중 escape 처리 및 JSON 파싱 오류 재발 방지<br>
-                    ㅤㅤ▪️ 다음 해 ISMS 점검에서 XSS 관련 80% 단축<br><br><br>
+                    ㅤㅤ▪️ 다음 해 ISMS 점검에서 XSS 관련 80% 단축<br><br>
                     <hr></hr>
-                    <br><br>
+                    <br>
                     <h2>커머스 운영 자동화 및 안정성 강화</h2>
                     초도배송비 복구/주문 상태 변경/공급가 변경 등 수작업으로 처리하던 CS 프로세스를 자동화<br><br>
                     ㅤㅤ▪️ 배송비 매핑 구조 및 정산 로직 분석<br>
                     ㅤㅤ▪️ 프로시져 도입, 백오피스 기능 개발<br>
                     ㅤㅤ▪️ 초도배송비 환불 관련 CS 요청 연 1,500건 → 10건 이하로 감소 (99% 개선)<br>
                     ㅤㅤ▪️ 장애 관련 이슈 주기(MTBF) 약 2~3일 → 1개월 이상으로 개선<br>
-                    ㅤㅤ▪️ 테스트코드 도입으로 정책 변경 이후에도 운영 장애 0건 유지<br><br><br><br>
+                    ㅤㅤ▪️ 테스트코드 도입으로 정책 변경 이후에도 운영 장애 0건 유지<br><br>
                   </td>
                 </tr>
                 <tr>
-                  <td class="tg-af00">총평 및 주요 강점</td>
-                  <td class="tg-eajd" colspan="12">
-                    <br>
+                  <td class="tg-eajd" colspan="12" >
+                    <div style="padding: 10px;background-color: #0389aa;background-image: linear-gradient(to bottom, #0389aa 0%, #00617f 100%); ">
+                    <p style="font-size: 20px;">🎯총평 및 주요 강점</p>
                     🔘 주문·결제·배송 도메인 전문성: 핵심 커머스 로직(배송비·결제·취소·주문·교환·반품) 도메인 이해도 높음<br>
                     🔘 테스트·자동화 중심의 안정성 확보: 테스트 코드 및 검증 체계 도입으로 장애율 대폭 감소<br>
                     🔘 유지보수 비용 절감 및 장애 리스크 최소화에 최적화된 프로그래밍 경험<br>
                     🔘 대규모 시스템 설계 및 비동기 메시지 큐 처리 경험, EDA 지식 보유<br>
                     🔘 주문·결제·배송 도메인에서의 MSA 및 분산트랜잭션 경험 및 이해도 보유<br>
                     🔘 반복 장애 제거 및 구조 개선으로 장애 간 평균 발생 주기(MTBF)를 최대 4~6배 이상 개선, 장애 평균 복구 시간(MTTR)을 60~75% 단축<br>
-                    <br>
+                    </div>
                   </td>
                 </tr>
                 <tr>
@@ -789,14 +789,16 @@
                         ㅤㅤ 2 최대낙폭이 적은가(MDD) </br>
                         ㅤㅤ 3 나머지 PSI(Population Stability Index) 참고하여 작성</br>
                         <br />
+                        <hr>
                         <br />
-                        <h2>2. 2차 백테스팅</h2>
+                        <h2>2. 백테스팅</h2>
                         <figure style="text-align: center">
                           <img src="./img/backTestingBinance.png" style="width: 100%; max-width: 300px"/>
                           <figcaption>TradingView Script를 통하여 백테스팅</figcaption>
                           - 위 백테스팅에서 선정된 조건들을 TradingView Script로 작성하여 다시 한번 괴리가 없는지 확인</br>
                         </figure>
                         <br />
+                        <hr>
                         <br />
                         <h2>3. 자동매매시스템</h2>
                         <figure style="text-align: center">
