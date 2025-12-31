@@ -551,3 +551,18 @@ function erase(){
     realStopPrice.value = '';
     percentGap.value = '';
 }
+
+function toPDF(){
+  const hidePDF = document.querySelectorAll('.hidePDF');
+  const showPDF = document.querySelectorAll('.showPDF');
+  const projects_info = document.querySelectorAll('.projects_info');
+
+  // hidePDF 제거
+  hidePDF.forEach(el => { el.style.display = 'none'; });
+
+  // projects_info padding 적용
+  projects_info.forEach(el => { el.style.padding = '10px 10px'; });
+
+  // showPDF invisible 제거
+  showPDF.forEach(el => { el.classList.remove('invisible'); });
+}

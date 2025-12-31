@@ -1003,7 +1003,7 @@ h1 span:nth-child(14) {
 th, td{text-align: center;}
 .tr{border:2px;}
 .tg td{background-color:#fdf6e3;border-color:#93a1a1;border-style:solid;border-width:3px;color:#002b36;
-  font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+  font-size:16px;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{background-color:#657b83;border-color:#93a1a1;border-style:solid;border-width:3px;color:#fdf6e3;
   font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg .tg-etw5{background-color:#000000;border-color:inherit;color:#ffc702;font-size:32px;text-align:center;vertical-align:top}
@@ -1570,12 +1570,12 @@ th h2{
   color: #FFCC00
 }
 
-.coin_info .tg-eajd{
-  font-size: 16px;
-  line-height: 2em;
-}
+/*.coin_info .tg-eajd{*/
+/*  font-size: 16px;*/
+/*  line-height: 2em;*/
+/*}*/
 
-.benepia_info .tg-eajd{
-  font-size: 16px;
-  line-height: 2em;
-}
+/*.benepia_info .tg-eajd{*/
+/*  font-size: 16px;*/
+/*  line-height: 2em;*/
+/*}*/
