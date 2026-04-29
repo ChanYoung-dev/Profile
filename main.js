@@ -556,6 +556,7 @@ function toPDF(){
   const hidePDF = document.querySelectorAll('.hidePDF');
   const showPDF = document.querySelectorAll('.showPDF');
   const projects_info = document.querySelectorAll('.projects_info');
+  const details = document.querySelectorAll('details');
 
   // hidePDF 제거
   hidePDF.forEach(el => { el.style.display = 'none'; });
@@ -565,4 +566,7 @@ function toPDF(){
 
   // showPDF invisible 제거
   showPDF.forEach(el => { el.classList.remove('invisible'); });
+
+  // details 모두 펼침 (PDF 출력용)
+  details.forEach(el => { el.open = true; });
 }
