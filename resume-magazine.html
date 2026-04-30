@@ -127,321 +127,17 @@
 
   <div class="foot">
     <span>Resume · Chan Young Kim</span>
-    <span>Page 01 / 03</span>
+    <span>Page 01 / 04</span>
   </div>
 </section>
 
-<!-- ============ PAGE 2 · CAREER ============ -->
+<!-- ============ PAGE 2 · EDU / CERT / SKILL / SUMMARY ============ -->
 <section class="page">
-  <div class="section">
-    <div class="section-head">
-      <span class="section-num">02</span>
-      <h2 class="section-title">경력</h2>
-      <span class="section-meta">3년 10개월 · CAREER</span>
-    </div>
-
-    <div class="company-card">
-      <div class="company-head">
-        <div>
-          <div class="name">SK 엠앤서비스(주) · 커머스개발1팀</div>
-          <div class="role">대리 / 팀원 3년차 · 풀스택 개발자</div>
-        </div>
-        <div class="period">2022.07 — 재직중</div>
-      </div>
-      <div class="company-meta">
-        <span>설립 2000.02</span>
-        <span>매출 2,470억</span>
-        <span>임직원 1,132명</span>
-        <span>시스템 SW 개발 / 공급</span>
-      </div>
-    </div>
-
-    <!-- Project 1 -->
-    <div class="project">
-      <div class="project-head">
-        <span class="num">01</span>
-        <span class="title">주문 고도화 프로젝트</span>
-        <span class="period">2024.12 — 2025.06</span>
-      </div>
-      <div class="project-stack">
-        <span class="tag">Spring Boot</span>
-        <span class="tag">Java</span>
-        <span class="tag">MyBatis</span>
-        <span class="tag">Oracle</span>
-        <span class="tag">MSA</span>
-        <span class="tag">RabbitMQ</span>
-        <span class="tag">Docker</span>
-        <span class="tag">Jenkins</span>
-      </div>
-      <div class="project-overview">
-        주문 관련 대규모 커머스 리뉴얼 프로젝트로, 상품·배송비 구조 분리, 취소/교환/반품 개선 및
-        주문 시스템 안정화를 수행했습니다.
-      </div>
-
-      <div class="sub-block">
-        <div class="sub-title"><span class="num">1.1</span>MSA 주문·배송·결제 전면 재설계</div>
-        <div class="whi-grid">
-          <div class="whi why">
-            <span class="label">WHY</span>
-            상품·배송비·주문이 강하게 결합되어 정책 변경에 유연하게 대응이 어려웠음
-          </div>
-          <div class="whi how">
-            <span class="label">HOW</span>
-            <ul>
-              <li>상품·배송비 구조 N:N 분리</li>
-              <li>취소/반품/교환 프로세스 개선</li>
-              <li>멱등성 · 동시성 · 분산 트랜잭션 제어</li>
-              <li>변화에 강한 객체지향 리팩토링</li>
-            </ul>
-          </div>
-          <div class="whi impact">
-            <span class="label">IMPACT</span>
-            <ul>
-              <li>다양한 정책 변경에 유연 대응</li>
-              <li>조건부·부분 취소 등 복잡 케이스 처리</li>
-              <li>장애 리스크 최소화 아키텍처 확보</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="sub-block">
-        <div class="sub-title"><span class="num">1.2</span>주문 핵심 시나리오 중심 테스트 코드 도입</div>
-        <div class="whi-grid">
-          <div class="whi why">
-            <span class="label">WHY</span>
-            정책 변경 시 사이드이펙트 우려로 개발 속도 저하, 수동 검증 부담
-          </div>
-          <div class="whi how">
-            <span class="label">HOW</span>
-            <ul>
-              <li>MSA 통합 테스트 환경 이해</li>
-              <li>주문·결제·배송 핵심 시나리오 테스트</li>
-              <li>Persistence layer 테스트환경 구축</li>
-            </ul>
-          </div>
-          <div class="whi impact">
-            <span class="label">IMPACT</span>
-            <ul>
-              <li>MTTR <b>45분 → 12분</b> (약 73% 단축)</li>
-              <li>정책 변경 시 검증 시간 대폭 감소</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="sub-block">
-        <div class="sub-title"><span class="num">1.3</span>RabbitMQ 도입을 통한 주문 처리 구조 개선</div>
-        <div class="whi-grid">
-          <div class="whi why">
-            <span class="label">WHY</span>
-            외부 연동(현금영수증) 지연으로 주문 실패 전파, 후행 작업(이메일·영수증) 누락 발생
-          </div>
-          <div class="whi how">
-            <span class="label">HOW</span>
-            <ul>
-              <li>주문 완료 이벤트 기준 후행 작업 분리</li>
-              <li>RabbitMQ 비동기 처리로 전환</li>
-              <li>DLQ / 재시도 큐 활용</li>
-              <li>순서 보장 · 컨테이너 재기동 제약 고려</li>
-              <li>대량 INSERT는 Consumer 순차 처리</li>
-            </ul>
-          </div>
-          <div class="whi impact">
-            <span class="label">IMPACT</span>
-            <ul>
-              <li>장애 전파 차단, 가용성·확장성 확보</li>
-              <li>대규모 트래픽 대응 가능</li>
-              <li>DB 부하 감소 및 시스템 안정성 확보</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="foot">
-    <span>Resume · Chan Young Kim</span>
-    <span>Page 02 / 03</span>
-  </div>
-</section>
-
-<!-- ============ PAGE 3 · CAREER 2 ============ -->
-<section class="page">
-  <div class="section">
-    <div class="section-head">
-      <span class="section-num">02</span>
-      <h2 class="section-title">경력 (계속)</h2>
-      <span class="section-meta">CAREER · CONTINUED</span>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="project">
-      <div class="project-head">
-        <span class="num">02</span>
-        <span class="title">운영 모니터링 및 운영 개선</span>
-        <span class="period">상시</span>
-      </div>
-      <div class="project-stack">
-        <span class="tag">DataDog</span>
-        <span class="tag alt">근본 원인 분석</span>
-      </div>
-      <div class="whi-grid">
-        <div class="whi why">
-          <span class="label">WHY</span>
-          정기적 일일 로그 분석 및 장애 점검, 근본 원인 파악으로 운영 안정화 필요
-        </div>
-        <div class="whi how">
-          <span class="label">HOW</span>
-          <ul>
-            <li>DataDog 실시간 모니터링</li>
-            <li>정책 · 비즈니스 로직 지속 개선</li>
-            <li>재고 동시성, 포인트 연마감, 결제 취소 이슈 등 근본 원인 분석</li>
-          </ul>
-        </div>
-        <div class="whi impact">
-          <span class="label">IMPACT</span>
-          <ul>
-            <li>장애 인지 시간 <b>20분 → 2분</b> 이내</li>
-            <li>장애율 <b>76.5% 감소</b></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project 3 -->
-    <div class="project">
-      <div class="project-head">
-        <span class="num">03</span>
-        <span class="title">ISMS 대응</span>
-        <span class="period">2025.06 — 2025.07</span>
-      </div>
-      <div class="whi-grid">
-        <div class="whi why">
-          <span class="label">WHY</span>
-          MSA 구조에서 서비스별 XSS 대응 방식이 제각각, 정책 일관성 부재
-        </div>
-        <div class="whi how">
-          <span class="label">HOW</span>
-          <ul>
-            <li>케이스별 XSS 처리 기준 통합 가이드 구축</li>
-            <li>전사 공통 XSS 애노테이션 방식 통합</li>
-          </ul>
-        </div>
-        <div class="whi impact">
-          <span class="label">IMPACT</span>
-          <ul>
-            <li>MSA 구조에서의 XSS 대응 정립</li>
-            <li>이중 escape · JSON 파싱 오류 재발 방지</li>
-            <li>다음 해 ISMS 점검 XSS 관련 <b>80% 단축</b></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Project 4 -->
-    <div class="project">
-      <div class="project-head">
-        <span class="num">04</span>
-        <span class="title">커머스 운영 자동화 및 안정성 강화</span>
-        <span class="period">2024.05 — 2024.07</span>
-      </div>
-      <div class="project-overview">
-        초도배송비 복구 / 주문 상태 변경 / 공급가 변경 등 수작업 CS 프로세스를 자동화했습니다.
-      </div>
-      <div class="whi-grid">
-        <div class="whi how">
-          <span class="label">HOW</span>
-          <ul>
-            <li>주문 관련 프로세스 자동화</li>
-            <li>배송비 매핑 · 정산 로직 분석</li>
-            <li>프로시저 도입, 백오피스 기능 개발</li>
-          </ul>
-        </div>
-        <div class="whi impact">
-          <span class="label">IMPACT</span>
-          <ul>
-            <li>초도배송비 환불 CS <b>연 1,500건 → 10건 이하</b> (99% 개선)</li>
-            <li>MTBF 약 <b>2~3일 → 1개월 이상</b></li>
-            <li>테스트 코드 도입 후 운영 장애 <b>0건 유지</b></li>
-          </ul>
-        </div>
-        <div class="whi why">
-          <span class="label">CONTEXT</span>
-          반복되는 CS와 운영 부담을 줄이기 위해 자동화 우선 접근
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Strengths -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-num">03</span>
-      <h2 class="section-title">총평 및 주요 강점</h2>
-      <span class="section-meta">STRENGTHS</span>
-    </div>
-    <div class="strength-grid">
-      <div class="strength"><span class="icn">D</span><div><b>도메인 전문성</b> — 커머스 핵심 로직(배송비·결제·취소·교환·반품) 깊은 이해</div></div>
-      <div class="strength"><span class="icn">T</span><div><b>테스트·자동화</b> — 검증 체계 도입으로 장애율 대폭 감소</div></div>
-      <div class="strength"><span class="icn">S</span><div><b>보안·운영 안정성</b> — XSS · SQL Injection 방어 및 로그 기반 모니터링</div></div>
-      <div class="strength"><span class="icn">A</span><div><b>아키텍처 설계</b> — 유지보수·확장성에 강한 시스템 설계 경험</div></div>
-      <div class="strength"><span class="icn">M</span><div><b>MSA · 분산 트랜잭션</b> — 주문·결제·배송 도메인에서의 실전 경험</div></div>
-      <div class="strength"><span class="icn">R</span><div><b>장애 개선</b> — MTBF 4~6배↑, MTTR 60~75%↓ 달성</div></div>
-    </div>
-  </div>
-
-  <div class="foot">
-    <span>Resume · Chan Young Kim</span>
-    <span>Page 03 / 03</span>
-  </div>
-</section>
-
-<!-- ============ PAGE 4 · PERSONAL & MORE ============ -->
-<section class="page">
-  <div class="section">
-    <div class="section-head">
-      <span class="section-num">04</span>
-      <h2 class="section-title">개인 프로젝트</h2>
-      <span class="section-meta">SIDE PROJECT</span>
-    </div>
-
-    <div class="project">
-      <div class="project-head">
-        <span class="title">코인 자동매매 및 알림 서비스</span>
-        <span class="period">2024.01 — 2025.10</span>
-      </div>
-      <div class="project-stack">
-        <span class="tag">Node.js</span>
-        <span class="tag">Python</span>
-        <span class="tag">React</span>
-        <span class="tag">Express</span>
-        <span class="tag">MySQL</span>
-        <span class="tag">Binance API</span>
-        <span class="tag">Upbit API</span>
-        <span class="tag">TradingView</span>
-        <span class="tag alt">기여도 100%</span>
-      </div>
-      <div class="project-overview">
-        코인 시장의 실시간 데이터 변동성을 분석해 <b>지표 개발 → 백테스트 → 자동매매 → 알림 서비스화</b>까지
-        전 과정을 직접 수행한 개인 프로젝트. 멀티프로세스 백테스트, 자동화 기술을 결합해
-        안정적이고 정합성 높은 매매 시스템을 구축했습니다.
-      </div>
-
-      <ul class="bullets">
-        <li><b>① 지표 개발</b> — 거래량 폭등 · 추세 반전 캔들패턴 기반 역추세 전략 설계, TradingView Script 시각화 및 자동 알림</li>
-        <li><b>② 백테스트 / 전략 검증</b> — 수백만 케이스 멀티프로세스 병렬 처리, 단일 대비 약 <b>10배</b> 향상. MDD · Volatility · PSI 메트릭, 재현성 약 95%</li>
-        <li><b>③ 자동매매 시스템</b> — Binance API 기반 자동매매, 이중화·장애감지·장애예방 메커니즘으로 가용성 향상</li>
-        <li><b>④ 급등락 알림 서비스</b> — Telegram · X · Instagram · Facebook · Threads 멀티 SNS 동시 포스팅, Upbit 가격·티커 한글 제공. <b>2025.12 기준 Telegram 구독자 760명</b></li>
-        <li><b>⑤ AI 포트폴리오 대시보드</b> — Claude Code(AI Agentic Coding) + React로 수익 포트폴리오 대시보드 개발, AI 서비스 연동</li>
-      </ul>
-    </div>
-  </div>
 
   <!-- Education -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">05</span>
+      <span class="section-num">02</span>
       <h2 class="section-title">학력 / 교육</h2>
       <span class="section-meta">EDUCATION</span>
     </div>
@@ -481,7 +177,7 @@
   <!-- Certs -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">06</span>
+      <span class="section-num">03</span>
       <h2 class="section-title">자격 / 어학 / 수상</h2>
       <span class="section-meta">CERTIFICATIONS</span>
     </div>
@@ -500,7 +196,7 @@
   <!-- Skills -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">07</span>
+      <span class="section-num">04</span>
       <h2 class="section-title">기술 스택</h2>
       <span class="section-meta">SKILLS</span>
     </div>
@@ -544,6 +240,283 @@
           <span class="tag">git</span>
           <span class="tag">AI Agentic Coding</span>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Experience Summary (구 총평 및 주요 강점) -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">경험 요약</h2>
+      <span class="section-meta">EXPERIENCE SUMMARY</span>
+    </div>
+    <div class="str-list">
+      <div><b>도메인 전문성</b> — 핵심 커머스 로직(배송비·결제·취소·교환·반품) 깊은 이해</div>
+      <div><b>테스트·자동화 안정성</b> — 검증 체계 도입으로 장애율 대폭 감소</div>
+      <div><b>보안·운영 안정성</b> — XSS · SQL Injection 방어, 로그 기반 모니터링</div>
+      <div><b>아키텍처 설계</b> — 유지보수 비용 절감, 확장성에 강한 설계</div>
+      <div><b>대규모 트래픽 + MQ</b> — 비동기 메시지 큐 처리 경험</div>
+      <div><b>MSA · 분산 트랜잭션</b> — 주문·결제·배송 도메인 실전 경험</div>
+      <div><b>장애 개선</b> — MTBF 4~6배 ↑, MTTR 60~75% ↓</div>
+      <div><b>AI 활용</b> — AI Agentic Coding 및 AI 서비스 직접 연동</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Resume · Chan Young Kim</span>
+    <span>Page 02 / 04</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 3 · CAREER ============ -->
+<section class="page">
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2 class="section-title">경력</h2>
+      <span class="section-meta">3년 10개월 · CAREER</span>
+    </div>
+
+    <div class="career-card">
+      <div class="career-head">
+        <div>
+          <div class="name">SK 엠앤서비스(주) · 커머스개발1팀</div>
+          <div class="role">대리 / 팀원 3년차 · 풀스택 개발자</div>
+        </div>
+        <div class="period">2022.07 — 재직중</div>
+      </div>
+      <div class="career-meta">
+        <span>설립일 2000.02</span>
+        <span>주요업종 시스템 SW 개발/공급</span>
+        <span>매출 2,470억</span>
+        <span>임직원 1,132명</span>
+      </div>
+
+      <div class="career-body">
+
+        <!-- Project 1 -->
+        <div class="project">
+          <div class="project-head">
+            <div class="left">
+              <span class="pn">Project 01</span>
+              <span class="pt">주문 고도화 프로젝트</span>
+            </div>
+            <span class="pp">2024.12 — 2025.06</span>
+          </div>
+          <div class="stack-row">
+            <span class="pri">Spring Boot</span>
+            <span class="pri">Java</span>
+            <span>MyBatis</span>
+            <span>Oracle</span>
+            <span class="pri">MSA</span>
+            <span class="pri">RabbitMQ</span>
+            <span>Docker</span>
+            <span>Jenkins</span>
+          </div>
+          <div class="callout">
+            주문 관련 대규모 커머스 리뉴얼 프로젝트. 상품·배송비 구조 분리, 취소/교환/반품 개선, 주문 시스템 안정화.
+          </div>
+
+          <div class="dual">
+            <div class="why">
+              <span class="lbl">문제 상황</span>
+              <ul>
+                <li>상품·배송비·주문이 강하게 결합 → <b>정책 변경 어려움</b></li>
+                <li>외부 연동(현금영수증) 타임아웃이 <b>주문 전체로 전파</b></li>
+                <li>테스트 부재로 정책 변경 시 <b>대규모 수동 검증 필요</b></li>
+              </ul>
+            </div>
+            <div class="impact">
+              <span class="lbl">최종 임팩트</span>
+              <ul>
+                <li>MTTR <b>45분 → 12분 (73% 단축)</b></li>
+                <li>장애 전파 차단, <b>가용성·확장성 확보</b></li>
+                <li>복잡 케이스(조건부·부분 취소) <b>유연 대응</b></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="subhead"><span class="num">1.1</span>MSA 주문·배송·결제 전면 재설계</div>
+          <ul class="bullet">
+            <li>상품·배송비 구조 <b>N:N 분리</b>, 취소/반품/교환 프로세스 추가·개선</li>
+            <li><b>멱등성 · 동시성 · 분산 트랜잭션</b> 제어, 변화에 강한 객체지향 리팩토링</li>
+            <li>배송비만 취소, 귀책 전환 환불, 조건부 무료배송 부분 취소 등 복잡 케이스 처리</li>
+          </ul>
+
+          <div class="subhead"><span class="num">1.2</span>핵심 시나리오 중심 테스트 코드 도입</div>
+          <ul class="bullet">
+            <li>MSA 통합 테스트 환경에 대한 이해 → 주문·결제·배송 핵심 시나리오 테스트 작성</li>
+            <li>Persistence layer 테스트환경 구축</li>
+            <li>→ <mark>주문 관련 장애 평균 복구 시간(MTTR) 45분 → 12분 (약 73% 단축)</mark></li>
+          </ul>
+
+          <div class="subhead"><span class="num">1.3</span>RabbitMQ 도입 — 주문 처리 구조 개선</div>
+          <ul class="bullet">
+            <li><b>외부 연동 / 후행 작업 비동기화</b> — 주문 완료 이벤트 기준으로 이메일·현금영수증을 MQ로 분리</li>
+            <li>RabbitMQ 비동기 처리, <b>DLQ · 재시도 큐</b> 활용, 주문건 순서 보장 + 컨테이너 재기동 제약 고려</li>
+            <li>→ <b>장애 전파 차단</b>, 확장성·가용성 확보, 대규모 트래픽 대응</li>
+            <li><b>대량 처리 작업</b> — 상품 대량 INSERT 시 MQ 적재 후 Consumer 순차 처리 → DB 부하 감소</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Resume · Chan Young Kim</span>
+    <span>Page 03 / 04</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 4 · CAREER 2 + PERSONAL ============ -->
+<section class="page">
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2 class="section-title">경력 (계속)</h2>
+      <span class="section-meta">CAREER · CONTINUED</span>
+    </div>
+
+    <div class="career-card">
+      <div class="career-body">
+
+        <!-- Project 2 -->
+        <div class="project">
+          <div class="project-head">
+            <div class="left">
+              <span class="pn">Project 02</span>
+              <span class="pt">운영 모니터링 및 운영 개선</span>
+            </div>
+            <span class="pp">상시</span>
+          </div>
+          <div class="stack-row">
+            <span class="pri">DataDog</span>
+            <span>근본 원인 분석</span>
+            <span>비즈니스 로직 개선</span>
+          </div>
+          <div class="callout">
+            정기적 일일 로그 분석으로 장애 발생 여부를 점검하고 근본 원인을 파악·개선하여 운영 안정화.
+          </div>
+          <ul class="bullet">
+            <li>DataDog 실시간 모니터링 구축, 정책 및 비즈니스 로직 지속 개선</li>
+            <li>재고 동시성 처리, 포인트 연마감 결제 취소 이슈 등 <b>주요 오류 근본 원인 분석</b></li>
+            <li>→ <mark>장애 인지 시간 20분 → 2분 이내</mark></li>
+            <li>→ <mark>초기 대비 장애율 76.5% 감소</mark></li>
+          </ul>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project">
+          <div class="project-head">
+            <div class="left">
+              <span class="pn">Project 03</span>
+              <span class="pt">ISMS 대응 — XSS 통합</span>
+            </div>
+            <span class="pp">2025.06 — 2025.07</span>
+          </div>
+          <div class="callout">
+            MSA 구조에서 서비스별로 제각각이던 XSS 대응 방식을 전사 공통 정책으로 통합.
+          </div>
+          <ul class="bullet">
+            <li>케이스별 XSS 처리 기준 통합 및 <b>가이드 문서화</b></li>
+            <li>전사 공통 <b>XSS 애노테이션</b> 방식으로 통합 적용</li>
+            <li>이중 escape 처리 / JSON 파싱 오류 <b>재발 방지</b></li>
+            <li>→ <mark>다음 해 ISMS 점검에서 XSS 관련 80% 단축</mark></li>
+          </ul>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project">
+          <div class="project-head">
+            <div class="left">
+              <span class="pn">Project 04</span>
+              <span class="pt">커머스 운영 자동화 및 안정성 강화</span>
+            </div>
+            <span class="pp">2024.05 — 2024.07</span>
+          </div>
+          <div class="callout">
+            초도배송비 복구 / 주문 상태 변경 / 공급가 변경 등 수작업 CS 프로세스를 자동화.
+          </div>
+          <ul class="bullet">
+            <li>초도배송비 복구 / 주문상태 변경 / 공급가 수정 등 <b>주문관련 프로세스 자동화</b></li>
+            <li>배송비 매핑 구조 및 정산 로직 분석</li>
+            <li>프로시저 도입, 백오피스 기능 개발</li>
+            <li>→ <mark>초도배송비 환불 CS 연 1,500건 → 10건 이하 (99% 개선)</mark></li>
+            <li>→ <mark>장애 발생 주기(MTBF) 2~3일 → 1개월 이상</mark></li>
+            <li>→ 테스트 코드 도입으로 정책 변경 이후에도 <b>운영 장애 0건 유지</b></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Personal Project -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <h2 class="section-title">개인 프로젝트</h2>
+      <span class="section-meta">SIDE PROJECT</span>
+    </div>
+
+    <div class="career-card">
+      <div class="career-head">
+        <div>
+          <div class="name">코인 자동매매 및 알림 서비스</div>
+          <div class="role">설계 · 개발 · 운영 단독 수행 · 기여도 100%</div>
+        </div>
+        <div class="period">2024.01 — 2025.10</div>
+      </div>
+      <div class="career-body">
+        <div class="stack-row">
+          <span class="pri">Node.js</span>
+          <span class="pri">Python</span>
+          <span class="pri">React</span>
+          <span>Express</span>
+          <span>MySQL</span>
+          <span>Binance API</span>
+          <span>Upbit API</span>
+          <span>TradingView</span>
+        </div>
+        <div class="callout">
+          코인 시장 실시간 데이터 변동성을 분석해 <b>지표 개발 → 백테스트 → 자동매매 → 알림 서비스화</b>까지
+          전 과정을 직접 수행. 멀티프로세스 백테스트와 자동화 기술로 안정적·정합성 높은 매매 시스템 구축.
+        </div>
+
+        <div class="subhead"><span class="num">①</span>지표 개발</div>
+        <ul class="bullet">
+          <li>거래량 폭등 · 추세 반전 캔들패턴 기반 <b>역추세 전략 지표</b> 설계 및 구현</li>
+          <li>TradingView Script 시각화, 조건 충족 시 <b>자동 알림</b> 기능</li>
+        </ul>
+
+        <div class="subhead"><span class="num">②</span>백테스트 및 전략 검증</div>
+        <ul class="bullet">
+          <li>수백만 케이스를 <b>멀티프로세스 병렬 처리</b> — 단일 프로세스 대비 <mark>약 10배 향상</mark></li>
+          <li>상승률 기울기, 최대낙폭(MDD), 변동성 지수(Volatility), PSI 등 다양한 메트릭으로 전략 평가</li>
+          <li>재현성 약 <b>95% 확보</b></li>
+        </ul>
+
+        <div class="subhead"><span class="num">③</span>자동매매 시스템 구축</div>
+        <ul class="bullet">
+          <li>백테스트 검증된 전략을 <b>Binance API 자동매매</b>로 구현, 실매매 환경 수익률·안정성 검증</li>
+          <li><b>이중화 / 장애감지 / 장애예방</b> 메커니즘 설계로 가용성 향상</li>
+        </ul>
+
+        <div class="subhead"><span class="num">④</span>급등락 알림 서비스</div>
+        <ul class="bullet">
+          <li>Binance 데이터 실시간 모니터링, 급등·급락 발생 시 <b>SNS·메신저 자동 알림</b></li>
+          <li>Telegram · X · Instagram · Facebook · Threads <b>멀티 플랫폼 동시 포스팅</b></li>
+          <li>Upbit API 연동, 국내 거래소 가격·티커 한글 제공</li>
+          <li>→ <mark>2025.12 기준 Telegram 구독자 760명</mark></li>
+        </ul>
+
+        <div class="subhead"><span class="num">⑤</span>AI 포트폴리오 대시보드</div>
+        <ul class="bullet">
+          <li>Claude Code(<b>AI Agentic Coding</b>) + React로 코인 수익 포트폴리오 대시보드 개발</li>
+          <li>AI 서비스 연동, 단순 개발을 넘어 <b>데이터 분석 · 전략 설계 · 서비스화 전 과정 독립 수행</b></li>
+        </ul>
       </div>
     </div>
   </div>

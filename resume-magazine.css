@@ -4,29 +4,36 @@
    =========================================================== */
 
 :root {
-  --bg: #f7f5f0;
+  /* Editorial cool monochrome — zinc-based, no warm beige */
+  --bg: #ececef;
   --paper: #ffffff;
-  --paper-2: #faf8f3;
-  --ink: #14142b;
-  --ink-2: #2d2d44;
-  --muted: #6b6b80;
-  --muted-2: #9b9bab;
-  --line: #e8e4dc;
-  --line-2: #d8d4cc;
+  --paper-2: #f4f4f6;
+  --ink: #09090b;
+  --ink-2: #1c1c22;
+  --muted: #71717a;
+  --muted-2: #a1a1aa;
+  --line: #e4e4e7;
+  --line-2: #d4d4d8;
 
-  --accent: #3730a3;
-  --accent-2: #6366f1;
+  /* Bold accent — deeper indigo + electric crimson highlight */
+  --accent: #1e1b4b;
+  --accent-2: #4338ca;
   --accent-soft: #eef2ff;
+  --accent-line: #c7d2fe;
 
-  --why: #c2410c;
-  --why-soft: #fff7ed;
+  --hot: #dc2626;
+  --hot-soft: #fef2f2;
+
+  --why: #b91c1c;
+  --why-soft: #fef2f2;
   --how: #0e7490;
   --how-soft: #ecfeff;
-  --impact: #15803d;
+  --impact: #166534;
   --impact-soft: #f0fdf4;
 
-  --shadow-md: 0 4px 16px rgba(20, 20, 43, 0.06);
-  --shadow-lg: 0 10px 30px rgba(20, 20, 43, 0.08);
+  --shadow-sm: 0 1px 2px rgba(9, 9, 11, 0.05);
+  --shadow-md: 0 6px 24px -8px rgba(9, 9, 11, 0.10);
+  --shadow-lg: 0 18px 48px -12px rgba(9, 9, 11, 0.15);
 
   --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
@@ -44,6 +51,8 @@ html, body {
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent-2); }
@@ -98,16 +107,18 @@ a:hover { color: var(--accent-2); }
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-top: 3px solid var(--ink);
   border-bottom: 1px solid var(--line);
-  padding-bottom: 16px;
+  padding: 12px 0 14px;
   margin-bottom: 36px;
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--muted);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-weight: 600;
 }
-.cover-top .mark { display: flex; align-items: center; gap: 8px; }
-.cover-top .mark .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.cover-top .mark { display: flex; align-items: center; gap: 8px; color: var(--ink); }
+.cover-top .mark .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--hot); }
 .cover-top .meta { display: flex; gap: 22px; }
 .cover-top .meta strong { color: var(--ink); margin-right: 4px; }
 
@@ -120,12 +131,22 @@ a:hover { color: var(--accent-2); }
   border-bottom: 1px solid var(--line);
 }
 .hero .eyebrow {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
+  color: var(--hot);
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero .eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: var(--hot);
+  display: inline-block;
 }
 .hero h1 {
   font-size: 50px;
@@ -136,9 +157,9 @@ a:hover { color: var(--accent-2); }
   margin-bottom: 18px;
 }
 .hero h1 .accent {
-  color: var(--accent);
-  background: linear-gradient(180deg, transparent 60%, rgba(99,102,241,.16) 60%);
-  padding: 0 4px;
+  color: var(--ink);
+  background: linear-gradient(180deg, transparent 62%, var(--hot) 62%, var(--hot) 92%, transparent 92%);
+  padding: 0 6px;
 }
 .hero .subtitle {
   font-size: 15px;
@@ -149,7 +170,8 @@ a:hover { color: var(--accent-2); }
 
 .hero-photo {
   position: relative;
-  width: 100%;
+  width: 70%;
+  margin-left: auto;
   aspect-ratio: 4/5;
   border-radius: 8px;
   background: var(--paper-2);
@@ -202,34 +224,40 @@ a:hover { color: var(--accent-2); }
   margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 .stat {
-  background: var(--paper-2);
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  background: var(--paper);
   padding: 18px 16px;
   position: relative;
+  border-right: 1px solid var(--line);
 }
+.stat:last-child { border-right: 0; }
 .stat .num {
   font-family: var(--font-display);
-  font-size: 38px;
+  font-size: 42px;
   line-height: 1;
-  color: var(--accent);
+  color: var(--ink);
   letter-spacing: 0.02em;
+}
+.stat .num em {
+  font-style: normal;
+  color: var(--hot);
 }
 .stat .label {
   margin-top: 6px;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--ink);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
 }
 .stat .desc {
-  margin-top: 10px;
-  font-size: 12px;
-  color: var(--ink-2);
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: var(--muted);
   line-height: 1.55;
 }
 
@@ -241,25 +269,37 @@ a:hover { color: var(--accent-2); }
   gap: 14px;
   margin-bottom: 18px;
   padding-bottom: 10px;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  position: relative;
+}
+.section-head::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 60px;
+  height: 3px;
+  background: var(--hot);
 }
 .section-num {
   font-family: var(--font-display);
-  font-size: 28px;
-  color: var(--accent);
+  font-size: 30px;
+  color: var(--hot);
   letter-spacing: 0.04em;
 }
 .section-title {
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
 .section-meta {
   margin-left: auto;
-  font-size: 11.5px;
+  font-size: 11px;
   color: var(--muted);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  font-weight: 700;
 }
 
 .summary {
@@ -340,7 +380,7 @@ a:hover { color: var(--accent-2); }
   color: var(--accent);
   letter-spacing: 0.02em;
 }
-.tag.alt { background: #f0f0eb; color: var(--ink-2); }
+.tag.alt { background: #f1f1f4; color: var(--ink-2); }
 
 .project-overview {
   margin-top: 10px;
@@ -374,7 +414,7 @@ a:hover { color: var(--accent-2); }
   margin-bottom: 6px;
   display: block;
 }
-.whi.why { background: var(--why-soft); border-color: #fed7aa; }
+.whi.why { background: var(--why-soft); border-color: #fecaca; }
 .whi.why .label { color: var(--why); }
 .whi.how { background: var(--how-soft); border-color: #a5f3fc; }
 .whi.how .label { color: var(--how); }
@@ -388,7 +428,7 @@ a:hover { color: var(--accent-2); }
 .sub-block {
   margin-top: 14px;
   padding: 14px;
-  background: #fafaf6;
+  background: var(--paper-2);
   border: 1px dashed var(--line-2);
   border-radius: 10px;
 }
@@ -523,21 +563,365 @@ a:hover { color: var(--accent-2); }
   text-transform: uppercase;
 }
 
+/* ============================================================
+   Notion-structure overrides for career / personal / strengths
+   (매거진 디자인 토큰 유지, 노션의 정보 표현 패턴 적용)
+   ============================================================ */
+
+/* career card */
+.career-card {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ink);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: var(--shadow-sm);
+}
+.career-head {
+  padding: 18px 22px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: baseline;
+}
+.career-head .name {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.career-head .role {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 4px;
+  font-weight: 500;
+}
+.career-head .period {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.career-meta {
+  padding: 10px 22px;
+  font-size: 11.5px;
+  color: var(--muted);
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  letter-spacing: 0.02em;
+}
+.career-body { padding: 22px; }
+
+/* override 매거진 .project for notion-structure */
+.career-body .project,
+.career-card + .project,
+.section > .project {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line-2);
+}
+.career-body .project:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.career-body .project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.career-body .project-head .left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.career-body .project-head .pn {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  color: var(--hot);
+  text-transform: uppercase;
+}
+.career-body .project-head .pt {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.career-body .project-head .pp {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+/* stack-row (notion style) */
+.stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 8px 0 12px;
+}
+.stack-row span {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+  letter-spacing: 0.02em;
+}
+.stack-row span.pri {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* callout — bold ink box */
+.callout {
+  padding: 14px 18px;
+  background: var(--paper-2);
+  border-left: 4px solid var(--ink);
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  color: var(--ink-2);
+  margin: 10px 0 14px;
+  line-height: 1.7;
+  font-weight: 500;
+}
+.callout b { color: var(--ink); font-weight: 800; }
+
+/* dual block — WHY / IMPACT side by side */
+.dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 8px 0 12px;
+}
+.dual > div {
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+.dual .why {
+  background: var(--why-soft);
+  border-left: 3px solid var(--why);
+}
+.dual .impact {
+  background: var(--impact-soft);
+  border-left: 3px solid var(--impact);
+}
+.dual .lbl {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  margin-bottom: 6px;
+}
+.dual .why .lbl { color: var(--why); }
+.dual .impact .lbl { color: var(--impact); }
+.dual ul { list-style: none; padding: 0; }
+.dual ul li {
+  padding: 1px 0 1px 14px;
+  position: relative;
+  color: var(--ink-2);
+}
+.dual ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+.dual ul li b { color: var(--ink); font-weight: 700; }
+
+/* subhead — sub-project marker */
+.subhead {
+  font-size: 14.5px;
+  font-weight: 900;
+  color: var(--ink);
+  margin: 16px 0 8px;
+  padding-left: 12px;
+  border-left: 4px solid var(--hot);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+.subhead .num {
+  color: var(--hot);
+  margin-right: 8px;
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  font-size: 16px;
+}
+
+/* bullet list */
+ul.bullet {
+  list-style: none;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.75;
+  margin: 0;
+}
+ul.bullet li {
+  position: relative;
+  padding: 3px 0 3px 20px;
+  color: var(--ink-2);
+}
+ul.bullet li::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 13px;
+  width: 6px;
+  height: 6px;
+  background: var(--ink);
+  border-radius: 0;
+}
+ul.bullet li b { color: var(--ink); font-weight: 700; }
+ul.bullet li mark {
+  background: var(--impact-soft);
+  color: var(--impact);
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* strengths — checkmark grid */
+.str-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 22px;
+  margin-top: 10px;
+}
+.str-list div {
+  padding: 9px 0 9px 22px;
+  position: relative;
+  font-size: 13px;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--line);
+  line-height: 1.6;
+}
+.str-list div:nth-last-child(-n+2) { border-bottom: 0; }
+.str-list div::before {
+  content: '✓';
+  position: absolute;
+  left: 0; top: 9px;
+  color: var(--impact);
+  font-weight: 800;
+  font-size: 14px;
+}
+.str-list div b { color: var(--ink); font-weight: 700; }
+
 /* ---------- Print ---------- */
-@page { size: A4; margin: 12mm; }
+/* @page margin 0 — .page 내부 padding으로 안전영역 확보, 브라우저 기본 여백 영향 제거 */
+@page { size: A4; margin: 0; }
 
 @media print {
-  html, body { background: #fff; }
-  .toolbar { display: none !important; }
-  .page {
-    width: auto;
-    min-height: auto;
+  html, body {
+    background: #fff;
     margin: 0;
     padding: 0;
-    box-shadow: none;
-    page-break-after: always;
+    width: 210mm;
+    font-size: 12px;
+    line-height: 1.6;
   }
-  .page:last-of-type { page-break-after: auto; }
-  .section, .company-card, .project, .sub-block { page-break-inside: avoid; }
-  .whi-grid, .stats, .strength-grid, .skills-grid { page-break-inside: avoid; }
+  .toolbar { display: none !important; }
+
+  /* .page section은 새 인쇄 페이지에서 시작하되, 컨텐츠가 길면 자연스럽게 다음 페이지로 흐름 */
+  .page {
+    width: 210mm;
+    min-height: 0;
+    height: auto;
+    max-height: none;
+    margin: 0;
+    padding: 12mm 14mm;
+    box-shadow: none;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+  .page + .page {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  /* 인쇄 시 전체 간격 컴팩트화 (잘림 방지 + 매거진 톤 유지) */
+  .cover-top { padding: 8px 0 10px; margin-bottom: 18px; }
+  .hero { gap: 24px; padding: 6px 0 18px; }
+  .hero h1 { font-size: 38px; margin-bottom: 12px; }
+  .hero .subtitle { font-size: 13px; line-height: 1.6; }
+  .hero .eyebrow { font-size: 10.5px; margin-bottom: 10px; }
+  .contact-strip { margin-top: 14px; padding: 12px 0; gap: 12px; }
+  .stats { margin-top: 16px; }
+  .stat { padding: 12px 14px; }
+  .stat .num { font-size: 32px; }
+  .stat .desc { font-size: 11px; margin-top: 6px; line-height: 1.5; }
+
+  .section { margin-top: 18px; }
+  .section:first-child { margin-top: 0; }
+  .section-head {
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom-width: 2px;
+  }
+  .section-num { font-size: 24px; }
+  .section-title { font-size: 18px; }
+  .section-meta { font-size: 10px; }
+
+  .summary { font-size: 12px; line-height: 1.7; }
+  .summary p + p { margin-top: 8px; }
+
+  .career-card { margin-top: 10px; }
+  .career-head { padding: 12px 16px; }
+  .career-head .name { font-size: 15px; }
+  .career-head .role { font-size: 11.5px; }
+  .career-head .period { font-size: 11.5px; }
+  .career-meta { padding: 8px 16px; font-size: 10.5px; gap: 10px; }
+  .career-body { padding: 14px 16px; }
+
+  .project { margin-top: 12px; padding-top: 12px; }
+  .career-body .project-head .pn { font-size: 12px; }
+  .career-body .project-head .pt { font-size: 14.5px; }
+  .career-body .project-head .pp { font-size: 10.5px; }
+  .stack-row { margin: 6px 0 8px; }
+  .stack-row span { font-size: 10px; padding: 2px 7px; }
+  .callout { padding: 10px 14px; font-size: 11.5px; margin: 8px 0 10px; line-height: 1.6; }
+  .dual { gap: 8px; margin: 6px 0 10px; }
+  .dual > div { padding: 10px 12px; font-size: 11px; line-height: 1.55; }
+  .dual .lbl { font-size: 12px; margin-bottom: 4px; }
+  .subhead { font-size: 12.5px; margin: 10px 0 6px; padding-left: 10px; }
+  .subhead .num { font-size: 14px; }
+  ul.bullet { font-size: 11.5px; line-height: 1.6; }
+  ul.bullet li { padding: 2px 0 2px 18px; }
+
+  .edu-grid { gap: 10px; margin-top: 8px; }
+  .edu-card { padding: 10px 12px; }
+  .edu-card .title { font-size: 12.5px; }
+  .edu-card .meta { font-size: 10.5px; }
+  .cert-list { gap: 5px; margin-top: 8px; }
+  .cert { padding: 7px 12px; font-size: 11px; }
+  .skills-grid { gap: 12px; margin-top: 8px; }
+  .skill-col h4 { font-size: 10.5px; margin-bottom: 6px; padding-bottom: 4px; }
+  .skill-col .tag { font-size: 10px; padding: 2px 7px; }
+  .str-list { gap: 2px 16px; margin-top: 6px; }
+  .str-list div { padding: 6px 0 6px 18px; font-size: 11.5px; line-height: 1.5; }
+  .foot { margin-top: 18px; padding-top: 10px; font-size: 9.5px; }
+
+  /* 분할 회피 — 단, 한 페이지를 넘는 컨텐츠는 자동 분할 허용 */
+  .project, .callout, .dual, .subhead, .stat, .edu-card, .cert {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .career-head, .career-meta, .section-head, .subhead {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
 }
