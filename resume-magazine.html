@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>김찬영 · Resume (Magazine Edition)</title>
+  <meta name="description" content="김찬영 이력서 · 매거진 에디션. 백엔드 / MSA / 커머스 도메인 전문가" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="resume-magazine.css" />
+</head>
+<body>
+
+<div class="toolbar">
+  <a href="resume.html" class="ghost">← 다른 스타일</a>
+  <button onclick="window.print()">🖨 PDF 저장</button>
+</div>
+
+<!-- ============ PAGE 1 · COVER ============ -->
+<section class="page">
+  <div class="cover-top">
+    <div class="mark">
+      <span class="dot"></span>
+      <span>Resume · Magazine Edition</span>
+    </div>
+    <div class="meta">
+      <span><strong>For</strong> Backend Engineering</span>
+      <span><strong>Updated</strong> 2026.04</span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Backend Engineer · Commerce Domain</div>
+      <h1>
+        장애에 강하고<br />
+        변화에 유연한<br />
+        시스템을 만드는<br />
+        <span class="accent">김찬영</span>
+      </h1>
+      <p class="subtitle">
+        커머스 복지몰의 <b>주문 · 배송 · 결제</b> 도메인을 전담하며,
+        <b>MSA 분산 트랜잭션</b>과 <b>비동기 메시징</b>으로
+        반복 장애를 줄이고 정책 변경에 강한 구조를 설계해 왔습니다.
+      </p>
+    </div>
+    <div class="hero-photo">
+      <img src="docs/picture.jpg" alt="김찬영 프로필" onerror="this.style.display='none'" />
+      <span class="badge">CHAN YOUNG · 1993</span>
+    </div>
+  </div>
+
+  <div class="contact-strip">
+    <div>
+      <div class="label">Email</div>
+      <div class="value">emrhssla@gmail.com</div>
+    </div>
+    <div>
+      <div class="label">Phone</div>
+      <div class="value">010-9192-1372</div>
+    </div>
+    <div>
+      <div class="label">Location</div>
+      <div class="value">경기 수원시 권선구</div>
+    </div>
+    <div>
+      <div class="label">Portfolio</div>
+      <a href="https://chanyoung-dev.github.io/Profile/" target="_blank">chanyoung-dev.github.io</a>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="num">3.8 yrs</div>
+      <div class="label">Commerce Backend</div>
+      <div class="desc">SK 엠앤서비스 주문·결제 도메인</div>
+    </div>
+    <div class="stat">
+      <div class="num">73%↓</div>
+      <div class="label">MTTR Reduced</div>
+      <div class="desc">테스트 코드 + 시나리오 검증으로 45분 → 12분</div>
+    </div>
+    <div class="stat">
+      <div class="num">99%↓</div>
+      <div class="label">CS Tickets</div>
+      <div class="desc">초도배송비 자동화로 연 1,500건 → 10건</div>
+    </div>
+    <div class="stat">
+      <div class="num">76.5%↓</div>
+      <div class="label">Incident Rate</div>
+      <div class="desc">근본 원인 개선으로 장애율 감소</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">간략 소개</h2>
+      <span class="section-meta">PROFILE</span>
+    </div>
+    <div class="summary">
+      <p>
+        정보통신공학을 전공하고 커머스 핵심 도메인에서 실무 경험을 쌓아온 개발자입니다.
+        제가 개발자로서 전문성을 쌓아온 경험은 크게 두 가지입니다.
+      </p>
+      <p>
+        <b>첫째,</b> 고객사 맞춤 복지몰 서비스를 제공하는 회사에서 <b>주문 · 결제 도메인</b>을 전담하며 실무를 수행했습니다.
+        고객사별 맞춤 정책과 복지포인트, 다양한 결제·배송 규칙이 공존하는 환경에서
+        정합성과 신뢰성이 중요한 핵심 도메인을 <b>MSA와 분산 트랜잭션 구조</b>로 운영하며 안정성을 높여왔습니다.
+        일일 모니터링으로 오류 여부를 상시 점검하고, 단순 조치에 그치지 않고
+        객체지향적 리팩토링, 테스트 코드, MQ 비동기 처리를 통해 근본 원인을 제거하며 신뢰성과 효율성을 높였습니다.
+      </p>
+      <p>
+        <b>둘째,</b> 개인 프로젝트로 <b>AI Agentic Coding</b>을 통해 코인 자동매매 및 알림 서비스를 직접 설계·개발·운영한 경험이 있습니다.
+        실자동매매 시스템, 알림 서비스와 백테스트 환경을 구축하였고
+        AI서비스를 연동한 AI 포트폴리오 대시보드를 개발했습니다.
+        이 경험을 통해 멀티프로세스 기반의 대규모 데이터 처리 경험을 쌓을 수 있었습니다.
+      </p>
+      <p>
+        앞으로는 이러한 경험을 바탕으로 <b>신뢰성 높은 시스템 구축</b>과
+        <b>대규모 트래픽에도 문제없는 시스템</b>을 만들겠습니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Resume · Chan Young Kim</span>
+    <span>Page 01 / 03</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 2 · CAREER ============ -->
+<section class="page">
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">경력</h2>
+      <span class="section-meta">3년 10개월 · CAREER</span>
+    </div>
+
+    <div class="company-card">
+      <div class="company-head">
+        <div>
+          <div class="name">SK 엠앤서비스(주) · 커머스개발1팀</div>
+          <div class="role">대리 / 팀원 3년차 · 풀스택 개발자</div>
+        </div>
+        <div class="period">2022.07 — 재직중</div>
+      </div>
+      <div class="company-meta">
+        <span>설립 2000.02</span>
+        <span>매출 2,470억</span>
+        <span>임직원 1,132명</span>
+        <span>시스템 SW 개발 / 공급</span>
+      </div>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="project">
+      <div class="project-head">
+        <span class="num">01</span>
+        <span class="title">주문 고도화 프로젝트</span>
+        <span class="period">2024.12 — 2025.06</span>
+      </div>
+      <div class="project-stack">
+        <span class="tag">Spring Boot</span>
+        <span class="tag">Java</span>
+        <span class="tag">MyBatis</span>
+        <span class="tag">Oracle</span>
+        <span class="tag">MSA</span>
+        <span class="tag">RabbitMQ</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Jenkins</span>
+      </div>
+      <div class="project-overview">
+        주문 관련 대규모 커머스 리뉴얼 프로젝트로, 상품·배송비 구조 분리, 취소/교환/반품 개선 및
+        주문 시스템 안정화를 수행했습니다.
+      </div>
+
+      <div class="sub-block">
+        <div class="sub-title"><span class="num">1.1</span>MSA 주문·배송·결제 전면 재설계</div>
+        <div class="whi-grid">
+          <div class="whi why">
+            <span class="label">WHY</span>
+            상품·배송비·주문이 강하게 결합되어 정책 변경에 유연하게 대응이 어려웠음
+          </div>
+          <div class="whi how">
+            <span class="label">HOW</span>
+            <ul>
+              <li>상품·배송비 구조 N:N 분리</li>
+              <li>취소/반품/교환 프로세스 개선</li>
+              <li>멱등성 · 동시성 · 분산 트랜잭션 제어</li>
+              <li>변화에 강한 객체지향 리팩토링</li>
+            </ul>
+          </div>
+          <div class="whi impact">
+            <span class="label">IMPACT</span>
+            <ul>
+              <li>다양한 정책 변경에 유연 대응</li>
+              <li>조건부·부분 취소 등 복잡 케이스 처리</li>
+              <li>장애 리스크 최소화 아키텍처 확보</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-block">
+        <div class="sub-title"><span class="num">1.2</span>주문 핵심 시나리오 중심 테스트 코드 도입</div>
+        <div class="whi-grid">
+          <div class="whi why">
+            <span class="label">WHY</span>
+            정책 변경 시 사이드이펙트 우려로 개발 속도 저하, 수동 검증 부담
+          </div>
+          <div class="whi how">
+            <span class="label">HOW</span>
+            <ul>
+              <li>MSA 통합 테스트 환경 이해</li>
+              <li>주문·결제·배송 핵심 시나리오 테스트</li>
+              <li>Persistence layer 테스트환경 구축</li>
+            </ul>
+          </div>
+          <div class="whi impact">
+            <span class="label">IMPACT</span>
+            <ul>
+              <li>MTTR <b>45분 → 12분</b> (약 73% 단축)</li>
+              <li>정책 변경 시 검증 시간 대폭 감소</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-block">
+        <div class="sub-title"><span class="num">1.3</span>RabbitMQ 도입을 통한 주문 처리 구조 개선</div>
+        <div class="whi-grid">
+          <div class="whi why">
+            <span class="label">WHY</span>
+            외부 연동(현금영수증) 지연으로 주문 실패 전파, 후행 작업(이메일·영수증) 누락 발생
+          </div>
+          <div class="whi how">
+            <span class="label">HOW</span>
+            <ul>
+              <li>주문 완료 이벤트 기준 후행 작업 분리</li>
+              <li>RabbitMQ 비동기 처리로 전환</li>
+              <li>DLQ / 재시도 큐 활용</li>
+              <li>순서 보장 · 컨테이너 재기동 제약 고려</li>
+              <li>대량 INSERT는 Consumer 순차 처리</li>
+            </ul>
+          </div>
+          <div class="whi impact">
+            <span class="label">IMPACT</span>
+            <ul>
+              <li>장애 전파 차단, 가용성·확장성 확보</li>
+              <li>대규모 트래픽 대응 가능</li>
+              <li>DB 부하 감소 및 시스템 안정성 확보</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Resume · Chan Young Kim</span>
+    <span>Page 02 / 03</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 3 · CAREER 2 ============ -->
+<section class="page">
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">경력 (계속)</h2>
+      <span class="section-meta">CAREER · CONTINUED</span>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project">
+      <div class="project-head">
+        <span class="num">02</span>
+        <span class="title">운영 모니터링 및 운영 개선</span>
+        <span class="period">상시</span>
+      </div>
+      <div class="project-stack">
+        <span class="tag">DataDog</span>
+        <span class="tag alt">근본 원인 분석</span>
+      </div>
+      <div class="whi-grid">
+        <div class="whi why">
+          <span class="label">WHY</span>
+          정기적 일일 로그 분석 및 장애 점검, 근본 원인 파악으로 운영 안정화 필요
+        </div>
+        <div class="whi how">
+          <span class="label">HOW</span>
+          <ul>
+            <li>DataDog 실시간 모니터링</li>
+            <li>정책 · 비즈니스 로직 지속 개선</li>
+            <li>재고 동시성, 포인트 연마감, 결제 취소 이슈 등 근본 원인 분석</li>
+          </ul>
+        </div>
+        <div class="whi impact">
+          <span class="label">IMPACT</span>
+          <ul>
+            <li>장애 인지 시간 <b>20분 → 2분</b> 이내</li>
+            <li>장애율 <b>76.5% 감소</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project">
+      <div class="project-head">
+        <span class="num">03</span>
+        <span class="title">ISMS 대응</span>
+        <span class="period">2025.06 — 2025.07</span>
+      </div>
+      <div class="whi-grid">
+        <div class="whi why">
+          <span class="label">WHY</span>
+          MSA 구조에서 서비스별 XSS 대응 방식이 제각각, 정책 일관성 부재
+        </div>
+        <div class="whi how">
+          <span class="label">HOW</span>
+          <ul>
+            <li>케이스별 XSS 처리 기준 통합 가이드 구축</li>
+            <li>전사 공통 XSS 애노테이션 방식 통합</li>
+          </ul>
+        </div>
+        <div class="whi impact">
+          <span class="label">IMPACT</span>
+          <ul>
+            <li>MSA 구조에서의 XSS 대응 정립</li>
+            <li>이중 escape · JSON 파싱 오류 재발 방지</li>
+            <li>다음 해 ISMS 점검 XSS 관련 <b>80% 단축</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project">
+      <div class="project-head">
+        <span class="num">04</span>
+        <span class="title">커머스 운영 자동화 및 안정성 강화</span>
+        <span class="period">2024.05 — 2024.07</span>
+      </div>
+      <div class="project-overview">
+        초도배송비 복구 / 주문 상태 변경 / 공급가 변경 등 수작업 CS 프로세스를 자동화했습니다.
+      </div>
+      <div class="whi-grid">
+        <div class="whi how">
+          <span class="label">HOW</span>
+          <ul>
+            <li>주문 관련 프로세스 자동화</li>
+            <li>배송비 매핑 · 정산 로직 분석</li>
+            <li>프로시저 도입, 백오피스 기능 개발</li>
+          </ul>
+        </div>
+        <div class="whi impact">
+          <span class="label">IMPACT</span>
+          <ul>
+            <li>초도배송비 환불 CS <b>연 1,500건 → 10건 이하</b> (99% 개선)</li>
+            <li>MTBF 약 <b>2~3일 → 1개월 이상</b></li>
+            <li>테스트 코드 도입 후 운영 장애 <b>0건 유지</b></li>
+          </ul>
+        </div>
+        <div class="whi why">
+          <span class="label">CONTEXT</span>
+          반복되는 CS와 운영 부담을 줄이기 위해 자동화 우선 접근
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strengths -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">총평 및 주요 강점</h2>
+      <span class="section-meta">STRENGTHS</span>
+    </div>
+    <div class="strength-grid">
+      <div class="strength"><span class="icn">D</span><div><b>도메인 전문성</b> — 커머스 핵심 로직(배송비·결제·취소·교환·반품) 깊은 이해</div></div>
+      <div class="strength"><span class="icn">T</span><div><b>테스트·자동화</b> — 검증 체계 도입으로 장애율 대폭 감소</div></div>
+      <div class="strength"><span class="icn">S</span><div><b>보안·운영 안정성</b> — XSS · SQL Injection 방어 및 로그 기반 모니터링</div></div>
+      <div class="strength"><span class="icn">A</span><div><b>아키텍처 설계</b> — 유지보수·확장성에 강한 시스템 설계 경험</div></div>
+      <div class="strength"><span class="icn">M</span><div><b>MSA · 분산 트랜잭션</b> — 주문·결제·배송 도메인에서의 실전 경험</div></div>
+      <div class="strength"><span class="icn">R</span><div><b>장애 개선</b> — MTBF 4~6배↑, MTTR 60~75%↓ 달성</div></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Resume · Chan Young Kim</span>
+    <span>Page 03 / 03</span>
+  </div>
+</section>
+
+<!-- ============ PAGE 4 · PERSONAL & MORE ============ -->
+<section class="page">
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">개인 프로젝트</h2>
+      <span class="section-meta">SIDE PROJECT</span>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <span class="title">코인 자동매매 및 알림 서비스</span>
+        <span class="period">2024.01 — 2025.10</span>
+      </div>
+      <div class="project-stack">
+        <span class="tag">Node.js</span>
+        <span class="tag">Python</span>
+        <span class="tag">React</span>
+        <span class="tag">Express</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Binance API</span>
+        <span class="tag">Upbit API</span>
+        <span class="tag">TradingView</span>
+        <span class="tag alt">기여도 100%</span>
+      </div>
+      <div class="project-overview">
+        코인 시장의 실시간 데이터 변동성을 분석해 <b>지표 개발 → 백테스트 → 자동매매 → 알림 서비스화</b>까지
+        전 과정을 직접 수행한 개인 프로젝트. 멀티프로세스 백테스트, 자동화 기술을 결합해
+        안정적이고 정합성 높은 매매 시스템을 구축했습니다.
+      </div>
+
+      <ul class="bullets">
+        <li><b>① 지표 개발</b> — 거래량 폭등 · 추세 반전 캔들패턴 기반 역추세 전략 설계, TradingView Script 시각화 및 자동 알림</li>
+        <li><b>② 백테스트 / 전략 검증</b> — 수백만 케이스 멀티프로세스 병렬 처리, 단일 대비 약 <b>10배</b> 향상. MDD · Volatility · PSI 메트릭, 재현성 약 95%</li>
+        <li><b>③ 자동매매 시스템</b> — Binance API 기반 자동매매, 이중화·장애감지·장애예방 메커니즘으로 가용성 향상</li>
+        <li><b>④ 급등락 알림 서비스</b> — Telegram · X · Instagram · Facebook · Threads 멀티 SNS 동시 포스팅, Upbit 가격·티커 한글 제공. <b>2025.12 기준 Telegram 구독자 760명</b></li>
+        <li><b>⑤ AI 포트폴리오 대시보드</b> — Claude Code(AI Agentic Coding) + React로 수익 포트폴리오 대시보드 개발, AI 서비스 연동</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">학력 / 교육</h2>
+      <span class="section-meta">EDUCATION</span>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="title">성결대학교 (4년제) · 정보통신공학</div>
+        <div class="meta">
+          <span>2013.03 — 2020.02</span>
+          <span><strong>졸업</strong></span>
+          <span>학점 <strong>3.17 / 4.5</strong></span>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="title">영생고등학교 · 이과계열</div>
+        <div class="meta">
+          <span>2009.03 — 2012.02</span>
+          <span><strong>졸업</strong></span>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="title">구름 · 쿠버네티스 전문가 양성 과정</div>
+        <div class="meta">
+          <span>2021.12 — 2022.05</span>
+          <span>네트워크 · 리눅스 · 도커 · AWS · 쿠버네티스</span>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="title">기술 블로그 운영</div>
+        <div class="meta">
+          <span>2018.12 —</span>
+          <span><a href="https://chanyoung-dev.github.io/" target="_blank">chanyoung-dev.github.io</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certs -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2 class="section-title">자격 / 어학 / 수상</h2>
+      <span class="section-meta">CERTIFICATIONS</span>
+    </div>
+    <div class="cert-list">
+      <div class="cert"><span class="name">정보처리기사</span><span class="org">한국산업인력공단</span><span class="date">2019.08</span></div>
+      <div class="cert"><span class="name">TOEIC 760</span><span class="org">영어</span><span class="date">2020.07</span></div>
+      <div class="cert"><span class="name">한이음 ICT 공모전 입상</span><span class="org">한국정보산업연합회</span><span class="date">2019.12</span></div>
+      <div class="cert"><span class="name">한국사능력검정시험 1급</span><span class="org">국사편찬위원회</span><span class="date">2019.08</span></div>
+      <div class="cert"><span class="name">SK Supex</span><span class="org">SK</span><span class="date">2025.03</span></div>
+      <div class="cert"><span class="name">MOS Word 2010 Expert</span><span class="org">Microsoft</span><span class="date">2018.10</span></div>
+      <div class="cert"><span class="name">MOS Outlook 2010 Core</span><span class="org">Microsoft</span><span class="date">2018.12</span></div>
+      <div class="cert"><span class="name">1종 보통 운전면허</span><span class="org">경찰청</span><span class="date">2014.10</span></div>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <h2 class="section-title">기술 스택</h2>
+      <span class="section-meta">SKILLS</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h4>Backend</h4>
+        <div class="tags">
+          <span class="tag">Java</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">Spring Framework</span>
+          <span class="tag">Spring Data JPA</span>
+          <span class="tag">MyBatis</span>
+          <span class="tag">JSP</span>
+          <span class="tag">Thymeleaf</span>
+          <span class="tag">MSA</span>
+          <span class="tag">RabbitMQ</span>
+          <span class="tag">Python</span>
+          <span class="tag">Node.js</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <h4>Frontend</h4>
+        <div class="tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">jQuery</span>
+          <span class="tag">Vue.js</span>
+          <span class="tag">React</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <h4>Infra · DB · etc.</h4>
+        <div class="tags">
+          <span class="tag">Oracle</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Jenkins</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">git</span>
+          <span class="tag">AI Agentic Coding</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>chanyoung-dev.github.io · emrhssla@gmail.com</span>
+    <span>Page 04 / 04</span>
+  </div>
+</section>
+
+</body>
+</html>
