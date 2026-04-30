@@ -1,5 +1,5 @@
 /* ===========================================================
-   Chan Young Portfolio · PDF Edition · main_upgrade.js
+   Chan Yeong Portfolio · PDF Edition · main_upgrade.js
    - PDF 출력 보조 / 시각 효과 / 인터랙션
    =========================================================== */
 
@@ -184,7 +184,7 @@
       animateSkillBars();
     }, 350);
 
-    console.log('%cChan Young · Portfolio (PDF Edition)', 'color:#4338ca; font-weight:700; font-size:13px;');
+    console.log('%cChan Yeong · Portfolio (PDF Edition)', 'color:#4338ca; font-weight:700; font-size:13px;');
     console.log('단축키: [E] 모두 펼치기 · [T] 맨 위로 · [⌘/Ctrl+P] PDF 저장');
   });
 })();
