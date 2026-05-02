@@ -672,6 +672,39 @@ img { max-width: 100%; display: block; }
   font-size: 11px;
   color: var(--muted);
 }
+.sub-block-metrics {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.sub-block-metrics .chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.sub-block-metrics .chip .num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.sub-block-metrics .chip .lab {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.sub-block-metrics .chip.green  .num { color: var(--impact); }
+.sub-block-metrics .chip.cyan   .num { color: var(--solve); }
+.sub-block-metrics .chip.orange .num { color: var(--warn); }
 
 /* ---------- Liquid Glass Flow Cards (Apple style) ---------- */
 .flow {
@@ -1220,125 +1253,178 @@ img { max-width: 100%; display: block; }
      .ai-card (.coin-ai-banner 내부)에만 투명 유리 효과 적용.
    ========================================================= */
 
-/* (1) Outer containers use the classic ai-card pastel gradient
-       so that inner glass cards have a soft surface to refract. */
+/* (1) Outer containers — barely-perceptible page-palette gradient.
+       페이지 컨셉 컬러(인디고 accent-soft → 크림 bg → 화이트 surface)로
+       거의 차이 없는 미세 그라데이션. */
 body.liquid-theme .sub-block,
 body.liquid-theme .coin-ai-banner {
   position: relative;
-  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 60%, #fdf4ff 100%);
-  border-color: #e0e7ff;
+  background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bg) 60%, var(--surface) 100%);
+  border: 1px solid #e0e7ff;
   box-shadow:
-    var(--shadow-md),
+    0 4px 16px -8px rgba(67,56,202,0.08),
     inset 0 1px 0 rgba(255,255,255,0.9);
+  overflow: hidden;
 }
 
-/* (2) .flow-card → highly transparent glass with refractive edges */
+/* (2) .flow-card → ultra-transparent glass outline */
 body.liquid-theme .flow-card {
+  border-radius: 36px !important;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(200%);
-  backdrop-filter: blur(24px) saturate(200%);
-  border: 1px solid rgba(255,255,255,0.65) !important;
+    /* faint diagonal shine band */
+    linear-gradient(118deg,
+      transparent 30%,
+      rgba(255,255,255,0.25) 44%,
+      rgba(255,255,255,0.40) 48%,
+      rgba(255,255,255,0.15) 54%,
+      transparent 66%
+    ),
+    /* one corner sparkle accent */
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 3%),
+    radial-gradient(circle at 88% 72%, rgba(255,255,255,0.40) 0%, rgba(255,255,255,0) 2.5%),
+    /* base — almost fully transparent */
+    linear-gradient(155deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
+  border: 1.5px solid rgba(255,255,255,0.6) !important;
   box-shadow:
-    inset 0 1.5px 0 rgba(255,255,255,1),
-    inset 0 -1.5px 1px rgba(255,255,255,0.25),
-    inset 1px 0 0 rgba(255,255,255,0.45),
-    inset -1px 0 0 rgba(255,255,255,0.35),
-    0 14px 36px -12px rgba(99,102,241,0.25),
-    0 4px 12px -4px rgba(99,102,241,0.12) !important;
+    inset 0 1.5px 0 rgba(255,255,255,0.85),
+    inset 0 -1px 2px rgba(255,255,255,0.20),
+    inset 1.5px 0 0 rgba(255,255,255,0.35),
+    inset -1.5px 0 0 rgba(255,255,255,0.30),
+    0 10px 28px -10px rgba(15,23,42,0.10),
+    0 4px 12px -4px rgba(15,23,42,0.05) !important;
 }
 /* hide the colored ::before tint in liquid mode so glass stays clear */
 body.liquid-theme .flow-card::before { opacity: 0; }
-/* crisp specular top highlight (light catching the curved glass edge) */
+/* subtle specular top edge (kept light) */
 body.liquid-theme .flow-card::after {
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.95) 0%,
-    rgba(255,255,255,0.45) 18%,
-    rgba(255,255,255,0.10) 50%,
-    rgba(255,255,255,0) 80%
+    rgba(255,255,255,0.6) 0%,
+    rgba(255,255,255,0.20) 25%,
+    rgba(255,255,255,0) 60%
   );
-  height: 65%;
-  opacity: 0.9;
+  height: 50%;
+  opacity: 0.7;
 }
-/* lbl chip → cleaner glass pill */
+/* lbl chip → semi-transparent capsule pill */
 body.liquid-theme .flow-card .lbl {
-  background: rgba(255,255,255,0.35);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  backdrop-filter: blur(12px) saturate(180%);
-  border-color: rgba(255,255,255,0.6) !important;
+  background: rgba(255,255,255,0.16);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.55) !important;
+  border-radius: 999px !important;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.95),
-    0 1px 2px rgba(31,38,135,0.06);
+    inset 0 1px 0 rgba(255,255,255,0.85),
+    inset 0 -1px 2px rgba(255,255,255,0.20),
+    0 2px 8px rgba(15,23,42,0.06) !important;
+  color: var(--ink) !important;
+  padding: 5px 14px !important;
 }
 
-/* (3) .ai-card → highly transparent glass with refractive edges */
+/* (3) .ai-card → iOS 26 Liquid Glass capsule */
 body.liquid-theme .ai-card {
+  border-radius: 36px !important;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 100%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(200%);
-  backdrop-filter: blur(24px) saturate(200%);
-  border: 1px solid rgba(255,255,255,0.65) !important;
+    /* primary diagonal shine band (fixed) */
+    linear-gradient(118deg,
+      transparent 26%,
+      rgba(255,255,255,0.65) 40%,
+      rgba(255,255,255,0.95) 46%,
+      rgba(255,255,255,0.40) 52%,
+      transparent 64%
+    ),
+    /* secondary subtle parallel shine */
+    linear-gradient(118deg,
+      transparent 64%,
+      rgba(255,255,255,0.40) 74%,
+      rgba(255,255,255,0.12) 80%,
+      transparent 88%
+    ),
+    /* sparkle starburst — top-left big glint */
+    radial-gradient(circle at 12% 16%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 1%, rgba(255,255,255,0) 3.5%),
+    /* small accent sparkles */
+    radial-gradient(circle at 32% 30%, rgba(255,255,255,0.80) 0%, rgba(255,255,255,0) 1.5%),
+    radial-gradient(circle at 72% 18%, rgba(255,255,255,0.70) 0%, rgba(255,255,255,0) 1.8%),
+    radial-gradient(circle at 90% 64%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 2.5%),
+    radial-gradient(circle at 56% 88%, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0) 1.8%),
+    /* base glass — semi-transparent, surface visible through */
+    linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.05) 60%, rgba(255,255,255,0.02) 100%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) brightness(105%);
+  backdrop-filter: blur(16px) saturate(140%) brightness(105%);
+  border: 1.5px solid rgba(255,255,255,0.7) !important;
   box-shadow:
-    inset 0 1.5px 0 rgba(255,255,255,1),
-    inset 0 -1.5px 1px rgba(255,255,255,0.25),
-    inset 1px 0 0 rgba(255,255,255,0.45),
-    inset -1px 0 0 rgba(255,255,255,0.35),
-    0 14px 36px -12px rgba(99,102,241,0.25),
-    0 4px 12px -4px rgba(99,102,241,0.12) !important;
+    inset 0 2px 0 rgba(255,255,255,0.95),
+    inset 0 -2px 4px rgba(255,255,255,0.30),
+    inset 2px 0 0 rgba(255,255,255,0.45),
+    inset -2px 0 0 rgba(255,255,255,0.40),
+    inset 0 0 0 0.5px rgba(255,255,255,0.35),
+    0 18px 50px -12px rgba(15,23,42,0.18),
+    0 8px 20px -6px rgba(15,23,42,0.08) !important;
   position: relative;
   overflow: hidden;
 }
 /* specular top highlight on ai-card too */
 body.liquid-theme .ai-card .ai-body { position: relative; z-index: 2; }
 body.liquid-theme .ai-card > .ai-icon { position: relative; z-index: 2; }
-/* soft indigo edge (matches classic palette) */
+/* iOS Liquid Glass rim — bright outer stroke (matches kit's stroke=0.6 white) */
 body.liquid-theme .ai-card::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, #c7d2fe 0%, #ddd6fe 60%, #fbcfe8 100%);
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.50) 50%, rgba(255,255,255,1) 100%);
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 1;
 }
+/* ai-icon → semi-transparent squircle button */
 body.liquid-theme .ai-icon {
-  background: rgba(255,255,255,0.30);
-  -webkit-backdrop-filter: blur(14px) saturate(180%);
-  backdrop-filter: blur(14px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.16);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1.2px solid rgba(255,255,255,0.55);
+  border-radius: 22px;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.95),
-    0 2px 8px rgba(31,38,135,0.08);
+    inset 0 1.5px 0 rgba(255,255,255,0.9),
+    inset 0 -1.5px 2px rgba(255,255,255,0.20),
+    inset 0 0 0 0.5px rgba(255,255,255,0.30),
+    0 6px 16px rgba(15,23,42,0.08);
 }
+/* ai-tag → semi-transparent capsule pill */
 body.liquid-theme .ai-tag {
-  background: rgba(255,255,255,0.35) !important;
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  backdrop-filter: blur(12px) saturate(180%);
-  border-color: rgba(255,255,255,0.6) !important;
+  background: rgba(255,255,255,0.16) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.55) !important;
+  border-radius: 999px !important;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.95),
-    0 1px 2px rgba(31,38,135,0.06);
+    inset 0 1px 0 rgba(255,255,255,0.85),
+    inset 0 -1px 2px rgba(255,255,255,0.20),
+    0 2px 8px rgba(15,23,42,0.06) !important;
+  color: var(--ink) !important;
+  padding: 4px 12px !important;
 }
+/* light sky surface → keep classic dark ink, no glow shadows needed */
 
 /* ai-card top specular highlight (added via gradient overlay) */
 body.liquid-theme .ai-card::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 60%;
+  height: 65%;
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.85) 0%,
-    rgba(255,255,255,0.35) 25%,
-    rgba(255,255,255,0.05) 60%,
-    rgba(255,255,255,0) 100%
+    rgba(255,255,255,1) 0%,
+    rgba(255,255,255,0.55) 18%,
+    rgba(255,255,255,0.15) 45%,
+    rgba(255,255,255,0) 90%
   );
   border-radius: var(--radius-md) var(--radius-md) 60% 60% / var(--radius-md) var(--radius-md) 100% 100%;
   pointer-events: none;
