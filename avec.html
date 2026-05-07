@@ -79,6 +79,30 @@
   [data-reveal="zoom"]  { transform: scale(.94); }
   [data-reveal="zoom"].in { transform: scale(1); }
 
+  /* Line mask reveal — text slides up from behind a horizontal mask */
+  .ml {
+    display: block;
+    overflow: hidden;
+    line-height: 1.15;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.08em;
+  }
+  .ml-i {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 1.1s cubic-bezier(.7,0,.2,1);
+    will-change: transform;
+  }
+  [data-reveal].in .ml-i,
+  [data-reveal-text].in .ml-i { transform: translateY(0); }
+  [data-reveal-text] { display: block; }
+  [data-reveal-text]:not(.in) .ml-i { transform: translateY(110%); }
+
+  .ml.d1 .ml-i { transition-delay: .08s; }
+  .ml.d2 .ml-i { transition-delay: .18s; }
+  .ml.d3 .ml-i { transition-delay: .28s; }
+  .ml.d4 .ml-i { transition-delay: .38s; }
+
   /* Stagger delays */
   [data-delay="1"] { transition-delay: .08s; }
   [data-delay="2"] { transition-delay: .16s; }
@@ -187,12 +211,16 @@
     background-position: center;
     animation: bgZoomOut 1.6s cubic-bezier(.22,.61,.36,1) both;
   }
-  .hero > * { animation: fadeUp .9s cubic-bezier(.22,.61,.36,1) both; }
+  .hero .hero-eyebrow,
+  .hero .hero-tagline,
+  .hero .hero-sub { animation: fadeUp .9s cubic-bezier(.22,.61,.36,1) both; }
   .hero .hero-eyebrow { animation-delay: .25s; }
-  .hero h1             { animation-delay: .45s; }
-  .hero .hero-tagline  { animation-delay: .75s; }
-  .hero .hero-sub      { animation-delay: .95s; }
-  .hero .scroll-cue    { animation: fadeIn 1s ease 1.4s both; }
+  .hero .hero-tagline { animation-delay: .85s; }
+  .hero .hero-sub     { animation-delay: 1.05s; }
+  .hero .scroll-cue   { animation: fadeIn 1s ease 1.4s both; }
+  .hero h1 .ml-i { transition-duration: 1.2s; }
+  .hero h1 .ml.d1 .ml-i { transition-delay: .35s; }
+  .hero h1 .ml.d2 .ml-i { transition-delay: .55s; }
   .hero-eyebrow {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
@@ -582,7 +610,10 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-eyebrow">Interior Architecture &amp; Brand Consulting</div>
-  <h1><em>It creates more than</em><br />just a beautiful space.</h1>
+  <h1 data-reveal-text>
+    <span class="ml d1"><span class="ml-i"><em>It creates more than</em></span></span>
+    <span class="ml d2"><span class="ml-i">just a beautiful space.</span></span>
+  </h1>
   <div class="hero-tagline">진심을 담아 제대로</div>
   <div class="hero-sub">AVEC specializes in interior architecture and brand consulting.</div>
   <div class="scroll-cue">SCROLL</div>
@@ -593,7 +624,10 @@
     <div class="about-img" data-reveal="left"></div>
     <div class="about-copy">
       <div class="label" data-reveal data-delay="1">— About AVEC</div>
-      <h2 class="section-title" data-reveal data-delay="2">아름다운 공간,<br /><em>그 이상을 만듭니다.</em></h2>
+      <h2 class="section-title" data-reveal-text data-delay="2">
+        <span class="ml d1"><span class="ml-i">아름다운 공간,</span></span>
+        <span class="ml d2"><span class="ml-i"><em>그 이상을 만듭니다.</em></span></span>
+      </h2>
       <p data-reveal data-delay="3">AVEC는 인테리어 아키텍처와 브랜드 컨설팅을 통합적으로 제공하는 전문 스튜디오입니다. 의료 공간, 상업 공간, 브랜드 아이덴티티에 이르기까지 진심을 담아 제대로 된 결과물을 만듭니다.</p>
       <p data-reveal data-delay="4">실내건축공사업 면허를 보유한 시공 역량과 디자인·브랜딩 컨설팅 경험을 바탕으로, 클라이언트의 비즈니스가 공간 안에서 가장 잘 작동하도록 설계합니다.</p>
     </div>
@@ -602,7 +636,9 @@
 
 <section id="services">
   <div class="label" data-reveal>— 01 Services</div>
-  <h2 class="section-title" data-reveal data-delay="1">What We Do</h2>
+  <h2 class="section-title" data-reveal-text data-delay="1">
+    <span class="ml d1"><span class="ml-i">What We Do</span></span>
+  </h2>
   <div class="services-list">
     <div class="service" data-reveal data-delay="1">
       <div class="num">— 01</div>
@@ -635,7 +671,10 @@
   <div class="projects-head">
     <div>
       <div class="label" data-reveal>— 02 Selected Works</div>
-      <h2 class="section-title" data-reveal data-delay="1" style="margin-bottom: 0;">Recent<br /><em>Projects</em></h2>
+      <h2 class="section-title" data-reveal-text data-delay="1" style="margin-bottom: 0;">
+        <span class="ml d1"><span class="ml-i">Recent</span></span>
+        <span class="ml d2"><span class="ml-i"><em>Projects</em></span></span>
+      </h2>
     </div>
     <a href="#" class="more-link" data-reveal data-delay="2">View All →</a>
   </div>
@@ -762,7 +801,9 @@
 
 <section id="clients">
   <div class="label" data-reveal>— 03 Trusted By</div>
-  <h2 class="section-title" data-reveal data-delay="1">Our Clients</h2>
+  <h2 class="section-title" data-reveal-text data-delay="1">
+    <span class="ml d1"><span class="ml-i">Our Clients</span></span>
+  </h2>
   <div class="marquee" data-reveal="zoom" data-delay="2">
     <div class="marquee-track" id="marqueeTrack">
       <span class="marquee-item">바노바기</span>
@@ -782,7 +823,10 @@
 </section>
 
 <footer id="contact">
-  <div class="footer-tag" data-reveal>Let's create<br /><em>something together.</em></div>
+  <div class="footer-tag" data-reveal-text>
+    <span class="ml d1"><span class="ml-i">Let's create</span></span>
+    <span class="ml d2"><span class="ml-i"><em>something together.</em></span></span>
+  </div>
   <p data-reveal data-delay="1">프로젝트 문의나 협업 제안이 있으신가요? 언제든 편하게 연락 주세요.</p>
 
   <div class="footer-blocks">
@@ -843,26 +887,20 @@
   }, { threshold: [0, 0.4, 1] });
   if (hero) heroIo.observe(hero);
 
-  /* ===== Scroll-reveal ===== */
-  const revealItems = document.querySelectorAll('[data-reveal]');
+  /* ===== Scroll-reveal (toggles in/out so it reverses on scroll up) ===== */
+  const revealItems = document.querySelectorAll('[data-reveal], [data-reveal-text]');
   const revealIo = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        revealIo.unobserve(e.target);
-      }
+      e.target.classList.toggle('in', e.isIntersecting);
     });
-  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
   revealItems.forEach(el => revealIo.observe(el));
 
-  /* ===== Project image kenburns trigger ===== */
+  /* ===== Project image kenburns ===== */
   const projects = document.querySelectorAll('.project');
   const projIo = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in-view');
-        projIo.unobserve(e.target);
-      }
+      e.target.classList.toggle('in-view', e.isIntersecting);
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.2 });
   projects.forEach(el => projIo.observe(el));
