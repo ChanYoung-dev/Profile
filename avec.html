@@ -2,19 +2,20 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#111111" />
 <title>AVEC — 진심을 담아 제대로</title>
 <link rel="icon" href="https://avec.or.kr/wp-content/uploads/2024/10/avec_favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   :root {
     --bg: #ffffff;
-    --ink: #111111;
-    --muted: #6b6b6b;
-    --line: #e6e3dc;
+    --ink: #1a1a1a;
+    --muted: #888;
+    --line: #ececec;
     --warm: #f6f3ec;
   }
   html, body {
@@ -22,187 +23,232 @@
     color: var(--ink);
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
     -webkit-font-smoothing: antialiased;
-    line-height: 1.6;
+    line-height: 1.55;
+    overflow-x: hidden;
   }
+  body.lock { overflow: hidden; }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
+  button { font: inherit; background: none; border: 0; cursor: pointer; color: inherit; }
 
-  /* ===== Header ===== */
+  /* ========== Header (mobile) ========== */
   header {
     position: fixed; top: 0; left: 0; right: 0;
+    height: 60px;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 56px;
+    padding: 0 20px;
     z-index: 100;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.92);
     backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
   }
-  .logo img { height: 32px; }
-  nav ul { display: flex; gap: 40px; list-style: none; }
-  nav a {
-    font-size: 13px; font-weight: 500; letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: opacity .2s;
+  header.transparent {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent;
   }
-  nav a:hover { opacity: .55; }
+  header.transparent .logo img { filter: brightness(0) invert(1); }
+  header.transparent .menu-btn span { background: #fff; }
 
-  /* ===== Hero ===== */
+  .logo img { height: 28px; }
+  .menu-btn {
+    width: 40px; height: 40px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px;
+  }
+  .menu-btn span {
+    display: block; width: 22px; height: 1.5px;
+    background: var(--ink);
+    transition: transform .3s, opacity .3s, background .3s;
+  }
+  .menu-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: #fff; }
+  .menu-btn.open span:nth-child(2) { opacity: 0; }
+  .menu-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: #fff; }
+
+  /* ========== Drawer ========== */
+  .drawer {
+    position: fixed; inset: 0;
+    background: #111;
+    color: #fff;
+    z-index: 99;
+    display: flex; flex-direction: column;
+    padding: 80px 28px 40px;
+    transform: translateY(-100%);
+    transition: transform .45s cubic-bezier(.65,0,.35,1);
+  }
+  .drawer.open { transform: translateY(0); }
+  .drawer ul { list-style: none; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .drawer li { padding: 14px 0; border-bottom: 1px solid #2a2a2a; }
+  .drawer a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 400;
+    letter-spacing: 1px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .drawer a span.kor {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 12px; color: #777; letter-spacing: 1px;
+  }
+  .drawer-foot {
+    font-size: 12px; color: #888; line-height: 1.8;
+    padding-top: 20px;
+  }
+  .drawer-foot a { color: #ccc; }
+
+  /* ========== Hero ========== */
   .hero {
-    min-height: 100vh;
+    height: 100vh; min-height: 600px;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center;
-    padding: 0 24px;
-    background-image: url('https://avec.or.kr/wp-content/uploads/2025/10/avec_01.jpg');
+    padding: 80px 24px 60px;
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.55) 80%),
+      url('https://avec.or.kr/wp-content/uploads/2025/10/avec_01.jpg');
     background-size: cover;
     background-position: center;
-    position: relative;
     color: #fff;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%);
+    position: relative;
   }
   .hero-eyebrow {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 18px;
+    font-size: 14px;
     color: rgba(255,255,255,0.85);
-    margin-bottom: 24px;
-    position: relative;
-    letter-spacing: 1px;
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
   }
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: clamp(40px, 7vw, 96px);
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-    position: relative;
+    font-size: 38px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
     margin-bottom: 28px;
   }
   .hero h1 em { font-style: italic; font-weight: 400; }
   .hero-tagline {
-    font-family: 'Pretendard', sans-serif;
-    font-size: 18px;
-    letter-spacing: 8px;
-    color: rgba(255,255,255,0.95);
-    position: relative;
-    margin-bottom: 16px;
-  }
-  .hero p {
     font-size: 14px;
-    color: rgba(255,255,255,0.75);
-    max-width: 560px;
-    position: relative;
-    letter-spacing: 0.5px;
+    letter-spacing: 6px;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .hero-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.3px;
+    max-width: 320px;
   }
   .scroll-cue {
-    position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%);
-    font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.6);
-    writing-mode: vertical-rl;
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,0.6);
+  }
+  .scroll-cue::after {
+    content: ""; display: block;
+    width: 1px; height: 28px;
+    background: rgba(255,255,255,0.5);
+    margin: 8px auto 0;
   }
 
-  /* ===== Section common ===== */
-  section { padding: 140px 56px; }
-  .section-head {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 80px;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 24px;
-    gap: 40px;
-  }
-  .section-head .label {
-    font-size: 12px; letter-spacing: 2px; color: var(--muted);
-    text-transform: uppercase;
+  /* ========== Section common ========== */
+  section { padding: 70px 24px; }
+  .label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--muted);
     margin-bottom: 8px;
+    letter-spacing: 0.5px;
   }
-  .section-head h2 {
+  .section-title {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
-    font-size: clamp(32px, 4.5vw, 56px);
-    letter-spacing: -0.5px;
-    line-height: 1.1;
-  }
-
-  /* ===== About ===== */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .about-image {
-    aspect-ratio: 4/5;
-    background-size: cover;
-    background-position: center;
-  }
-  .about-copy h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 1.3;
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
     margin-bottom: 24px;
   }
+  .section-title em { font-style: italic; }
+
+  /* ========== About ========== */
+  #about { padding-top: 80px; padding-bottom: 80px; }
+  .about-img {
+    aspect-ratio: 4/5;
+    background-image: url('https://avec.or.kr/wp-content/uploads/2025/06/avec_001-65.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 32px;
+  }
+  .about-copy h2 { margin-bottom: 20px; }
   .about-copy p {
-    font-size: 15px;
-    color: var(--muted);
-    margin-bottom: 16px;
+    font-size: 14px;
+    color: #444;
     line-height: 1.85;
+    margin-bottom: 14px;
   }
 
-  /* ===== Services ===== */
-  .services {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
+  /* ========== Services ========== */
+  #services {
+    background: var(--warm);
+    padding-top: 70px;
   }
+  .services-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 20px; }
   .service {
-    background: var(--bg);
-    padding: 56px 40px;
-    transition: background .3s;
+    background: var(--warm);
+    padding: 32px 4px;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 16px;
+    align-items: start;
   }
-  .service:hover { background: var(--warm); }
   .service .num {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 14px; color: var(--muted);
-    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--muted);
+    padding-top: 6px;
   }
   .service h3 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
-    font-size: 32px;
-    margin-bottom: 16px;
-    letter-spacing: 1px;
+    font-size: 26px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
   }
   .service p {
-    font-size: 14px; color: var(--muted); line-height: 1.8;
-    margin-bottom: 32px;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 12px;
   }
-  .service ul {
-    list-style: none;
-    border-top: 1px solid var(--line);
-    padding-top: 20px;
-  }
-  .service li {
-    font-size: 13px; padding: 6px 0;
-    color: #333;
+  .service .tags {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
   }
 
-  /* ===== Portfolio ===== */
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px 32px;
+  /* ========== Projects ========== */
+  #projects { padding-top: 70px; }
+  .projects-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 32px;
   }
-  .project { cursor: pointer; }
+  .more-link {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 3px;
+    white-space: nowrap;
+  }
+  .project-list { display: flex; flex-direction: column; gap: 40px; }
+  .project { display: block; }
   .project-image {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4/3;
     overflow: hidden;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     background: var(--warm);
   }
   .project-image img {
@@ -210,199 +256,249 @@
     object-fit: cover;
     transition: transform .8s ease;
   }
-  .project:hover .project-image img { transform: scale(1.04); }
+  .project:active .project-image img { transform: scale(1.03); }
   .project-meta {
     display: flex; justify-content: space-between; align-items: flex-start;
     gap: 16px;
   }
   .project-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px; font-weight: 400;
+    font-size: 20px; font-weight: 500;
     margin-bottom: 4px;
+    line-height: 1.3;
   }
   .project-cat {
-    font-size: 11px; color: var(--muted); letter-spacing: 1.5px;
+    font-size: 10.5px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
     text-transform: uppercase;
   }
   .project-info {
     text-align: right;
-    font-size: 11px; color: var(--muted);
+    font-size: 10.5px;
+    color: var(--muted);
     line-height: 1.7;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
   }
 
-  /* ===== Clients ===== */
-  .clients { background: var(--warm); }
+  /* ========== Clients ========== */
+  #clients {
+    background: var(--warm);
+    padding-top: 70px;
+  }
   .client-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
+    margin-top: 20px;
   }
   .client-cell {
     background: var(--warm);
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 16/9;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Cormorant Garamond', serif;
     font-size: 16px;
     color: #888;
-    letter-spacing: 2px;
-    transition: background .2s, color .2s;
+    letter-spacing: 1.5px;
     text-align: center;
     padding: 0 8px;
   }
-  .client-cell:hover { background: #fff; color: var(--ink); }
 
-  /* ===== Footer ===== */
+  /* ========== Footer ========== */
   footer {
     background: #111;
     color: #ddd;
-    padding: 100px 56px 40px;
-  }
-  .footer-top {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr;
-    gap: 40px;
-    padding-bottom: 56px;
-    border-bottom: 1px solid #2a2a2a;
-  }
-  .footer-top h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-size: 14px; letter-spacing: 2px;
-    color: #888;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+    padding: 70px 24px 32px;
   }
   .footer-tag {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 36px; font-weight: 300;
+    font-size: 30px; font-weight: 300;
     line-height: 1.3;
     color: #fff;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
   .footer-tag em { font-style: italic; }
-  .footer-top p,
-  .footer-top a { font-size: 14px; color: #bbb; line-height: 1.9; }
-  .footer-top a:hover { color: #fff; }
-  .footer-bottom {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-top: 32px;
-    font-size: 12px; color: #666;
+  .footer-tag + p { font-size: 13px; color: #aaa; line-height: 1.7; }
+  .footer-blocks {
+    display: flex; flex-direction: column; gap: 28px;
+    margin: 40px 0;
+    padding: 32px 0;
+    border-top: 1px solid #2a2a2a;
+    border-bottom: 1px solid #2a2a2a;
   }
-  .footer-bottom .social { display: flex; gap: 20px; }
+  .footer-blocks h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .footer-blocks p,
+  .footer-blocks a {
+    font-size: 14px;
+    color: #ddd;
+    line-height: 1.75;
+  }
+  .footer-bottom {
+    display: flex; flex-direction: column; gap: 12px;
+    font-size: 11px; color: #666;
+    text-align: center;
+  }
+  .footer-bottom .social { display: flex; justify-content: center; gap: 18px; }
 
-  /* ===== Responsive ===== */
-  @media (max-width: 900px) {
-    header { padding: 14px 20px; }
-    nav ul { gap: 16px; }
-    nav a { font-size: 11px; letter-spacing: 1px; }
-    section { padding: 80px 24px; }
-    .about-grid,
-    .services,
-    .portfolio-grid { grid-template-columns: 1fr; gap: 40px; }
-    .client-grid { grid-template-columns: repeat(3, 1fr); }
-    .footer-top { grid-template-columns: 1fr; gap: 32px; }
-    .footer-tag { font-size: 28px; }
-    .section-head { flex-direction: column; align-items: flex-start; gap: 12px; }
-    .hero-tagline { letter-spacing: 4px; font-size: 14px; }
+  /* ========== Tablet & Up (≥768px) ========== */
+  @media (min-width: 768px) {
+    header { height: 72px; padding: 0 40px; }
+    .logo img { height: 32px; }
+    .hero { padding: 100px 40px 80px; }
+    .hero h1 { font-size: 56px; }
+    .hero-tagline { font-size: 16px; letter-spacing: 8px; }
+    .hero-sub { font-size: 14px; max-width: 460px; }
+    section { padding: 100px 40px; }
+    .section-title { font-size: 44px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-img { margin-bottom: 0; }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .service {
+      padding: 44px 32px;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .service .num { padding-top: 0; margin-bottom: 20px; }
+
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 56px 32px;
+    }
+
+    .client-grid { grid-template-columns: repeat(4, 1fr); }
+
+    footer { padding: 90px 40px 40px; }
+    .footer-blocks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .footer-tag { font-size: 38px; }
+    .footer-bottom { flex-direction: row; justify-content: space-between; }
+  }
+
+  /* ========== Desktop (≥1024px) ========== */
+  @media (min-width: 1024px) {
+    .hero h1 { font-size: 80px; }
+    .section-title { font-size: 52px; }
+    .project-list { grid-template-columns: repeat(3, 1fr); }
+    .client-grid { grid-template-columns: repeat(6, 1fr); }
   }
 </style>
 </head>
 <body>
 
-<header>
+<header id="hdr">
   <a href="#" class="logo">
     <img src="https://avec.or.kr/wp-content/uploads/2024/10/avec_logo_dark.svg" alt="AVEC" />
   </a>
-  <nav>
-    <ul>
-      <li><a href="#interior">Interior</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#branding">Branding</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="https://www.instagram.com/avec__official" target="_blank" rel="noopener">Follow</a></li>
-    </ul>
-  </nav>
+  <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<aside class="drawer" id="drawer">
+  <ul>
+    <li><a href="#about" data-close>About <span class="kor">소개</span></a></li>
+    <li><a href="#services" data-close>Interior <span class="kor">인테리어</span></a></li>
+    <li><a href="#projects" data-close>Projects <span class="kor">프로젝트</span></a></li>
+    <li><a href="#clients" data-close>Clients <span class="kor">클라이언트</span></a></li>
+    <li><a href="#contact" data-close>Contact <span class="kor">연락처</span></a></li>
+    <li><a href="https://www.instagram.com/avec__official" target="_blank" rel="noopener">Follow <span class="kor">인스타그램</span></a></li>
+  </ul>
+  <div class="drawer-foot">
+    <a href="mailto:avec6417@naver.com">avec6417@naver.com</a><br />
+    1577.1649<br />
+    서울 강남구 선릉로 615, 6층
+  </div>
+</aside>
 
 <section class="hero">
   <div class="hero-eyebrow">Interior Architecture &amp; Brand Consulting</div>
   <h1><em>It creates more than</em><br />just a beautiful space.</h1>
   <div class="hero-tagline">진심을 담아 제대로</div>
-  <p>AVEC specializes in interior architecture and brand consulting.</p>
+  <div class="hero-sub">AVEC specializes in interior architecture and brand consulting.</div>
   <div class="scroll-cue">SCROLL</div>
 </section>
 
 <section id="about">
   <div class="about-grid">
-    <div class="about-image" style="background-image: url('https://avec.or.kr/wp-content/uploads/2025/06/avec_001-65.jpg');"></div>
+    <div class="about-img"></div>
     <div class="about-copy">
-      <div class="label" style="font-size: 12px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-bottom: 16px;">About AVEC</div>
-      <h3>아름다운 공간, <em style="font-family: 'Cormorant Garamond', serif; font-style: italic;">그 이상을 만듭니다.</em></h3>
+      <div class="label">— About AVEC</div>
+      <h2 class="section-title">아름다운 공간,<br /><em>그 이상을 만듭니다.</em></h2>
       <p>AVEC는 인테리어 아키텍처와 브랜드 컨설팅을 통합적으로 제공하는 전문 스튜디오입니다. 의료 공간, 상업 공간, 브랜드 아이덴티티에 이르기까지 진심을 담아 제대로 된 결과물을 만듭니다.</p>
-      <p>실내건축공사업 면허를 보유한 전문 시공 역량과 디자인·브랜딩 컨설팅 경험을 바탕으로, 클라이언트의 비즈니스가 공간 안에서 가장 잘 작동하도록 설계합니다.</p>
+      <p>실내건축공사업 면허를 보유한 시공 역량과 디자인·브랜딩 컨설팅 경험을 바탕으로, 클라이언트의 비즈니스가 공간 안에서 가장 잘 작동하도록 설계합니다.</p>
     </div>
   </div>
 </section>
 
-<section id="interior" style="background: var(--warm);">
-  <div class="section-head">
-    <div>
-      <div class="label">01 — Services</div>
-      <h2>What We Do</h2>
-    </div>
-    <p style="max-width: 360px; color: var(--muted); font-size: 14px;">
-      클리닉, 상업 공간, 그리고 브랜딩까지. 한 곳에서 일관된 결과물을 받습니다.
-    </p>
-  </div>
-
-  <div class="services">
+<section id="services">
+  <div class="label">— 01 Services</div>
+  <h2 class="section-title">What We Do</h2>
+  <div class="services-list">
     <div class="service">
       <div class="num">— 01</div>
-      <h3>Clinic</h3>
-      <p>의료진의 동선과 환자의 심리를 함께 설계합니다. 기능과 안온함이 공존하는 의료 공간.</p>
-      <ul>
-        <li>의원 · 한의원</li>
-        <li>피부과 · 성형외과</li>
-        <li>전문 진료센터</li>
-      </ul>
+      <div>
+        <h3>Clinic</h3>
+        <p>의료진의 동선과 환자의 심리를 함께 설계합니다. 기능과 안온함이 공존하는 의료 공간.</p>
+        <div class="tags">의원 · 한의원 · 피부과 · 성형외과</div>
+      </div>
     </div>
     <div class="service">
       <div class="num">— 02</div>
-      <h3>Commercial</h3>
-      <p>매출이 따라오는 공간을 만듭니다. F&amp;B, 리테일, 오피스의 브랜드 경험을 디자인합니다.</p>
-      <ul>
-        <li>F&amp;B · 카페</li>
-        <li>리테일 스토어</li>
-        <li>오피스 인테리어</li>
-      </ul>
+      <div>
+        <h3>Commercial</h3>
+        <p>매출이 따라오는 공간을 만듭니다. F&amp;B, 리테일, 오피스의 브랜드 경험을 디자인합니다.</p>
+        <div class="tags">F&amp;B · 리테일 · 오피스</div>
+      </div>
     </div>
     <div class="service">
       <div class="num">— 03</div>
-      <h3>Branding</h3>
-      <p>로고와 사인, 매체와 공간이 하나의 인상을 만들도록. 통합된 시각 언어를 설계합니다.</p>
-      <ul>
-        <li>BI · CI 디자인</li>
-        <li>사인 · 그래픽</li>
-        <li>공간 브랜딩</li>
-      </ul>
+      <div>
+        <h3>Branding</h3>
+        <p>로고와 사인, 매체와 공간이 하나의 인상을 만들도록. 통합된 시각 언어를 설계합니다.</p>
+        <div class="tags">BI · CI · 사인 · 공간 브랜딩</div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="projects">
-  <div class="section-head">
+  <div class="projects-head">
     <div>
-      <div class="label">02 — Selected Works</div>
-      <h2>Recent Projects</h2>
+      <div class="label">— 02 Selected Works</div>
+      <h2 class="section-title" style="margin-bottom: 0;">Recent<br /><em>Projects</em></h2>
     </div>
-    <a href="#" style="font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; border-bottom: 1px solid var(--ink); padding-bottom: 4px;">View All →</a>
+    <a href="#" class="more-link">View All →</a>
   </div>
 
-  <div class="portfolio-grid">
-    <article class="project">
+  <div class="project-list">
+    <a href="#" class="project">
       <div class="project-image">
         <img src="https://avec.or.kr/wp-content/uploads/2024/11/3.-바노바기-1.png" alt="논현 바노바기 피부과" loading="lazy" />
       </div>
@@ -413,9 +509,9 @@
         </div>
         <div class="project-info">2024<br />1,389㎡<br />Gangnam</div>
       </div>
-    </article>
+    </a>
 
-    <article class="project">
+    <a href="#" class="project">
       <div class="project-image">
         <img src="https://avec.or.kr/wp-content/uploads/2024/11/1.-신상성형외과.png" alt="신상성형외과" loading="lazy" />
       </div>
@@ -426,9 +522,9 @@
         </div>
         <div class="project-info">2024<br />Surgery<br />Seoul</div>
       </div>
-    </article>
+    </a>
 
-    <article class="project">
+    <a href="#" class="project">
       <div class="project-image">
         <img src="https://avec.or.kr/wp-content/uploads/2024/11/dot-kim-avec-이을병원-15.png" alt="이을 클리닉" loading="lazy" />
       </div>
@@ -439,9 +535,9 @@
         </div>
         <div class="project-info">2024<br />Clinic<br />Seoul</div>
       </div>
-    </article>
+    </a>
 
-    <article class="project">
+    <a href="#" class="project">
       <div class="project-image">
         <img src="https://avec.or.kr/wp-content/uploads/2024/10/6.-디캐럿의원.png" alt="디캐럿 의원" loading="lazy" />
       </div>
@@ -452,9 +548,9 @@
         </div>
         <div class="project-info">2024<br />Medical<br />Seoul</div>
       </div>
-    </article>
+    </a>
 
-    <article class="project">
+    <a href="#" class="project">
       <div class="project-image">
         <img src="https://avec.or.kr/wp-content/uploads/2024/11/여의도빛채운.jpg" alt="여의도 빛채운 피부과" loading="lazy" />
       </div>
@@ -465,9 +561,9 @@
         </div>
         <div class="project-info">2024<br />Dermatology<br />Yeouido</div>
       </div>
-    </article>
+    </a>
 
-    <article class="project">
+    <a href="#" class="project">
       <div class="project-image">
         <img src="https://avec.or.kr/wp-content/uploads/elementor/thumbs/더하다한방병원-rkqfws1t3dza44vfhphc2uu4wq5c2r1klzrtinu9oo.jpg" alt="더하다 한방병원" loading="lazy" />
       </div>
@@ -478,9 +574,9 @@
         </div>
         <div class="project-info">2024<br />Oriental<br />Seoul</div>
       </div>
-    </article>
+    </a>
 
-    <article class="project">
+    <a href="#" class="project">
       <div class="project-image">
         <img src="https://avec.or.kr/wp-content/uploads/elementor/thumbs/이안병원-rkqft2kq4wwkbi9b53sb8siok0f7pqborn4vddc688.jpg" alt="이안병원" loading="lazy" />
       </div>
@@ -491,9 +587,9 @@
         </div>
         <div class="project-info">2024<br />Hospital<br />Seoul</div>
       </div>
-    </article>
+    </a>
 
-    <article class="project">
+    <a href="#" class="project">
       <div class="project-image">
         <img src="https://avec.or.kr/wp-content/uploads/elementor/thumbs/오금동송파요양-rkqfk2aen2kn21ccqpm0ukcnm2tky5kaj22cswozuw.jpg" alt="오금동 송파요양" loading="lazy" />
       </div>
@@ -504,9 +600,9 @@
         </div>
         <div class="project-info">2024<br />Care<br />Songpa</div>
       </div>
-    </article>
+    </a>
 
-    <article class="project">
+    <a href="#" class="project">
       <div class="project-image">
         <img src="https://avec.or.kr/wp-content/uploads/2025/05/avec_001-22.jpg" alt="신사 더힐 피부과" loading="lazy" />
       </div>
@@ -517,17 +613,13 @@
         </div>
         <div class="project-info">2025<br />Dermatology<br />Sinsa</div>
       </div>
-    </article>
+    </a>
   </div>
 </section>
 
-<section id="clients" class="clients">
-  <div class="section-head">
-    <div>
-      <div class="label">03 — Trusted By</div>
-      <h2>Our Clients</h2>
-    </div>
-  </div>
+<section id="clients">
+  <div class="label">— 03 Trusted By</div>
+  <h2 class="section-title">Our Clients</h2>
   <div class="client-grid">
     <div class="client-cell">바노바기</div>
     <div class="client-cell">빌리프</div>
@@ -545,11 +637,10 @@
 </section>
 
 <footer id="contact">
-  <div class="footer-top">
-    <div>
-      <div class="footer-tag">Let's create<br /><em>something together.</em></div>
-      <p>프로젝트 문의나 협업 제안이 있으신가요?<br />언제든 편하게 연락 주세요.</p>
-    </div>
+  <div class="footer-tag">Let's create<br /><em>something together.</em></div>
+  <p>프로젝트 문의나 협업 제안이 있으신가요? 언제든 편하게 연락 주세요.</p>
+
+  <div class="footer-blocks">
     <div>
       <h4>Contact</h4>
       <p>
@@ -559,7 +650,7 @@
     </div>
     <div>
       <h4>Studio</h4>
-      <p>서울특별시 강남구<br />선릉로 615, 6층</p>
+      <p>서울 강남구<br />선릉로 615, 6층</p>
     </div>
     <div>
       <h4>Follow</h4>
@@ -568,6 +659,7 @@
       </p>
     </div>
   </div>
+
   <div class="footer-bottom">
     <div>© 2026 AVEC. All rights reserved.</div>
     <div class="social">
@@ -576,6 +668,36 @@
     </div>
   </div>
 </footer>
+
+<script>
+  const hdr = document.getElementById('hdr');
+  const btn = document.getElementById('menuBtn');
+  const drawer = document.getElementById('drawer');
+  const hero = document.querySelector('.hero');
+  const body = document.body;
+
+  // Drawer toggle
+  function toggleDrawer(open) {
+    const isOpen = open ?? !drawer.classList.contains('open');
+    drawer.classList.toggle('open', isOpen);
+    btn.classList.toggle('open', isOpen);
+    body.classList.toggle('lock', isOpen);
+    btn.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+  }
+  btn.addEventListener('click', () => toggleDrawer());
+  drawer.querySelectorAll('[data-close]').forEach(a => {
+    a.addEventListener('click', () => toggleDrawer(false));
+  });
+
+  // Transparent header over hero
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      // Hero visible & not scrolled past → transparent header
+      hdr.classList.toggle('transparent', e.intersectionRatio > 0.4);
+    });
+  }, { threshold: [0, 0.4, 1] });
+  if (hero) io.observe(hero);
+</script>
 
 </body>
 </html>
