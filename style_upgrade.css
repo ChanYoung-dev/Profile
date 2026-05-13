@@ -1253,6 +1253,28 @@ img { max-width: 100%; display: block; }
   height: auto;
   display: block;
 }
+/* 02 · BACKTEST 이미지만 축소 → column 2 총 높이 축소 → 04 · AI ALERT 같은 페이지 안착
+   비율 유지하며 잘림 없이 축소 (width auto + 가운데 정렬) */
+.coin-item-img:has(img[src*="backTestingBinance"]) {
+  text-align: center;
+}
+.coin-item-img img[src*="backTestingBinance"] {
+  max-height: 88mm;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+}
+@media print {
+  /* COIN PIPELINE 페이지: 챕터 + 4 카드를 한 페이지에 담기 위해 헤더/카드 간격 압축 */
+  section.page:has(.coin-grid) .section-head {
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+  }
+  .coin-item { padding: 8px 10px; margin-bottom: 8px; }
+  .coin-item-img { margin-bottom: 6px; }
+  .coin-item h4 { margin-top: 4px; font-size: 12px; }
+  .coin-item p { margin-top: 3px; font-size: 10.5px; line-height: 1.5; }
+}
 .coin-item .num {
   display: inline-block;
   font-family: var(--font-mono);
