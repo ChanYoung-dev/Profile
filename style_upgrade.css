@@ -44,6 +44,8 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
+  margin: 0;
+  padding: 0;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
@@ -926,8 +928,15 @@ img { max-width: 100%; display: block; }
   background: rgba(0, 0, 0, 0.025);
   border: 1px dashed var(--border);
   border-radius: 8px;
+  /* viz 자체는 분할 허용 — 안쪽 svg/pre가 page에 못 들어가면 통째로 헤더와 빈 페이지가 생기는 문제 회피 */
+  page-break-inside: auto;
+  break-inside: auto;
+}
+.deep-row .v .viz > svg,
+.deep-row .v .viz > img {
   page-break-inside: avoid;
   break-inside: avoid;
+  max-height: 220mm;     /* SVG가 페이지 가용 높이를 초과하지 않도록 안전 한도 */
 }
 .deep-row .v .viz + .viz { margin-top: 8px; }
 .deep-row .v .viz-label {
@@ -1514,16 +1523,22 @@ img { max-width: 100%; display: block; }
 @media print {
   @page { size: A4; margin: 0; }
 
-  html, body { background: #fff !important; }
+  html, body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
   .print-toolbar { display: none !important; }
 
   .page {
-    width: 210mm;
+    width: 100%;
+    max-width: 200mm;          /* 페이지(≈210mm)보다 살짝 좁혀 큰 SVG가 분할 페이지로 밀리는 것 방지 */
     min-height: 297mm;
     height: auto;
     max-height: none;
     overflow: visible;
-    margin: 0;
+    margin: 0 auto;            /* 좌우 균등 (auto centering) */
     padding: 22mm 18mm;
     box-sizing: border-box;
     box-shadow: none;
@@ -1541,6 +1556,8 @@ img { max-width: 100%; display: block; }
 
   /* page-break-inside: avoid 제거 — 큰 블록이 통째로 다음 페이지로 밀려 빈 페이지 생기는 것 방지 */
   .sub-block, .mini, .pillar, .deep { page-break-inside: auto; break-inside: auto; }
+  /* overflow:hidden은 Chrome 인쇄 시 박스를 통째로 만들어 페이지 분할을 막음 → 빈 헤더 페이지 발생 */
+  .deep, .deep-body, .sub-block { overflow: visible !important; }
 
   /* PDF에서는 페이지 번호 footer 의미 없음 — orphan 페이지 방지 */
   .page-footer { display: none !important; }

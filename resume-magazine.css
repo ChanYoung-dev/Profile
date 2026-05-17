@@ -822,8 +822,28 @@ ul.bullet li mark {
 .str-list div b { color: var(--ink); font-weight: 700; }
 
 /* ---------- Print ---------- */
-/* @page margin 0 — .page 내부 padding으로 안전영역 확보, 브라우저 기본 여백 영향 제거 */
-@page { size: A4; margin: 0; }
+/* @page margin 0 — .page 내부 padding으로 안전영역 확보, 브라우저 기본 여백 영향 제거.
+   bottom만 페이지 카운터 표시 영역으로 12mm 확보. */
+@page {
+  size: A4;
+  margin: 0 0 8mm 0;
+  @bottom-right {
+    content: "Page " counter(page) " / " counter(pages);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 9pt;
+    color: #9aa0a6;
+    padding: 0 14mm 3mm 0;
+    letter-spacing: 0.06em;
+  }
+  @bottom-left {
+    content: "Resume · Chan Yeong Kim";
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 9pt;
+    color: #9aa0a6;
+    padding: 0 0 3mm 14mm;
+    letter-spacing: 0.08em;
+  }
+}
 
 @media print {
   html, body {
@@ -911,8 +931,24 @@ ul.bullet li mark {
   .skills-grid { gap: 12px; margin-top: 8px; }
   .skill-col h4 { font-size: 10.5px; margin-bottom: 6px; padding-bottom: 4px; }
   .skill-col .tag { font-size: 10px; padding: 2px 7px; }
-  .str-list { gap: 2px 16px; margin-top: 6px; }
-  .str-list div { padding: 6px 0 6px 18px; font-size: 11.5px; line-height: 1.5; }
+  /* grid는 Chrome 인쇄에서 페이지 분할이 안 돼 통째로 밀리므로, 인쇄 시에만 multi-column으로 변경.
+     컬럼 내부 항목은 분할 금지로 항목 중간이 잘리지 않게 함. */
+  .str-list {
+    display: block;
+    column-count: 2;
+    column-gap: 16px;
+    margin-top: 6px;
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+  .str-list > div {
+    padding: 6px 0 6px 18px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+  }
   /* PDF에서는 페이지 번호가 의미 없음 + footer가 다음 페이지로 떠밀려 빈 페이지를 만드는 원인 */
   .foot { display: none !important; }
 
@@ -921,7 +957,9 @@ ul.bullet li mark {
     break-inside: avoid;
     page-break-inside: avoid;
   }
-  .career-head, .career-meta, .section-head, .subhead {
+  /* .section-head는 break-after avoid 대상에서 제외 — 페이지 하단에 남은 빈 공간이 있을 때
+     경험 요약 같은 다음 섹션의 헤더+항목이 흘러 들어갈 수 있도록 허용. */
+  .career-head, .career-meta, .subhead {
     break-after: avoid;
     page-break-after: avoid;
   }

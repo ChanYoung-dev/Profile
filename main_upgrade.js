@@ -21,6 +21,10 @@
   window.addEventListener('beforeprint', () => {
     expandAll();
     document.body.classList.add('is-printing');
+    // 카운트업 애니메이션 중간에 인쇄되면 "-0.1 yrs" 같은 잔상이 PDF에 박히는 문제 방지
+    document.querySelectorAll('[data-original-text]').forEach((el) => {
+      el.textContent = el.dataset.originalText;
+    });
   });
   window.addEventListener('afterprint', () => {
     document.body.classList.remove('is-printing');
@@ -55,13 +59,17 @@
       const suffix = match[2];
       if (Number.isNaN(value)) return;
 
+      // beforeprint 훅이 즉시 원복할 수 있도록 원본 텍스트를 보존
+      el.dataset.originalText = match[1] + suffix;
+
       const duration = 1100;
       const start = performance.now();
 
       function tick(now) {
-        const p = Math.min(1, (now - start) / duration);
+        // p가 음수가 되면 "-0.1" 같은 값이 잠깐 표시될 수 있어 0으로 클램프
+        const p = Math.max(0, Math.min(1, (now - start) / duration));
         const eased = 1 - Math.pow(1 - p, 3);
-        const current = value * eased;
+        const current = Math.max(0, value * eased);
         const formatted =
           value % 1 === 0
             ? Math.round(current).toLocaleString('ko-KR')

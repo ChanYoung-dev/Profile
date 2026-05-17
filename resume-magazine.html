@@ -67,30 +67,26 @@
     </div>
     <div>
       <div class="label">Portfolio</div>
-      <a href="https://chanyoung-dev.github.io/Profile/" target="_blank">chanyoung-dev.github.io</a>
+      <a href="https://chanyoung-dev.github.io/Profile/portfolio" target="_blank">chanyoung-dev.github.io</a>
     </div>
   </div>
 
   <div class="stats">
     <div class="stat">
-      <div class="num">3.8 yrs</div>
+      <div class="num">3.9 yrs</div>
       <div class="label">Commerce Backend</div>
-      <div class="desc">SK 엠앤서비스 주문·결제 도메인</div>
     </div>
     <div class="stat">
-      <div class="num">73%↓</div>
-      <div class="label">MTTR Reduced</div>
-      <div class="desc">테스트 코드 + 시나리오 검증으로 45분 → 12분</div>
+      <div class="num">MSA</div>
+      <div class="label">Saga · Distributed Transaction</div>
     </div>
     <div class="stat">
-      <div class="num">99%↓</div>
-      <div class="label">CS Tickets</div>
-      <div class="desc">초도배송비 자동화로 연 1,500건 → 10건</div>
+      <div class="num">AI</div>
+      <div class="label">Agentic Coding</div>
     </div>
     <div class="stat">
-      <div class="num">76.5%↓</div>
-      <div class="label">Incident Rate</div>
-      <div class="desc">근본 원인 개선으로 장애율 감소</div>
+      <div class="num">Test Code</div>
+      <div class="label">Testcontainers · TDD</div>
     </div>
   </div>
 
@@ -129,7 +125,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span>Page 01 / 04</span>
+    <span class="page-num"></span>
   </div>
 </section>
 
@@ -267,7 +263,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span>Page 02 / 04</span>
+    <span class="page-num"></span>
   </div>
 </section>
 
@@ -368,7 +364,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span>Page 03 / 04</span>
+    <span class="page-num"></span>
   </div>
 </section>
 
@@ -389,24 +385,34 @@
           <div class="project-head">
             <div class="left">
               <span class="pn">Project 02</span>
-              <span class="pt">운영 모니터링 및 운영 개선</span>
+              <span class="pt">AI Tech TF · AI 도입 리드</span>
             </div>
-            <span class="pp">상시</span>
-          </div>
-          <div class="stack-row">
-            <span class="pri">DataDog</span>
-            <span>근본 원인 분석</span>
-            <span>비즈니스 로직 개선</span>
+            <span class="pp">2026.05 — 재직중</span>
           </div>
           <div class="callout">
-            정기적 일일 로그 분석으로 장애 발생 여부를 점검하고 근본 원인을 파악·개선하여 운영 안정화.
+            정책·코드·운영 데이터를 잇는 AI 아키텍처 설계와 Claude Code Harness Engineering으로 사내 AI 개발 체계 구축.
           </div>
-          <ul class="bullet">
-            <li>DataDog 실시간 모니터링 구축, 정책 및 비즈니스 로직 지속 개선</li>
-            <li>재고 동시성 처리, 포인트 연마감 결제 취소 이슈 등 <b>주요 오류 근본 원인 분석</b></li>
-            <li>→ <mark>장애 인지 시간 20분 → 2분 이내</mark></li>
-            <li>→ <mark>초기 대비 장애율 76.5% 감소</mark></li>
-          </ul>
+
+          <div class="dual">
+            <div class="why">
+              <span class="lbl">WHY</span>
+              <ul>
+                <li>정책·코드·운영 데이터가 분리되어 AI가 <b>문맥을 연결하지 못함 (Context Fragmentation)</b></li>
+                <li>아키텍처·정책·비용·보안 등 구조를 모르기 때문에 <b>AI 환각 발생</b>, 컨텍스트·토큰·응답시간 낭비</li>
+                <li>보안상 <b>운영 DB 직접 접근 불가</b> → LLM의 업무 처리 범위 축소, 부정확한 개발 진행</li>
+                <li>AI 산출물이 통일되지 않은 코드 컨벤션으로 개발됨</li>
+              </ul>
+            </div>
+            <div class="impact">
+              <span class="lbl">IMPACT</span>
+              <ul>
+                <li><b>AI 아키텍처 설계</b>로 외부 LLM 활용 시에도 운영 원본 데이터 유출 차단 구조 확보</li>
+                <li><b>AI-DLC 관점 개발</b>로 정책·코드·운영 데이터를 AI가 한 번에 연결 → 운영 이슈 분석 속도 향상</li>
+                <li><b>Claude Code 환경 구축</b>으로 AI 산출물 품질 향상·통일화 및 신규 합류자 도메인 진입 비용 감소</li>
+                <li><b>Harness Engineering</b> 기반으로 AI 환각 차단, 컨텍스트·토큰·응답시간 효율적 활용</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <!-- Project 3 -->
@@ -456,7 +462,7 @@
   </div>
 
   <!-- Personal Project -->
-  <div class="section">
+  <div class="section" style="break-before: page; page-break-before: always;">
     <div class="section-head">
       <span class="section-num">07</span>
       <h2 class="section-title">개인 프로젝트</h2>
@@ -525,9 +531,22 @@
 
   <div class="foot">
     <span>chanyoung-dev.github.io · emrhssla@gmail.com</span>
-    <span>Page 04 / 04</span>
+    <span class="page-num"></span>
   </div>
 </section>
 
+<script>
+  // 각 .page 섹션의 풋터에 페이지 번호를 자동 채움 (화면용 .foot 표시).
+  // PDF 출력 시에는 .foot이 숨겨지고 CSS @page counter가 물리 페이지마다 별도로 풋터를 그림.
+  (function () {
+    const pages = document.querySelectorAll('section.page');
+    const total = String(pages.length).padStart(2, '0');
+    pages.forEach((page, idx) => {
+      const numEl = page.querySelector('.foot .page-num');
+      if (!numEl) return;
+      numEl.textContent = `Page ${String(idx + 1).padStart(2, '0')} / ${total}`;
+    });
+  })();
+</script>
 </body>
 </html>
