@@ -373,11 +373,11 @@
     <div class="sub-block">
       <div class="sub-block-head">
         <div class="sub-block-num">3</div>
-        <div class="sub-block-title">MQ 도입을 통한 주문 처리 구조 개선</div>
+        <div class="sub-block-title">현금영수증 고도화</div>
         <div class="sub-block-period">RabbitMQ</div>
       </div>
       <div style="font-size: 13px; color: var(--ink-2); margin-bottom: 12px;">
-        ① <b>주문 완료 후 후행 작업</b>(이메일·현금영수증) 분리, ② 대량 INSERT 작업의 MQ 분산 처리
+        ① <b>MQ 도입을 통한 주문 처리 구조 개선</b>, ② <b>벤더별 현금영수증 발급 구조 개선</b>, ③ <b>현금영수증 운영 어드민 기능화</b>
       </div>
       <div class="flow">
         <div class="flow-card why">
@@ -385,7 +385,7 @@
           <ul>
             <li>외부 플랫폼 통신 지연 → 취소 누락</li>
             <li>후행 작업 실패가 주문 실패로 전파</li>
-            <li>대량 INSERT로 DB 과부하</li>
+            <li>베네피아 명의 일괄 발급 → 실제 매출 주체 미반영 · 발급/취소 누락 수기 처리</li>
           </ul>
         </div>
         <div class="flow-card how">
@@ -395,6 +395,7 @@
             <li><b>DLQ / 재시도 큐</b> 활용</li>
             <li>주문 단위 <b>순서 보장</b></li>
             <li>컨테이너 재기동 제약 고려</li>
+            <li>거래유형별 <b>벤더사 사업자번호</b> 발급 · 현금영수증 <b>어드민 기능화</b></li>
           </ul>
         </div>
         <div class="flow-card impact">
@@ -403,6 +404,7 @@
             <li>장애 전파 차단</li>
             <li>확장성 / 가용성 확보</li>
             <li>대규모 트래픽 대응</li>
+            <li>실제 매출 귀속 주체 발급 · 운영 수기 처리 감소</li>
           </ul>
         </div>
       </div>

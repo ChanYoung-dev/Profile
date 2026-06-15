@@ -65,9 +65,10 @@
       <div class="label">Location</div>
       <div class="value">경기 수원시 권선구</div>
     </div>
-    <div>
+    <div class="portfolio">
+      <span class="pin">PORTFOLIO</span>
       <div class="label">Portfolio</div>
-      <a href="https://chanyoung-dev.github.io/Profile/portfolio" target="_blank">chanyoung-dev.github.io</a>
+      <a href="https://chanyoung-dev.github.io/Profile/portfolio" target="_blank">chanyoung-dev.github.io/Profile/portfolio</a>
     </div>
   </div>
 
@@ -298,13 +299,14 @@
           <div class="project-head">
             <div class="left">
               <span class="pn">Project 01</span>
-              <span class="pt">주문 고도화 프로젝트</span>
+              <span class="pt">PG 고도화 프로젝트</span>
             </div>
-            <span class="pp">2024.12 — 2025.06</span>
+            <span class="pp">2026.06 — 2026.10</span>
           </div>
           <div class="stack-row">
             <span class="pri">Spring Boot</span>
             <span class="pri">Java</span>
+            <span>JavaScript</span>
             <span>MyBatis</span>
             <span>Oracle</span>
             <span class="pri">MSA</span>
@@ -313,48 +315,47 @@
             <span>Jenkins</span>
           </div>
           <div class="callout">
-            주문 관련 대규모 커머스 리뉴얼 프로젝트. 상품·배송비 구조 분리, 취소/교환/반품 개선, 주문 시스템 안정화.
+            결제 · 현금영수증 PG사 전환 프로젝트. 현금영수증 처리 안정성 강화와 벤더별 발급 구조 개선.
           </div>
 
           <div class="dual">
             <div class="why">
               <span class="lbl">문제 상황</span>
               <ul>
-                <li>상품·배송비·주문이 강하게 결합 → <b>정책 변경 어려움</b></li>
-                <li>외부 연동(현금영수증) 타임아웃이 <b>주문 전체로 전파</b></li>
-                <li>테스트 부재로 정책 변경 시 <b>대규모 수동 검증 필요</b></li>
+                <li>외부 현금영수증 연동 지연 · 타임아웃이 <b>주문 실패로 전파</b></li>
+                <li>발급 · 취소 누락으로 <b>고객 문의와 운영 수기 처리</b> 발생</li>
+                <li>모든 거래가 베네피아 명의로 발급 → <b>실제 매출 주체 반영 어려움</b></li>
               </ul>
             </div>
             <div class="impact">
               <span class="lbl">최종 임팩트</span>
               <ul>
-                <li>MTTR <b>45분 → 12분 (73% 단축)</b></li>
-                <li>장애 전파 차단, <b>가용성·확장성 확보</b></li>
-                <li>복잡 케이스(조건부·부분 취소) <b>유연 대응</b></li>
+                <li>외부 장애의 <b>주문 전체 전파 차단</b></li>
+                <li>발급 · 취소 누락 및 <b>운영 수기 처리 감소</b></li>
+                <li>실제 매출 귀속 주체에 맞는 <b>벤더별 발급 지원</b></li>
               </ul>
             </div>
           </div>
 
-          <div class="subhead"><span class="num">1.1</span>MSA 주문·배송·결제 전면 재설계</div>
-          <ul class="bullet">
-            <li>상품·배송비 구조 <b>N:N 분리</b>, 취소/반품/교환 프로세스 추가·개선</li>
-            <li><b>멱등성 · 동시성 · 분산 트랜잭션</b> 제어, 변화에 강한 객체지향 리팩토링</li>
-            <li>배송비만 취소, 귀책 전환 환불, 조건부 무료배송 부분 취소 등 복잡 케이스 처리</li>
-          </ul>
-
-          <div class="subhead"><span class="num">1.2</span>핵심 시나리오 중심 테스트 코드 도입</div>
-          <ul class="bullet">
-            <li>MSA 통합 테스트 환경에 대한 이해 → 주문·결제·배송 핵심 시나리오 테스트 작성</li>
-            <li>Persistence layer 테스트환경 구축</li>
-            <li>→ <mark>주문 관련 장애 평균 복구 시간(MTTR) 45분 → 12분 (약 73% 단축)</mark></li>
-          </ul>
-
-          <div class="subhead"><span class="num">1.3</span>RabbitMQ 도입 — 주문 처리 구조 개선</div>
+          <div class="subhead"><span class="num">1.1</span>RabbitMQ 기반 현금영수증 비동기 처리</div>
           <ul class="bullet">
             <li><b>외부 연동 / 후행 작업 비동기화</b> — 주문 완료 이벤트 기준으로 이메일·현금영수증을 MQ로 분리</li>
             <li>RabbitMQ 비동기 처리, <b>DLQ · 재시도 큐</b> 활용, 주문건 순서 보장 + 컨테이너 재기동 제약 고려</li>
             <li>→ <b>장애 전파 차단</b>, 확장성·가용성 확보, 대규모 트래픽 대응</li>
             <li><b>대량 처리 작업</b> — 상품 대량 INSERT 시 MQ 적재 후 Consumer 순차 처리 → DB 부하 감소</li>
+          </ul>
+
+          <div class="subhead"><span class="num">1.2</span>벤더별 현금영수증 발급 구조 개선</div>
+          <ul class="bullet">
+            <li>매입 · 위탁 등 <b>거래유형에 따라 실제 벤더사 사업자번호로 발급</b></li>
+            <li>다중 벤더 주문은 <b>벤더별 금액 · 면세금액 분리</b> 후 고유 주문번호로 개별 발급 · 취소</li>
+          </ul>
+
+          <div class="subhead"><span class="num">1.3</span>현금영수증 운영 어드민 기능화</div>
+          <ul class="bullet">
+            <li>발급 · 취소 · 부분취소를 <b>어드민에서 직접 처리</b>하도록 기능화</li>
+            <li>발급 상태 · 실패 건 추적 및 재처리 → <b>운영 수기 처리 최소화</b></li>
+            <li>→ <mark>다중 벤더 주문의 발급 · 취소 추적 정확도 향상</mark></li>
           </ul>
         </div>
 
@@ -368,7 +369,7 @@
   </div>
 </section>
 
-<!-- ============ PAGE 4 · CAREER 2 + PERSONAL ============ -->
+<!-- ============ PAGE 4 · CAREER (주문 고도화) ============ -->
 <section class="page">
   <div class="section">
     <div class="section-head">
@@ -385,6 +386,85 @@
           <div class="project-head">
             <div class="left">
               <span class="pn">Project 02</span>
+              <span class="pt">주문 고도화 프로젝트</span>
+            </div>
+            <span class="pp">2024.12 — 2025.06</span>
+          </div>
+          <div class="stack-row">
+            <span class="pri">Spring Boot</span>
+            <span class="pri">Java</span>
+            <span>MyBatis</span>
+            <span>Oracle</span>
+            <span class="pri">MSA</span>
+            <span>RabbitMQ</span>
+            <span>Docker</span>
+            <span>Jenkins</span>
+          </div>
+          <div class="callout">
+            주문 관련 대규모 커머스 리뉴얼 프로젝트. 상품·배송비 구조 분리, 취소/교환/반품 개선, 주문 시스템 안정화.
+          </div>
+
+          <div class="dual">
+            <div class="why">
+              <span class="lbl">문제 상황</span>
+              <ul>
+                <li>상품·배송비·주문이 강하게 결합 → <b>정책 변경 어려움</b></li>
+                <li>테스트 부재로 정책 변경 시 <b>대규모 수동 검증 필요</b></li>
+                <li>사이드 이펙트 우려로 <b>개선 속도 저하</b></li>
+              </ul>
+            </div>
+            <div class="impact">
+              <span class="lbl">최종 임팩트</span>
+              <ul>
+                <li>MTTR <b>45분 → 12분 (73% 단축)</b></li>
+                <li>정책 변경에 <b>유연한 구조 확보</b></li>
+                <li>복잡 케이스(조건부·부분 취소) <b>유연 대응</b></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="subhead"><span class="num">2.1</span>MSA 주문·배송·결제 전면 재설계</div>
+          <ul class="bullet">
+            <li>상품·배송비 구조 <b>N:N 분리</b>, 취소/반품/교환 프로세스 추가·개선</li>
+            <li><b>멱등성 · 동시성 · 분산 트랜잭션</b> 제어, 변화에 강한 객체지향 리팩토링</li>
+            <li>배송비만 취소, 귀책 전환 환불, 조건부 무료배송 부분 취소 등 복잡 케이스 처리</li>
+          </ul>
+
+          <div class="subhead"><span class="num">2.2</span>핵심 시나리오 중심 테스트 코드 도입</div>
+          <ul class="bullet">
+            <li>MSA 통합 테스트 환경에 대한 이해 → 주문·결제·배송 핵심 시나리오 테스트 작성</li>
+            <li>Persistence layer 테스트환경 구축</li>
+            <li>→ <mark>주문 관련 장애 평균 복구 시간(MTTR) 45분 → 12분 (약 73% 단축)</mark></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Resume · Chan Yeong Kim</span>
+    <span class="page-num"></span>
+  </div>
+</section>
+
+<!-- ============ PAGE 5 · CAREER 2 + PERSONAL ============ -->
+<section class="page">
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2 class="section-title">경력 (계속)</h2>
+      <span class="section-meta">CAREER · CONTINUED</span>
+    </div>
+
+    <div class="career-card">
+      <div class="career-body">
+
+        <!-- Project 3 -->
+        <div class="project">
+          <div class="project-head">
+            <div class="left">
+              <span class="pn">Project 03</span>
               <span class="pt">AI Tech TF · AI 도입 리드</span>
             </div>
             <span class="pp">2026.05 — 재직중</span>
@@ -415,11 +495,11 @@
           </div>
         </div>
 
-        <!-- Project 3 -->
+        <!-- Project 4 -->
         <div class="project">
           <div class="project-head">
             <div class="left">
-              <span class="pn">Project 03</span>
+              <span class="pn">Project 04</span>
               <span class="pt">ISMS 대응 — XSS 통합</span>
             </div>
             <span class="pp">2025.06 — 2025.07</span>
@@ -435,11 +515,11 @@
           </ul>
         </div>
 
-        <!-- Project 4 -->
+        <!-- Project 5 -->
         <div class="project">
           <div class="project-head">
             <div class="left">
-              <span class="pn">Project 04</span>
+              <span class="pn">Project 05</span>
               <span class="pt">커머스 운영 자동화 및 안정성 강화</span>
             </div>
             <span class="pp">2024.05 — 2024.07</span>
