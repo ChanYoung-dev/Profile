@@ -23,6 +23,11 @@
     <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M2 1L8 5L2 9" fill="none" stroke="#A32D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
+    <!-- 통합 박스: 취소(레드) → 발급(그린) 흐름 그라데이션 -->
+    <linearGradient id="flow-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fee2e2"/>
+      <stop offset="1" stop-color="#dcfce7"/>
+    </linearGradient>
   </defs>
 
   <!-- ============== 상단 셋업 영역 ============== -->
@@ -105,25 +110,23 @@
   <!-- Consumer1 서버에서 t=0s 박스로 -->
   <line x1="250" y1="355" x2="250" y2="410" stroke="#5F5E5A" stroke-width="1" marker-end="url(#arrow)"/>
 
-  <!-- Consumer1: t=0s (red) -->
-  <rect x="140" y="410" width="220" height="90" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+  <!-- Consumer1: 취소(t=0s) → 발급(t=2.5s선) 통합 박스 · 결제금액 계산을 Consumer2와 동일 선상으로 정렬 -->
+  <rect x="140" y="410" width="220" height="560" rx="8" fill="url(#flow-grad)" stroke="#5F5E5A" stroke-width="1"/>
   <circle cx="160" cy="430" r="6" fill="#A32D2D"/>
   <line x1="156" y1="426" x2="164" y2="434" stroke="white" stroke-width="1.5"/>
   <line x1="164" y1="426" x2="156" y2="434" stroke="white" stroke-width="1.5"/>
   <text x="265" y="438" text-anchor="middle" font-size="12" fill="#791F1F">상품 1번 취소요청 입력</text>
   <text x="265" y="465" text-anchor="middle" font-size="12" fill="#791F1F">현금영수증(5341)</text>
-  <text x="265" y="483" text-anchor="middle" font-size="12" fill="#791F1F">취소</text>
+  <text x="265" y="483" text-anchor="middle" font-size="12" fill="#791F1F">발행금액 전체취소</text>
 
-  <!-- Consumer1 t=0s → t=1s 연결 -->
-  <line x1="250" y1="500" x2="250" y2="540" stroke="#5F5E5A" stroke-width="1" marker-end="url(#arrow)"/>
+  <!-- 취소→발급 내부 연결 화살표 -->
+  <line x1="250" y1="500" x2="250" y2="888" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)"/>
 
-  <!-- Consumer1: t=1s (green) -->
-  <rect x="140" y="540" width="220" height="90" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
-  <circle cx="160" cy="560" r="6" fill="#3B6D11"/>
-  <path d="M 156 560 L 159 563 L 164 558" stroke="white" stroke-width="1.5" fill="none"/>
-  <text x="265" y="568" text-anchor="middle" font-size="12" fill="#27500A">상품 1번을 제외한</text>
-  <text x="265" y="586" text-anchor="middle" font-size="12" fill="#27500A">나머지 금액 발급</text>
-  <text x="265" y="610" text-anchor="middle" font-size="12" fill="#27500A">현금영수증(5342) 발급</text>
+  <circle cx="160" cy="900" r="6" fill="#3B6D11"/>
+  <path d="M 156 900 L 159 903 L 164 898" stroke="white" stroke-width="1.5" fill="none"/>
+  <text x="265" y="908" text-anchor="middle" font-size="12" fill="#27500A">상품 1번을 제외한</text>
+  <text x="265" y="935" text-anchor="middle" font-size="12" fill="#27500A">결제금액 계산</text>
+  <text x="265" y="953" text-anchor="middle" font-size="12" fill="#27500A">현금영수증(5342) 발급</text>
 
   <!-- ============== Consumer2 이벤트들 ============== -->
 
@@ -131,24 +134,22 @@
   <line x1="560" y1="355" x2="560" y2="680" stroke="#5F5E5A" stroke-width="1" stroke-dasharray="2 4" opacity="0.6"/>
   <line x1="560" y1="678" x2="560" y2="680" stroke="#5F5E5A" stroke-width="1" marker-end="url(#arrow)"/>
 
-  <!-- Consumer2: t=2s (red) -->
-  <rect x="450" y="680" width="220" height="90" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+  <!-- Consumer2: 취소(t=2s) → 발급(t=2.5s) 통합 박스 -->
+  <rect x="450" y="680" width="220" height="290" rx="8" fill="url(#flow-grad)" stroke="#5F5E5A" stroke-width="1"/>
   <circle cx="470" cy="700" r="6" fill="#A32D2D"/>
   <line x1="466" y1="696" x2="474" y2="704" stroke="white" stroke-width="1.5"/>
   <line x1="474" y1="696" x2="466" y2="704" stroke="white" stroke-width="1.5"/>
   <text x="575" y="708" text-anchor="middle" font-size="12" fill="#791F1F">상품 2번 취소요청 입력</text>
   <text x="572" y="735" text-anchor="middle" font-size="12" fill="#791F1F">직전 현금영수증(5342)</text>
-  <text x="572" y="753" text-anchor="middle" font-size="12" fill="#791F1F">취소</text>
+  <text x="572" y="753" text-anchor="middle" font-size="12" fill="#791F1F">발행금액 전체취소</text>
 
-  <!-- Consumer2 t=2s → t=2.5s 연결 -->
-  <line x1="560" y1="770" x2="560" y2="880" stroke="#5F5E5A" stroke-width="1" marker-end="url(#arrow)"/>
+  <!-- 취소→발급 내부 연결 화살표 -->
+  <line x1="560" y1="775" x2="560" y2="875" stroke="#5F5E5A" stroke-width="1.2" marker-end="url(#arrow)"/>
 
-  <!-- Consumer2: t=2.5s (green) -->
-  <rect x="450" y="880" width="220" height="90" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="1"/>
   <circle cx="470" cy="900" r="6" fill="#3B6D11"/>
   <path d="M 466 900 L 469 903 L 474 898" stroke="white" stroke-width="1.5" fill="none"/>
   <text x="572" y="908" text-anchor="middle" font-size="12" fill="#27500A">상품 1, 2번을 제외한</text>
-  <text x="572" y="935" text-anchor="middle" font-size="12" fill="#27500A">나머지 금액 발급</text>
+  <text x="572" y="935" text-anchor="middle" font-size="12" fill="#27500A">결제금액 계산</text>
   <text x="572" y="953" text-anchor="middle" font-size="12" fill="#27500A">현금영수증(5343) 발급</text>
 
   <!-- ============== Consumer3 이벤트들 ============== -->
@@ -164,11 +165,16 @@
   <line x1="784" y1="796" x2="776" y2="804" stroke="white" stroke-width="1.5"/>
   <text x="884" y="808" text-anchor="middle" font-size="12" fill="#791F1F">상품 3번 취소요청 입력</text>
   <text x="881" y="835" text-anchor="middle" font-size="12" fill="#791F1F">직전 현금영수증(5342)</text>
-  <text x="881" y="853" text-anchor="middle" font-size="12" fill="#791F1F">취소</text>
+  <text x="881" y="853" text-anchor="middle" font-size="12" fill="#791F1F">발행금액 전체취소</text>
 
   <!-- 경합 발생 (race condition) 점선 화살표: Consumer2 t=2s 박스 → Consumer3 t=2.2s 박스 -->
   <path d="M 670 725 L 715 725 L 715 825 L 760 825" fill="none" stroke="#A32D2D" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#arrow-red)"/>
   <text x="725" y="780" font-size="11" font-style="italic" fill="#A32D2D" font-weight="500">동일 5342 경합</text>
+
+  <!-- 결제금액 계산 경합 (Consumer1·Consumer2 동일 선상 계산 쿼리 경합) -->
+  <line x1="360" y1="935" x2="450" y2="935" stroke="#A32D2D" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <line x1="405" y1="994" x2="405" y2="940" stroke="#A32D2D" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#arrow-red)"/>
+  <text x="405" y="1012" text-anchor="middle" font-size="12" font-style="italic" fill="#A32D2D" font-weight="600">결제금액 계산 경합</text>
 
   <!-- 오류 메시지 -->
   <line x1="870" y1="870" x2="870" y2="990" stroke="#A32D2D" stroke-width="1.5" marker-end="url(#arrow-red)"/>

@@ -76,18 +76,22 @@
     <div class="stat">
       <div class="num">4.1 yrs</div>
       <div class="label">Commerce Backend</div>
+      <div class="desc">SK 엠앤서비스 주문·결제 도메인</div>
     </div>
     <div class="stat">
-      <div class="num">MSA</div>
-      <div class="label">Saga · Distributed Transaction</div>
+      <div class="num">73%↓</div>
+      <div class="label">MTTR Reduced</div>
+      <div class="desc">테스트 코드 + 시나리오 검증으로 45분 → 12분</div>
     </div>
     <div class="stat">
-      <div class="num">AI-DLC</div>
-      <div class="label">AI-Driven Development</div>
+      <div class="num">99%↓</div>
+      <div class="label">CS Tickets</div>
+      <div class="desc">초도배송비 자동화로 연 1,500건 → 10건</div>
     </div>
     <div class="stat">
-      <div class="num">Test Code</div>
-      <div class="label">Testcontainers · TDD</div>
+      <div class="num">76.5%↓</div>
+      <div class="label">Incident Rate</div>
+      <div class="desc">근본 원인 개선으로 장애율 감소</div>
     </div>
   </div>
 
@@ -126,7 +130,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span class="page-num"></span>
+    <span>Page 01 / 05</span>
   </div>
 </section>
 
@@ -264,7 +268,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span class="page-num"></span>
+    <span>Page 02 / 05</span>
   </div>
 </section>
 
@@ -379,7 +383,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span class="page-num"></span>
+    <span>Page 03 / 05</span>
   </div>
 </section>
 
@@ -477,7 +481,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span class="page-num"></span>
+    <span>Page 04 / 05</span>
   </div>
 </section>
 
@@ -621,24 +625,54 @@
     </div>
   </div>
 
+  <!-- Compensation -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <h2 class="section-title">보상 정보</h2>
+      <span class="section-meta">COMPENSATION</span>
+    </div>
+    <div class="edu-grid" style="grid-template-columns: 1.6fr 1fr;">
+      <!-- 현재 연봉 -->
+      <div class="edu-card">
+        <div class="title">현재 연봉 (직전 1년 기준)</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px;">
+          <div>
+            <div style="color: var(--muted); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;">급여</div>
+            <div style="font-weight: 700; color: var(--ink); font-size: 13px; margin-top: 2px;">43,145,290<span style="font-size: 10.5px; color: var(--muted-2); margin-left: 1px;">원</span></div>
+          </div>
+          <div>
+            <div style="color: var(--muted); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;">상여금</div>
+            <div style="font-weight: 700; color: var(--ink); font-size: 13px; margin-top: 2px;">6,279,385<span style="font-size: 10.5px; color: var(--muted-2); margin-left: 1px;">원</span></div>
+          </div>
+          <div>
+            <div style="color: var(--muted); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;">비과세 식대</div>
+            <div style="font-weight: 700; color: var(--ink); font-size: 13px; margin-top: 2px;">1,800,000<span style="font-size: 10.5px; color: var(--muted-2); margin-left: 1px;">원</span></div>
+          </div>
+        </div>
+        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line-2); display: flex; align-items: baseline; justify-content: space-between;">
+          <span style="color: var(--muted); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;">합계</span>
+          <span style="font-family: var(--font-display); font-size: 24px; color: var(--accent); letter-spacing: 0.02em;">51,224,675<span style="font-size: 12px; margin-left: 3px; font-family: var(--font-sans); font-weight: 700;">원</span></span>
+        </div>
+      </div>
+      <!-- 희망 연봉 -->
+      <div class="edu-card" style="background: var(--accent-soft); border-color: var(--accent-line);">
+        <div class="title" style="color: var(--accent);">희망 연봉</div>
+        <div style="margin-top: 10px;">
+          <span style="font-weight: 800; color: var(--accent); font-size: 22px; letter-spacing: -0.01em;">협의 가능</span>
+        </div>
+        <div class="meta" style="margin-top: 8px;">
+          <span style="color: var(--accent-2); font-family: var(--font-display); font-size: 13px; letter-spacing: 0.08em;">NEGOTIABLE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="foot">
     <span>chanyoung-dev.github.io · emrhssla@gmail.com</span>
-    <span class="page-num"></span>
+    <span>Page 05 / 05</span>
   </div>
 </section>
 
-<script>
-  // 각 .page 섹션의 풋터에 페이지 번호를 자동 채움 (화면용 .foot 표시).
-  // PDF 출력 시에는 .foot이 숨겨지고 CSS @page counter가 물리 페이지마다 별도로 풋터를 그림.
-  (function () {
-    const pages = document.querySelectorAll('section.page');
-    const total = String(pages.length).padStart(2, '0');
-    pages.forEach((page, idx) => {
-      const numEl = page.querySelector('.foot .page-num');
-      if (!numEl) return;
-      numEl.textContent = `Page ${String(idx + 1).padStart(2, '0')} / ${total}`;
-    });
-  })();
-</script>
 </body>
 </html>

@@ -829,6 +829,17 @@ img { max-width: 100%; display: block; }
 .flow-card.why li::before { background: radial-gradient(circle at 30% 30%, #fdba74, #ea580c); }
 .flow-card.how li::before { background: radial-gradient(circle at 30% 30%, #67e8f9, #0891b2); }
 .flow-card.impact li::before { background: radial-gradient(circle at 30% 30%, #86efac, #16a34a); }
+
+/* CHALLENGE — rose liquid (과제 → 해결) */
+.flow-card.challenge::before {
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(255, 228, 230, 0.95) 0%, rgba(255, 228, 230, 0) 60%),
+    radial-gradient(90% 70% at 100% 100%, rgba(254, 205, 211, 0.85) 0%, rgba(254, 205, 211, 0) 65%),
+    linear-gradient(135deg, rgba(255, 241, 242, 0.95) 0%, rgba(254, 205, 211, 0.7) 100%);
+}
+.flow-card.challenge { border-color: rgba(254, 205, 211, 0.6); }
+.flow-card.challenge .lbl { color: #e11d48; border: 1px solid rgba(225, 29, 72, 0.18); }
+.flow-card.challenge li::before { background: radial-gradient(circle at 30% 30%, #fda4af, #e11d48); }
 .flow-card b { font-weight: 700; color: var(--ink); }
 
 /* Print fallback — 카드 3종 색상을 통일된 뉴트럴 글래스 톤으로 (WHY/HOW/IMPACT 구분은 라벨 컬러로 유지) */

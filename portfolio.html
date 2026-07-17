@@ -52,7 +52,7 @@
 
     <div class="cover-bottom">
       <div class="cover-stat">
-        <div class="num">4 yrs</div>
+        <div class="num">4.1 yrs</div>
         <div class="label">Commerce Backend</div>
       </div>
       <div class="cover-stat">
@@ -60,8 +60,8 @@
         <div class="label">Saga · Distributed Transaction</div>
       </div>
       <div class="cover-stat">
-        <div class="num">AI</div>
-        <div class="label">Agentic Coding</div>
+        <div class="num">AI-DLC</div>
+        <div class="label">AI-Driven Development</div>
       </div>
       <div class="cover-stat">
         <div class="num">Test Code</div>
@@ -118,7 +118,11 @@
           CS 처리 시간을 약 90% 이상 절감한 경험이 있습니다.
         </p>
         <p>
-          개인적으로는 <b>AI Agentic Coding</b> 워크플로우를 적극 도입해
+          나아가 <b>Harness Engineering</b>을 통해 안전한 운영 시스템 접근 및 실무형 AI 개발 체계를 구축하여
+          AI 생산성을 크게 향상시켰고, <b>AI-DLC 개발 방법론</b>을 도입하여 개발 공수 기간을 대폭 감소시켰습니다.
+        </p>
+        <p>
+          개인적으로는 <b>AI-DLC 개발론</b>을 적극 도입해
           Claude Code · Cursor · Codex 등 AI 에이전트와 협업하며,
           <b>코인 자동매매 · AI 분석 알림</b> 사이드 프로젝트를 풀스택으로 운영
           (Telegram 구독자 830+)하고 있습니다.
@@ -239,7 +243,7 @@
           <li>◆ IntelliJ IDEA · VS Code</li>
           <li>◆ Grafana</li>
           <li>◆ Notion · Confluence · Jira</li>
-          <li>◆ Claude Code · AI Agentic Coding</li>
+          <li>◆ Claude Code · AI-DLC 개발론</li>
         </ul>
       </div>
     </div>
@@ -304,6 +308,7 @@
             <li>취소/반품/교환 프로세스 추가</li>
             <li><b>멱등성 · 동시성 · 분산 트랜잭션</b> 제어</li>
             <li>객체지향적 리팩토링</li>
+            <li>실시간 모니터링을 통한 운영 개선 — 재고 동시성 처리, 포인트 연마감 결제취소 이슈 등 주요 오류 <b>근본 원인 분석·개선</b></li>
           </ul>
         </div>
         <div class="flow-card impact">
@@ -312,6 +317,7 @@
             <li>다양한 정책 변경에 유연 대응</li>
             <li>조건부 배송비 등 복잡 케이스 처리</li>
             <li>유지보수 비용 절감</li>
+            <li>초기 대비 <b>장애율 76.5% 감소</b></li>
           </ul>
         </div>
       </div>
@@ -350,6 +356,14 @@
             <li>운영 장애 0건 유지</li>
           </ul>
         </div>
+        <div class="flow-card challenge" style="grid-column: 1 / -1;">
+          <div class="lbl">◆ CHALLENGE</div>
+          <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px 22px;">
+            <li><b>persistence layer 환경구축 문제</b> → 테스트 이후의 <b>개발 DB 오염</b>, <b>분산 트랜잭션 롤백</b> 필요</li>
+            <li>MSA에서의 <b>DB 공유</b>로 인한 <b>타 API mocking 실패</b></li>
+            <li><b>선행 데이터 구축</b> → 주문테스트 진행을 위해선 <b>상품데이터</b>가 필요</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -377,7 +391,7 @@
         <div class="sub-block-period">RabbitMQ</div>
       </div>
       <div style="font-size: 13px; color: var(--ink-2); margin-bottom: 12px;">
-        ① <b>MQ 도입을 통한 주문 처리 구조 개선</b>, ② <b>벤더별 현금영수증 발급 구조 개선</b>, ③ <b>현금영수증 운영 어드민 기능화</b>
+        ① <b>MQ 도입을 통한 주문 처리 구조 개선</b>, ② <b>벤더별 현금영수증 발급 구조 개선</b>, ③ <b>현금영수증 운영 어드민 기능화</b>, ④ <b>AI-DLC 개발론으로 AI 주도개발 도입</b>
       </div>
       <div class="flow">
         <div class="flow-card why">
@@ -392,10 +406,8 @@
           <div class="lbl">◆ HOW</div>
           <ul>
             <li>주문 완료 이벤트 기준 MQ 분리</li>
-            <li><b>DLQ / 재시도 큐</b> 활용</li>
-            <li>주문 단위 <b>순서 보장</b></li>
-            <li>컨테이너 재기동 제약 고려</li>
             <li>거래유형별 <b>벤더사 사업자번호</b> 발급 · 현금영수증 <b>어드민 기능화</b></li>
+            <li><b>AI-DLC 개발론</b>으로 AI기반 개발</li>
           </ul>
         </div>
         <div class="flow-card impact">
@@ -405,6 +417,16 @@
             <li>확장성 / 가용성 확보</li>
             <li>대규모 트래픽 대응</li>
             <li>실제 매출 귀속 주체 발급 · 운영 수기 처리 감소</li>
+            <li>AI-DLC 개발론으로 개발하여 <b>공수(MM) 66% 절감</b></li>
+          </ul>
+        </div>
+        <div class="flow-card challenge" style="grid-column: 1 / -1;">
+          <div class="lbl">◆ CHALLENGE</div>
+          <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px 22px;">
+            <li><b>메시지 유실</b> → 인프라 및 각 아키텍처에 대한 <b>Life Cycle</b>을 이용</li>
+            <li><b>순서제어 불가</b> → <b>샤딩</b> or <b>Single Consumer</b> 도입</li>
+            <li><b>분산 Consumer 환경의 race condition · Lost Update</b> → <b>낙관적 락</b> 도입</li>
+            <li><b>오류 제어</b> → <b>재시도 큐</b>와 <b>DLQ</b>를 적용해 오류제어</li>
           </ul>
         </div>
       </div>
@@ -439,46 +461,10 @@
           <div class="lbl">◆ IMPACT</div>
           <ul>
             <li><b>AI 아키텍처 설계</b>로 외부 LLM 활용 시에도 운영 데이터 유출 차단 구조 확보</li>
-            <li><b>AI-DLC 관점 개발</b>로 운영 이슈 분석 속도 향상</li>
+            <li><b>Harness Engineering</b> 기반으로 정책·코드·운영 데이터를 AI가 한 번에 연결해 운영 이슈 분석 속도 향상</li>
+            <li><b>AI-Driven Development Lifecycle 관점 개발</b>을 통해 프로젝트 개발 공수 MM 대폭 감소</li>
             <li><b>Claude Code 환경 구축</b>으로 AI 산출물 품질 향상·통일화</li>
             <li><b>Harness Engineering</b> 기반 AI 환각 차단 + 컨텍스트·토큰·응답시간 효율화</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Subproject 5 -->
-    <div class="sub-block">
-      <div class="sub-block-head">
-        <div class="sub-block-num">5</div>
-        <div class="sub-block-title">커머스 운영 자동화 &amp; 안정성 강화</div>
-        <div class="sub-block-metrics">
-          <span class="chip orange"><span class="num">99%↓</span><span class="lab">CS 감소</span></span>
-          <span class="chip cyan"><span class="num">4~6×</span><span class="lab">MTBF</span></span>
-        </div>
-      </div>
-      <div class="flow">
-        <div class="flow-card why">
-          <div class="lbl">◆ WHY</div>
-          <ul>
-            <li>배송비 복구·상태 변경·공급가 변경</li>
-            <li>수작업 CS 프로세스 자동화 필요</li>
-          </ul>
-        </div>
-        <div class="flow-card how">
-          <div class="lbl">◆ HOW</div>
-          <ul>
-            <li>배송비 매핑 구조 / 정산 로직 분석</li>
-            <li>프로시져 도입, 백오피스 기능 개발</li>
-            <li>테스트 코드로 변경 안정성 확보</li>
-          </ul>
-        </div>
-        <div class="flow-card impact">
-          <div class="lbl">◆ IMPACT</div>
-          <ul>
-            <li>초도배송비 CS <b>1,500 → 10건 (99%↓)</b></li>
-            <li>MTBF <b>2~3일 → 1개월+</b></li>
-            <li>운영 장애 0건 유지</li>
           </ul>
         </div>
       </div>
@@ -584,21 +570,14 @@
         </header>
         <div class="deep-body">
 
-          <!-- Challenge 1 · 재기동 유실 -->
+          <!-- Challenge 01 · 메세지 유실 (인프라 항목 통합) -->
           <div class="deep-row">
-            <div class="k">Challenge 01 · 재기동 유실</div>
+            <div class="k">Challenge 01 · 메세지 유실</div>
             <div class="v">
               DB 락 때문에 재기동을 해야 하거나 배포로 scale-out된 서버들을 재기동해야 할 때, 진행 중이던 메시지가 <b>유실될 수 있는 위험</b>이 있었습니다.
-            </div>
-          </div>
-
-          <!-- Challenge 2 · 인프라 (originally Challenge 3) -->
-          <div class="deep-row">
-            <div class="k">Challenge 02 · 인프라</div>
-            <div class="v">
               <ul>
                 <li>MQ 미들웨어 고장</li>
-                <li>Docker, Nomad, Consul 등 인프라 Shutdown 연계 확인 필요</li>
+                <li>Docker, Nomad, Consul 등 인프라 Shutdown 연계 및 LifeCycle 확인 필요</li>
               </ul>
             </div>
           </div>
@@ -630,9 +609,9 @@
         </header>
         <div class="deep-body">
 
-          <!-- Challenge 2 · 순서 보장 -->
+          <!-- Challenge 2 · 순서 제어 및 동시성 제어 -->
           <div class="deep-row">
-            <div class="k">Challenge 02 · 순서 보장</div>
+            <div class="k">Challenge 02 · 순서 제어 및 동시성 제어</div>
             <div class="v">
               주문 부분취소 시 국세청에는 부분취소가 없기 때문에, 이전 현금영수증 처리 금액을 <b>전액 취소 API</b>로 요청한 뒤 남은 결제 금액을 다시 호출해야 합니다.
               아래처럼 <b>동시다발적으로 취소요청 API 호출</b>하는 경우 문제가 생길 수 있습니다.
@@ -669,6 +648,11 @@
                     <linearGradient id="cf-grad-conflict" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0" stop-color="#fef3c7"/>
                       <stop offset="1" stop-color="#fcd34d"/>
+                    </linearGradient>
+                    <!-- 통합 박스: 취소(레드) → 발급(그린) 흐름 그라데이션 -->
+                    <linearGradient id="cf-grad-flow" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#fee2e2"/>
+                      <stop offset="1" stop-color="#dcfce7"/>
                     </linearGradient>
 
                     <marker id="cf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -755,39 +739,37 @@
 
                   <!-- Consumer1 이벤트 -->
                   <line x1="250" y1="375" x2="250" y2="410" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
-                  <rect x="140" y="410" width="220" height="90" rx="14" fill="url(#cf-grad-warn)" stroke="#dc2626" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <rect x="140" y="410" width="220" height="560" rx="14" fill="url(#cf-grad-flow)" stroke="#94a3b8" stroke-width="1.2" filter="url(#cf-shadow)"/>
                   <circle cx="160" cy="430" r="6" fill="#dc2626"/>
                   <line x1="156" y1="426" x2="164" y2="434" stroke="white" stroke-width="1.5"/>
                   <line x1="164" y1="426" x2="156" y2="434" stroke="white" stroke-width="1.5"/>
                   <text x="265" y="438" text-anchor="middle" font-size="15" fill="#991b1b">상품 1번 취소요청 입력</text>
                   <text x="265" y="465" text-anchor="middle" font-size="15" fill="#991b1b">현금영수증(5341)</text>
-                  <text x="265" y="483" text-anchor="middle" font-size="15" fill="#991b1b">취소</text>
+                  <text x="265" y="483" text-anchor="middle" font-size="15" fill="#991b1b">발행금액 전체취소</text>
 
-                  <line x1="250" y1="500" x2="250" y2="540" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
-                  <rect x="140" y="540" width="220" height="90" rx="14" fill="url(#cf-grad-success)" stroke="#059669" stroke-width="1.2" filter="url(#cf-shadow)"/>
-                  <circle cx="160" cy="560" r="6" fill="#059669"/>
-                  <path d="M 156 560 L 159 563 L 164 558" stroke="white" stroke-width="1.5" fill="none"/>
-                  <text x="265" y="568" text-anchor="middle" font-size="15" fill="#065f46">상품 1번을 제외한</text>
-                  <text x="265" y="586" text-anchor="middle" font-size="15" fill="#065f46">나머지 금액 발급</text>
-                  <text x="265" y="610" text-anchor="middle" font-size="15" fill="#065f46">현금영수증(5342) 발급</text>
+                  <line x1="250" y1="500" x2="250" y2="888" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#cf-arrow)"/>
+                  <circle cx="160" cy="900" r="6" fill="#059669"/>
+                  <path d="M 156 900 L 159 903 L 164 898" stroke="white" stroke-width="1.5" fill="none"/>
+                  <text x="265" y="908" text-anchor="middle" font-size="15" fill="#065f46">상품 1번을 제외한</text>
+                  <text x="265" y="935" text-anchor="middle" font-size="15" fill="#065f46">결제금액 계산</text>
+                  <text x="265" y="953" text-anchor="middle" font-size="15" fill="#065f46">현금영수증(5342) 발급</text>
 
                   <!-- Consumer2 이벤트 -->
                   <line x1="560" y1="375" x2="560" y2="680" stroke="#94a3b8" stroke-width="1.1" stroke-dasharray="2 4" opacity="0.7"/>
                   <line x1="560" y1="678" x2="560" y2="680" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
-                  <rect x="450" y="680" width="220" height="90" rx="14" fill="url(#cf-grad-warn)" stroke="#dc2626" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <rect x="450" y="680" width="220" height="290" rx="14" fill="url(#cf-grad-flow)" stroke="#94a3b8" stroke-width="1.2" filter="url(#cf-shadow)"/>
                   <circle cx="470" cy="700" r="6" fill="#dc2626"/>
                   <line x1="466" y1="696" x2="474" y2="704" stroke="white" stroke-width="1.5"/>
                   <line x1="474" y1="696" x2="466" y2="704" stroke="white" stroke-width="1.5"/>
                   <text x="575" y="708" text-anchor="middle" font-size="15" fill="#991b1b">상품 2번 취소요청 입력</text>
                   <text x="572" y="735" text-anchor="middle" font-size="15" fill="#991b1b">직전 현금영수증(5342)</text>
-                  <text x="572" y="753" text-anchor="middle" font-size="15" fill="#991b1b">취소</text>
+                  <text x="572" y="753" text-anchor="middle" font-size="15" fill="#991b1b">발행금액 전체취소</text>
 
-                  <line x1="560" y1="770" x2="560" y2="880" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
-                  <rect x="450" y="880" width="220" height="90" rx="14" fill="url(#cf-grad-success)" stroke="#059669" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <line x1="560" y1="775" x2="560" y2="875" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#cf-arrow)"/>
                   <circle cx="470" cy="900" r="6" fill="#059669"/>
                   <path d="M 466 900 L 469 903 L 474 898" stroke="white" stroke-width="1.5" fill="none"/>
                   <text x="572" y="908" text-anchor="middle" font-size="15" fill="#065f46">상품 1, 2번을 제외한</text>
-                  <text x="572" y="935" text-anchor="middle" font-size="15" fill="#065f46">나머지 금액 발급</text>
+                  <text x="572" y="935" text-anchor="middle" font-size="15" fill="#065f46">결제금액 계산</text>
                   <text x="572" y="953" text-anchor="middle" font-size="15" fill="#065f46">현금영수증(5343) 발급</text>
 
                   <!-- Consumer3 이벤트 -->
@@ -799,12 +781,18 @@
                   <line x1="784" y1="796" x2="776" y2="804" stroke="white" stroke-width="1.5"/>
                   <text x="884" y="808" text-anchor="middle" font-size="15" fill="#991b1b">상품 3번 취소요청 입력</text>
                   <text x="881" y="835" text-anchor="middle" font-size="15" fill="#991b1b">직전 현금영수증(5342)</text>
-                  <text x="881" y="853" text-anchor="middle" font-size="15" fill="#991b1b">취소</text>
+                  <text x="881" y="853" text-anchor="middle" font-size="15" fill="#991b1b">발행금액 전체취소</text>
 
                   <!-- 경합 발생 (강조 — conflict 그라디언트 + 강한 그림자) -->
                   <path d="M 670 725 L 715 725 L 715 825 L 760 825" fill="none" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#cf-arrow-red)"/>
                   <rect x="672" y="745" width="124" height="34" rx="10" fill="url(#cf-grad-conflict)" stroke="#dc2626" stroke-width="1.6" filter="url(#cf-shadow-strong)"/>
                   <text x="734" y="768" text-anchor="middle" font-size="15" font-weight="700" fill="#991b1b">⚠ 동일 5342 경합</text>
+
+                  <!-- 결제금액 계산 경합 (Consumer1·Consumer2 동일 선상 계산 쿼리 경합) -->
+                  <line x1="360" y1="935" x2="450" y2="935" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5 4"/>
+                  <line x1="405" y1="998" x2="405" y2="940" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#cf-arrow-red)"/>
+                  <rect x="320" y="1000" width="170" height="36" rx="10" fill="url(#cf-grad-conflict)" stroke="#dc2626" stroke-width="1.6" filter="url(#cf-shadow-strong)"/>
+                  <text x="405" y="1023" text-anchor="middle" font-size="15" font-weight="700" fill="#991b1b">⚠ 결제금액 계산 경합</text>
 
                   <!-- 오류 메시지 -->
                   <line x1="870" y1="870" x2="870" y2="990" stroke="#dc2626" stroke-width="1.6" marker-end="url(#cf-arrow-red)"/>
@@ -819,7 +807,8 @@
               <ul>
                 <li><b>샤딩</b> — <code>hash(ordNo) % 4</code>로 큐 4개 분산. 같은 ordNo는 항상 같은 큐 → 같은 서버</li>
                 <li><b>x-single-active-consumer</b> — 큐 단위 단일 Consumer 보장</li>
-                <li><b>Exclusive Consumer</b> ← 최종 채택 ✅</li>
+                <li><b>Exclusive Consumer로 순서제어</b> ← 1차 채택 ✅</li>
+                <li><b>분산 Consumer 환경 + 동시성제어</b> ← 최종 채택 ✅</li>
               </ul>
             </div>
           </div>
@@ -1280,7 +1269,7 @@
         <p class="lead">
           코인 시장의 실시간 변동성을 분석하여 <b>지표 개발 → 백테스트 → 자동매매 → 알림 서비스화</b>
           전 과정을 1인 개발로 운영 중인 사이드 프로젝트입니다.
-          설계 단계부터 <b>AI Agentic Coding 워크플로우</b>를 적극 도입해
+          설계 단계부터 <b>AI-DLC 개발론</b>을 적극 도입해
           Claude Code · Cursor · Codex 등 AI 에이전트와 협업하며 개발 속도를 가속화했고,
           실 서비스에는 <b>OpenAI · Claude API</b>를 연동하여
           시장 분석 리포트 자동화와 사용자 맞춤 시그널 해석 기능을 제공합니다.
@@ -1290,7 +1279,7 @@
         <div class="spotlight-stack">
           <span>Node.js</span><span>React</span>
           <span>OpenAI API</span><span>Claude API</span>
-          <span>AI Agentic Coding</span>
+          <span>AI-DLC 개발론</span>
           <span>Binance API</span><span>Upbit API</span>
           <span>TradingView Script</span>
           <span>Multi-process</span>
@@ -1304,10 +1293,10 @@
       <div class="ai-card">
         <div class="ai-icon">🤖</div>
         <div class="ai-body">
-          <div class="ai-tag">AI AGENTIC CODING</div>
+          <div class="ai-tag">AI-DLC 개발론</div>
           <h4>AI 에이전트와 함께 짓는 코드</h4>
           <p>
-            Claude Code · Cursor · Codex CLI 등 <b>AI Agentic 도구를 활용한 멀티 에이전트 워크플로우</b>를
+            Claude Code · Cursor · Codex CLI 등 AI 에이전트를 활용한 <b>AI-DLC 개발론</b>을
             도입했습니다. 사양 명세 → 테스트 우선 작성 → 구현 → 셀프 코드 리뷰까지
             반복 작업을 AI에 위임하고, 사람은 아키텍처 설계와 의사결정에 집중하는 구조로 운영합니다.
             그 결과 1인 개발 환경에서도 백엔드 · 프론트엔드 · 데이터 분석을 동시에 진행할 수 있었습니다.
