@@ -1,0 +1,46 @@
+<h2>포트폴리오 시각화 개선 — 브레인스토밍</h2>
+<p class="subtitle">현재 index.html · style.css 구조를 함께 살펴보고, 웹/PDF 모두 읽기 좋게 다듬어 갑니다</p>
+
+<div class="section">
+  <span class="label">현재 파악된 구조</span>
+  <div class="mockup">
+    <div class="mockup-header">index.html — 단일 페이지 구성</div>
+    <div class="mockup-body">
+      <div class="mock-nav">Home | About | Skills | Project | Git | Contact</div>
+      <div style="padding: 16px;">
+        <div style="margin: 12px 0;"><b>HOME</b> — Developer Chan, Contact / 블로그 / Career 버튼</div>
+        <div style="margin: 12px 0;"><b>ABOUT 🤔</b> — 자기소개 본문 + 학력/경력 타임라인</div>
+        <div style="margin: 12px 0;"><b>SKILLS 📖</b> — 좌측 막대그래프 · 우측 도구 그리드</div>
+        <div style="margin: 12px 0;"><b>PROJECT 💼</b> — 카테고리 필터 · 베네피아/코인 상세 표</div>
+        <div style="margin: 12px 0;"><b>GIT</b> — GitHub Activity (PDF에서 숨김)</div>
+        <div style="margin: 12px 0;"><b>CONTACT</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <span class="label">파악된 PDF 동작</span>
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>유지되는 것 (PDF)</h4>
+      <ul>
+        <li>About / Skills 본문</li>
+        <li>프로젝트 상세 표 (베네피아·코인)</li>
+        <li>총평·강점·As-Is/To-Be 섹션</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>제거/노출 변경</h4>
+      <ul>
+        <li>.hidePDF → 숨김 (navbar, 카테고리 버튼, Git 섹션 등)</li>
+        <li>.showPDF .invisible 해제 → 상세 표 노출</li>
+        <li>projects_info padding 10px 적용</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="text-align:center; margin-top:24px;">
+다음 단계: 우선 개선 영역과 방향성을 터미널에서 함께 정합니다 →
+</p>

@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chan Yeong · Backend Engineer Portfolio (PDF Edition)</title>
+  <meta name="description" content="Chan Yeong's PDF-optimized portfolio · Backend / MSA / Commerce Domain" />
+  <link rel="icon" type="image/png" href="img/jaguar.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style_upgrade.css" />
+</head>
+<body class="liquid-theme">
+
+  <!-- Floating toolbar (screen only) -->
+  <div class="print-toolbar">
+    <button onclick="expandAll()" class="ghost">⤓ Expand</button>
+    <button onclick="window.print()">🖨 PDF로 저장</button>
+  </div>
+
+  <!-- =====================================================
+       PAGE 01 · COVER
+       ===================================================== -->
+  <section class="page cover">
+    <div class="cover-top">
+      <div class="cover-mark">
+        <span class="dot"></span>
+        <span>Portfolio · Edition 2026</span>
+      </div>
+      <div class="cover-meta">
+        <span><strong>For</strong> Backend Engineering</span>
+        <span><strong>Domain</strong> Commerce / MSA</span>
+        <span><strong>Updated</strong> 2026.04</span>
+      </div>
+    </div>
+
+    <div class="cover-hero">
+      <div class="cover-eyebrow">Backend Engineer · Commerce Domain Specialist</div>
+      <h1 class="cover-title">
+        도전을 두려워하지 않는<br />
+        <span class="accent">Chan Yeong</span><br />
+        개발 기록
+      </h1>
+      <p class="cover-subtitle">
+        커머스 복지몰의 <b>주문 · 배송 · 결제</b> 도메인 전반을 담당하며,
+        <b>MSA 분산 트랜잭션</b>과 <b>비동기 메시징</b>으로
+        장애에 강하고 변경에 유연한 시스템을 <b>AI-Driven Development Lifecycle</b> 관점으로 개발해 왔습니다.
+      </p>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-stat">
+        <div class="num">4.1 yrs</div>
+        <div class="label">Commerce Backend</div>
+      </div>
+      <div class="cover-stat">
+        <div class="num">MSA</div>
+        <div class="label">Saga · Distributed Transaction</div>
+      </div>
+      <div class="cover-stat">
+        <div class="num">AI-DLC</div>
+        <div class="label">AI-Driven Development</div>
+      </div>
+      <div class="cover-stat">
+        <div class="num">Test Code</div>
+        <div class="label">Testcontainers · TDD</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">01 · COVER</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 02 · ABOUT + TIMELINE
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 01</span>
+      <h2 class="section-title">About Me</h2>
+      <span class="section-sub">Who I am</span>
+    </div>
+
+    <div class="about-grid">
+      <aside class="about-card">
+        <div class="ring"><img src="docs/picture.jpg" alt="Chan Yeong" /></div>
+        <div class="name">김 찬 영</div>
+        <div class="role">Backend Engineer</div>
+        <div class="divider"></div>
+        <div class="info">
+          <div class="info-row"><span>Company</span><b>SK엠앤서비스</b></div>
+          <div class="info-row"><span>Domain</span><b>Commerce</b></div>
+          <div class="info-row"><span>Stack</span><b>Spring · MSA</b></div>
+          <div class="info-row"><span>Edu</span><b>성결대학교</b></div>
+        </div>
+      </aside>
+
+      <div class="about-text">
+        <p>
+          저는 커머스 도메인에 특화된 개발자로서, 커머스 복지몰에서의 복잡한
+          <b>주문 · 배송비 · 결제</b> 프로세스를 전담하였습니다.
+          <b>MSA 환경에서의 분산 트랜잭션</b>을 제어하며 상품과 배송비의 주문 구조,
+          취소/교환/반품 등 다양한 정책을 반영하며 안정적인 운영에 기여해 왔습니다.
+        </p>
+        <p>
+          레거시한 절차지향 코드를 <b>객체지향 구조로 리팩토링</b>하고,
+          시스템 아키텍처를 개선하는 데 집중해 왔습니다. 변경에 강한 구조를 만들어
+          유지보수성과 협업 효율을 함께 향상시켰으며, XSS 대응과 ISMS 인증 작업을
+          수행해 보안 측면에서도 신뢰할 수 있는 서비스를 구축했습니다.
+        </p>
+        <p>
+          또한 <b>RabbitMQ</b>로 서비스 간 결합도를 낮추는 아키텍처를 설계하여
+          확장성과 장애 대응력을 강화했고, 반복 운영 업무를 자동화한 백오피스 기능으로
+          CS 처리 시간을 약 90% 이상 절감한 경험이 있습니다.
+        </p>
+        <p>
+          나아가 <b>Harness Engineering</b>을 통해 안전한 운영 시스템 접근 및 실무형 AI 개발 체계를 구축하여
+          AI 생산성을 크게 향상시켰고, <b>AI-DLC 개발 방법론</b>을 도입하여 개발 공수 기간을 대폭 감소시켰습니다.
+        </p>
+        <p>
+          개인적으로는 <b>AI-DLC 개발론</b>을 적극 도입해
+          Claude Code · Cursor · Codex 등 AI 에이전트와 협업하며,
+          <b>코인 자동매매 · AI 분석 알림</b> 사이드 프로젝트를 풀스택으로 운영
+          (Telegram 구독자 830+)하고 있습니다.
+        </p>
+
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top: 40px;">
+      <span class="chapter-num">CHAPTER 02</span>
+      <h2 class="section-title">Career Timeline</h2>
+      <span class="section-sub">Journey</span>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-period">2022.07 — Present</div>
+        <div class="tl-title">SK엠앤서비스 · Backend Engineer</div>
+        <div class="tl-meta">베네피아 복지몰 — 주문 / 결제 / 배송 도메인 풀스택 MSA 개발</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">2021.12 — 2022.05</div>
+        <div class="tl-title">구름 · Kubernetes 전문가 양성 교육</div>
+        <div class="tl-meta">DevOps · MSA · 컨테이너 오케스트레이션 실습 프로젝트 수행</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">2013.02 — 2019.12</div>
+        <div class="tl-title">성결대학교 · 정보통신공학과</div>
+        <div class="tl-meta">통신 · 임베디드 · 프로그래밍 기초 학습</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">02 · ABOUT</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 03 · SKILLS
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 03</span>
+      <h2 class="section-title">Skill Matrix</h2>
+      <span class="section-sub">What I work with</span>
+    </div>
+    <p class="section-lead">
+      카테고리별로 분류한 기술 스택입니다. <b>Backend / Architecture</b>가 주력 영역이며,
+      운영 환경 전반에 걸친 <b>End-to-End 책임</b>을 가지고 일하는 것을 선호합니다.
+    </p>
+
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <div class="skill-cat-head">
+          <div class="skill-cat-name">Backend &amp; Language</div>
+          <div class="skill-cat-tag">CORE</div>
+        </div>
+        <div class="skill-row"><span class="nm">Java</span><div class="bar"><div class="fill" style="width:88%"></div></div><span class="pct">88%</span></div>
+        <div class="skill-row"><span class="nm">Spring Boot</span><div class="bar"><div class="fill" style="width:85%"></div></div><span class="pct">85%</span></div>
+        <div class="skill-row"><span class="nm">JPA</span><div class="bar"><div class="fill" style="width:60%"></div></div><span class="pct">60%</span></div>
+        <div class="skill-row"><span class="nm">MyBatis</span><div class="bar"><div class="fill" style="width:85%"></div></div><span class="pct">85%</span></div>
+        <div class="skill-row"><span class="nm">Node.js</span><div class="bar"><div class="fill" style="width:70%"></div></div><span class="pct">70%</span></div>
+      </div>
+
+      <div class="skill-cat">
+        <div class="skill-cat-head">
+          <div class="skill-cat-name">Architecture &amp; Infra</div>
+          <div class="skill-cat-tag">SHIP</div>
+        </div>
+        <div class="skill-row"><span class="nm">MSA</span><div class="bar"><div class="fill" style="width:80%"></div></div><span class="pct">80%</span></div>
+        <div class="skill-row"><span class="nm">RabbitMQ</span><div class="bar"><div class="fill" style="width:78%"></div></div><span class="pct">78%</span></div>
+        <div class="skill-row"><span class="nm">Docker</span><div class="bar"><div class="fill" style="width:72%"></div></div><span class="pct">72%</span></div>
+        <div class="skill-row"><span class="nm">Kubernetes</span><div class="bar"><div class="fill" style="width:55%"></div></div><span class="pct">55%</span></div>
+        <div class="skill-row"><span class="nm">AWS</span><div class="bar"><div class="fill" style="width:45%"></div></div><span class="pct">45%</span></div>
+      </div>
+
+      <div class="skill-cat">
+        <div class="skill-cat-head">
+          <div class="skill-cat-name">Quality &amp; Ops</div>
+          <div class="skill-cat-tag">TRUST</div>
+        </div>
+        <div class="skill-row"><span class="nm">Testcontainers</span><div class="bar"><div class="fill" style="width:80%"></div></div><span class="pct">80%</span></div>
+        <div class="skill-row"><span class="nm">JUnit / Mockito</span><div class="bar"><div class="fill" style="width:78%"></div></div><span class="pct">78%</span></div>
+        <div class="skill-row"><span class="nm">Linux</span><div class="bar"><div class="fill" style="width:60%"></div></div><span class="pct">60%</span></div>
+        <div class="skill-row"><span class="nm">Git Flow</span><div class="bar"><div class="fill" style="width:85%"></div></div><span class="pct">85%</span></div>
+      </div>
+
+      <div class="skill-cat">
+        <div class="skill-cat-head">
+          <div class="skill-cat-name">Frontend &amp; DB</div>
+          <div class="skill-cat-tag">SUPPORT</div>
+        </div>
+        <div class="skill-row"><span class="nm">JavaScript</span><div class="bar"><div class="fill" style="width:80%"></div></div><span class="pct">80%</span></div>
+        <div class="skill-row"><span class="nm">React</span><div class="bar"><div class="fill" style="width:60%"></div></div><span class="pct">60%</span></div>
+        <div class="skill-row"><span class="nm">HTML / CSS</span><div class="bar"><div class="fill" style="width:75%"></div></div><span class="pct">75%</span></div>
+        <div class="skill-row"><span class="nm">Oracle / SQL</span><div class="bar"><div class="fill" style="width:82%"></div></div><span class="pct">82%</span></div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top: 36px;">
+      <span class="chapter-num">CHAPTER 03·b</span>
+      <h2 class="section-title" style="font-size: 22px;">Certificates &amp; Tools</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px;">
+      <div class="skill-cat">
+        <div class="skill-cat-head"><div class="skill-cat-name">Certificates</div><div class="skill-cat-tag">MUST</div></div>
+        <ul style="list-style:none; padding:0; font-size:12px; color: var(--ink-2); line-height: 2;">
+          <li>◆ 정보처리기사</li>
+          <li>◆ 한국사능력검정시험 1급</li>
+          <li>◆ MOS Word 2010 Expert / Outlook 2010 Core</li>
+          <li>◆ TOEIC 760</li>
+        </ul>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-head"><div class="skill-cat-name">Daily Tools</div><div class="skill-cat-tag">FLOW</div></div>
+        <ul style="list-style:none; padding:0; font-size:12px; color: var(--ink-2); line-height: 2;">
+          <li>◆ IntelliJ IDEA · VS Code</li>
+          <li>◆ Grafana</li>
+          <li>◆ Notion · Confluence · Jira</li>
+          <li>◆ Claude Code · AI-DLC 개발론</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">03 · SKILLS</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 04 · FEATURED PROJECT (Benepia · Spotlight)
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 04</span>
+      <h2 class="section-title">Career Highlight</h2>
+      <span class="section-sub">Benepia · Order Domain Lead</span>
+    </div>
+
+    <div class="spotlight">
+      <div class="spotlight-hero">
+        <div class="spotlight-tag">DOMAIN LEAD · 2022.07 ~</div>
+        <div class="spotlight-title">베네피아 — 주문/결제 도메인 담당</div>
+        <div class="spotlight-sub">
+          3,700개 고객사 임직원이 사용하는 복지포인트 쇼핑몰의<br />
+          주문 · 결제 · 배송 시스템 운영 및 개발
+        </div>
+        <div class="spotlight-stack">
+          <span>Java</span><span>Spring Boot</span><span>MyBatis</span>
+          <span>Oracle</span><span>RabbitMQ</span><span>Docker</span>
+          <span>Nomad / Consul</span><span>JSP</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-lead">
+      <b>담당 역할</b> — 주문 · 결제 · 배송 도메인 담당으로서
+      운영 모니터링 · 장애 대응 · 데이터 추출 등을 도맡았으며,
+      프론트 및 백엔드 풀스택을 담당하였습니다.
+    </p>
+
+    <!-- Subproject 1 -->
+    <div class="sub-block">
+      <div class="sub-block-head">
+        <div class="sub-block-num">1</div>
+        <div class="sub-block-title">MSA에서의 주문 · 배송 · 결제 전면 재설계</div>
+        <div class="sub-block-period">2024.12 — 2025.06</div>
+      </div>
+      <div class="flow">
+        <div class="flow-card why">
+          <div class="lbl">◆ WHY</div>
+          <ul>
+            <li>상품·배송비·주문이 강하게 결합된 구조</li>
+            <li>정책 변경에 유연한 대응 불가</li>
+          </ul>
+        </div>
+        <div class="flow-card how">
+          <div class="lbl">◆ HOW</div>
+          <ul>
+            <li>주문에서 상품·배송비를 <b>N:N으로 분리</b></li>
+            <li>취소/반품/교환 프로세스 추가</li>
+            <li><b>멱등성 · 동시성 · 분산 트랜잭션</b> 제어</li>
+            <li>객체지향적 리팩토링</li>
+            <li>실시간 모니터링을 통한 운영 개선 — 재고 동시성 처리, 포인트 연마감 결제취소 이슈 등 주요 오류 <b>근본 원인 분석·개선</b></li>
+          </ul>
+        </div>
+        <div class="flow-card impact">
+          <div class="lbl">◆ IMPACT</div>
+          <ul>
+            <li>다양한 정책 변경에 유연 대응</li>
+            <li>조건부 배송비 등 복잡 케이스 처리</li>
+            <li>유지보수 비용 절감</li>
+            <li>초기 대비 <b>장애율 76.5% 감소</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subproject 2 -->
+    <div class="sub-block">
+      <div class="sub-block-head">
+        <div class="sub-block-num">2</div>
+        <div class="sub-block-title">주문 핵심 시나리오 중심 테스트 코드 도입</div>
+        <div class="sub-block-metrics">
+          <span class="chip green"><span class="num">73%↓</span><span class="lab">MTTR</span></span>
+          <span class="chip"><span class="num">0건</span><span class="lab">운영 장애</span></span>
+        </div>
+      </div>
+      <div class="flow">
+        <div class="flow-card why">
+          <div class="lbl">◆ WHY</div>
+          <ul>
+            <li>정책 변경 시 기존 기능 장애 우려</li>
+            <li>사이드이펙트 확인으로 개발 속도 저하</li>
+          </ul>
+        </div>
+        <div class="flow-card how">
+          <div class="lbl">◆ HOW</div>
+          <ul>
+            <li>MSA 통합 테스트 환경 구축</li>
+            <li>주문·결제·배송 핵심 시나리오 테스트</li>
+            <li>Persistence Layer 테스트환경 구축</li>
+          </ul>
+        </div>
+        <div class="flow-card impact">
+          <div class="lbl">◆ IMPACT</div>
+          <ul>
+            <li>MTTR <b>45분 → 12분 (73% 단축)</b></li>
+            <li>운영 장애 0건 유지</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">04 · BENEPIA</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 05 · FEATURED · MQ + Operations
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 04·b</span>
+      <h2 class="section-title">Career Highlight</h2>
+      <span class="section-sub">Benepia · MQ &amp; Operations</span>
+    </div>
+
+    <!-- Subproject 3 -->
+    <div class="sub-block">
+      <div class="sub-block-head">
+        <div class="sub-block-num">3</div>
+        <div class="sub-block-title">현금영수증 고도화</div>
+        <div class="sub-block-period">RabbitMQ</div>
+      </div>
+      <div style="font-size: 13px; color: var(--ink-2); margin-bottom: 12px;">
+        ① <b>MQ 도입을 통한 주문 처리 구조 개선</b>, ② <b>벤더별 현금영수증 발급 구조 개선</b>, ③ <b>현금영수증 운영 어드민 기능화</b>, ④ <b>AI-DLC 개발론으로 AI 주도개발 도입</b>
+      </div>
+      <div class="flow">
+        <div class="flow-card why">
+          <div class="lbl">◆ WHY</div>
+          <ul>
+            <li>외부 플랫폼 통신 지연 → 취소 누락</li>
+            <li>후행 작업 실패가 주문 실패로 전파</li>
+            <li>베네피아 명의 일괄 발급 → 실제 매출 주체 미반영 · 발급/취소 누락 수기 처리</li>
+          </ul>
+        </div>
+        <div class="flow-card how">
+          <div class="lbl">◆ HOW</div>
+          <ul>
+            <li>주문 완료 이벤트 기준 MQ 분리</li>
+            <li>주문 단위 <b>순서 보장</b></li>
+            <li>컨테이너 재기동 제약 고려</li>
+            <li><b>재시도 큐</b>와 <b>DLQ</b>를 적용해 일시적 장애와 최종 실패 건을 구분 관리</li>
+            <li>인프라 및 각 아키텍쳐에 대한 <b>Life Cycle</b>을 이용하여 메시지 유실 방지</li>
+            <li><b>분산 Consumer</b> 환경에서 동시성 제어를 통해 <b>Lost Update</b> 방지</li>
+            <li>거래유형별 <b>벤더사 사업자번호</b> 발급 · 현금영수증 <b>어드민 기능화</b></li>
+            <li><b>AI-DLC 개발론</b>으로 AI기반 개발</li>
+          </ul>
+        </div>
+        <div class="flow-card impact">
+          <div class="lbl">◆ IMPACT</div>
+          <ul>
+            <li>장애 전파 차단</li>
+            <li>확장성 / 가용성 확보</li>
+            <li>대규모 트래픽 대응</li>
+            <li>실제 매출 귀속 주체 발급 · 운영 수기 처리 감소</li>
+            <li>AI-DLC 개발론으로 개발하여 <b>공수(MM) 66% 절감</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subproject 4 -->
+    <div class="sub-block">
+      <div class="sub-block-head">
+        <div class="sub-block-num">4</div>
+        <div class="sub-block-title">AI Tech TF — AI 도입 리드</div>
+        <div class="sub-block-period">2026.05 — 재직중</div>
+      </div>
+      <div class="flow">
+        <div class="flow-card why">
+          <div class="lbl">◆ WHY</div>
+          <ul>
+            <li>정책·코드·운영 데이터가 분리되어 AI가 <b>문맥 연결 불가</b></li>
+            <li>보안상 <b>운영 DB 직접 접근 불가</b> → LLM 업무 처리 범위 축소, 부정확한 개발</li>
+            <li>AI 산출물의 코드 컨벤션 미통일</li>
+            <li>아키텍처·정책·비용·보안 구조 미인지 → <b>AI 환각 발생</b>, 컨텍스트·토큰·응답시간 낭비</li>
+          </ul>
+        </div>
+        <div class="flow-card how">
+          <div class="lbl">◆ HOW</div>
+          <ul>
+            <li><b>AI-DLC</b> 기반 도입 전략 주도</li>
+            <li><b>AI 아키텍처</b> 설계</li>
+            <li><b>Claude Code Harness Engineering</b></li>
+          </ul>
+        </div>
+        <div class="flow-card impact">
+          <div class="lbl">◆ IMPACT</div>
+          <ul>
+            <li><b>AI 아키텍처 설계</b>로 외부 LLM 활용 시에도 운영 데이터 유출 차단 구조 확보</li>
+            <li><b>Harness Engineering</b> 기반으로 정책·코드·운영 데이터를 AI가 한 번에 연결해 운영 이슈 분석 속도 향상</li>
+            <li><b>AI-Driven Development Lifecycle 관점 개발</b>을 통해 프로젝트 개발 공수 MM 대폭 감소</li>
+            <li><b>Claude Code 환경 구축</b>으로 AI 산출물 품질 향상·통일화</li>
+            <li><b>Harness Engineering</b> 기반 AI 환각 차단 + 컨텍스트·토큰·응답시간 효율화</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">05 · BENEPIA · OPS</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 06 · DEEP DIVE 01·a-1 · WHY (Part 1)
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 05 · 01·a</span>
+      <h2 class="section-title">Deep Dive · 01·a</h2>
+      <span class="section-sub">RabbitMQ — Why? · 도입 배경 (1/2)</span>
+    </div>
+
+    <div class="deep-grid">
+      <article class="deep">
+        <header class="deep-head">
+          <span class="tag">STORY 01 · MESSAGING</span>
+          <span class="ttl">RabbitMQ 도입 — 동기식의 한계 ① · ②</span>
+        </header>
+        <div class="deep-body">
+
+          <!-- WHY · Part 1 -->
+          <div class="deep-row">
+            <div class="k">Why?</div>
+            <div class="v">
+              초기에는 주문과 관련된 모든 처리를 동기식으로 구현했는데, 실제 운영을 하다 보니 몇 가지 한계가 명확히 드러났습니다.
+
+              <p style="margin-top: 10px;"><b>① 외부 시스템 지연</b> — 동기식으로 외부 API를 호출하는데 응답이 1분 이상 걸리는 경우가 있어 사용자가 그동안 기다려야 했고, 주문 API가 그 시간 동안 블로킹되며 들어오는 요청들이 쌓여 <b>서블릿 스레드 풀이 고갈</b>되어 전체 서비스가 응답하지 못할 수 있었습니다.</p>
+              <div class="viz">
+                <div class="viz-label">AS-IS · 외부 시스템 지연 문제</div>
+                <img src="docs/image/rabbitMq1.png" alt="동기식 외부 시스템 지연으로 주문 API 전체 성능 저하" />
+              </div>
+
+              <p style="margin-top: 12px;"><b>② 후행 작업의 장애 전파</b> — 결제 완료 후 현금영수증 API 호출까지 하나의 주문 프로세스로 묶여 있었습니다. 발급이 실패하면 주문 자체가 롤백되는, 비즈니스 중요도에 비해 과도한 결합 구조였습니다. try-catch로 잡아도 OOM 같은 장애에는 같은 서버이기 때문에 동반 다운에 취약합니다.</p>
+              <div class="viz">
+                <div class="viz-label">AS-IS · 후행 작업의 장애 전파</div>
+                <img src="docs/image/rabbitMq2.png" alt="핵심 작업이 모두 성공해도 후행 작업 실패 시 주문 실패" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">06 · DEEP DIVE 01·a · WHY (1/2)</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 07 · DEEP DIVE 01·a-2 · WHY (Part 2)
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 05 · 01·a</span>
+      <h2 class="section-title">Deep Dive · 01·a</h2>
+      <span class="section-sub">RabbitMQ — Why? · 도입 배경 (2/2)</span>
+    </div>
+
+    <div class="deep-grid">
+      <article class="deep">
+        <header class="deep-head">
+          <span class="tag">STORY 01 · MESSAGING (continued)</span>
+          <span class="ttl">RabbitMQ 도입 — 동기식의 한계 ③ · ④ · 솔루션</span>
+        </header>
+        <div class="deep-body">
+
+          <!-- WHY · Part 2 -->
+          <div class="deep-row">
+            <div class="k">Why? · 계속</div>
+            <div class="v">
+              <p><b>③ 대용량 트래픽 대응</b> — 일반 사용자는 모바일/PC에서 한 건씩 주문하지만 벤더사는 API 호출이나 엑셀 업로드로 대량의 주문을 동시에 호출할 수 있습니다. 이런 요청이 동시에 몰릴 때 주문 API가 다운될 위험이 있었습니다.</p>
+
+              <p style="margin-top: 10px;"><b>④ 대량 INSERT 배치성 작업</b> — 단일 트랜잭션으로 처리하다 보니 타임아웃, 롤백 비용, DB 부하가 반복적으로 발생했습니다. MQ를 도입하면 Queue가 <b>버퍼 역할</b>을 하여 대규모 트래픽에도 장애 없는 시스템을 구축할 수 있습니다.</p>
+
+              <p style="margin-top: 14px;">RabbitMQ를 통해 긴 지연시간은 <b>비동기 호출</b>로 해결하고, 분리된 환경이기 때문에 장애 전파와 OOM도 방지할 수 있습니다. <b>대규모 트래픽 케이스에서도 병목 지점을 파악하여 MQ를 도입해 안정성 있게 설계</b>할 수 있었습니다.</p>
+              <div class="viz">
+                <div class="viz-label">TO-BE · RabbitMQ 비동기 메시징 구조</div>
+                <img src="docs/image/rabbitMq3.png" alt="RabbitMQ를 통해 주문 API와 외부 API를 비동기로 분리" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+    </div>
+
+    <div class="deep-grid">
+      <article class="deep">
+        <header class="deep-head">
+          <span class="tag">STORY 01 · MESSAGING (continued)</span>
+          <span class="ttl">RabbitMQ 도입 — 진행 중 마주친 3가지 문제</span>
+        </header>
+        <div class="deep-body">
+
+          <!-- Challenge 1 · 재기동 유실 -->
+          <div class="deep-row">
+            <div class="k">Challenge 01 · 재기동 유실</div>
+            <div class="v">
+              DB 락 때문에 재기동을 해야 하거나 배포로 scale-out된 서버들을 재기동해야 할 때, 진행 중이던 메시지가 <b>유실될 수 있는 위험</b>이 있었습니다.
+            </div>
+          </div>
+
+          <!-- Challenge 2 · 인프라 (originally Challenge 3) -->
+          <div class="deep-row">
+            <div class="k">Challenge 02 · 인프라</div>
+            <div class="v">
+              <ul>
+                <li>MQ 미들웨어 고장</li>
+                <li>Docker, Nomad, Consul 등 인프라 Shutdown 연계 확인 필요</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">07 · DEEP DIVE 01·a · WHY (2/2)</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 07 · DEEP DIVE 01·b · CHALLENGES & OUTCOME
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 05 · 01·b</span>
+      <h2 class="section-title">Deep Dive · 01·b</h2>
+      <span class="section-sub">RabbitMQ — Challenges</span>
+    </div>
+
+    <div class="deep-grid">
+      <article class="deep">
+        <header class="deep-head">
+          <span class="tag">STORY 01 · MESSAGING (continued)</span>
+          <span class="ttl">RabbitMQ 도입 — 진행 중 마주친 3가지 문제</span>
+        </header>
+        <div class="deep-body">
+
+          <!-- Challenge 2 · 순서 보장 -->
+          <div class="deep-row">
+            <div class="k">Challenge 02 · 순서 보장</div>
+            <div class="v">
+              주문 부분취소 시 국세청에는 부분취소가 없기 때문에, 이전 현금영수증 처리 금액을 <b>전액 취소 API</b>로 요청한 뒤 남은 결제 금액을 다시 호출해야 합니다.
+              아래처럼 <b>동시다발적으로 취소요청 API 호출</b>하는 경우 문제가 생길 수 있습니다.
+
+              <div class="viz">
+                <div class="viz-label">PROBLEM · 부분 취소 동시성 시나리오 (세로 흐름)</div>
+                <svg width="100%" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="벤더사의 연속 취소 API 호출로 발생하는 부분 취소 동시성 시나리오">
+                  <defs>
+                    <!-- Drop shadow filters for 3D depth -->
+                    <filter id="cf-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.10"/>
+                    </filter>
+                    <filter id="cf-shadow-strong" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.16"/>
+                    </filter>
+
+                    <!-- Unified gradient palette: neutral / accent / warn / success -->
+                    <linearGradient id="cf-grad-neutral" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#ffffff"/>
+                      <stop offset="1" stop-color="#e2e8f0"/>
+                    </linearGradient>
+                    <linearGradient id="cf-grad-accent" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#eef2ff"/>
+                      <stop offset="1" stop-color="#c7d2fe"/>
+                    </linearGradient>
+                    <linearGradient id="cf-grad-warn" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#fef2f2"/>
+                      <stop offset="1" stop-color="#fecaca"/>
+                    </linearGradient>
+                    <linearGradient id="cf-grad-success" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#ecfdf5"/>
+                      <stop offset="1" stop-color="#a7f3d0"/>
+                    </linearGradient>
+                    <linearGradient id="cf-grad-conflict" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#fef3c7"/>
+                      <stop offset="1" stop-color="#fcd34d"/>
+                    </linearGradient>
+
+                    <marker id="cf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </marker>
+                    <marker id="cf-arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                      <path d="M2 1L8 5L2 9" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </marker>
+                  </defs>
+
+                  <!-- 주문 완료 (neutral) -->
+                  <rect x="40" y="60" width="180" height="120" rx="14" fill="url(#cf-grad-neutral)" stroke="#475569" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <text x="130" y="90" text-anchor="middle" font-size="17" font-weight="600" fill="#0f172a">주문 완료</text>
+                  <line x1="60" y1="100" x2="200" y2="100" stroke="#cbd5e1" stroke-width="0.6"/>
+                  <text x="130" y="125" text-anchor="middle" font-size="15" fill="#334155">1, 2, 3번 상품</text>
+                  <text x="130" y="143" text-anchor="middle" font-size="15" fill="#334155">주문 완료</text>
+                  <text x="130" y="167" text-anchor="middle" font-size="15" fill="#334155">현금영수증(5341) 발행</text>
+
+                  <line x1="220" y1="135" x2="255" y2="135" stroke="#475569" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
+
+                  <!-- 벤더사 (neutral) -->
+                  <rect x="255" y="65" width="130" height="140" rx="14" fill="url(#cf-grad-neutral)" stroke="#475569" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <image href="docs/image/vender.png" x="280" y="75" width="80" height="80" preserveAspectRatio="xMidYMid meet"/>
+                  <text x="320" y="180" text-anchor="middle" font-size="17" font-weight="600" fill="#0f172a">벤더사</text>
+                  <text x="320" y="198" text-anchor="middle" font-size="13" fill="#475569">(서버)</text>
+
+                  <!-- 벤더사 → RabbitMQ 취소 API 호출 (accent) -->
+                  <text x="440" y="85" text-anchor="middle" font-size="13" fill="#4338ca">상품 1번 취소 API</text>
+                  <line x1="385" y1="95" x2="495" y2="95" stroke="#6366f1" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
+                  <text x="440" y="125" text-anchor="middle" font-size="13" fill="#4338ca">상품 2번 취소 API</text>
+                  <line x1="385" y1="135" x2="495" y2="135" stroke="#6366f1" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
+                  <text x="440" y="165" text-anchor="middle" font-size="13" fill="#4338ca">상품 3번 취소 API</text>
+                  <line x1="385" y1="175" x2="495" y2="175" stroke="#6366f1" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
+
+                  <!-- RabbitMQ (accent) -->
+                  <rect x="500" y="65" width="120" height="115" rx="14" fill="url(#cf-grad-accent)" stroke="#4f46e5" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <image href="docs/image/rabbit.png" x="538" y="80" width="44" height="44" preserveAspectRatio="xMidYMid meet"/>
+                  <text x="560" y="148" text-anchor="middle" font-size="17" font-weight="600" fill="#3730a3">RabbitMQ</text>
+
+                  <circle cx="560" cy="180" r="4" fill="#4f46e5"/>
+                  <path d="M 560 180 L 250 280" fill="none" stroke="#6366f1" stroke-width="1.5" marker-end="url(#cf-arrow)"/>
+                  <path d="M 560 180 L 560 280" fill="none" stroke="#6366f1" stroke-width="1.5" marker-end="url(#cf-arrow)"/>
+                  <path d="M 560 180 L 870 280" fill="none" stroke="#6366f1" stroke-width="1.5" marker-end="url(#cf-arrow)"/>
+
+                  <!-- Consumer 서버들 (모두 동일 accent로 통일) -->
+                  <rect x="150" y="285" width="200" height="90" rx="14" fill="url(#cf-grad-accent)" stroke="#4f46e5" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <image href="docs/image/server.png" x="160" y="295" width="70" height="70" preserveAspectRatio="xMidYMid meet"/>
+                  <text x="290" y="320" text-anchor="middle" font-size="17" font-weight="600" fill="#3730a3">Consumer1</text>
+                  <text x="290" y="348" text-anchor="middle" font-size="14" fill="#4f46e5">(상품1번 취소)</text>
+
+                  <rect x="460" y="285" width="200" height="90" rx="14" fill="url(#cf-grad-accent)" stroke="#4f46e5" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <image href="docs/image/server.png" x="470" y="295" width="70" height="70" preserveAspectRatio="xMidYMid meet"/>
+                  <text x="600" y="320" text-anchor="middle" font-size="17" font-weight="600" fill="#3730a3">Consumer2</text>
+                  <text x="600" y="348" text-anchor="middle" font-size="14" fill="#4f46e5">(상품2번 취소)</text>
+
+                  <rect x="770" y="285" width="200" height="90" rx="14" fill="url(#cf-grad-accent)" stroke="#4f46e5" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <image href="docs/image/server.png" x="780" y="295" width="70" height="70" preserveAspectRatio="xMidYMid meet"/>
+                  <text x="910" y="320" text-anchor="middle" font-size="17" font-weight="600" fill="#3730a3">Consumer3</text>
+                  <text x="910" y="348" text-anchor="middle" font-size="14" fill="#4f46e5">(상품3번 취소)</text>
+
+                  <!-- 시간 축 (모두 중립 슬레이트 톤으로 통일) -->
+                  <text x="50" y="395" text-anchor="middle" font-size="14" font-weight="600" fill="#475569">시간 ↓</text>
+                  <line x1="50" y1="405" x2="50" y2="990" stroke="#475569" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
+
+                  <circle cx="50" cy="410" r="4" fill="#475569"/>
+                  <text x="80" y="415" font-size="15" font-weight="600" fill="#334155">t = 0s</text>
+                  <line x1="120" y1="410" x2="1040" y2="410" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.5"/>
+
+                  <circle cx="50" cy="540" r="4" fill="#475569"/>
+                  <text x="80" y="545" font-size="15" font-weight="600" fill="#334155">t = 1s</text>
+                  <line x1="120" y1="540" x2="1040" y2="540" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.5"/>
+
+                  <circle cx="50" cy="680" r="4" fill="#475569"/>
+                  <text x="80" y="685" font-size="15" font-weight="600" fill="#334155">t = 2s</text>
+                  <line x1="120" y1="680" x2="1040" y2="680" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.5"/>
+
+                  <circle cx="50" cy="780" r="4" fill="#475569"/>
+                  <text x="80" y="785" font-size="15" font-weight="600" fill="#334155">t = 2.2s</text>
+                  <line x1="120" y1="780" x2="1040" y2="780" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.5"/>
+
+                  <circle cx="50" cy="880" r="4" fill="#475569"/>
+                  <text x="80" y="885" font-size="15" font-weight="600" fill="#334155">t = 2.5s</text>
+                  <line x1="120" y1="880" x2="1040" y2="880" stroke="#94a3b8" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.5"/>
+
+                  <!-- Consumer1 이벤트 -->
+                  <line x1="250" y1="375" x2="250" y2="410" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
+                  <rect x="140" y="410" width="220" height="90" rx="14" fill="url(#cf-grad-warn)" stroke="#dc2626" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <circle cx="160" cy="430" r="6" fill="#dc2626"/>
+                  <line x1="156" y1="426" x2="164" y2="434" stroke="white" stroke-width="1.5"/>
+                  <line x1="164" y1="426" x2="156" y2="434" stroke="white" stroke-width="1.5"/>
+                  <text x="265" y="438" text-anchor="middle" font-size="15" fill="#991b1b">상품 1번 취소요청 입력</text>
+                  <text x="265" y="465" text-anchor="middle" font-size="15" fill="#991b1b">현금영수증(5341)</text>
+                  <text x="265" y="483" text-anchor="middle" font-size="15" fill="#991b1b">취소</text>
+
+                  <line x1="250" y1="500" x2="250" y2="540" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
+                  <rect x="140" y="540" width="220" height="90" rx="14" fill="url(#cf-grad-success)" stroke="#059669" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <circle cx="160" cy="560" r="6" fill="#059669"/>
+                  <path d="M 156 560 L 159 563 L 164 558" stroke="white" stroke-width="1.5" fill="none"/>
+                  <text x="265" y="568" text-anchor="middle" font-size="15" fill="#065f46">상품 1번을 제외한</text>
+                  <text x="265" y="586" text-anchor="middle" font-size="15" fill="#065f46">나머지 금액 발급</text>
+                  <text x="265" y="610" text-anchor="middle" font-size="15" fill="#065f46">현금영수증(5342) 발급</text>
+
+                  <!-- Consumer2 이벤트 -->
+                  <line x1="560" y1="375" x2="560" y2="680" stroke="#94a3b8" stroke-width="1.1" stroke-dasharray="2 4" opacity="0.7"/>
+                  <line x1="560" y1="678" x2="560" y2="680" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
+                  <rect x="450" y="680" width="220" height="90" rx="14" fill="url(#cf-grad-warn)" stroke="#dc2626" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <circle cx="470" cy="700" r="6" fill="#dc2626"/>
+                  <line x1="466" y1="696" x2="474" y2="704" stroke="white" stroke-width="1.5"/>
+                  <line x1="474" y1="696" x2="466" y2="704" stroke="white" stroke-width="1.5"/>
+                  <text x="575" y="708" text-anchor="middle" font-size="15" fill="#991b1b">상품 2번 취소요청 입력</text>
+                  <text x="572" y="735" text-anchor="middle" font-size="15" fill="#991b1b">직전 현금영수증(5342)</text>
+                  <text x="572" y="753" text-anchor="middle" font-size="15" fill="#991b1b">취소</text>
+
+                  <line x1="560" y1="770" x2="560" y2="880" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
+                  <rect x="450" y="880" width="220" height="90" rx="14" fill="url(#cf-grad-success)" stroke="#059669" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <circle cx="470" cy="900" r="6" fill="#059669"/>
+                  <path d="M 466 900 L 469 903 L 474 898" stroke="white" stroke-width="1.5" fill="none"/>
+                  <text x="572" y="908" text-anchor="middle" font-size="15" fill="#065f46">상품 1, 2번을 제외한</text>
+                  <text x="572" y="935" text-anchor="middle" font-size="15" fill="#065f46">나머지 금액 발급</text>
+                  <text x="572" y="953" text-anchor="middle" font-size="15" fill="#065f46">현금영수증(5343) 발급</text>
+
+                  <!-- Consumer3 이벤트 -->
+                  <line x1="870" y1="375" x2="870" y2="780" stroke="#94a3b8" stroke-width="1.1" stroke-dasharray="2 4" opacity="0.7"/>
+                  <line x1="870" y1="778" x2="870" y2="780" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#cf-arrow)"/>
+                  <rect x="760" y="780" width="220" height="90" rx="14" fill="url(#cf-grad-warn)" stroke="#dc2626" stroke-width="1.2" filter="url(#cf-shadow)"/>
+                  <circle cx="780" cy="800" r="6" fill="#dc2626"/>
+                  <line x1="776" y1="796" x2="784" y2="804" stroke="white" stroke-width="1.5"/>
+                  <line x1="784" y1="796" x2="776" y2="804" stroke="white" stroke-width="1.5"/>
+                  <text x="884" y="808" text-anchor="middle" font-size="15" fill="#991b1b">상품 3번 취소요청 입력</text>
+                  <text x="881" y="835" text-anchor="middle" font-size="15" fill="#991b1b">직전 현금영수증(5342)</text>
+                  <text x="881" y="853" text-anchor="middle" font-size="15" fill="#991b1b">취소</text>
+
+                  <!-- 경합 발생 (강조 — conflict 그라디언트 + 강한 그림자) -->
+                  <path d="M 670 725 L 715 725 L 715 825 L 760 825" fill="none" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#cf-arrow-red)"/>
+                  <rect x="672" y="745" width="124" height="34" rx="10" fill="url(#cf-grad-conflict)" stroke="#dc2626" stroke-width="1.6" filter="url(#cf-shadow-strong)"/>
+                  <text x="734" y="768" text-anchor="middle" font-size="15" font-weight="700" fill="#991b1b">⚠ 동일 5342 경합</text>
+
+                  <!-- 오류 메시지 -->
+                  <line x1="870" y1="870" x2="870" y2="990" stroke="#dc2626" stroke-width="1.6" marker-end="url(#cf-arrow-red)"/>
+                  <rect x="730" y="995" width="280" height="50" rx="12" fill="url(#cf-grad-warn)" stroke="#dc2626" stroke-width="1.5" filter="url(#cf-shadow-strong)"/>
+                  <polygon points="755,1025 770,1025 762.5,1010" fill="#dc2626"/>
+                  <text x="762.5" y="1028" text-anchor="middle" font-size="14" font-weight="700" fill="white">!</text>
+                  <text x="892" y="1025" text-anchor="middle" font-size="16" font-weight="600" fill="#991b1b">이미 기처리된 요청입니다 오류</text>
+                </svg>
+              </div>
+
+              <b>시도한 방법들</b>
+              <ul>
+                <li><b>샤딩</b> — <code>hash(ordNo) % 4</code>로 큐 4개 분산. 같은 ordNo는 항상 같은 큐 → 같은 서버</li>
+                <li><b>x-single-active-consumer</b> — 큐 단위 단일 Consumer 보장</li>
+                <li><b>Exclusive Consumer</b> ← 1차 채택 ✅</li>
+                <li><b>Multi Consumer + 동시성제어</b> ← 최종 채택 ✅</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">08 · DEEP DIVE 01·b · CHALLENGES</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 07 · DEEP DIVE 02 · TESTCONTAINERS
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 05 · 02·a</span>
+      <h2 class="section-title">Deep Dive · 02·a</h2>
+      <span class="section-sub">Testcontainers — 격리 환경의 난관 (1/2)</span>
+    </div>
+
+    <div class="deep-grid">
+      <!-- DEEP 2·a · Testcontainers (시나리오 도입 · 격리 환경 난관) -->
+      <article class="deep">
+        <header class="deep-head">
+          <span class="tag">STORY 02 · QUALITY</span>
+          <span class="ttl">통합 테스트 환경 구축 — Testcontainers 기반 격리 환경</span>
+        </header>
+        <div class="deep-body">
+          <div class="deep-row">
+            <div class="k">Problem</div>
+            <div class="v">
+              주문 도메인은 <b>배송 · 결제 · 쿠폰 · 포인트 · 상품</b> 여러 도메인이 정책으로
+              얽혀 있고, 결제 · 취소 · 반품 등 시나리오 또한 다양합니다. 일부 기능 수정·정책
+              추가만으로도 <b>사이드 이펙트와 광범위한 수동 검증</b>이 따라 개발 효율을
+              크게 떨어뜨렸기에, <b>핵심 usecase 대상 시나리오 테스트 코드 도입</b>을 진행했습니다.
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">난관 1 · persistence 전략 선택</div>
+            <div class="v">
+              통합 테스트 수행 시 <b>persistence layer(데이터 계층)</b>를 어떻게 다룰지가 핵심
+              고민이었습니다. Mock 기반 테스트 · Alpha DB · 테스트 전용 DB · In-Memory DB ·
+              Testcontainers 등 여러 대안을 검토하며, MSA 환경에 적합한 격리 전략을
+              선택해야 했습니다.
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">난관 2 · 개발 DB 오염</div>
+            <div class="v">
+              초기에는 테스트 환경에서도 개발 DB에 붙여 통합 테스트를 진행했습니다. 구성은
+              쉬웠지만 <b>외부 트래픽으로 인한 환경 오염</b>이 문제였습니다. 예를 들어
+              "주문 1건 → 주문 수 1 증가" 검증 시, 동시간대 외부에서 발생한 주문이 카운트에
+              섞이며 검증이 깨졌습니다. <b>범위 · 정산 · 통계성 테스트에 부적합</b>한 구조였습니다.
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">난관 3 · 분산 트랜잭션 롤백</div>
+            <div class="v">
+              MSA 특성상 <b>서비스 간 트랜잭션 경계가 분리</b>되어 있어, 주문 API 테스트 중
+              포인트 API를 호출해 포인트가 발급되면 테스트 종료 시 해당 포인트를 별도로
+              롤백해야 했습니다. <b>분산 트랜잭션 환경에서의 데이터 정리</b>가 테스트 안정성을
+              크게 저해했습니다.
+              <div class="viz">
+                <div class="viz-label">ORDER API · 호출 흐름</div>
+                <svg width="100%" viewBox="0 0 620 135" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <filter id="of-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0f172a" flood-opacity="0.10"/>
+                    </filter>
+                    <filter id="of-shadow-strong" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.16"/>
+                    </filter>
+                    <linearGradient id="of-grad-neutral" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#ffffff"/>
+                      <stop offset="1" stop-color="#e2e8f0"/>
+                    </linearGradient>
+                    <linearGradient id="of-grad-warn" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#fef2f2"/>
+                      <stop offset="1" stop-color="#fecaca"/>
+                    </linearGradient>
+                    <linearGradient id="of-grad-success" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#ecfdf5"/>
+                      <stop offset="1" stop-color="#a7f3d0"/>
+                    </linearGradient>
+                    <marker id="of-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </marker>
+                    <marker id="of-arrow-pierce" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+                      <path d="M1.5 0.5L9 5L1.5 9.5" fill="none" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </marker>
+                  </defs>
+
+                  <!-- 주문 API 컨테이너 — 메인 4개 박스를 감싸는 서비스 경계 -->
+                  <rect x="5" y="65" width="610" height="68" rx="14" fill="rgba(238, 242, 255, 0.35)" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 3"/>
+                  <!-- 컨테이너 라벨 핀 (좌상단, 경계 위로 살짝 걸침) -->
+                  <rect x="18" y="56" width="68" height="18" rx="9" fill="#ffffff" stroke="#4f46e5" stroke-width="1.2"/>
+                  <text x="52" y="69" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3" letter-spacing="0.5">주문 API</text>
+
+                  <!-- 메인 흐름 (y=75~125, 중심 y=100) -->
+                  <!-- 주문 요청 인입 (neutral) -->
+                  <rect x="10" y="75" width="85" height="50" rx="10" fill="url(#of-grad-neutral)" stroke="#475569" stroke-width="1.2" filter="url(#of-shadow)"/>
+                  <text x="52.5" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#0f172a">주문 요청 인입</text>
+
+                  <line x1="95" y1="100" x2="111" y2="100" stroke="#475569" stroke-width="1.2" marker-end="url(#of-arrow)"/>
+
+                  <!-- 주문 검증 · 재고 확인 (neutral) -->
+                  <rect x="111" y="75" width="115" height="50" rx="10" fill="url(#of-grad-neutral)" stroke="#475569" stroke-width="1.2" filter="url(#of-shadow)"/>
+                  <text x="168.5" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#0f172a">주문 검증 · 재고 확인</text>
+
+                  <!-- 메인 라인 점선 (검증 → 저장 사이의 잠재 경로 — 외부 MSA로 이탈됨) -->
+                  <line x1="226" y1="100" x2="393" y2="100" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 4" opacity="0.7"/>
+
+                  <!-- 주문 저장 · 결제 확정 (neutral) -->
+                  <rect x="393" y="75" width="125" height="50" rx="10" fill="url(#of-grad-neutral)" stroke="#475569" stroke-width="1.2" filter="url(#of-shadow)"/>
+                  <text x="455.5" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#0f172a">주문 저장 · 결제 확정</text>
+
+                  <line x1="518" y1="100" x2="534" y2="100" stroke="#475569" stroke-width="1.2" marker-end="url(#of-arrow)"/>
+
+                  <!-- 주문 완료 (success) -->
+                  <rect x="534" y="75" width="76" height="50" rx="10" fill="url(#of-grad-success)" stroke="#059669" stroke-width="1.4" filter="url(#of-shadow)"/>
+                  <text x="572" y="105" text-anchor="middle" font-size="11" font-weight="700" fill="#065f46">주문 완료</text>
+
+                  <!-- 위로 이탈한 포인트 API · 차감 (외부 MSA, y=5~55) -->
+                  <rect x="240" y="5" width="140" height="50" rx="10" fill="url(#of-grad-warn)" stroke="#dc2626" stroke-width="1.4" filter="url(#of-shadow-strong)"/>
+                  <text x="310" y="25" text-anchor="middle" font-size="11" font-weight="700" fill="#991b1b">포인트 API · 차감</text>
+                  <text x="310" y="42" text-anchor="middle" font-size="8" fill="#dc2626">HTTP POST · 외부 MSA</text>
+
+                  <!-- UP 화살표 — 주문 검증에서 위로 솟아 포인트 API 좌측 변 진입 (검정 보통 굵기) -->
+                  <path d="M 228 84 C 230 60 232 38 264 35" fill="none" stroke="#1e293b" stroke-width="1.2" stroke-linecap="round" marker-end="url(#of-arrow)"/>
+
+                  <!-- DOWN 화살표 — 포인트 API 우측 변에서 다시 메인 흐름(주문 저장)으로 복귀 -->
+                  <path d="M 380 35 C 388 50 392 70 392 90" fill="none" stroke="#475569" stroke-width="1.4" stroke-dasharray="0" marker-end="url(#of-arrow)"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">09 · DEEP DIVE 02·a · TESTCONTAINERS</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 10 · DEEP DIVE 02·b · TESTCONTAINERS (continued)
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 05 · 02·b</span>
+      <h2 class="section-title">Deep Dive · 02·b</h2>
+      <span class="section-sub">Testcontainers — 경계 설계 · 결과 (2/2)</span>
+    </div>
+
+    <div class="deep-grid">
+      <!-- DEEP 2·b · Testcontainers (경계 처리 · Decision · Outcome) -->
+      <article class="deep">
+        <header class="deep-head">
+          <span class="tag">STORY 02 · QUALITY (continued)</span>
+          <span class="ttl">통합 테스트 환경 구축 — Testcontainers 기반 격리 환경</span>
+        </header>
+        <div class="deep-body">
+          <div class="deep-row">
+            <div class="k">난관 4 · 타 API 모킹</div>
+            <div class="v">
+              MSA 내 타 프로젝트와 통신할 때의 모킹 문제도 있었습니다. 주문 API가 포인트 API를
+              호출하는데, 포인트 API 측에 주문 API의 DB에 쓰는 로직이 섞여 있어 <b>주문 API
+              테스트가 포인트 API 구현에 의존</b>하게 되었습니다. DB를 공유한 설계 자체가
+              잘못이었음을 깨닫고, <b>MSA의 경계 처리</b>가 테스트 가능성과 직결됨을 확인했습니다.
+              <div class="viz">
+                <div class="viz-label">MSA 경계 · 의존성 도식</div>
+                <img src="docs/image/challenge3.png" alt="주문 API · 포인트 API 간 DB 공유로 인한 의존성 구조" />
+              </div>
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">Decision</div>
+            <div class="v">
+              <ul>
+                <li><b>Testcontainers</b>로 격리 환경 구축 — 컨테이너 재기동만으로 분산 트랜잭션
+                  롤백을 한 번에 해소</li>
+                <li>포인트 API의 <b>주문 도메인 로직을 주문 API로 재배치</b>해 서비스 경계 명확화</li>
+                <li>경계 정리 후 포인트 API는 <b>mocking으로 대체</b>, 테스트 대상 영역만 명확히 검증</li>
+              </ul>
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">Outcome</div>
+            <div class="v">
+              외부 환경에 영향받지 않는 <b>격리된 테스트 환경</b>을 확보하고, 실제 API 통신 없이
+              안정적으로 테스트할 수 있게 되었습니다. 테스트의 <b>재현성과 신뢰성</b>이 크게
+              향상되었으며, MSA에서의 <b>경계 설계 원칙</b>을 실제 코드 구조에 반영하는
+              계기가 되었습니다.
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">10 · DEEP DIVE 02·b · TESTCONTAINERS</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 10 · DEEP DIVE 03 · XSS
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 05 · 03</span>
+      <h2 class="section-title">Deep Dive · 03</h2>
+      <span class="section-sub">Security · MSA 다중 이스케이프 대응</span>
+    </div>
+
+    <div class="deep-grid">
+      <!-- DEEP 3 · XSS -->
+      <article class="deep">
+        <header class="deep-head">
+          <span class="tag">STORY 03 · SECURITY</span>
+          <span class="ttl">MSA에서의 XSS 처리 대응 — 전사 공통 기준 수립</span>
+        </header>
+        <div class="deep-body">
+          <div class="deep-row">
+            <div class="k">Problem</div>
+            <div class="v">
+              MSA 환경에서 서비스별로 상이하게 적용되던 XSS 대응 방식으로 발생한
+              <b>이중 이스케이프 · 데이터 변형 · JSON 파싱 오류</b>를 해결했습니다.
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">Constraint</div>
+            <div class="v">
+              각 서비스마다 필터 · 인터셉터 · 화면단 등 서로 다른 위치에서 XSS 처리를
+              수행하면서, 동일 데이터가 여러 API를 거치는 과정에서 중복 이스케이프가
+              발생했습니다. 데이터 변형 및 비정상 노출이 발생하였고, MSA 구조 특성상
+              여러 서비스를 동시에 고려해야 해 <b>영향 범위가 넓고 검증이 어려운 제약</b>이
+              있었습니다.
+              <div class="viz">
+                <div class="viz-label">XSS 다중 이스케이프 — 주문 조회 흐름</div>
+                <svg width="100%" viewBox="0 0 620 185" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <filter id="xss-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0f172a" flood-opacity="0.10"/>
+                    </filter>
+                    <filter id="xss-shadow-strong" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.16"/>
+                    </filter>
+                    <linearGradient id="xss-grad-neutral" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#ffffff"/>
+                      <stop offset="1" stop-color="#e2e8f0"/>
+                    </linearGradient>
+                    <linearGradient id="xss-grad-accent" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#eef2ff"/>
+                      <stop offset="1" stop-color="#c7d2fe"/>
+                    </linearGradient>
+                    <linearGradient id="xss-grad-warn" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#fef2f2"/>
+                      <stop offset="1" stop-color="#fecaca"/>
+                    </linearGradient>
+                    <marker id="xss-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </marker>
+                  </defs>
+
+                  <!-- ROW 1 (left → right) -->
+                  <rect x="10" y="20" width="92" height="50" rx="10" fill="url(#xss-grad-neutral)" stroke="#475569" stroke-width="1.2" filter="url(#xss-shadow)"/>
+                  <text x="20" y="38" font-size="11" font-weight="600" fill="#0f172a">원본 입력</text>
+                  <line x1="20" y1="44" x2="92" y2="44" stroke="#cbd5e1" stroke-width="0.5"/>
+                  <text x="20" y="62" font-size="10" fill="#334155">"노트북 &amp; 모니터"</text>
+
+                  <line x1="102" y1="45" x2="118" y2="45" stroke="#475569" stroke-width="1.2" marker-end="url(#xss-arrow)"/>
+
+                  <rect x="118" y="20" width="125" height="50" rx="10" fill="url(#xss-grad-accent)" stroke="#4f46e5" stroke-width="1.2" filter="url(#xss-shadow)"/>
+                  <text x="128" y="38" font-size="11" font-weight="600" fill="#3730a3">관리자 API · filter</text>
+                  <line x1="128" y1="44" x2="233" y2="44" stroke="#c7d2fe" stroke-width="0.5"/>
+                  <text x="128" y="62" font-size="10" fill="#334155">"노트북 &amp;amp; 모니터"</text>
+
+                  <line x1="243" y1="45" x2="253" y2="45" stroke="#475569" stroke-width="1.2" marker-end="url(#xss-arrow)"/>
+
+                  <rect x="253" y="20" width="148" height="50" rx="10" fill="url(#xss-grad-accent)" stroke="#4f46e5" stroke-width="1.2" filter="url(#xss-shadow)"/>
+                  <text x="263" y="38" font-size="11" font-weight="600" fill="#3730a3">관리자 API · controller</text>
+                  <line x1="263" y1="44" x2="391" y2="44" stroke="#c7d2fe" stroke-width="0.5"/>
+                  <text x="263" y="62" font-size="10" fill="#334155">"노트북 &amp;amp;amp; 모니터"</text>
+
+                  <!-- Connector: row1 admin·c right edge → row2 order·f top-center -->
+                  <path d="M 401 45 H 525 V 110" fill="none" stroke="#475569" stroke-width="1.2" marker-end="url(#xss-arrow)"/>
+
+                  <!-- ROW 2 (right → left) -->
+                  <rect x="444" y="110" width="162" height="50" rx="10" fill="url(#xss-grad-accent)" stroke="#4f46e5" stroke-width="1.2" filter="url(#xss-shadow)"/>
+                  <text x="454" y="128" font-size="11" font-weight="600" fill="#3730a3">주문 API · filter</text>
+                  <line x1="454" y1="134" x2="596" y2="134" stroke="#c7d2fe" stroke-width="0.5"/>
+                  <text x="454" y="152" font-size="10" fill="#334155">"노트북 &amp;amp;amp;amp; 모니터"</text>
+
+                  <line x1="444" y1="135" x2="428" y2="135" stroke="#475569" stroke-width="1.2" marker-end="url(#xss-arrow)"/>
+
+                  <rect x="246" y="110" width="182" height="50" rx="10" fill="url(#xss-grad-accent)" stroke="#4f46e5" stroke-width="1.2" filter="url(#xss-shadow)"/>
+                  <text x="256" y="128" font-size="11" font-weight="600" fill="#3730a3">배송 API · filter</text>
+                  <line x1="256" y1="134" x2="418" y2="134" stroke="#c7d2fe" stroke-width="0.5"/>
+                  <text x="256" y="152" font-size="10" fill="#334155">"노트북 &amp;amp;amp;amp;amp; 모니터"</text>
+
+                  <line x1="246" y1="135" x2="230" y2="135" stroke="#dc2626" stroke-width="1.4" marker-end="url(#xss-arrow)"/>
+
+                  <rect x="10" y="95" width="220" height="80" rx="12" fill="url(#xss-grad-warn)" stroke="#dc2626" stroke-width="1.4" filter="url(#xss-shadow-strong)"/>
+                  <text x="20" y="112" font-size="11" font-weight="700" fill="#991b1b">최종 화면</text>
+                  <line x1="20" y1="119" x2="220" y2="119" stroke="#fecaca" stroke-width="0.5"/>
+                  <text x="20" y="141" font-size="10" fill="#475569">의도<tspan x="45" fill="#475569">"노트북 &amp; 모니터"</tspan></text>
+                  <text x="20" y="161" font-size="10" font-weight="600" fill="#991b1b">실제<tspan x="45" fill="#991b1b">"노트북 &amp;amp;amp;amp;amp; 모니터"</tspan></text>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">Decision</div>
+            <div class="v">
+              개별 이슈 대응이 아닌 <b>전사 공통 XSS 처리 기준</b> 수립으로 접근했습니다.
+              정보보안 부서와 협업해 정책을 정의하고, <b>애노테이션 기반 공통 처리 구조</b>를
+              설계해 전사 가이드로 정리·배포하고 적용을 주도했습니다. 기존 데이터 흐름을
+              분석해 중복 처리 및 데이터 변형 발생 구간을 식별하고, 서비스 전반에 걸쳐
+              일관된 방식으로 정비했습니다.
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">Outcome</div>
+            <div class="v">
+              서비스 간 XSS 처리 방식이 일관되게 정리되어 데이터 변형 및 이중 처리 문제가
+              해소되었습니다. 전사 가이드 적용으로 <b>조직 전반의 보안 수준이 향상</b>되었으며,
+              ISMS 점검에서 <b>XSS 관련 지적 건수가 크게 감소</b>하는 성과를 달성했습니다.
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">11 · DEEP DIVE 03 · XSS</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 11 · DEEP DIVE 04 · LEGACY
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 05 · 04</span>
+      <h2 class="section-title">Deep Dive · 04</h2>
+      <span class="section-sub">Design · 결제 도메인 전략 패턴</span>
+    </div>
+
+    <div class="deep-grid">
+      <!-- DEEP 4 · LEGACY -->
+      <article class="deep">
+        <header class="deep-head">
+          <span class="tag">STORY 04 · DESIGN</span>
+          <span class="ttl">레거시 개선 — 결제 도메인의 전략 패턴 적용</span>
+        </header>
+        <div class="deep-body">
+          <div class="deep-row">
+            <div class="k">Problem</div>
+            <div class="v">
+              주문 결제 도메인에서 다양한 결제 수단(카드 · 포인트 · 간편결제 등)과
+              복합 결제를 처리하면서 발생하던 <b>if-else 기반 분기 로직 증가</b> 및
+              변경 시 사이드 이펙트 문제를 해결했습니다.
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">Constraint</div>
+            <div class="v">
+              결제 도메인은 정책 변경과 신규 결제 수단 추가가 빈번한 영역으로, 기존 구조에서는
+              기능이 추가될 때마다 조건문이 계속 증가하고 기존 코드를 수정해야 했습니다.
+              변경 범위가 넓어지고 작은 수정에도 예상치 못한 오류가 발생할 수 있는 구조로,
+              <b>유지보수성과 확장성이 크게 저하</b>된 상태였습니다.
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">Decision</div>
+            <div class="v">
+              조건문을 줄이는 것이 아니라 <b>변경의 책임을 객체로 분리</b>하는 방향으로
+              접근했습니다.
+              <ul>
+                <li>결제 방식을 객체로 추상화 후 <b>전략 패턴(Strategy Pattern)</b> 도입</li>
+                <li>각 결제 수단이 자신의 행위를 스스로 처리하도록 설계</li>
+                <li>클라이언트 코드가 구체 구현이 아닌 <b>추상화에 의존</b>하도록 개선</li>
+              </ul>
+              <div class="viz-pair">
+                <div class="viz viz-before">
+                  <div class="viz-label">Before · 절차적 분기</div>
+<pre class="code-flow"><span class="cf-kw">if</span> (m == <span class="cf-const">CARD</span>)      { ... }
+<span class="cf-kw">else if</span> (m == <span class="cf-const">POINT</span>) { ... }
+<span class="cf-kw">else if</span> (m == <span class="cf-const">COMPOSITE</span>) {
+    <span class="cf-cmt">// 카드 + 포인트 분기 또 분기...</span>
+} <span class="cf-kw">else if</span> ...</pre>
+                </div>
+                <div class="viz viz-after">
+                  <div class="viz-label">After · 전략 패턴</div>
+<pre class="code-flow"><span class="cf-kw">interface</span> <span class="cf-cls">PaymentStrategy</span> {
+    <span class="cf-type">Result</span> pay(<span class="cf-type">Order</span> o);
+}
+
+<span class="cf-kw">class</span> <span class="cf-cls">CardPay</span>      <span class="cf-kw">implements</span> <span class="cf-cls">PaymentStrategy</span> { ... }
+<span class="cf-kw">class</span> <span class="cf-cls">PointPay</span>     <span class="cf-kw">implements</span> <span class="cf-cls">PaymentStrategy</span> { ... }
+<span class="cf-kw">class</span> <span class="cf-cls">CompositePay</span> <span class="cf-kw">implements</span> <span class="cf-cls">PaymentStrategy</span> { ... }</pre>
+                </div>
+              </div>
+              <div class="viz viz-spring">
+                <div class="viz-label">Spring · Map 기반 Bean 자동 주입</div>
+<pre class="code-flow"><span class="cf-ann">@Component</span>(<span class="cf-str">"CARD"</span>)      <span class="cf-kw">class</span> <span class="cf-cls">CardPay</span>      <span class="cf-kw">implements</span> <span class="cf-cls">PaymentStrategy</span> { ... }
+<span class="cf-ann">@Component</span>(<span class="cf-str">"POINT"</span>)     <span class="cf-kw">class</span> <span class="cf-cls">PointPay</span>     <span class="cf-kw">implements</span> <span class="cf-cls">PaymentStrategy</span> { ... }
+<span class="cf-ann">@Component</span>(<span class="cf-str">"COMPOSITE"</span>) <span class="cf-kw">class</span> <span class="cf-cls">CompositePay</span> <span class="cf-kw">implements</span> <span class="cf-cls">PaymentStrategy</span> { ... }
+
+<span class="cf-ann">@Service</span>
+<span class="cf-ann">@RequiredArgsConstructor</span>
+<span class="cf-kw">class</span> <span class="cf-cls">PaymentService</span> {
+    <span class="cf-kw">private final</span> <span class="cf-type">Map</span>&lt;<span class="cf-type">String</span>, <span class="cf-cls">PaymentStrategy</span>&gt; strategies; <span class="cf-cmt">// ← Spring이 Bean 이름 → 인스턴스로 자동 주입</span>
+}</pre>
+              </div>
+            </div>
+          </div>
+          <div class="deep-row">
+            <div class="k">Outcome</div>
+            <div class="v">
+              조건문 중심의 절차적 구조에서 벗어나 <b>다형성 기반의 객체지향 구조</b>로
+              개선되어, 결제 로직의 확장성과 유지보수성이 크게 향상되었습니다. 정책 변경이나
+              신규 결제 수단 추가 시 <b>기존 코드를 수정하지 않고 확장</b>할 수 있는
+              OCP 만족 구조를 확보했습니다.
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">12 · DEEP DIVE 04 · LEGACY</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 08 · COIN PROJECT
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 06</span>
+      <h2 class="section-title">Side Project · Coin</h2>
+      <span class="section-sub">AI-Native Personal Engineering</span>
+    </div>
+
+    <div class="coin-hero">
+      <div>
+        <div class="spotlight-tag">PERSONAL · 830+ Subscribers · AI-Native</div>
+        <h3>실시간 코인 자동매매 &amp; AI 분석 알림 서비스</h3>
+        <p class="lead">
+          코인 시장의 실시간 변동성을 분석하여 <b>지표 개발 → 백테스트 → 자동매매 → 알림 서비스화</b>
+          전 과정을 1인 개발로 운영 중인 사이드 프로젝트입니다.
+          설계 단계부터 <b>AI-DLC 개발론</b>을 적극 도입해
+          Claude Code · Cursor · Codex 등 AI 에이전트와 협업하며 개발 속도를 가속화했고,
+          실 서비스에는 <b>OpenAI · Claude API</b>를 연동하여
+          시장 분석 리포트 자동화와 사용자 맞춤 시그널 해석 기능을 제공합니다.
+          React 기반 수익 포트폴리오 대시보드까지 직접 구축하며
+          <b>풀스택 + AI 통합 역량</b>을 실전에서 검증한 프로젝트입니다.
+        </p>
+        <div class="spotlight-stack">
+          <span>Node.js</span><span>React</span>
+          <span>OpenAI API</span><span>Claude API</span>
+          <span>AI-DLC 개발론</span>
+          <span>Binance API</span><span>Upbit API</span>
+          <span>TradingView Script</span>
+          <span>Multi-process</span>
+        </div>
+      </div>
+      <img src="img/insta20250824.gif" alt="Coin Alert" />
+    </div>
+
+    <!-- AI Emphasis Banner -->
+    <div class="coin-ai-banner">
+      <div class="ai-card">
+        <div class="ai-icon">🤖</div>
+        <div class="ai-body">
+          <div class="ai-tag">AI-DLC 개발론</div>
+          <h4>AI 에이전트와 함께 짓는 코드</h4>
+          <p>
+            Claude Code · Cursor · Codex CLI 등 AI 에이전트를 활용한 <b>AI-DLC 개발론</b>을
+            도입했습니다. 사양 명세 → 테스트 우선 작성 → 구현 → 셀프 코드 리뷰까지
+            반복 작업을 AI에 위임하고, 사람은 아키텍처 설계와 의사결정에 집중하는 구조로 운영합니다.
+            그 결과 1인 개발 환경에서도 백엔드 · 프론트엔드 · 데이터 분석을 동시에 진행할 수 있었습니다.
+          </p>
+        </div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-icon">🧠</div>
+        <div class="ai-body">
+          <div class="ai-tag">AI SERVICE INTEGRATION</div>
+          <h4>AI를 서비스에 통합</h4>
+          <p>
+            <b>OpenAI · Claude API</b>를 결합하여 실시간 시장 데이터를
+            요약 · 해석하는 AI 분석 파이프라인을 구축했습니다. Function Calling으로
+            시장 지표를 도구화하고, <b>Prompt Caching</b>으로 반복 호출 비용을 절감했습니다.
+            최종적으로 급등락 알림에 <b>AI 코멘트</b>를 자동 첨부하여
+            "왜 지금 시그널이 발생했는가"를 사용자가 바로 이해할 수 있게 만들었습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">13 · COIN</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 12 · COIN PIPELINE
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 06·b</span>
+      <h2 class="section-title">Side Project · Coin</h2>
+      <span class="section-sub">Pipeline · Indicator → Backtest → Trading → AI Alert</span>
+    </div>
+
+    <div class="coin-grid">
+      <div class="coin-item">
+        <div class="coin-item-img">
+          <img src="img/indicator.png" alt="Custom Indicator" />
+        </div>
+        <div class="coin-item-body">
+          <div class="num">01 · INDICATOR</div>
+          <h4>지표 개발</h4>
+          <p>
+            거래량 폭등 · 추세 반전 캔들패턴 기반의 <b>역추세 전략 지표</b>를 직접 설계 · 구현.
+            <b>TradingView Pine Script</b>로 시각화하고 조건 충족 시 웹훅 자동 알림을 발사하도록 구성했습니다.
+            지표 파라미터 튜닝 단계에서는 AI 에이전트와 페어 프로그래밍을 통해 빠르게 가설을 검증했습니다.
+          </p>
+        </div>
+      </div>
+      <div class="coin-item">
+        <div class="coin-item-img">
+          <img src="img/binanceCopy.png" alt="Auto Trading" />
+        </div>
+        <div class="coin-item-body">
+          <div class="num">03 · TRADING</div>
+          <h4>자동매매 시스템</h4>
+          <p>
+            검증된 전략을 <b>Binance Futures API</b> 기반 자동매매 봇으로 구현.
+            프로세스 이중화 · WebSocket Heartbeat · 자동 재기동 메커니즘을 통해
+            <b>24/7 무중단 가용성</b>을 확보하고, 슬리피지 · API rate limit까지 직접 핸들링했습니다.
+          </p>
+        </div>
+      </div>
+      <div class="coin-item">
+        <div class="coin-item-img">
+          <img src="img/backTestingBinance.png" alt="Parallel Backtest" />
+        </div>
+        <div class="coin-item-body">
+          <div class="num">02 · BACKTEST</div>
+          <h4>전략 검증</h4>
+          <p>
+            수백만 개 파라미터 조합을 <b>Node.js 멀티프로세스 병렬</b>로 백테스트하여
+            단일 프로세스 대비 약 <b>10배 향상</b>의 처리량을 확보했습니다.
+            MDD · Volatility · PSI · Sharpe 등 다중 지표로 평가하며, 시드값 고정으로 <b>재현성 99%</b>를 달성했습니다.
+          </p>
+        </div>
+      </div>
+      <div class="coin-item">
+        <div class="coin-item-img">
+          <img src="img/dashboard.png" alt="Profit Dashboard & Alert" />
+        </div>
+        <div class="coin-item-body">
+          <div class="num">04 · AI ALERT</div>
+          <h4>AI 분석 알림 &amp; 대시보드</h4>
+          <p>
+            실시간 모니터링으로 급등 · 급락 발생 시 Telegram · Discord로 자동 알림 전송.
+            <b>LLM이 시장 컨텍스트를 분석한 코멘트</b>를 첨부하고, React 기반 수익 포트폴리오 대시보드에서
+            전략 성과를 한눈에 확인할 수 있도록 했습니다. <b>Telegram 구독자 830명</b> (2025.12 기준) 규모로 운영 중.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">14 · COIN · PIPELINE</span>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       PAGE 13 · CONTACT
+       ===================================================== -->
+  <section class="page">
+    <div class="section-head">
+      <span class="chapter-num">CHAPTER 07</span>
+      <h2 class="section-title">Let's Build Together</h2>
+      <span class="section-sub">Contact</span>
+    </div>
+
+    <div class="contact-card">
+      <div class="ck">Open to opportunities</div>
+      <h2>신뢰성 높은 시스템을<br />함께 만들어 보고 싶습니다.</h2>
+      <div class="em">📨 emrhssla@gmail.com</div>
+      <div class="contact-links">
+        <a href="https://github.com/ChanYoung-dev" target="_blank">GitHub ↗</a>
+        <a href="https://chanyoung-dev.github.io/" target="_blank">Tech Blog ↗</a>
+        <a href="https://www.notion.so/chanlog/d23d460f2e554944bf60448e47f982ef?v=276ea58f112f4444adce1478ec19a31b" target="_blank">Notion ↗</a>
+        <a href="https://emrhssla.tistory.com/" target="_blank">Tistory ↗</a>
+      </div>
+    </div>
+
+    <p class="signature">
+      © 2026 Chan Yeong · All rights reserved · Crafted with care
+    </p>
+
+    <div class="page-footer">
+      <span>CHAN YEONG · BACKEND ENGINEER</span>
+      <span class="pf-num">15 · CONTACT · END</span>
+    </div>
+  </section>
+
+  <script src="main_upgrade.js" defer></script>
+</body>
+</html>
