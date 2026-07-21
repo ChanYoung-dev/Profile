@@ -393,41 +393,58 @@
       <div style="font-size: 13px; color: var(--ink-2); margin-bottom: 12px;">
         ① <b>MQ 도입을 통한 주문 처리 구조 개선</b>, ② <b>벤더별 현금영수증 발급 구조 개선</b>, ③ <b>현금영수증 운영 어드민 기능화</b>, ④ <b>AI-DLC 개발론으로 AI 주도개발 도입</b>
       </div>
-      <div class="flow">
+      <div class="flow flow-linked">
         <div class="flow-card why">
           <div class="lbl">◆ WHY</div>
           <ul>
-            <li>외부 플랫폼 통신 지연 → 취소 누락</li>
-            <li>후행 작업 실패가 주문 실패로 전파</li>
-            <li>베네피아 명의 일괄 발급 → 실제 매출 주체 미반영 · 발급/취소 누락 수기 처리</li>
+            <li>모든 현금영수증이 <b>자사 명의로 일괄 발급</b> → 실제 매출 주체 반영 어려움</li>
+            <li>예외 케이스로 인한 운영 수기 처리 발생</li>
+            <li><b>동기 방식</b> 현금영수증 처리 → 응답속도 지연</li>
+            <li>현금영수증 처리 실패가 주문 실패로 장애전파</li>
+            <li>대규모 트래픽 시 <b>서버 과부하로 인한 다운 위험</b></li>
           </ul>
         </div>
-        <div class="flow-card how">
-          <div class="lbl">◆ HOW</div>
-          <ul>
-            <li>주문 완료 이벤트 기준 MQ 분리</li>
-            <li>거래유형별 <b>벤더사 사업자번호</b> 발급 · 현금영수증 <b>어드민 기능화</b></li>
-            <li><b>AI-DLC 개발론</b>으로 AI기반 개발</li>
-          </ul>
-        </div>
-        <div class="flow-card impact">
-          <div class="lbl">◆ IMPACT</div>
-          <ul>
-            <li>장애 전파 차단</li>
-            <li>확장성 / 가용성 확보</li>
-            <li>대규모 트래픽 대응</li>
-            <li>실제 매출 귀속 주체 발급 · 운영 수기 처리 감소</li>
-            <li>AI-DLC 개발론으로 개발하여 <b>공수(MM) 66% 절감</b></li>
-          </ul>
-        </div>
-        <div class="flow-card challenge" style="grid-column: 1 / -1;">
-          <div class="lbl">◆ CHALLENGE</div>
-          <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px 22px;">
-            <li><b>메시지 유실</b> → 인프라 및 각 아키텍처에 대한 <b>Life Cycle</b>을 이용</li>
-            <li><b>순서제어 불가</b> → <b>샤딩</b> or <b>Single Consumer</b> 도입</li>
-            <li><b>분산 Consumer 환경의 race condition · Lost Update</b> → <b>낙관적 락</b> 도입</li>
-            <li><b>오류 제어</b> → <b>재시도 큐</b>와 <b>DLQ</b>를 적용해 오류제어</li>
-          </ul>
+        <div class="flow-card howimpact">
+          <div class="hi-head">
+            <span class="lbl how-lbl">◆ HOW</span>
+            <span></span>
+            <span class="lbl impact-lbl">◆ IMPACT</span>
+          </div>
+          <div class="hi-row">
+            <li class="hi-how"><ul class="hi-sublist"><li>다중 벤더 주문은 벤더별 금액 · 면세금액 분리 후 고유 주문번호로 개별 발급 · 취소 처리</li></ul></li>
+            <div class="hi-arrow">→</div>
+            <li class="hi-impact"><ul class="hi-sublist"><li>매출 귀속 주체에 맞는 <b>벤더별 발급</b></li><li>매입 · 위탁 등 거래유형에 따라 실제<br>사업자번호로 발급</li></ul></li>
+          </div>
+          <div class="hi-row">
+            <li class="hi-how"><ul class="hi-sublist"><li>현금영수증 관련 <b>어드민 기능화</b></li></ul></li>
+            <div class="hi-arrow">→</div>
+            <li class="hi-impact"><ul class="hi-sublist"><li>운영 수기 처리 최소화</li></ul></li>
+          </div>
+          <div class="hi-row">
+            <li class="hi-how"><ul class="hi-sublist"><li><b>RabbitMQ 기반 비동기 방식</b> 처리</li></ul></li>
+            <div class="hi-arrow">→</div>
+            <li class="hi-impact"><ul class="hi-sublist"><li>응답속도 개선 및 장애 격리</li><li>대규모 트래픽 대응 가능</li></ul></li>
+          </div>
+          <div class="hi-row">
+            <li class="hi-how"><ul class="hi-sublist"><li><b>아키텍처 인프라 생명주기</b> 제어</li></ul></li>
+            <div class="hi-arrow">→</div>
+            <li class="hi-impact"><ul class="hi-sublist"><li><b>메시지 유실 방지</b></li></ul></li>
+          </div>
+          <div class="hi-row">
+            <li class="hi-how"><ul class="hi-sublist"><li>재시도 큐와 DLQ로 오류 제어</li></ul></li>
+            <div class="hi-arrow">→</div>
+            <li class="hi-impact"><ul class="hi-sublist"><li>오류 발생 시에도 안전하게 재처리</li></ul></li>
+          </div>
+          <div class="hi-row">
+            <li class="hi-how"><ul class="hi-sublist"><li><b>분산 컴퓨팅</b> + 동시성 제어</li></ul></li>
+            <div class="hi-arrow">→</div>
+            <li class="hi-impact"><ul class="hi-sublist"><li>정합성 ↑</li></ul></li>
+          </div>
+          <div class="hi-row">
+            <li class="hi-how"><ul class="hi-sublist"><li><b>AI-DLC 개발론</b>으로 AI 기반 개발</li></ul></li>
+            <div class="hi-arrow">→</div>
+            <li class="hi-impact"><ul class="hi-sublist"><li><b>공수(MM) 66% 절감</b></li></ul></li>
+          </div>
         </div>
       </div>
     </div>
@@ -574,10 +591,14 @@
           <div class="deep-row">
             <div class="k">Challenge 01 · 메세지 유실</div>
             <div class="v">
-              DB 락 때문에 재기동을 해야 하거나 배포로 scale-out된 서버들을 재기동해야 할 때, 진행 중이던 메시지가 <b>유실될 수 있는 위험</b>이 있었습니다.
+              <b style="color: var(--ink);">① DB Lock 장애 대응 및 배포 과정에서 Consumer 서버 재기동</b> — 처리 중인 메시지가 유실
               <ul>
-                <li>MQ 미들웨어 고장</li>
-                <li>Docker, Nomad, Consul 등 인프라 Shutdown 연계 및 LifeCycle 확인 필요</li>
+                <li><span style="background: var(--impact-soft); color: var(--impact); padding: 1px 7px; border-radius: 4px; font-weight: 700;">컨테이너 및 오케스트레이터 등 인프라 생명주기 제어를 통해 메시지 무손실 보장</span></li>
+                <li><span style="background: var(--impact-soft); color: var(--impact); padding: 1px 7px; border-radius: 4px; font-weight: 700;">TCC패턴 및 재시도 큐와 DLQ로 오류 제어</span></li>
+              </ul>
+              <b style="display: block; margin-top: 10px; color: var(--ink);">② MQ 미들웨어 서버 다운</b>
+              <ul>
+                <li>OutBox 패턴 도입</li>
               </ul>
             </div>
           </div>
@@ -803,12 +824,12 @@
                 </svg>
               </div>
 
-              <b>시도한 방법들</b>
+              <b style="color: var(--ink);">시도한 방법들</b>
               <ul>
-                <li><b>샤딩</b> — <code>hash(ordNo) % 4</code>로 큐 4개 분산. 같은 ordNo는 항상 같은 큐 → 같은 서버</li>
-                <li><b>x-single-active-consumer</b> — 큐 단위 단일 Consumer 보장</li>
-                <li><b>Exclusive Consumer로 순서제어</b> ← 1차 채택 ✅</li>
-                <li><b>분산 Consumer 환경 + 동시성제어</b> ← 최종 채택 ✅</li>
+                <li><b style="color: var(--ink);">샤딩</b> — <code>hash(ordNo) % 4</code>로 큐 4개 분산. 같은 ordNo는 항상 같은 큐 → 같은 서버</li>
+                <li><b style="color: var(--ink);">x-single-active-consumer</b> — 큐 단위 단일 Consumer 보장</li>
+                <li><span style="background: var(--impact-soft); color: var(--impact); padding: 1px 7px; border-radius: 4px; font-weight: 700;">Exclusive Consumer로 순서제어</span> ← 1차 채택 ✅</li>
+                <li><span style="background: var(--impact-soft); color: var(--impact); padding: 1px 7px; border-radius: 4px; font-weight: 700;">분산 Consumer 환경 + 동시성제어</span> ← 최종 채택 ✅</li>
               </ul>
             </div>
           </div>

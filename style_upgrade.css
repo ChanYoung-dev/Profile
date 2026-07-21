@@ -786,6 +786,60 @@ img { max-width: 100%; display: block; }
 }
 .flow-card.impact { border-color: rgba(187, 247, 208, 0.6); }
 
+/* HOW ↔ IMPACT 항목별 연결 (특정 .flow에만 적용되는 modifier) */
+.flow.flow-linked { grid-template-columns: 0.85fr 1.85fr; gap: 8px; }
+.flow-linked .flow-card { padding: 10px 10px 9px; }
+.flow-linked .flow-card li { padding-left: 12px; margin-bottom: 3px; }
+.flow-card.howimpact { display: flex; flex-direction: column; }
+.hi-head {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 5px;
+}
+.hi-head .impact-lbl { justify-self: end; }
+.hi-head .lbl.how-lbl { color: var(--solve); }
+.hi-head .lbl.impact-lbl { color: var(--impact); }
+.hi-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 0;
+  border-top: 1px dashed rgba(17, 24, 39, 0.1);
+}
+.hi-row:first-of-type { border-top: none; padding-top: 2px; }
+.hi-how, .hi-impact { color: var(--ink-2); list-style: none; }
+.hi-sublist { list-style: none; margin: 0; padding: 0; }
+.hi-sublist li {
+  position: relative;
+  padding-left: 10px;
+}
+.hi-sublist li + li { margin-top: 2px; }
+.hi-sublist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.hi-how .hi-sublist li::before { background: radial-gradient(circle at 30% 30%, #67e8f9, #0891b2); }
+.hi-impact .hi-sublist li::before { background: radial-gradient(circle at 30% 30%, #86efac, #16a34a); }
+.hi-how b, .hi-impact b { color: var(--ink); font-weight: 700; }
+.hi-arrow {
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 2px;
+}
+@media screen and (max-width: 880px) {
+  .flow.flow-linked { grid-template-columns: 1fr; }
+  .hi-row, .hi-head { grid-template-columns: 1fr auto 1fr; }
+}
+
 /* Glassy chip label */
 .flow-card .lbl {
   display: inline-flex;

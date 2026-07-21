@@ -253,12 +253,10 @@
     <div class="str-list">
       <div><b>도메인 전문성</b> — 핵심 커머스 로직(배송비·결제·취소·교환·반품) 깊은 이해</div>
       <div><b>테스트·자동화 안정성</b> — 검증 체계 도입으로 장애율 대폭 감소</div>
-      <div><b>보안·운영 안정성</b> — XSS · SQL Injection 방어, 로그 기반 모니터링</div>
       <div><b>아키텍처 설계</b> — 유지보수 비용 절감, 확장성에 강한 설계</div>
       <div><b>대규모 트래픽 + MQ</b> — 비동기 메시지 큐 처리 경험</div>
       <div><b>MSA · 분산 트랜잭션</b> — 주문·결제·배송 도메인 실전 경험</div>
-      <div><b>장애 개선</b> — MTBF 4~6배 ↑, MTTR 60~75% ↓</div>
-      <div><b>AI 활용</b> — AI-DLC 개발론 및 AI 서비스 직접 연동</div>
+      <div><b>AI 활용</b> — AI-DLC 개발론 및 Harness 적용</div>
     </div>
   </div>
 
@@ -315,62 +313,29 @@
             <span>Jenkins</span>
           </div>
           <div class="callout">
-            결제 · 현금영수증 PG사 전환 프로젝트. 현금영수증 처리 안정성 강화와 벤더별 발급 구조 개선.
+            결제 · 현금영수증 PG사 전환 프로젝트.<br>현금영수증 발급 <b>RabbitMQ</b> 도입 및 발급 구조 개선을 <b>AI-DLC 기법 기반의 AI 주도 통합 개발</b>로 수행.
           </div>
-          <div class="callout" style="background:var(--accent-soft);border-left-color:var(--accent-2);color:var(--accent-2);font-weight:700;">
-            <b style="color:var(--accent-2);font-weight:800;">AI-DLC 통합 개발론</b>으로 개발하여 개발 공수(MM) <b style="color:var(--hot);font-weight:800;">66% 절감</b>
-          </div>
-
-          <div class="dual">
-            <div class="why">
-              <span class="lbl">문제 상황</span>
-              <ul>
-                <li>외부 현금영수증 연동 지연 · 타임아웃이 <b>주문 실패로 전파</b></li>
-                <li>발급 · 취소 누락으로 <b>고객 문의와 운영 수기 처리</b> 발생</li>
-                <li>모든 거래가 베네피아 명의로 발급 → <b>실제 매출 주체 반영 어려움</b></li>
-              </ul>
-            </div>
-            <div class="impact">
-              <span class="lbl">최종 임팩트</span>
-              <ul>
-                <li>외부 장애의 <b>주문 전체 전파 차단</b></li>
-                <li>발급 · 취소 누락 및 <b>운영 수기 처리 감소</b></li>
-                <li>실제 매출 귀속 주체에 맞는 <b>벤더별 발급 지원</b></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="subhead"><span class="num">1.1</span>RabbitMQ 기반 현금영수증 비동기 처리</div>
+          <div class="subhead"><span class="num">WHY</span>문제 상황</div>
           <ul class="bullet">
-            <li><b>외부 연동 / 후행 작업 비동기화</b> — 주문 완료 이벤트 기준으로 이메일·현금영수증을 MQ로 분리</li>
-            <li>→ <b>장애 전파 차단</b>, 확장성·가용성 확보, 대규모 트래픽 대응</li>
-            <li><b>대량 처리 작업</b> — 상품 대량 INSERT 시 MQ 적재 후 Consumer 순차 처리 → DB 부하 감소</li>
+            <li>모든 현금영수증이 <b>자사 명의로 일괄 발급</b> → <b>실제 매출 주체 반영 어려움</b></li>
+            <li>예외 케이스로 인한 운영 수기 처리 발생</li>
+            <li><b>동기 방식</b> 현금영수증 처리 → <b>응답속도 지연</b></li>
+            <li>현금영수증 처리 실패가 주문 실패로 장애전파</li>
+            <li>대규모 트래픽 시 <b>서버 과부하로 인한 다운 위험</b></li>
           </ul>
 
-          <div class="subhead"><span class="num">1.2</span>벤더별 현금영수증 발급 구조 개선</div>
+          <div class="subhead"><span class="num">HOW</span>해결 과정 및 임팩트</div>
           <ul class="bullet">
-            <li>매입 · 위탁 등 <b>거래유형에 따라 실제 벤더사 사업자번호로 발급</b></li>
-            <li>다중 벤더 주문은 <b>벤더별 금액 · 면세금액 분리</b> 후 고유 주문번호로 개별 발급 · 취소</li>
+            <li><mark>다중 벤더 주문은 벤더별 금액 · 면세금액 분리 후 고유 주문번호로 개별 발급 · 취소 처리</mark></li>
+            <li class="arrow">→ 실제 매출 귀속 주체에 맞는 <b>벤더별 발급 지원</b></li>
+            <li class="arrow">→ 매입 · 위탁 등 거래유형에 따라 실제 사업자번호로 발급</li>
+            <li>현금영수증 관련 어드민 기능화 → 운영 수기 처리 최소화</li>
+            <li>주문 완료 이후 현금영수증 처리를 <mark>RabbitMQ 기반 비동기 방식</mark>으로 분리, 재시도 큐와 DLQ를 적용해 <b>오류 제어</b></li>
+            <li class="arrow">→ 응답속도 개선 및 장애 격리, <b>대규모 트래픽에도 대응 가능한 확장성 · 가용성 확보</b></li>
+            <li>컨테이너 및 오케스트레이터 등 인프라 생명주기 제어를 통해 <b>메시지 무손실 보장</b></li>
+            <li><mark>동시성 제어</mark><br>1차 — Single Consumer로 메시지 직렬화하여 순서제어<br>2차 — <b>Consumer 수평 확장 + 낙관적 락</b></li>
+            <li><mark>AI-DLC 개발론을 활용해 개발 공수(MM) 66% 절감</mark></li>
           </ul>
-
-          <div class="subhead"><span class="num">1.3</span>현금영수증 운영 어드민 기능화</div>
-          <ul class="bullet">
-            <li>발급 · 취소 · 부분취소를 <b>어드민에서 직접 처리</b>하도록 기능화</li>
-            <li>발급 상태 · 실패 건 추적 및 재처리 → <b>운영 수기 처리 최소화</b></li>
-            <li>→ <mark>다중 벤더 주문의 발급 · 취소 추적 정확도 향상</mark></li>
-          </ul>
-
-          <div class="dual" style="grid-template-columns: 1fr; margin-top: 4px;">
-            <div class="why">
-              <span class="lbl">어려웠던 점</span>
-              <ul style="display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px;">
-                <li><b>메시지 유실</b> → 인프라 및 각 아키텍처에 대한 <b>Life Cycle</b>을 이용</li>
-                <li><b>순서제어 불가</b> → <b>샤딩</b> or <b>Single Consumer</b> 도입</li>
-                <li><b>분산 Consumer 환경의 race condition · Lost Update</b> → <b>낙관적 락</b> 도입</li>
-                <li><b>오류 제어</b> → <b>재시도 큐</b>와 <b>DLQ</b>를 적용해 오류제어</li>
-              </ul>
-            </div>
-          </div>
         </div>
 
       </div>
@@ -448,7 +413,7 @@
           <ul class="bullet">
             <li>MSA 통합 테스트 환경에 대한 이해 → 주문·결제·배송 핵심 시나리오 테스트 작성</li>
             <li>Persistence layer 테스트환경 구축</li>
-            <li>→ <mark>주문 관련 장애 평균 복구 시간(MTTR) 45분 → 12분 (약 73% 단축)</mark></li>
+            <li class="arrow">→ <mark>주문 관련 장애 평균 복구 시간(MTTR) 45분 → 12분 (약 73% 단축)</mark></li>
           </ul>
 
           <div class="dual" style="grid-template-columns: 1fr; margin-top: 4px;">
@@ -467,7 +432,7 @@
             <li>정기 <b>일일 로그 분석</b>으로 장애 발생 여부 점검, 오류 원인 파악 및 개선 조치를 통한 운영 안정화</li>
             <li>실시간 모니터링(<b>DataDog</b>) 기반 상시 감시, 정책·비즈니스 로직 수정으로 지속적 오류 개선</li>
             <li>재고 관련 동시성 처리, 포인트 연마감 결제취소 이슈 등 주요 오류 <b>근본 원인 분석 및 개선</b></li>
-            <li>→ <mark>초기 대비 장애율 76.5% 감소</mark></li>
+            <li class="arrow">→ <mark>초기 대비 장애율 76.5% 감소</mark></li>
           </ul>
         </div>
 
@@ -545,7 +510,7 @@
             <li>케이스별 XSS 처리 기준 통합 및 <b>가이드 문서화</b></li>
             <li>전사 공통 <b>XSS 애노테이션</b> 방식으로 통합 적용</li>
             <li>이중 escape 처리 / JSON 파싱 오류 <b>재발 방지</b></li>
-            <li>→ <mark>다음 해 ISMS 점검에서 XSS 관련 80% 단축</mark></li>
+            <li class="arrow">→ <mark>다음 해 ISMS 점검에서 XSS 관련 80% 단축</mark></li>
           </ul>
         </div>
 
@@ -609,7 +574,7 @@
           <li>Binance 데이터 실시간 모니터링, 급등·급락 발생 시 <b>SNS·메신저 자동 알림</b></li>
           <li>Telegram · X · Instagram · Facebook · Threads <b>멀티 플랫폼 동시 포스팅</b></li>
           <li>Upbit API 연동, 국내 거래소 가격·티커 한글 제공</li>
-          <li>→ <mark>2025.12 기준 Telegram 구독자 830명</mark></li>
+          <li class="arrow">→ <mark>2025.12 기준 Telegram 구독자 830명</mark></li>
         </ul>
 
         <div class="subhead"><span class="num">⑤</span>AI 포트폴리오 대시보드</div>

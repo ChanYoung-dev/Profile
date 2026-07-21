@@ -824,6 +824,7 @@ ul.bullet li::before {
   background: var(--ink);
   border-radius: 0;
 }
+ul.bullet li.arrow::before { content: none; }
 ul.bullet li b { color: var(--ink); font-weight: 700; }
 ul.bullet li mark {
   background: var(--impact-soft);
