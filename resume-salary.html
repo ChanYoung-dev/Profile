@@ -118,7 +118,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span class="page-num"></span>
+    <span>Page 01 / 05</span>
   </div>
 </section>
 
@@ -477,7 +477,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span class="page-num"></span>
+    <span>Page 02 / 05</span>
   </div>
 </section>
 
@@ -559,7 +559,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span class="page-num"></span>
+    <span>Page 03 / 05</span>
   </div>
 </section>
 
@@ -642,7 +642,7 @@
 
   <div class="foot">
     <span>Resume · Chan Yeong Kim</span>
-    <span class="page-num"></span>
+    <span>Page 04 / 05</span>
   </div>
 </section>
 
@@ -720,24 +720,57 @@
   </div>
 
 
+  <!-- Additional Info -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">12</span>
+      <h2 class="section-title">추가 정보</h2>
+      <span class="section-meta">ADDITIONAL INFO</span>
+    </div>
+    <div class="edu-grid" style="grid-template-columns: 0.8fr 0.8fr 1.4fr; margin-bottom: 10px;">
+      <div class="edu-card">
+        <div class="title">직급</div>
+        <div class="meta"><span><strong>매니저(대리)</strong></span></div>
+      </div>
+      <div class="edu-card">
+        <div class="title">입사가능시기</div>
+        <div class="meta"><span><strong>면접 후 협의</strong></span></div>
+      </div>
+      <div class="edu-card">
+        <div class="title">이직사유</div>
+        <div class="meta"><span><strong>매각 이슈 및 커리어 전문성을 키우기 위해 성장 기회를 찾기 위함</strong></span></div>
+      </div>
+    </div>
+    <div class="edu-grid" style="grid-template-columns: 1.6fr 1fr;">
+      <!-- 현재 연봉 -->
+      <div class="edu-card">
+        <div class="title">현재 연봉 (직전 1년 기준)</div>
+        <div class="meta" style="margin-top: 6px;">
+          <span>급여 <strong>43,145,290원</strong></span>
+          <span>상여금 <strong>6,279,385원</strong></span>
+          <span>비과세 식대 <strong>1,800,000원</strong></span>
+        </div>
+        <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line-2); display: flex; align-items: baseline; justify-content: space-between;">
+          <span style="color: var(--muted); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;">합계</span>
+          <span style="font-family: var(--font-display); font-size: 20px; color: var(--accent); letter-spacing: 0.02em;">51,224,675<span style="font-size: 12px; margin-left: 3px; font-family: var(--font-sans); font-weight: 700;">원</span></span>
+        </div>
+      </div>
+      <!-- 희망 연봉 -->
+      <div class="edu-card" style="background: var(--accent-soft); border-color: var(--accent-line);">
+        <div class="title" style="color: var(--accent);">희망 연봉</div>
+        <div style="margin-top: 6px;">
+          <span style="font-weight: 800; color: var(--accent); font-size: 18px; letter-spacing: -0.01em;">협의 가능</span>
+          <span style="color: var(--accent-2); font-family: var(--font-display); font-size: 11px; letter-spacing: 0.08em; margin-left: 6px;">NEGOTIABLE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="foot">
     <span>chanyoung-dev.github.io · emrhssla@gmail.com</span>
-    <span class="page-num"></span>
+    <span>Page 05 / 05</span>
   </div>
 </section>
 
-<script>
-  // 각 .page 섹션의 풋터에 페이지 번호를 자동 채움 (화면용 .foot 표시).
-  // PDF 출력 시에는 .foot이 숨겨지고 CSS @page counter가 물리 페이지마다 별도로 풋터를 그림.
-  (function () {
-    const pages = document.querySelectorAll('section.page');
-    const total = String(pages.length).padStart(2, '0');
-    pages.forEach((page, idx) => {
-      const numEl = page.querySelector('.foot .page-num');
-      if (!numEl) return;
-      numEl.textContent = `Page ${String(idx + 1).padStart(2, '0')} / ${total}`;
-    });
-  })();
-</script>
 </body>
 </html>

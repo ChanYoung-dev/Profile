@@ -5,8 +5,8 @@
 
 
 # 포트폴리오 및 이력서 수정 요청
-- 해당 수정 요청이 오면 /Users/gimchan-yeong/job/profile/docs/portfolio.pdf /Users/gimchan-yeong/job/profile/docs/portfolio.html /Users/gimchan-yeong/job/profile/docs/resume-magazine.html /Users/gimchan-yeong/job/profile/docs/docs/resume_magazine.pdf /Users/gimchan-yeong/job/profile/docs/resume-magazine-ver1.html
-  /Users/gimchan-yeong/job/profile/docs/docs/resume_magazine_ver1.pdf를 전부 같이 수정한다.
+- 해당 수정 요청이 오면 /Users/gimchan-yeong/job/profile/docs/portfolio.pdf /Users/gimchan-yeong/job/profile/docs/portfolio.html /Users/gimchan-yeong/job/profile/docs/resume.html /Users/gimchan-yeong/job/profile/docs/docs/resume.pdf /Users/gimchan-yeong/job/profile/docs/resume-salary.html
+  /Users/gimchan-yeong/job/profile/docs/docs/resume_salary.pdf를 전부 같이 수정한다.
 
 # 이력서, 지원서 작성/수정 요청시
 - 인적사항은 /Users/gimchan-yeong/job/profile/docs/spec 하위폴더들 참고하여 작성
