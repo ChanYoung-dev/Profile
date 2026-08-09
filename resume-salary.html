@@ -541,13 +541,13 @@
 
           <div class="subhead"><span class="num">HOW</span>해결 과정 및 임팩트</div>
           <ul class="bullet">
-            <li><mark>다중 벤더 주문은 벤더별 금액 · 면세금액 분리 후 고유 주문번호로 개별 발급 · 취소 처리</mark></li>
-            <li class="arrow">→ 실제 매출 귀속 주체에 맞는 <b>벤더별 발급 지원</b></li>
+            <li>다중 벤더 주문은 벤더별 금액 · 면세금액 분리 후 고유 주문번호로 개별 발급 · 취소 처리</li>
+            <li class="arrow">→ 실제 매출 귀속 주체에 맞는 벤더별 발급 지원</li>
             <li class="arrow">→ 매입 · 위탁 등 거래유형에 따라 실제 사업자번호로 발급</li>
             <li>현금영수증 관련 어드민 기능화 → 운영 수기 처리 최소화</li>
             <li>주문 완료 이후 현금영수증 처리를 <mark>RabbitMQ 기반 비동기 방식</mark>으로 분리, 재시도 큐와 DLQ를 적용해 <b>오류 제어</b></li>
             <li class="arrow">→ 응답속도 개선 및 장애 격리, <b>대규모 트래픽에도 대응 가능한 확장성 · 가용성 확보</b></li>
-            <li>컨테이너 및 오케스트레이터 등 인프라 생명주기 제어를 통해 <b>메시지 무손실 보장</b></li>
+            <li>컨테이너 및 오케스트레이터 등 <mark>인프라 DevOps</mark> 제어를 통해 <b>메시지 무손실 보장</b></li>
             <li><mark>동시성 제어</mark><br>1차 — Single Consumer로 메시지 직렬화하여 순서제어<br>2차 — <b>Consumer 수평 확장 + 낙관적 락</b></li>
             <li><mark>AI-DLC 개발론을 활용해 개발 공수(MM) 66% 절감</mark></li>
           </ul>
