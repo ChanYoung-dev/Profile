@@ -39,7 +39,7 @@
     <div class="cover-hero">
       <div class="cover-eyebrow">Backend Engineer · Commerce Domain Specialist</div>
       <h1 class="cover-title">
-        도전을 두려워하지 않는<br />
+        AI와 함께 달려나가는<br />
         <span class="accent">Chan Yeong</span><br />
         개발 기록
       </h1>
@@ -52,12 +52,12 @@
 
     <div class="cover-bottom">
       <div class="cover-stat">
-        <div class="num">4.1 yrs</div>
-        <div class="label">Commerce Backend</div>
-      </div>
-      <div class="cover-stat">
         <div class="num">MSA</div>
         <div class="label">Saga · Distributed Transaction</div>
+      </div>
+      <div class="cover-stat">
+        <div class="num" style="font-size: 22px;">RabbitMQ</div>
+        <div class="label">Async Messaging</div>
       </div>
       <div class="cover-stat">
         <div class="num">AI-DLC</div>
@@ -94,6 +94,8 @@
         <div class="info">
           <div class="info-row"><span>Company</span><b>SK엠앤서비스</b></div>
           <div class="info-row"><span>Domain</span><b>Commerce</b></div>
+          <div class="info-row"><span>Career</span><b>4.1년</b></div>
+          <div class="info-row"><span>Age</span><b>1993 (32세)</b></div>
           <div class="info-row"><span>Stack</span><b>Spring · MSA</b></div>
           <div class="info-row"><span>Edu</span><b>성결대학교</b></div>
         </div>
@@ -121,12 +123,6 @@
           나아가 <b>Harness Engineering</b>을 통해 안전한 운영 시스템 접근 및 실무형 AI 개발 체계를 구축하여
           AI 생산성을 크게 향상시켰고, <b>AI-DLC 개발 방법론</b>을 도입하여 개발 공수 기간을 대폭 감소시켰습니다.
         </p>
-        <p>
-          개인적으로는 <b>AI-DLC 개발론</b>을 적극 도입해
-          Claude Code · Cursor · Codex 등 AI 에이전트와 협업하며,
-          <b>코인 자동매매 · AI 분석 알림</b> 사이드 프로젝트를 풀스택으로 운영
-          (Telegram 구독자 830+)하고 있습니다.
-        </p>
 
       </div>
     </div>
@@ -146,7 +142,7 @@
       <div class="tl-item">
         <div class="tl-period">2021.12 — 2022.05</div>
         <div class="tl-title">구름 · Kubernetes 전문가 양성 교육</div>
-        <div class="tl-meta">DevOps · MSA · 컨테이너 오케스트레이션 실습 프로젝트 수행</div>
+        <div class="tl-meta">DevOps · CI/CD · MSA · 컨테이너 오케스트레이션 실습 프로젝트 수행</div>
       </div>
       <div class="tl-item">
         <div class="tl-period">2013.02 — 2019.12</div>
@@ -298,26 +294,27 @@
           <div class="lbl">◆ WHY</div>
           <ul>
             <li>상품·배송비·주문이 강하게 결합된 구조</li>
-            <li>정책 변경에 유연한 대응 불가</li>
+            <li>취소/반품/교환 프로세스 부재</li>
+            <li>정책 변경 및 배송비 관련 개발 불가</li>
           </ul>
         </div>
         <div class="flow-card how">
           <div class="lbl">◆ HOW</div>
           <ul>
-            <li>주문에서 상품·배송비를 <b>N:N으로 분리</b></li>
-            <li>취소/반품/교환 프로세스 추가</li>
-            <li><b>멱등성 · 동시성 · 분산 트랜잭션</b> 제어</li>
-            <li>객체지향적 리팩토링</li>
-            <li>실시간 모니터링을 통한 운영 개선 — 재고 동시성 처리, 포인트 연마감 결제취소 이슈 등 주요 오류 <b>근본 원인 분석·개선</b></li>
+            <li>상품·배송비 구조 <b>N:N 분리</b> / 배송비 도메인 추가</li>
+            <li>취소/반품/교환 프로세스 추가·개선</li>
+            <li><b>MSA · API 설계</b>, <b>멱등성 · 동시성 · 분산 트랜잭션</b> 제어, <b>OOP</b> 리팩토링</li>
+            <li>상시 모니터링(<b>DataDog</b>) 및 로그 분석 기반 운영 안정화</li>
+            <li>재고 동시성 처리, 포인트 연마감 결제취소 등 주요 오류 <b>근본 원인 분석·개선</b></li>
           </ul>
         </div>
         <div class="flow-card impact">
           <div class="lbl">◆ IMPACT</div>
           <ul>
             <li>다양한 정책 변경에 유연 대응</li>
-            <li>조건부 배송비 등 복잡 케이스 처리</li>
-            <li>유지보수 비용 절감</li>
-            <li>초기 대비 <b>장애율 76.5% 감소</b></li>
+            <li>복잡하고 수많은 주문 관련 시나리오 처리 가능 로직 개발</li>
+            <li>배송비 도메인 분리로 신규 기능 요구 대응력 확보</li>
+            <li>신뢰성 및 가용성 확보로 <b>장애율 76.5% 감소</b></li>
           </ul>
         </div>
       </div>
@@ -337,31 +334,32 @@
         <div class="flow-card why">
           <div class="lbl">◆ WHY</div>
           <ul>
-            <li>정책 변경 시 기존 기능 장애 우려</li>
-            <li>사이드이펙트 확인으로 개발 속도 저하</li>
+            <li><b>테스트코드 부재</b>로 정책 변경 시 대규모 수동 검증 필요</li>
+            <li>사이드 이펙트 확인 필요로 개발 속도 저하</li>
           </ul>
         </div>
         <div class="flow-card how">
           <div class="lbl">◆ HOW</div>
           <ul>
             <li>MSA 통합 테스트 환경 구축</li>
-            <li>주문·결제·배송 핵심 시나리오 테스트</li>
-            <li>Persistence Layer 테스트환경 구축</li>
+            <li>주문·결제·배송 핵심 시나리오 테스트 작성</li>
+            <li>테스트 컨테이너 기반 통합 테스트 환경 구축</li>
+            <li><b>LLM 기반 에이전틱 E2E 테스트 자동화</b></li>
           </ul>
         </div>
         <div class="flow-card impact">
           <div class="lbl">◆ IMPACT</div>
           <ul>
             <li>MTTR <b>45분 → 12분 (73% 단축)</b></li>
-            <li>운영 장애 0건 유지</li>
+            <li>유지보수 비용 절감</li>
           </ul>
         </div>
         <div class="flow-card challenge" style="grid-column: 1 / -1;">
           <div class="lbl">◆ CHALLENGE</div>
-          <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px 22px;">
+          <ul style="display: grid; grid-template-columns: 1fr; gap: 3px 22px;">
             <li><b>persistence layer 환경구축 문제</b> → 테스트 이후의 <b>개발 DB 오염</b>, <b>분산 트랜잭션 롤백</b> 필요</li>
-            <li>MSA에서의 <b>DB 공유</b>로 인한 <b>타 API mocking 실패</b></li>
-            <li><b>선행 데이터 구축</b> → 주문테스트 진행을 위해선 <b>상품데이터</b>가 필요</li>
+            <li>MSA에서의 <b>DB 공유</b>로 인한 <b>타 API통신 mocking 실패</b></li>
+            <li><b>선행 데이터 환경 구축</b> ex) 주문테스트 진행을 위해선 상품데이터가 필요</li>
           </ul>
         </div>
       </div>
@@ -426,7 +424,7 @@
             <li class="hi-impact"><ul class="hi-sublist"><li>응답속도 개선 및 장애 격리</li><li>대규모 트래픽 대응 가능</li></ul></li>
           </div>
           <div class="hi-row">
-            <li class="hi-how"><ul class="hi-sublist"><li><b>아키텍처 인프라 생명주기</b> 제어</li></ul></li>
+            <li class="hi-how"><ul class="hi-sublist"><li><b>아키텍처 인프라 DevOps</b> 제어</li></ul></li>
             <div class="hi-arrow">→</div>
             <li class="hi-impact"><ul class="hi-sublist"><li><b>메시지 유실 방지</b></li></ul></li>
           </div>
@@ -454,7 +452,7 @@
       <div class="sub-block-head">
         <div class="sub-block-num">4</div>
         <div class="sub-block-title">AI Tech TF — AI 도입 리드</div>
-        <div class="sub-block-period">2026.05 — 재직중</div>
+        <div class="sub-block-period">2026.05 — 2026.08</div>
       </div>
       <div class="flow">
         <div class="flow-card why">
@@ -477,11 +475,12 @@
         <div class="flow-card impact">
           <div class="lbl">◆ IMPACT</div>
           <ul>
-            <li><b>AI 아키텍처 설계</b>로 외부 LLM 활용 시에도 운영 데이터 유출 차단 구조 확보</li>
-            <li><b>Harness Engineering</b> 기반으로 정책·코드·운영 데이터를 AI가 한 번에 연결해 운영 이슈 분석 속도 향상</li>
             <li><b>AI-Driven Development Lifecycle 관점 개발</b>을 통해 프로젝트 개발 공수 MM 대폭 감소</li>
+            <li><b>Harness Engineering</b> 기반으로 정책·코드·운영 데이터를 AI가 한 번에 연결해 운영 이슈 분석 속도 향상</li>
+            <li><b>AI 아키텍처 설계</b>로 외부 LLM 활용 시에도 운영 데이터 유출 차단 구조 확보</li>
             <li><b>Claude Code 환경 구축</b>으로 AI 산출물 품질 향상·통일화</li>
             <li><b>Harness Engineering</b> 기반 AI 환각 차단 + 컨텍스트·토큰·응답시간 효율화</li>
+            <li><b>LLM 기반 에이전틱 E2E 테스트 자동화</b>로 운영 안정성 강화</li>
           </ul>
         </div>
       </div>
@@ -593,7 +592,7 @@
             <div class="v">
               <b style="color: var(--ink);">① DB Lock 장애 대응 및 배포 과정에서 Consumer 서버 재기동</b> — 처리 중인 메시지가 유실
               <ul>
-                <li><span style="background: var(--impact-soft); color: var(--impact); padding: 1px 7px; border-radius: 4px; font-weight: 700;">컨테이너 및 오케스트레이터 등 인프라 생명주기 제어를 통해 메시지 무손실 보장</span></li>
+                <li>컨테이너 및 오케스트레이터 등 <span style="background: var(--impact-soft); color: var(--impact); padding: 1px 7px; border-radius: 4px; font-weight: 700;">인프라 DevOps</span> 제어를 통해 <b>메시지 무손실 보장</b></li>
                 <li><span style="background: var(--impact-soft); color: var(--impact); padding: 1px 7px; border-radius: 4px; font-weight: 700;">TCC패턴 및 재시도 큐와 DLQ로 오류 제어</span></li>
               </ul>
               <b style="display: block; margin-top: 10px; color: var(--ink);">② MQ 미들웨어 서버 다운</b>
@@ -1283,10 +1282,11 @@
       <span class="section-sub">AI-Native Personal Engineering</span>
     </div>
 
-    <div class="coin-hero">
+    <div class="coin-hero" style="grid-template-columns: 1fr;">
       <div>
         <div class="spotlight-tag">PERSONAL · 830+ Subscribers · AI-Native</div>
         <h3>실시간 코인 자동매매 &amp; AI 분석 알림 서비스</h3>
+        <!-- [함축 전 원본 · 복원용 주석처리]
         <p class="lead">
           코인 시장의 실시간 변동성을 분석하여 <b>지표 개발 → 백테스트 → 자동매매 → 알림 서비스화</b>
           전 과정을 1인 개발로 운영 중인 사이드 프로젝트입니다.
@@ -1305,127 +1305,23 @@
           <span>TradingView Script</span>
           <span>Multi-process</span>
         </div>
-      </div>
-      <img src="img/insta20250824.gif" alt="Coin Alert" />
-    </div>
-
-    <!-- AI Emphasis Banner -->
-    <div class="coin-ai-banner">
-      <div class="ai-card">
-        <div class="ai-icon">🤖</div>
-        <div class="ai-body">
-          <div class="ai-tag">AI-DLC 개발론</div>
-          <h4>AI 에이전트와 함께 짓는 코드</h4>
-          <p>
-            Claude Code · Cursor · Codex CLI 등 AI 에이전트를 활용한 <b>AI-DLC 개발론</b>을
-            도입했습니다. 사양 명세 → 테스트 우선 작성 → 구현 → 셀프 코드 리뷰까지
-            반복 작업을 AI에 위임하고, 사람은 아키텍처 설계와 의사결정에 집중하는 구조로 운영합니다.
-            그 결과 1인 개발 환경에서도 백엔드 · 프론트엔드 · 데이터 분석을 동시에 진행할 수 있었습니다.
-          </p>
-        </div>
-      </div>
-      <div class="ai-card">
-        <div class="ai-icon">🧠</div>
-        <div class="ai-body">
-          <div class="ai-tag">AI SERVICE INTEGRATION</div>
-          <h4>AI를 서비스에 통합</h4>
-          <p>
-            <b>OpenAI · Claude API</b>를 결합하여 실시간 시장 데이터를
-            요약 · 해석하는 AI 분석 파이프라인을 구축했습니다. Function Calling으로
-            시장 지표를 도구화하고, <b>Prompt Caching</b>으로 반복 호출 비용을 절감했습니다.
-            최종적으로 급등락 알림에 <b>AI 코멘트</b>를 자동 첨부하여
-            "왜 지금 시그널이 발생했는가"를 사용자가 바로 이해할 수 있게 만들었습니다.
-          </p>
+        -->
+        <p class="lead">
+          코인 시장의 실시간 변동성을 분석해 <b>급등락 알림 서비스</b>와 <b>자동매매 대시보드</b>를
+          1인 개발로 운영 중인 사이드 프로젝트입니다.
+          설계 단계부터 <b>AI-DLC 개발론</b>을 적극 도입해 Claude Code · Cursor · Codex 등
+          AI 에이전트와 협업했고, 급등락 알림에는 <b>OpenAI · Claude API</b>를 연동해
+          시장 분석 코멘트를 자동 첨부합니다. React 기반 <b>자동매매 대시보드</b>까지 직접 구축하며
+          <b>풀스택 + AI 통합 역량</b>을 실전에서 검증한 프로젝트입니다.
+        </p>
+        <div class="spotlight-stack">
+          <span>Node.js</span><span>React</span>
+          <span>OpenAI API</span><span>Claude API</span>
         </div>
       </div>
     </div>
 
-    <div class="page-footer">
-      <span>CHAN YEONG · BACKEND ENGINEER</span>
-      <span class="pf-num">13 · COIN</span>
-    </div>
-  </section>
-
-  <!-- =====================================================
-       PAGE 12 · COIN PIPELINE
-       ===================================================== -->
-  <section class="page">
-    <div class="section-head">
-      <span class="chapter-num">CHAPTER 06·b</span>
-      <h2 class="section-title">Side Project · Coin</h2>
-      <span class="section-sub">Pipeline · Indicator → Backtest → Trading → AI Alert</span>
-    </div>
-
-    <div class="coin-grid">
-      <div class="coin-item">
-        <div class="coin-item-img">
-          <img src="img/indicator.png" alt="Custom Indicator" />
-        </div>
-        <div class="coin-item-body">
-          <div class="num">01 · INDICATOR</div>
-          <h4>지표 개발</h4>
-          <p>
-            거래량 폭등 · 추세 반전 캔들패턴 기반의 <b>역추세 전략 지표</b>를 직접 설계 · 구현.
-            <b>TradingView Pine Script</b>로 시각화하고 조건 충족 시 웹훅 자동 알림을 발사하도록 구성했습니다.
-            지표 파라미터 튜닝 단계에서는 AI 에이전트와 페어 프로그래밍을 통해 빠르게 가설을 검증했습니다.
-          </p>
-        </div>
-      </div>
-      <div class="coin-item">
-        <div class="coin-item-img">
-          <img src="img/binanceCopy.png" alt="Auto Trading" />
-        </div>
-        <div class="coin-item-body">
-          <div class="num">03 · TRADING</div>
-          <h4>자동매매 시스템</h4>
-          <p>
-            검증된 전략을 <b>Binance Futures API</b> 기반 자동매매 봇으로 구현.
-            프로세스 이중화 · WebSocket Heartbeat · 자동 재기동 메커니즘을 통해
-            <b>24/7 무중단 가용성</b>을 확보하고, 슬리피지 · API rate limit까지 직접 핸들링했습니다.
-          </p>
-        </div>
-      </div>
-      <div class="coin-item">
-        <div class="coin-item-img">
-          <img src="img/backTestingBinance.png" alt="Parallel Backtest" />
-        </div>
-        <div class="coin-item-body">
-          <div class="num">02 · BACKTEST</div>
-          <h4>전략 검증</h4>
-          <p>
-            수백만 개 파라미터 조합을 <b>Node.js 멀티프로세스 병렬</b>로 백테스트하여
-            단일 프로세스 대비 약 <b>10배 향상</b>의 처리량을 확보했습니다.
-            MDD · Volatility · PSI · Sharpe 등 다중 지표로 평가하며, 시드값 고정으로 <b>재현성 99%</b>를 달성했습니다.
-          </p>
-        </div>
-      </div>
-      <div class="coin-item">
-        <div class="coin-item-img">
-          <img src="img/dashboard.png" alt="Profit Dashboard & Alert" />
-        </div>
-        <div class="coin-item-body">
-          <div class="num">04 · AI ALERT</div>
-          <h4>AI 분석 알림 &amp; 대시보드</h4>
-          <p>
-            실시간 모니터링으로 급등 · 급락 발생 시 Telegram · Discord로 자동 알림 전송.
-            <b>LLM이 시장 컨텍스트를 분석한 코멘트</b>를 첨부하고, React 기반 수익 포트폴리오 대시보드에서
-            전략 성과를 한눈에 확인할 수 있도록 했습니다. <b>Telegram 구독자 830명</b> (2025.12 기준) 규모로 운영 중.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>CHAN YEONG · BACKEND ENGINEER</span>
-      <span class="pf-num">14 · COIN · PIPELINE</span>
-    </div>
-  </section>
-
-  <!-- =====================================================
-       PAGE 13 · CONTACT
-       ===================================================== -->
-  <section class="page">
-    <div class="section-head">
+    <div class="section-head" style="margin-top: 44px;">
       <span class="chapter-num">CHAPTER 07</span>
       <h2 class="section-title">Let's Build Together</h2>
       <span class="section-sub">Contact</span>
@@ -1433,7 +1329,7 @@
 
     <div class="contact-card">
       <div class="ck">Open to opportunities</div>
-      <h2>신뢰성 높은 시스템을<br />함께 만들어 보고 싶습니다.</h2>
+      <h2>대규모 트래픽에서 신뢰성 높은 시스템을<br />함께 만들어 보고 싶습니다.</h2>
       <div class="em">📨 emrhssla@gmail.com</div>
       <div class="contact-links">
         <a href="https://github.com/ChanYoung-dev" target="_blank">GitHub ↗</a>

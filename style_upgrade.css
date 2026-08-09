@@ -1620,9 +1620,11 @@ img { max-width: 100%; display: block; }
   }
 
   /* page-break-inside: avoid 제거 — 큰 블록이 통째로 다음 페이지로 밀려 빈 페이지 생기는 것 방지 */
-  .sub-block, .mini, .pillar, .deep { page-break-inside: auto; break-inside: auto; }
+  .sub-block, .mini, .pillar, .deep, .flow, .flow-card { page-break-inside: auto; break-inside: auto; }
   /* overflow:hidden은 Chrome 인쇄 시 박스를 통째로 만들어 페이지 분할을 막음 → 빈 헤더 페이지 발생 */
-  .deep, .deep-body, .sub-block { overflow: visible !important; }
+  .deep, .deep-body, .sub-block, .flow-card { overflow: visible !important; }
+  /* .flow(grid)는 Chrome 인쇄 시 내부 분할이 안 되어 통째로 다음 페이지로 밀림 → 직전의 sub-block-head가 고아로 남는 것 방지 */
+  .sub-block-head { break-after: avoid-page; page-break-after: avoid; }
 
   /* PDF에서는 페이지 번호 footer 의미 없음 — orphan 페이지 방지 */
   .page-footer { display: none !important; }
