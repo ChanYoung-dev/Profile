@@ -12,3 +12,10 @@
 - 인적사항은 /Users/gimchan-yeong/job/profile/docs/spec 하위폴더들 참고하여 작성
 - chrome devtools mcp를 이용해
 - 자기소개서는 /Users/gimchan-yeong/job/profile/docs/story 하위 폴더 참고하여 작성
+- 자기소개서 작성시 필수 참고 리스트
+  - https://app.notion.com/p/chanlog/2-360a20ddcde28093a9abe67c962da0e1?source=copy_link
+  - https://app.notion.com/p/chanlog/REST-API-3b0a20ddcde2809388fcef21f2fe7d04?source=copy_link
+  - https://app.notion.com/p/chanlog/AI-3b2a20ddcde28070a497d7cc9b2ddada?source=copy_link
+  - https://app.notion.com/p/chanlog/3b4a20ddcde280249ca6fb3e30d5ef9a?source=copy_link
+  - https://app.notion.com/p/chanlog/DB-3b4a20ddcde2801a9977e188850ee063?source=copy_link
+  - https://app.notion.com/p/chanlog/MQ-3b4a20ddcde2804eaab9f02c7c9b6f2e?source=copy_link
