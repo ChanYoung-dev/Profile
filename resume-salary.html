@@ -530,6 +530,7 @@
           <div class="callout">
             결제 · 현금영수증 PG사 전환 프로젝트.<br>현금영수증 발급 <b>RabbitMQ</b> 도입 및 발급 구조 개선을 <b>AI-DLC 기법 기반의 AI 주도 통합 개발</b>로 수행.
           </div>
+          <div class="project-role"><span class="role-badge">ROLE</span>현금영수증 고도화 · AI-DLC 가이드 · RabbitMQ 도입</div>
           <div class="subhead"><span class="num">WHY</span>문제 상황</div>
           <ul class="bullet">
             <li>모든 현금영수증이 <b>자사 명의로 일괄 발급</b> → <b>실제 매출 주체 반영 어려움</b></li>
@@ -546,7 +547,8 @@
             <li class="arrow">→ 매입 · 위탁 등 거래유형에 따라 실제 사업자번호로 발급</li>
             <li>현금영수증 관련 어드민 기능화 → 운영 수기 처리 최소화</li>
             <li>주문 완료 이후 현금영수증 처리를 <mark>RabbitMQ 기반 비동기 방식</mark>으로 분리, 재시도 큐와 DLQ를 적용해 <b>오류 제어</b></li>
-            <li class="arrow">→ 응답속도 개선 및 장애 격리, <b>대규모 트래픽에도 대응 가능한 확장성 · 가용성 확보</b></li>
+            <li class="arrow">→ <mark>클러스터링 및 고가용성 인프라 구성</mark>을 통해 <b>고가용성/신뢰성 시스템 확보</b></li>
+            <li class="arrow">→ 응답속도 개선 및 장애 격리, 대규모 트래픽에도 대응 가능</li>
             <li>컨테이너 및 오케스트레이터 등 <mark>인프라 DevOps</mark> 제어를 통해 <b>메시지 무손실 보장</b></li>
             <li><mark>동시성 제어</mark><br>1차 — Single Consumer로 메시지 직렬화하여 순서제어<br>2차 — <b>Consumer 수평 확장 + 낙관적 락</b></li>
             <li><mark>AI-DLC 개발론을 활용해 개발 공수(MM) 66% 절감</mark></li>
@@ -597,6 +599,7 @@
           <div class="callout">
             주문 관련 대규모 커머스 리뉴얼 프로젝트. 상품·배송비 구조 분리, 취소/교환/반품 개선, 주문 시스템 안정화.
           </div>
+          <div class="project-role"><span class="role-badge">ROLE</span>주문서/주문 · 주문 관련 어드민 · 외주 리딩</div>
 
           <div class="subhead"><span class="num">WHY</span>문제 상황</div>
           <ul class="bullet">
